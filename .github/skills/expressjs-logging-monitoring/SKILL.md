@@ -111,10 +111,12 @@ export type Logger = typeof logger;
 
 ```
 logs/
-├── app.2025-01-15.log    # All logs (info, warn, error, etc.)
+├── app.2025-01-15.log      # All logs (info, warn, error, etc.)
 ├── app.2025-01-16.log
-├── error.2025-01-15.log  # Error-only logs (error, fatal)
-└── error.2025-01-16.log
+├── error.2025-01-15.log    # Error-only logs (error, fatal)
+├── error.2025-01-16.log
+├── audit.2025-01-15.log    # Audit logs (login, role change, delete, etc.)
+└── audit.2025-01-16.log
 ```
 
 ### Config for Log Directory
@@ -394,9 +396,48 @@ router.post("/", authenticate, async (req, res) => {
 
 ```typescript
 // src/lib/audit-logger.ts
-import { logger } from "./logger";
+import pino from "pino";
+import { config } from "../config";
 
-const auditLog = logger.child({ type: "audit" });
+// Dedicated audit logger — always writes to rotating file + console in dev
+const auditLog = pino({
+  level: "info",
+  formatters: {
+    level: (label) => ({ level: label }),
+  },
+  timestamp: pino.stdTimeFunctions.isoTime,
+  transport: {
+    targets: [
+      // Audit log file (both dev and prod)
+      {
+        target: "pino-roll",
+        options: {
+          file: config.log.dir + "/audit",
+          frequency: "daily",
+          dateFormat: "yyyy-MM-dd",
+          mkdir: true,
+          extension: ".log",
+        },
+        level: "info",
+      },
+      // Pretty console output in development
+      ...(config.app.isDevelopment
+        ? [
+            {
+              target: "pino-pretty",
+              options: {
+                colorize: true,
+                translateTime: "SYS:HH:MM:ss.l",
+                ignore: "pid,hostname",
+                destination: 1,
+              },
+              level: "info" as const,
+            },
+          ]
+        : []),
+    ],
+  },
+});
 
 interface AuditEvent {
   action: string;
@@ -408,7 +449,7 @@ interface AuditEvent {
 }
 
 export function logAuditEvent(event: AuditEvent) {
-  auditLog.info(event, `AUDIT: ${event.action}`);
+  auditLog.info({ type: "audit", ...event }, `AUDIT: ${event.action}`);
 }
 ```
 
@@ -671,7 +712,7 @@ export function errorHandler(
 src/
 ├── lib/
 │   ├── logger.ts             # Pino logger singleton
-│   └── audit-logger.ts       # Audit event logger
+│   └── audit-logger.ts       # Dedicated audit logger (separate file transport)
 ├── middleware/
 │   ├── request-logger.ts     # pino-http request/response logging
 │   ├── request-id.ts         # Correlation ID middleware
