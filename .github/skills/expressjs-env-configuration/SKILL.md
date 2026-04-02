@@ -502,18 +502,23 @@ export const config = {
 
 ```
 src/
-├── config/
-│   ├── env.ts            # Zod schema + validation + dotenv loading
-│   └── index.ts          # Structured config object (grouped by domain)
-├── index.ts              # App entry point
+├── index.ts                      # App entry point
+├── app.ts                        # Express app setup
+├── config/                       # ◄ Environment configuration
+│   ├── env.ts                    # Zod schema + validation + dotenv loading
+│   └── index.ts                  # Structured config object (grouped by domain)
+├── lib/
+├── middleware/
+├── modules/
+│   └── ...
 └── ...
-.env                      # Shared defaults (committed as .env.example)
-.env.development          # Dev overrides
-.env.production           # Prod overrides
-.env.test                 # Test overrides
-.env.local                # Local overrides (NOT committed)
-.env.example              # Template for required vars (committed)
-.gitignore                # Exclude .env, .env.local, .env.*.local
+.env                              # Shared defaults (committed as .env.example)
+.env.development                  # Dev overrides
+.env.production                   # Prod overrides
+.env.test                         # Test overrides
+.env.local                        # Local overrides (NOT committed)
+.env.example                      # Template for required vars (committed)
+.gitignore                        # Exclude .env, .env.local, .env.*.local
 ```
 
 ---

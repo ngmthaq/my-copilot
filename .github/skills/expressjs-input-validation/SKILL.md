@@ -24,7 +24,7 @@ npm install zod
 ```typescript
 // src/middleware/validate.ts
 import { Request, Response, NextFunction } from "express";
-import { AnyZodObject, ZodError, ZodType } from "zod";
+import { AnyZodObject, ZodError, ZodType } from "../lib/zod";
 
 interface ValidationSchema {
   body?: ZodType;
@@ -81,7 +81,7 @@ router.post(
 
 ```typescript
 // src/schemas/user.schema.ts
-import { z } from "zod";
+import { z } from "../lib/zod";
 
 // Reusable field schemas
 const email = z.string().email("Invalid email format").toLowerCase().trim();
@@ -140,7 +140,7 @@ export type UpdateUserInput = z.infer<typeof updateUserSchema.body>;
 
 ```typescript
 // src/schemas/post.schema.ts
-import { z } from "zod";
+import { z } from "../lib/zod";
 
 export const createPostSchema = {
   body: z.object({
@@ -171,7 +171,7 @@ export type UpdatePostInput = z.infer<typeof updatePostSchema.body>;
 
 ```typescript
 // src/schemas/common.schema.ts
-import { z } from "zod";
+import { z } from "../lib/zod";
 
 export const paginationSchema = z.object({
   page: z.coerce.number().int().positive().default(1),
@@ -421,7 +421,7 @@ router.post(
 
 ```typescript
 // src/schemas/base.schema.ts
-import { z } from "zod";
+import { z } from "../lib/zod";
 
 // Reusable field builders
 export const fields = {
@@ -509,16 +509,33 @@ router.post(
 
 ```
 src/
+├── index.ts
+├── app.ts
+├── dto/                          # ◄ Shared DTOs
+│   ├── base.dto.ts               # Reusable field builders
+│   └── common.dto.ts             # Pagination, ID params, search
 ├── middleware/
-│   └── validate.ts           # Validation middleware
-├── schemas/
-│   ├── base.schema.ts        # Reusable field builders
-│   ├── common.schema.ts      # Pagination, ID params, search
-│   ├── user.schema.ts        # User CRUD schemas
-│   └── post.schema.ts        # Post CRUD schemas
-├── routes/
-│   ├── user.routes.ts        # Routes with validate() middleware
-│   └── post.routes.ts
+│   └── validate.ts               # ◄ Validation middleware
+├── modules/
+│   ├── user/
+│   │   ├── dto/                  # ◄ User DTOs
+│   │   │   ├── create-user.dto.ts
+│   │   │   ├── update-user.dto.ts
+│   │   │   ├── list-user.dto.ts
+│   │   │   └── index.ts
+│   │   ├── user.route.ts         # Routes with validate() middleware
+│   │   ├── user.controller.ts
+│   │   ├── user.service.ts
+│   │   └── user.repository.ts
+│   └── post/
+│       ├── dto/                  # ◄ Post DTOs
+│       │   ├── create-post.dto.ts
+│       │   ├── update-post.dto.ts
+│       │   └── index.ts
+│       ├── post.route.ts
+│       ├── post.controller.ts
+│       ├── post.service.ts
+│       └── post.repository.ts
 └── ...
 ```
 
@@ -526,6 +543,7 @@ src/
 
 ## 11. Best Practices
 
+- **Import `z` from `lib/zod`** — not from `"zod"` directly — ensures `.openapi()` is available for Swagger documentation
 - **Validate at the boundary** — validate all external input (body, params, query, headers) before it reaches business logic
 - **Use `.trim()` on string fields** — prevent whitespace-only values and leading/trailing spaces
 - **Use `z.coerce`** for query params — Express parses query values as strings, coerce to numbers/booleans/dates

@@ -710,17 +710,25 @@ export function errorHandler(
 
 ```
 src/
+├── index.ts                      # Server start
+├── app.ts                        # ◄ Middleware mounting order
 ├── lib/
-│   ├── logger.ts             # Pino logger singleton
-│   └── audit-logger.ts       # Dedicated audit logger (separate file transport)
+│   ├── logger.ts                 # ◄ Pino logger singleton
+│   └── audit-logger.ts          # ◄ Dedicated audit logger (separate file transport)
 ├── middleware/
-│   ├── request-logger.ts     # pino-http request/response logging
-│   ├── request-id.ts         # Correlation ID middleware
-│   ├── metrics.ts            # Response time + metrics collector
-│   └── error-handler.ts      # Error logging integration
-├── routes/
-│   └── health.routes.ts      # /health and /ready endpoints
-└── index.ts                  # Middleware mounting order
+│   ├── request-logger.ts         # ◄ pino-http request/response logging
+│   ├── request-id.ts             # ◄ Correlation ID middleware
+│   ├── metrics.ts                # ◄ Response time + metrics collector
+│   ├── error-handler.ts          # ◄ Error logging integration
+│   └── ...
+├── modules/
+│   ├── health/
+│   │   └── health.route.ts      # ◄ /health and /ready endpoints
+│   └── user/
+│       ├── user.controller.ts
+│       ├── user.service.ts       # ◄ Uses logger.child({ service: "UserService" })
+│       └── ...
+└── ...
 ```
 
 ---

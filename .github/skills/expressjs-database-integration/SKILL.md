@@ -807,30 +807,39 @@ app.get("/api/health", async (_req, res) => {
 
 ```
 src/
-├── index.ts                  # App entry point, server setup
+├── index.ts                      # App entry point, server setup
+├── app.ts                        # Express app setup
 ├── lib/
-│   └── prisma.ts             # Prisma client singleton
+│   └── prisma.ts                 # ◄ Prisma client singleton
 ├── middleware/
-│   ├── auth.ts               # Authentication middleware
-│   └── error-handler.ts      # Prisma + global error handler
-├── repositories/
-│   ├── user.repository.ts    # User data access
-│   └── post.repository.ts    # Post data access
-├── routes/
-│   ├── user.routes.ts        # /api/users endpoints
-│   └── post.routes.ts        # /api/posts endpoints
-└── types/
-    └── express.d.ts          # Express type extensions
-prisma.config.ts                # Prisma configuration (schema path, etc.)
+│   ├── error-handler.ts          # ◄ Prisma error mapping
+│   └── ...
+├── modules/
+│   ├── user/
+│   │   ├── dto/
+│   │   ├── user.route.ts
+│   │   ├── user.controller.ts
+│   │   ├── user.service.ts
+│   │   └── user.repository.ts    # ◄ User Prisma queries
+│   └── post/
+│       ├── dto/
+│       ├── post.route.ts
+│       ├── post.controller.ts
+│       ├── post.service.ts
+│       └── post.repository.ts    # ◄ Post Prisma queries
+├── types/
+│   └── express.d.ts
+└── ...
+prisma.config.ts                  # ◄ Prisma configuration (schema path, etc.)
 prisma/
-├── schema/
-│   ├── base.prisma           # Generator + datasource config
-│   ├── user.prisma           # User model + Role enum
-│   ├── post.prisma           # Post model
-│   ├── profile.prisma        # Profile model
-│   └── category.prisma       # Category model
-├── migrations/               # Migration files
-└── seed.ts                   # Seed script
+├── schema/                       # ◄ Multi-file schema
+│   ├── base.prisma               # Generator + datasource config
+│   ├── user.prisma               # User model + Role enum
+│   ├── post.prisma               # Post model
+│   ├── profile.prisma            # Profile model
+│   └── category.prisma           # Category model
+├── migrations/                   # Migration files
+└── seed.ts                       # Seed script
 ```
 
 ---

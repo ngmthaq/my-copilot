@@ -572,19 +572,24 @@ export default router;
 
 ```
 src/
-├── errors/
-│   ├── app-error.ts          # Base AppError class
-│   ├── http-errors.ts        # BadRequest, NotFound, Conflict, etc.
-│   └── index.ts              # Re-export all error classes
+├── index.ts                      # App entry point
+├── app.ts                        # Express app setup (middleware, routes)
+├── errors/                       # ◄ Error classes
+│   ├── app-error.ts              # Base AppError class
+│   ├── http-errors.ts            # BadRequest, NotFound, Conflict, etc.
+│   └── index.ts                  # Re-export all error classes
 ├── middleware/
-│   ├── request-handler.ts    # Generic request wrapper (if not using express-async-errors)
-│   ├── error-handler.ts      # Centralized error middleware
-│   └── not-found-handler.ts  # 404 catch-all
-├── services/
-│   └── user.service.ts       # Business logic with error throwing
-├── routes/
-│   └── user.routes.ts        # Thin route handlers
-└── index.ts                  # App setup with correct middleware order
+│   ├── request-handler.ts        # Generic async request wrapper
+│   ├── error-handler.ts          # ◄ Centralized error middleware
+│   └── not-found-handler.ts      # ◄ 404 catch-all
+├── modules/
+│   └── user/
+│       ├── dto/                  # Validation schemas + types
+│       ├── user.route.ts
+│       ├── user.controller.ts
+│       ├── user.service.ts       # ◄ Business logic with error throwing
+│       └── user.repository.ts
+└── ...
 ```
 
 ---
