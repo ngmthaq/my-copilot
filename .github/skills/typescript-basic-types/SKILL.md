@@ -132,9 +132,7 @@ function format(value: StringOrNumber): string {
 }
 
 // Discriminated union
-type Result =
-  | { status: "success"; data: string }
-  | { status: "error"; message: string };
+type Result = { status: "success"; data: string } | { status: "error"; message: string };
 
 function handle(r: Result) {
   if (r.status === "success") {

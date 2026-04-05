@@ -593,9 +593,7 @@ class Product extends BaseEntity implements Cacheable, Auditable {
 
 // Type guard with interfaces
 function isCacheable(obj: unknown): obj is Cacheable {
-  return (
-    typeof obj === "object" && obj !== null && "cacheKey" in obj && "ttl" in obj
-  );
+  return typeof obj === "object" && obj !== null && "cacheKey" in obj && "ttl" in obj;
 }
 ```
 

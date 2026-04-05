@@ -154,8 +154,7 @@ function Column(options: { type: string; nullable?: boolean }) {
 }
 
 function Required(target: any, propertyKey: string) {
-  const requiredFields: string[] =
-    Reflect.getMetadata("required", target) || [];
+  const requiredFields: string[] = Reflect.getMetadata("required", target) || [];
   requiredFields.push(propertyKey);
   Reflect.defineMetadata("required", requiredFields, target);
 }
@@ -186,13 +185,8 @@ const required = Reflect.getMetadata("required", User.prototype);
 ```typescript
 // (target, methodName, parameterIndex)
 function Inject(token: string) {
-  return function (
-    target: any,
-    methodName: string | undefined,
-    paramIndex: number,
-  ) {
-    const existing: Array<{ index: number; token: string }> =
-      Reflect.getMetadata("inject", target) || [];
+  return function (target: any, methodName: string | undefined, paramIndex: number) {
+    const existing: Array<{ index: number; token: string }> = Reflect.getMetadata("inject", target) || [];
     existing.push({ index: paramIndex, token });
     Reflect.defineMetadata("inject", existing, target);
   };
@@ -267,11 +261,8 @@ class Example {
 const container = new Map<string, any>();
 
 function Injectable(target: Function) {
-  const params: Function[] =
-    Reflect.getMetadata("design:paramtypes", target) || [];
-  const instance = new (target as any)(
-    ...params.map((p) => container.get(p.name)),
-  );
+  const params: Function[] = Reflect.getMetadata("design:paramtypes", target) || [];
+  const instance = new (target as any)(...params.map((p) => container.get(p.name)));
   container.set(target.name, instance);
 }
 
@@ -365,10 +356,7 @@ class ProductService {
 
 ```typescript
 // New syntax — no experimentalDecorators needed in TS 5.0+
-function log<T extends (...args: any[]) => any>(
-  originalMethod: T,
-  context: ClassMethodDecoratorContext,
-) {
+function log<T extends (...args: any[]) => any>(originalMethod: T, context: ClassMethodDecoratorContext) {
   return function (this: any, ...args: any[]) {
     console.log(`Calling ${String(context.name)}`);
     return originalMethod.apply(this, args);

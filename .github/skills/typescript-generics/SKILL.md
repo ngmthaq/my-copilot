@@ -118,9 +118,7 @@ const r2: Result<string, ValidationError> = {
 };
 
 // Default in functions
-function createState<T = string>(
-  initial: T,
-): { get: () => T; set: (v: T) => void } {
+function createState<T = string>(initial: T): { get: () => T; set: (v: T) => void } {
   let state = initial;
   return {
     get: () => state,
@@ -142,10 +140,7 @@ const n = createState<number>(0); // T = number (explicit)
 class TypedEventEmitter<Events extends Record<string, unknown>> {
   private listeners = new Map<keyof Events, Set<Function>>();
 
-  on<K extends keyof Events>(
-    event: K,
-    fn: (data: Events[K]) => void,
-  ): () => void {
+  on<K extends keyof Events>(event: K, fn: (data: Events[K]) => void): () => void {
     if (!this.listeners.has(event)) this.listeners.set(event, new Set());
     this.listeners.get(event)!.add(fn);
     return () => this.listeners.get(event)?.delete(fn);
@@ -193,10 +188,7 @@ function omit<T, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
 }
 
 // Group by
-function groupBy<T, K extends string>(
-  items: T[],
-  getKey: (item: T) => K,
-): Record<K, T[]> {
+function groupBy<T, K extends string>(items: T[], getKey: (item: T) => K): Record<K, T[]> {
   return items.reduce(
     (groups, item) => {
       const key = getKey(item);
@@ -228,9 +220,7 @@ type CreateUser = OptionalKeys<User, "id" | "createdAt">;
 type RequiredKeys<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
 
 // Recursive generic
-type DeepReadonly<T> = T extends object
-  ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
-  : T;
+type DeepReadonly<T> = T extends object ? { readonly [K in keyof T]: DeepReadonly<T[K]> } : T;
 
 // Generic with infer
 type ReturnTypeOf<T> = T extends (...args: any[]) => infer R ? R : never;
@@ -291,10 +281,7 @@ new QueryBuilder<User>()
 
 ```typescript
 // Type-safe middleware chain
-type Middleware<TContext> = (
-  ctx: TContext,
-  next: () => Promise<void>,
-) => Promise<void>;
+type Middleware<TContext> = (ctx: TContext, next: () => Promise<void>) => Promise<void>;
 
 class Pipeline<TContext> {
   private middlewares: Middleware<TContext>[] = [];

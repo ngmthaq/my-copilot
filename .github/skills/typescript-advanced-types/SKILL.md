@@ -47,18 +47,15 @@ type Awaited<T> = T extends Promise<infer V> ? Awaited<V> : T;
 type G = Awaited<Promise<Promise<string>>>; // string
 
 // Extract function parameters
-type FirstParam<T> = T extends (first: infer P, ...args: any[]) => any
-  ? P
-  : never;
+type FirstParam<T> = T extends (first: infer P, ...args: any[]) => any ? P : never;
 type H = FirstParam<(name: string, age: number) => void>; // string
 
 // Extract from template literals
-type ExtractRouteParams<T extends string> =
-  T extends `${string}:${infer Param}/${infer Rest}`
-    ? Param | ExtractRouteParams<Rest>
-    : T extends `${string}:${infer Param}`
-      ? Param
-      : never;
+type ExtractRouteParams<T extends string> = T extends `${string}:${infer Param}/${infer Rest}`
+  ? Param | ExtractRouteParams<Rest>
+  : T extends `${string}:${infer Param}`
+    ? Param
+    : never;
 
 type Params = ExtractRouteParams<"/users/:userId/posts/:postId">;
 // "userId" | "postId"
@@ -92,9 +89,7 @@ type StringProps = OnlyStrings<{ name: string; age: number; email: string }>;
 
 // Transform value types
 type Async<T> = {
-  [K in keyof T]: T[K] extends (...args: infer A) => infer R
-    ? (...args: A) => Promise<R>
-    : T[K];
+  [K in keyof T]: T[K] extends (...args: infer A) => infer R ? (...args: A) => Promise<R> : T[K];
 };
 ```
 
@@ -171,20 +166,11 @@ function isString(value: unknown): value is string {
 }
 
 function isUser(obj: unknown): obj is User {
-  return (
-    typeof obj === "object" &&
-    obj !== null &&
-    "id" in obj &&
-    "name" in obj &&
-    "email" in obj
-  );
+  return typeof obj === "object" && obj !== null && "id" in obj && "name" in obj && "email" in obj;
 }
 
 // Assertion function — asserts or throws
-function assertDefined<T>(
-  value: T | null | undefined,
-  msg?: string,
-): asserts value is T {
+function assertDefined<T>(value: T | null | undefined, msg?: string): asserts value is T {
   if (value == null) throw new Error(msg ?? "Value is null/undefined");
 }
 
@@ -241,30 +227,18 @@ function exhaustive(value: never): never {
 
 ```typescript
 // JSON type
-type JSONValue =
-  | string
-  | number
-  | boolean
-  | null
-  | JSONValue[]
-  | { [key: string]: JSONValue };
+type JSONValue = string | number | boolean | null | JSONValue[] | { [key: string]: JSONValue };
 
 // Deep readonly
-type DeepReadonly<T> = T extends object
-  ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
-  : T;
+type DeepReadonly<T> = T extends object ? { readonly [K in keyof T]: DeepReadonly<T[K]> } : T;
 
 // Deep partial
-type DeepPartial<T> = T extends object
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : T;
+type DeepPartial<T> = T extends object ? { [K in keyof T]?: DeepPartial<T[K]> } : T;
 
 // Nested path type
 type Path<T, Prefix extends string = ""> = T extends object
   ? {
-      [K in keyof T & string]: T[K] extends object
-        ? `${Prefix}${K}` | Path<T[K], `${Prefix}${K}.`>
-        : `${Prefix}${K}`;
+      [K in keyof T & string]: T[K] extends object ? `${Prefix}${K}` | Path<T[K], `${Prefix}${K}.`> : `${Prefix}${K}`;
     }[keyof T & string]
   : never;
 

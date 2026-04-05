@@ -236,9 +236,7 @@ type FrozenUser = Readonly<User>;
 // All properties become readonly
 
 // Deep readonly
-type DeepReadonly<T> = T extends object
-  ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
-  : T;
+type DeepReadonly<T> = T extends object ? { readonly [K in keyof T]: DeepReadonly<T[K]> } : T;
 
 // ReadonlyArray, ReadonlyMap, ReadonlySet
 function analyze(data: ReadonlyMap<string, number>) {
@@ -347,12 +345,7 @@ class RequestBuilder {
 ```typescript
 // Type guard — returns boolean, narrows in if blocks
 function isUser(value: unknown): value is User {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "id" in value &&
-    "name" in value
-  );
+  return typeof value === "object" && value !== null && "id" in value && "name" in value;
 }
 
 // Assertion function — throws or narrows
@@ -361,10 +354,7 @@ function assertUser(value: unknown): asserts value is User {
 }
 
 // Assert non-null
-function assertDefined<T>(
-  value: T | null | undefined,
-  name: string = "value",
-): asserts value is T {
+function assertDefined<T>(value: T | null | undefined, name: string = "value"): asserts value is T {
   if (value == null) throw new Error(`${name} is null/undefined`);
 }
 

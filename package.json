@@ -1,0 +1,25 @@
+{
+  "name": "my-copilot",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/ngmthaq/my-copilot#readme",
+  "bugs": {
+    "url": "https://github.com/ngmthaq/my-copilot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngmthaq/my-copilot.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1"
+  }
+}

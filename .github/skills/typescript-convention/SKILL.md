@@ -127,11 +127,7 @@ const result: number = add(1, 2); // Redundant
 const users: User[] = getUsers(); // Redundant if getUsers returns User[]
 
 // ✅ Annotate complex return types for documentation
-function createPaginatedResponse<T>(
-  items: T[],
-  total: number,
-  page: number,
-): PaginatedResponse<T> {
+function createPaginatedResponse<T>(items: T[], total: number, page: number): PaginatedResponse<T> {
   return { items, total, page, totalPages: Math.ceil(total / 20) };
 }
 ```
@@ -230,19 +226,9 @@ function createUserService(repo: UserRepository): UserService {
 
 // ✅ Use object params for 3+ parameters
 // ❌
-function createUser(
-  name: string,
-  email: string,
-  role: string,
-  avatar?: string,
-) {}
+function createUser(name: string, email: string, role: string, avatar?: string) {}
 // ✅
-function createUser(params: {
-  name: string;
-  email: string;
-  role: UserRole;
-  avatar?: string;
-}): User {
+function createUser(params: { name: string; email: string; role: UserRole; avatar?: string }): User {
   /* ... */
 }
 

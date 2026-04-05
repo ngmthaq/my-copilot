@@ -192,14 +192,10 @@ type UserWithEmail = RequireKeys<Partial<User>, "email">;
 // email is required, rest optional
 
 // Deep partial
-type DeepPartial<T> = T extends object
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : T;
+type DeepPartial<T> = T extends object ? { [K in keyof T]?: DeepPartial<T[K]> } : T;
 
 // Deep readonly
-type DeepReadonly<T> = T extends object
-  ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
-  : T;
+type DeepReadonly<T> = T extends object ? { readonly [K in keyof T]: DeepReadonly<T[K]> } : T;
 
 // Nullable all properties
 type Nullable<T> = { [K in keyof T]: T[K] | null };
@@ -259,9 +255,7 @@ const users = await typedFetch<User[]>("/api/users");
 
 // Event handler map
 type HandlerMap<Events extends Record<string, unknown>> = {
-  [K in keyof Events as `on${Capitalize<string & K>}`]?: (
-    data: Events[K],
-  ) => void;
+  [K in keyof Events as `on${Capitalize<string & K>}`]?: (data: Events[K]) => void;
 };
 
 type AppHandlers = HandlerMap<{
