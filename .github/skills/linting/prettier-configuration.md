@@ -9,7 +9,7 @@ description: "Prettier configuration and setup for JavaScript, TypeScript, React
 
 Prettier is an opinionated code formatter that enforces a consistent style by reprinting code from scratch. It supports JavaScript, TypeScript, JSX, TSX, JSON, CSS, HTML, Vue, Markdown, and more. This skill covers all aspects of configuring and integrating Prettier in a project.
 
-> **Standards alignment:** All config examples in this skill follow the project's `code-formatting-standards` skill — double quotes, `printWidth: 120`, semicolons required, `trailingComma: "all"`, LF line endings. Load that skill when you also need naming conventions, import order, or EditorConfig rules.
+> **Standards alignment:** All config examples in this skill follow the project's `js-coding-convention` instruction — double quotes, `printWidth: 120`, semicolons required, `trailingComma: "all"`, LF line endings. Load that instruction file when you also need naming conventions, import order, or EditorConfig rules.
 
 ---
 
@@ -135,7 +135,7 @@ export default {
 | `htmlWhitespace`             | `"css"` \| `"strict"` \| `"ignore"`      | `"css"`    | How to handle whitespace in HTML                        |
 | `embeddedLanguageFormatting` | `"auto"` \| `"off"`                      | `"auto"`   | Format embedded code (e.g. CSS in JS template literals) |
 
-### Recommended baseline (aligned with `code-formatting-standards`)
+### Recommended baseline (aligned with `js-coding-convention`)
 
 ```json
 {
@@ -436,7 +436,7 @@ import baseConfig from "@my-monorepo/prettier-config";
 /** @type {import("prettier").Config} */
 export default {
   ...baseConfig,
-  // app-specific overrides only — base already follows code-formatting-standards
+  // app-specific overrides only — base already follows js-coding-convention
 };
 ```
 

@@ -37,6 +37,6 @@ Your job is to **implement all deployment and infrastructure code** for backend 
 
 ## Skills Referenced
 
-- **Docker**: `.github/skills/docker/`
-- **Nginx**: `.github/skills/nginx/`
-- **Git/CI**: `.github/skills/git/`
+- **Docker**: `.github/skills/docker/SKILL.md`
+- **Nginx**: `.github/skills/nginx/SKILL.md`
+- **Git/CI**: `.github/skills/git/SKILL.md`

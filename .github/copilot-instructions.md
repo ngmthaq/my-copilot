@@ -1,21 +1,43 @@
 # GitHub Copilot Workspace Instructions
 
-## 1. Framework-Specific Instructions
+## 1. Framework-Specific Skills
 
-This workspace includes framework-specific instruction files that define patterns, conventions, and best practices. Load the relevant file(s) before writing any code:
+This workspace uses skill files as the authoritative source of patterns, conventions, and best practices. Each framework has a `SKILL.md` entry point that maps to focused sub-skill files. Load the relevant `SKILL.md` before writing any code:
 
-| Framework / Technology   | Instruction File                                 |
-| ------------------------ | ------------------------------------------------ |
-| Express.js               | `.github/instructions/expressjs.instructions.md` |
-| NestJS                   | `.github/instructions/nestjs.instructions.md`    |
-| React.js                 | `.github/instructions/reactjs.instructions.md`   |
-| Vue.js (Composition API) | `.github/instructions/vuejs.instructions.md`     |
+| Framework / Technology   | SKILL.md Entry Point                            |
+| ------------------------ | ----------------------------------------------- |
+| Express.js               | `.github/skills/expressjs/SKILL.md`             |
+| NestJS                   | `.github/skills/nestjs/SKILL.md`                |
+| React.js                 | `.github/skills/reactjs/SKILL.md`               |
+| Vue.js (Composition API) | `.github/skills/vuejs-composition-api/SKILL.md` |
+| Flutter                  | `.github/skills/flutter/SKILL.md`               |
+| Dart                     | `.github/skills/dart/SKILL.md`                  |
+| Docker                   | `.github/skills/docker/SKILL.md`                |
+| Nginx                    | `.github/skills/nginx/SKILL.md`                 |
+| Prisma                   | `.github/skills/prisma/SKILL.md`                |
+| TypeORM                  | `.github/skills/typeorm/SKILL.md`               |
+| TypeScript               | `.github/skills/typescript/SKILL.md`            |
+| GraphQL                  | `.github/skills/graphql/SKILL.md`               |
+| REST API                 | `.github/skills/restapi/SKILL.md`               |
 
-**Rule:** Before writing any code or making architectural decisions, identify which framework(s) are involved and load the corresponding instruction file(s) using `read_file`. Follow every pattern and convention defined in those files.
+**Rule:** Before writing any code or making architectural decisions, identify which framework(s) are involved and load the corresponding `SKILL.md` using `read_file`. Each `SKILL.md` contains a sub-skills table — load only the specific sub-skill files relevant to the task at hand.
 
 ---
 
-## 2. Requirement Clarification — Never Assume
+## 2. Coding Convention Instructions
+
+These instruction files define formatting rules, naming conventions, and style standards. They apply automatically to matching files via the `applyTo` glob, but **agents must also load them explicitly with `read_file` before writing or reviewing code**.
+
+| Instruction File                                                 | Covers                                                    |
+| ---------------------------------------------------------------- | --------------------------------------------------------- |
+| `.github/instructions/js-coding-convention.instructions.md`      | Formatting, naming, imports, TypeScript, ESLint, Prettier |
+| `.github/instructions/flutter-coding-convention.instructions.md` | Formatting, naming, imports, widget conventions, Dart     |
+
+**Rule:** When writing, editing, or reviewing code in any of the above file types, load the corresponding instruction file using `read_file` and follow its conventions strictly.
+
+---
+
+## 3. Requirement Clarification — Never Assume
 
 Before starting any task, AI **must** ask the user clarifying questions to fully understand the requirement. Do **not** assume any detail that has not been explicitly stated.
 
@@ -31,7 +53,7 @@ Use the `vscode_askQuestions` tool to collect answers in a structured way.
 
 ---
 
-## 3. Planning — Always Create a Plan First
+## 4. Planning — Always Create a Plan First
 
 Before implementing any non-trivial feature or change, AI **must** ask the user's permission to create a plan document.
 
@@ -46,6 +68,8 @@ Examples:
 - `.docs/plans/plan-add-user-authentication-2026-04-05-1430.md`
 - `.docs/plans/plan-refactor-product-module-2026-04-05-0900.md`
 - `.docs/plans/plan-setup-docker-compose-2026-04-05-1615.md`
+- `.docs/plans/plan-fix-cors-in-user-creation-form-2026-04-05-1715.md`
+- `.docs/plans/plan-fix-add-user-authentication-reviewer-comments-2026-04-05-1715.md`
 
 ### What to ask the user
 
@@ -77,7 +101,7 @@ Only create the plan file after the user explicitly approves. Update the checkbo
 
 ---
 
-## 4. Feature Documentation — Always Create Docs After Implementation
+## 5. Feature Documentation — Always Create Docs After Implementation
 
 After completing any feature, AI **must** ask the user's permission to create a feature documentation file.
 
@@ -157,13 +181,14 @@ Only create the doc file after the user explicitly approves.
 
 ---
 
-## 5. General Workflow Summary
+## 6. General Workflow Summary
 
 For every task, follow this order:
 
-1. **Load** the relevant framework instruction file(s).
-2. **Ask** clarifying questions — never assume requirements.
-3. **Propose** a plan document and wait for user approval before creating it.
-4. **Implement** following the loaded skill/instruction patterns.
-5. **Update** the plan checkboxes as steps complete.
-6. **Ask** the user to approve creating a feature doc once the feature is done.
+1. **Load** the relevant framework `SKILL.md` and any needed sub-skill files.
+2. **Load** the relevant coding convention instruction file using `read_file` before writing or reviewing code.
+3. **Ask** clarifying questions — never assume requirements.
+4. **Propose** a plan document and wait for user approval before creating it.
+5. **Implement** following the loaded skill/instruction patterns.
+6. **Update** the plan checkboxes as steps complete.
+7. **Ask** the user to approve creating a feature doc once the feature is done.

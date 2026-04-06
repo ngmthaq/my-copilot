@@ -9,7 +9,7 @@ description: "Integrating Prettier with ESLint to avoid rule conflicts and run b
 
 Prettier handles **formatting** (whitespace, quotes, semicolons, line length). ESLint handles **code quality** (unused variables, unreachable code, type errors). They must be configured to run without conflicting. This skill covers the correct integration pattern and common anti-patterns to avoid.
 
-> **Standards alignment:** All config examples follow `code-formatting-standards` — double quotes, `printWidth: 120`, `trailingComma: "all"`, LF line endings.
+> **Standards alignment:** All config examples follow `js-coding-convention` — double quotes, `printWidth: 120`, `trailingComma: "all"`, LF line endings.
 
 ---
 
@@ -142,7 +142,7 @@ This order avoids ESLint writing code that Prettier immediately reformats.
 
 ---
 
-## 5. `.prettierrc` — Required Config (aligned with `code-formatting-standards`)
+## 5. `.prettierrc` — Required Config (aligned with `js-coding-convention`)
 
 ```json
 {

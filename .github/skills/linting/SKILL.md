@@ -1,15 +1,16 @@
 ---
 name: linting
-description: "Unified linting skill index — covers code formatting standards, ESLint rule configuration, custom rule authoring, third-party plugin integration, Prettier setup, Prettier/ESLint conflict resolution, pre-commit hooks with Husky and lint-staged, monorepo linting structure, and linting pipeline performance optimization. Use this as the entry point; it delegates to focused sub-skill files for each domain."
+description: "Unified linting skill index — covers ESLint rule configuration, custom rule authoring, third-party plugin integration, Prettier setup, Prettier/ESLint conflict resolution, pre-commit hooks with Husky and lint-staged, monorepo linting structure, and linting pipeline performance optimization. Use this as the entry point; it delegates to focused sub-skill files for each domain. Note: code formatting standards (naming, indentation, quotes, imports) are defined in `.github/instructions/js-coding-convention.instructions.md` and apply automatically."
 ---
 
 # Linting Skill
 
 ## Sub-Skills Reference
 
+> **Code formatting standards** (naming conventions, indentation, quotes, import order, TypeScript rules) are defined as an instruction file at `.github/instructions/js-coding-convention.instructions.md`. This file applies automatically to all code files via `applyTo` — load it with `read_file` when you need to enforce or review style rules.
+
 | Domain                        | File                                                             | When to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ----------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Code Formatting Standards     | [code-formatting-standards.md](code-formatting-standards.md)     | Enforce and apply consistent code formatting rules across TypeScript, JavaScript, React (JSX/TSX), Vue, NestJS, and Express projects. Use when: formatting code, reviewing code style, setting up Prettier/ESLint, applying naming conventions, organizing imports, enforcing indentation or line-length rules, standardizing brace style or quote style.                                                                                                                    |
 | ESLint Rule Configuration     | [eslint-rule-configuration.md](eslint-rule-configuration.md)     | ESLint rule configuration and flat config setup for JavaScript and TypeScript projects. Use when: setting up ESLint from scratch; configuring rule severity (error/warn/off); extending shared configs; ignoring files or directories; configuring language options and globals; setting up eslint.config.js with flat config format; migrating from .eslintrc to flat config; enabling ECMAScript version or module settings; running ESLint in CLI or scripts.             |
 | ESLint Custom Rules           | [eslint-custom-rules.md](eslint-custom-rules.md)                 | Writing custom ESLint rules and rule selectors for JavaScript and TypeScript projects. Use when: creating a project-specific lint rule; enforcing a coding convention not covered by existing plugins; writing AST-based rules with node visitors; adding fixers to auto-correct violations; testing custom rules with RuleTester; publishing rules as a local or npm plugin.                                                                                                |
 | ESLint Plugin Integration     | [eslint-plugin-integration.md](eslint-plugin-integration.md)     | Integrating third-party ESLint plugins into JavaScript and TypeScript projects. Use when: installing and configuring ESLint plugins; setting up eslint-plugin-react, eslint-plugin-vue, @typescript-eslint, eslint-plugin-import, eslint-plugin-unicorn, eslint-plugin-sonarjs, eslint-plugin-security, eslint-plugin-prettier, eslint-plugin-n (Node.js), eslint-plugin-jsx-a11y; enabling plugin rule sets; troubleshooting plugin conflicts or peer dependency errors.    |
@@ -26,8 +27,8 @@ description: "Unified linting skill index — covers code formatting standards, 
 ```
 What is your goal?
 │
-├── Apply consistent code style (indentation, quotes, naming)?
-│   └── → code-formatting-standards.md
+├── Apply consistent code style (indentation, quotes, naming, imports)?
+│   └── → .github/instructions/js-coding-convention.instructions.md  (instruction file, not a skill)
 │
 ├── Set up ESLint from scratch or configure rules?
 │   └── → eslint-rule-configuration.md

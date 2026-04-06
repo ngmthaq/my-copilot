@@ -29,10 +29,11 @@ Your job is to **create comprehensive test suites** for backend features and **f
 ## Approach
 
 1. Read the plan document in `.docs/plans/` to understand the feature scope
-2. Identify all units and integration points to test
-3. Write tests following the AAA pattern (Arrange, Act, Assert)
-4. Run tests with `execute` to verify they pass
-5. Fix any reviewer comments related to test coverage or quality
+2. Load `.github/skills/expressjs/SKILL.md` or `.github/skills/nestjs/SKILL.md` and the relevant testing sub-skill files
+3. Identify all units and integration points to test
+4. Write tests following the AAA pattern (Arrange, Act, Assert)
+5. Run tests with `execute` to verify they pass
+6. Fix any reviewer comments related to test coverage or quality
 
 ## Output Format
 

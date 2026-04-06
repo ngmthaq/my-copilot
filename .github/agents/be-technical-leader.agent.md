@@ -30,7 +30,7 @@ Your job is to **analyze requirements** and produce structured implementation pl
 
 ## Approach
 
-1. Load the relevant instruction and skill files for the framework in use
+1. Load the relevant framework `SKILL.md` (e.g., `.github/skills/expressjs/SKILL.md` or `.github/skills/nestjs/SKILL.md`) and any needed sub-skill files
 2. Ask clarifying questions if requirements are unclear
 3. Analyze requirements and define the architecture
 4. Propose and (with approval) create a plan document following the workspace convention

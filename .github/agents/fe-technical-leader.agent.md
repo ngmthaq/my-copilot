@@ -30,7 +30,7 @@ Your job is to **analyze frontend requirements** and produce structured implemen
 
 ## Approach
 
-1. Load the relevant instruction and skill files for the framework in use (React or Vue)
+1. Load the relevant framework `SKILL.md` (e.g., `.github/skills/reactjs/SKILL.md` or `.github/skills/vuejs-composition-api/SKILL.md`) and any needed sub-skill files
 2. Ask clarifying questions if requirements are unclear
 3. Analyze requirements and define component architecture, routing, and state strategy
 4. Propose and (with approval) create a plan document following the workspace convention

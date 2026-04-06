@@ -34,7 +34,7 @@ Your job is to **review frontend code for security vulnerabilities** and provide
 2. Check against OWASP Top 10 client-side risk categories
 3. Review authentication flows, data handling, API calls, and DOM interactions
 4. Produce a structured security report with severity levels (critical/high/medium/low)
-5. Provide concrete fix suggestions referencing relevant skill files
+5. Provide concrete fix suggestions referencing `.github/skills/reactjs/SKILL.md` or `.github/skills/vuejs-composition-api/SKILL.md` and the relevant sub-skill files
 
 ## Output Format
 

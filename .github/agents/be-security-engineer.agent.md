@@ -33,7 +33,7 @@ Your job is to **review backend code for security vulnerabilities** and provide 
 2. Check against OWASP Top 10 categories systematically
 3. Review authentication flows, input handling, database interactions, and HTTP configuration
 4. Produce a structured security report with severity levels (critical/high/medium/low)
-5. Provide concrete fix suggestions referencing `.github/skills/expressjs/api-security.md` or `.github/skills/nestjs/guards-authentication.md`
+5. Provide concrete fix suggestions referencing `.github/skills/expressjs/SKILL.md` (api-security sub-skill) or `.github/skills/nestjs/SKILL.md` (guards-authentication sub-skill)
 
 ## Output Format
 

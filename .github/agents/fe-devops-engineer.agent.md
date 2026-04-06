@@ -37,7 +37,7 @@ Your job is to **implement all deployment and infrastructure code** for frontend
 
 ## Skills Referenced
 
-- **Docker**: `.github/skills/docker/`
-- **Nginx**: `.github/skills/nginx/`
-- **Vite**: `.github/skills/vite/`
-- **Git/CI**: `.github/skills/git/`
+- **Docker**: `.github/skills/docker/SKILL.md`
+- **Nginx**: `.github/skills/nginx/SKILL.md`
+- **Vite**: `.github/skills/vite/SKILL.md`
+- **Git/CI**: `.github/skills/git/SKILL.md`

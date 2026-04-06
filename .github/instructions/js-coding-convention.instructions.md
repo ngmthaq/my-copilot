@@ -1,6 +1,5 @@
 ---
-name: code-formatting-standards
-description: "Enforce and apply consistent code formatting rules across TypeScript, JavaScript, React (JSX/TSX), Vue, NestJS, and Express projects. Use when: formatting code, reviewing code style, setting up Prettier/ESLint, applying naming conventions, organizing imports, enforcing indentation or line-length rules, standardizing brace style or quote style. DO NOT USE FOR: runtime logic errors, business logic implementation, framework-specific patterns unrelated to style."
+applyTo: "**/*.{ts,tsx,js,jsx,mjs,cjs,vue}"
 ---
 
 # Code Formatting Standards

@@ -28,7 +28,7 @@ Your job is to **review backend code changes** against the technical leader's pl
 ## Approach
 
 1. Read the relevant plan document in `.docs/plans/`
-2. Load the framework skill files used in the implementation
+2. Load the framework `SKILL.md` and the specific sub-skill files used in the implementation
 3. Review each changed file systematically
 4. Check alignment with the plan, skill patterns, and workspace conventions
 5. Document findings as actionable comments the developer can fix

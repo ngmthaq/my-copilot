@@ -30,15 +30,16 @@ Your job is to **create comprehensive test suites** for frontend components and 
 ## Approach
 
 1. Read the plan document in `.docs/plans/` to understand the feature scope
-2. Identify all components, hooks/composables, and user flows to test
-3. Write tests following the AAA pattern (Arrange, Act, Assert) using user-centric queries
-4. Run tests with `execute` to verify they pass
-5. Fix any reviewer comments related to test coverage or quality
+2. Load `.github/skills/reactjs/SKILL.md` or `.github/skills/vuejs-composition-api/SKILL.md` and the relevant testing sub-skill files
+3. Identify all components, hooks/composables, and user flows to test
+4. Write tests following the AAA pattern (Arrange, Act, Assert) using user-centric queries
+5. Run tests with `execute` to verify they pass
+6. Fix any reviewer comments related to test coverage or quality
 
 ## Skills Referenced
 
-- **React.js testing**: `.github/skills/reactjs/unit-test.md`
-- **Vue.js testing**: `.github/skills/vuejs-composition-api/unit-test.md`
+- **React.js**: `.github/skills/reactjs/SKILL.md` — see unit-test sub-skill
+- **Vue.js**: `.github/skills/vuejs-composition-api/SKILL.md` — see unit-test sub-skill
 
 ## Output Format
 
