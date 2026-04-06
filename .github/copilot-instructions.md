@@ -65,11 +65,12 @@ Before planning any non-trivial feature or change, AI **must** ask the user's pe
 
 Examples:
 
-- `.github/.docs/features/auth/login.md`
-- `.github/.docs/features/auth/register.md`
-- `.github/.docs/features/auth/refresh-token.md`
-- `.github/.docs/features/product/create-product.md`
-- `.github/.docs/features/product/list-products.md`
+- `.github/.docs/features/auth/login-api.md`
+- `.github/.docs/features/auth/login-ui.md`
+- `.github/.docs/features/auth/register-ui.md`
+- `.github/.docs/features/auth/refresh-token-api.md`
+- `.github/.docs/features/product/create-product-ui.md`
+- `.github/.docs/features/product/list-products-api.md`
 - `.github/.docs/features/infra/docker-setup.md`
 
 ### What to ask the user
