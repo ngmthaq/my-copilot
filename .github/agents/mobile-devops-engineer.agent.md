@@ -34,7 +34,7 @@ Your job is to **implement all build, release, and CI/CD automation** for mobile
 ## Approach
 
 1. Load `.github/skills/flutter/SKILL.md` and `.github/skills/docker/SKILL.md` (if containerising CI build agents) before starting
-2. Read the feature doc in `.docs/features/` and the plan document in `.docs/plans/` for feature requirements and deployment scope
+2. Read the feature doc and the plan document for feature requirements and deployment scope
 3. Configure Flutter flavors and environment variable injection
 4. Implement CI workflow (lint → test → build → sign → deploy)
 5. Set up Fastlane lanes for automated signing and store uploads

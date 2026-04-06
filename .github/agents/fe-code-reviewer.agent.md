@@ -14,7 +14,7 @@ Your job is to **review frontend code changes** against the technical leader's p
 
 ## Responsibilities
 
-- Review code against the feature doc in `.docs/features/` and the plan in `.docs/plans/` for the current feature
+- Review code against the feature doc and the plan for the current feature
 - Check adherence to framework patterns from `.github/skills/reactjs/` or `.github/skills/vuejs-composition-api/`
 - Audit component design: single responsibility, reusability, prop interfaces
 - Verify hooks usage, state management patterns, and side effect handling
@@ -46,7 +46,7 @@ Your job is to **review frontend code changes** against the technical leader's p
 
 ## Approach
 
-1. Read the feature doc in `.docs/features/` and the relevant plan document in `.docs/plans/`
+1. Read the feature doc and the relevant plan document for the current feature
 2. Load the framework `SKILL.md` and the specific sub-skill files used in the implementation
 3. Review each changed file systematically for correctness, maintainability, accessibility, and security
 4. Check alignment with the plan, skill patterns, workspace conventions, and OWASP-style frontend risks

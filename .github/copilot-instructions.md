@@ -60,21 +60,21 @@ Before planning any non-trivial feature or change, AI **must** ask the user's pe
 ### Doc Location & Naming Convention
 
 ```
-.docs/features/<module>/<feature-name>.md
+.github/.docs/features/<module>/<feature-name>.md
 ```
 
 Examples:
 
-- `.docs/features/auth/login.md`
-- `.docs/features/auth/register.md`
-- `.docs/features/auth/refresh-token.md`
-- `.docs/features/product/create-product.md`
-- `.docs/features/product/list-products.md`
-- `.docs/features/infra/docker-setup.md`
+- `.github/.docs/features/auth/login.md`
+- `.github/.docs/features/auth/register.md`
+- `.github/.docs/features/auth/refresh-token.md`
+- `.github/.docs/features/product/create-product.md`
+- `.github/.docs/features/product/list-products.md`
+- `.github/.docs/features/infra/docker-setup.md`
 
 ### What to ask the user
 
-> "Before I plan, would you like me to create a feature doc at `.docs/features/<module>/<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for the developer, QA, and DevOps agents."
+> "Before I plan, would you like me to create a feature doc at `.github/.docs/features/<module>/<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for the developer, QA, and DevOps agents."
 
 ### Feature Doc Structure
 
@@ -140,20 +140,20 @@ After the feature doc is approved and created, AI **must** ask the user's permis
 ### Plan Location & Naming Convention
 
 ```
-.docs/plans/plan-<do-something>-<YYYY-MM-DD-HHmm>.md
+.github/.docs/plans/plan-<do-something>-<YYYY-MM-DD-HHmm>.md
 ```
 
 Examples:
 
-- `.docs/plans/plan-add-user-authentication-2026-04-05-1430.md`
-- `.docs/plans/plan-refactor-product-module-2026-04-05-0900.md`
-- `.docs/plans/plan-setup-docker-compose-2026-04-05-1615.md`
-- `.docs/plans/plan-fix-cors-in-user-creation-form-2026-04-05-1715.md`
-- `.docs/plans/plan-fix-add-user-authentication-reviewer-comments-2026-04-05-1715.md`
+- `.github/.docs/plans/plan-add-user-authentication-2026-04-05-1430.md`
+- `.github/.docs/plans/plan-refactor-product-module-2026-04-05-0900.md`
+- `.github/.docs/plans/plan-setup-docker-compose-2026-04-05-1615.md`
+- `.github/.docs/plans/plan-fix-cors-in-user-creation-form-2026-04-05-1715.md`
+- `.github/.docs/plans/plan-fix-add-user-authentication-reviewer-comments-2026-04-05-1715.md`
 
 ### What to ask the user
 
-> "The feature doc is ready. Would you like me to create a plan document at `.docs/plans/plan-<do-something>-<datetime>.md` so we can track implementation progress?"
+> "The feature doc is ready. Would you like me to create a plan document at `.github/.docs/plans/plan-<do-something>-<datetime>.md` so we can track implementation progress?"
 
 ### Plan Document Structure
 
@@ -172,7 +172,7 @@ A plan document must follow this template:
 
 ## Feature Doc
 
-- `.docs/features/<module>/<feature-name>.md` — the source of truth for requirements and design
+- `.github/.docs/features/<module>/<feature-name>.md` — the source of truth for requirements and design
 
 ## Todo List
 

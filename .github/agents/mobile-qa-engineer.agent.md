@@ -32,7 +32,7 @@ Your job is to **create comprehensive test suites** for mobile features and **fi
 
 ## Approach
 
-1. Read the feature doc in `.docs/features/` and the plan document in `.docs/plans/` to understand the feature scope and requirements
+1. Read the feature doc and the plan document to understand the feature scope and requirements
 2. Load `.github/skills/flutter/SKILL.md` and the `testing` sub-skill file
 3. Identify all units, widgets, providers, and user flows to test
 4. Write tests following the AAA pattern (Arrange, Act, Assert)

@@ -14,7 +14,7 @@ Your job is to **review mobile code changes** against the technical leader's pla
 
 ## Responsibilities
 
-- Review code against the feature doc in `.docs/features/` and the plan in `.docs/plans/` for the current feature
+- Review code against the feature doc and the plan for the current feature
 - Check adherence to Flutter patterns from `.github/skills/flutter/SKILL.md` sub-skills
 - Audit widget design: single responsibility, const usage, key usage, widget extraction
 - Verify state management patterns (Riverpod consumers, Bloc builders, no logic in build)
@@ -49,7 +49,7 @@ Your job is to **review mobile code changes** against the technical leader's pla
 
 ## Approach
 
-1. Read the feature doc in `.docs/features/` and the relevant plan document in `.docs/plans/`
+1. Read the feature doc and the relevant plan document for the current feature
 2. Load `.github/skills/flutter/SKILL.md` and the specific sub-skill files used in the implementation
 3. Review each changed file systematically for correctness, maintainability, performance, and security
 4. Check alignment with the plan, skill patterns, workspace conventions, and OWASP Mobile Top 10-style risks

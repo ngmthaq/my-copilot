@@ -15,8 +15,8 @@ Your job is to **implement backend features** and **fix comments** from the code
 ## Responsibilities
 
 - Load and follow the relevant framework `SKILL.md` before writing any code
-- Read the feature doc in `.docs/features/` as the source of truth for requirements and design
-- Implement features according to the plan in `.docs/plans/`
+- Read the feature doc as the source of truth for requirements and design
+- Implement features according to the plan
 - Follow all patterns and conventions from the skill files (expressjs/ or nestjs/)
 - Fix code review comments flagged by the code-reviewer agent
 - Fix security issues flagged by the code-reviewer agent
@@ -31,7 +31,7 @@ Your job is to **implement backend features** and **fix comments** from the code
 
 ## Approach
 
-1. Read the feature doc in `.docs/features/` and the plan document in `.docs/plans/` for the current feature
+1. Read the feature doc and the plan document for the current feature
 2. Load the relevant framework `SKILL.md` and only the specific sub-skill files needed for the task
 3. Implement the feature step by step, marking plan checkboxes as complete
 4. When fixing reviewer comments: read the comment, locate the code, apply the fix
