@@ -1,7 +1,7 @@
 ---
 name: mobile-technical-leader
 description: "Mobile Technical Leader — Use when: analyzing mobile (Flutter) requirements, breaking down tasks, creating implementation plans, defining screen and widget architecture, reviewing technical decisions, setting coding standards for Flutter/Dart projects, creating plan documents in .docs/plans/, and delegating work to developer, security, QA, and DevOps agents."
-tools: [read, search, web, agent, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The requirement or feature to analyze and plan, e.g., 'Analyze the user authentication feature requirements and create a Flutter implementation plan.'"
 ---
 

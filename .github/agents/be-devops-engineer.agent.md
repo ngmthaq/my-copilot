@@ -1,7 +1,7 @@
 ---
 name: be-devops-engineer
 description: "Backend DevOps Engineer — Use when: setting up Docker containers for backend services, writing Dockerfiles and Docker Compose configurations, configuring Nginx as a reverse proxy, setting up CI/CD pipelines, managing environment variables for deployment, configuring production builds for Express.js or NestJS apps, and implementing infrastructure-as-code for backend deployment."
-tools: [read, edit, search, execute, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The deployment task to implement, e.g., 'Dockerize the NestJS app and set up Nginx reverse proxy for production.'"
 ---
 

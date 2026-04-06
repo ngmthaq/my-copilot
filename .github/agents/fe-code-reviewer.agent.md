@@ -1,7 +1,7 @@
 ---
 name: fe-code-reviewer
 description: "Frontend Code Reviewer — Use when: reviewing React.js or Vue.js pull requests or code changes, auditing frontend implementations against the technical leader's plan, checking component design, hooks usage, state management, accessibility, performance patterns, and adherence to skill file guidelines, and providing structured feedback for the developer agent to fix."
-tools: [read, search]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The files or feature to review, e.g., 'Review the user dashboard component implementation against the plan.'"
 ---
 

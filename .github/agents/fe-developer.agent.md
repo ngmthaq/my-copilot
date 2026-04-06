@@ -1,7 +1,7 @@
 ---
 name: fe-developer
 description: "Frontend Developer — Use when: implementing React.js or Vue.js components, building UI features, setting up routing and state management, integrating with backend APIs using TanStack Query, building forms with Formik or VeeValidate, applying MUI or Vuetify styling, fixing code review comments, and addressing security issues flagged by the security agent, following the plan from the technical leader."
-tools: [read, edit, search, execute, agent, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The UI feature to implement or reviewer/security comment to fix, e.g., 'Implement the user registration form with validation following the plan.'"
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: mobile-developer
 description: "Mobile Developer — Use when: implementing Flutter screens and widgets, writing Dart code, setting up navigation with GoRouter, integrating state management (Riverpod/Bloc), calling REST APIs with Dio, building forms with validation, adding animations, integrating platform APIs (camera, permissions, native channels), fixing code review comments, and addressing security issues flagged by the security agent, following the plan created by the technical leader."
-tools: [read, edit, search, execute, agent, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The feature to implement or the reviewer/security comment to fix, e.g., 'Implement the user profile screen with Riverpod state management following the plan.'"
 ---
 

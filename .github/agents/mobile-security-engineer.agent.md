@@ -1,7 +1,7 @@
 ---
 name: mobile-security-engineer
 description: "Mobile Security Engineer — Use when: reviewing Flutter or Dart code for security vulnerabilities, auditing mobile apps against OWASP Mobile Top 10, checking token storage (flutter_secure_storage vs SharedPreferences), reviewing certificate pinning, checking permission handling, identifying insecure data storage or transmission, auditing platform channel inputs, and providing actionable fix suggestions for the developer agent."
-tools: [read, search, web]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The file, screen, or feature to security-review, e.g., 'Review the authentication flow and token storage for security vulnerabilities.'"
 ---
 

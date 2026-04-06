@@ -1,7 +1,7 @@
 ---
 name: be-developer
 description: "Backend Developer — Use when: implementing backend features, writing Node.js, Express.js or NestJS code, creating routes/controllers/services/repositories, integrating databases with Prisma or TypeORM, fixing code review comments, addressing security issues flagged by the security agent, and following the plan created by the technical leader."
-tools: [read, edit, search, execute, agent, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The feature to implement or the reviewer/security comment to fix, e.g., 'Implement the user registration endpoint following the plan.'"
 ---
 

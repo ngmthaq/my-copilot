@@ -1,7 +1,7 @@
 ---
 name: fe-security-engineer
 description: "Frontend Security Engineer — Use when: reviewing React.js or Vue.js code for security vulnerabilities, auditing frontend apps against OWASP Top 10 for client-side risks, checking for XSS vulnerabilities, insecure API calls, improper token storage, CSRF risks, unsafe use of dangerouslySetInnerHTML or v-html, dependency vulnerabilities, and providing actionable fix suggestions for the developer agent."
-tools: [read, search, web]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The file, component, or feature to security-review, e.g., 'Review the login form and authentication flow for security vulnerabilities.'"
 ---
 

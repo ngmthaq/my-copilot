@@ -1,7 +1,7 @@
 ---
 name: fe-qa-engineer
 description: "Frontend QA Engineer — Use when: writing unit tests or integration tests for React.js or Vue.js components, creating Vitest and React Testing Library or Vue Testing Library test suites, writing Storybook stories, fixing test-related review comments, and ensuring component test coverage meets requirements."
-tools: [read, edit, search, execute, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The component or feature to test, e.g., 'Write unit tests for the user registration form component.'"
 ---
 

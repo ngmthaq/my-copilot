@@ -1,7 +1,7 @@
 ---
 name: be-security-engineer
 description: "Backend Security Engineer — Use when: reviewing backend code for security vulnerabilities, auditing Express.js or NestJS APIs against OWASP Top 10, checking authentication and authorization logic, reviewing input validation, identifying injection risks (SQL, NoSQL, XSS, command injection), auditing JWT and session handling, and providing actionable fix suggestions for the developer agent."
-tools: [read, search, web]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The file, module, or feature to security-review, e.g., 'Review the authentication module for security vulnerabilities.'"
 ---
 

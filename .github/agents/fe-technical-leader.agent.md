@@ -1,7 +1,7 @@
 ---
 name: fe-technical-leader
 description: "Frontend Technical Leader — Use when: analyzing frontend requirements, breaking down UI/UX tasks, creating implementation plans, defining component architecture, reviewing technical decisions, setting coding standards for React.js or Vue.js projects, creating plan documents in .docs/plans/, and delegating work to frontend developer, security, QA, and DevOps agents."
-tools: [read, search, web, agent, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The requirement or feature to analyze and plan, e.g., 'Analyze the user dashboard requirements and create an implementation plan.'"
 ---
 

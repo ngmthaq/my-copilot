@@ -1,7 +1,7 @@
 ---
 name: be-qa-engineer
 description: "Backend QA Engineer — Use when: writing unit tests, integration tests, or e2e tests for Express.js or NestJS APIs, creating test suites for controllers, services, and repositories, fixing test-related review comments, and ensuring test coverage meets requirements."
-tools: [read, edit, search, execute, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The module or feature to test, e.g., 'Write unit and integration tests for the user authentication service.'"
 ---
 

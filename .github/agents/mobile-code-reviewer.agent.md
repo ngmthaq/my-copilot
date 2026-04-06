@@ -1,7 +1,7 @@
 ---
 name: mobile-code-reviewer
 description: "Mobile Code Reviewer — Use when: reviewing Flutter or Dart pull requests or code changes, auditing mobile implementations against the technical leader's plan, checking widget design, state management patterns, navigation, performance (const usage, rebuild counts), accessibility, and adherence to skill file guidelines, and providing structured feedback for the developer agent to fix."
-tools: [read, search]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The files or feature to review, e.g., 'Review the user profile screen implementation against the plan.'"
 ---
 

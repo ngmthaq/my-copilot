@@ -1,7 +1,7 @@
 ---
 name: mobile-qa-engineer
 description: "Mobile QA Engineer — Use when: writing unit tests, widget tests, or integration tests for Flutter apps, creating test suites for Riverpod providers, Bloc/Cubit, repositories, and widgets, using mocktail for mocking, writing golden image tests, fixing test-related review comments, and ensuring test coverage meets requirements."
-tools: [read, edit, search, execute, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The screen, widget, or feature to test, e.g., 'Write unit and widget tests for the login screen and AuthCubit.'"
 ---
 

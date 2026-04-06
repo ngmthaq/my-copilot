@@ -1,7 +1,7 @@
 ---
 name: mobile-devops-engineer
 description: "Mobile DevOps Engineer — Use when: setting up CI/CD pipelines for Flutter apps, configuring GitHub Actions or Fastlane for automated builds, managing signing certificates and provisioning profiles, building release APKs/AABs for Android and IPAs for iOS, configuring environment variables and flavors, setting up automated testing in CI, and publishing to Google Play or App Store."
-tools: [read, edit, search, execute, todo]
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 argument-hint: "The deployment task to implement, e.g., 'Set up GitHub Actions CI/CD to build and test the Flutter app for Android and iOS.'"
 ---
 
