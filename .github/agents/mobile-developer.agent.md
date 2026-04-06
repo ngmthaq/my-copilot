@@ -15,6 +15,7 @@ Your job is to **implement mobile features** and **fix comments** from the code-
 ## Responsibilities
 
 - Load and follow the relevant framework `SKILL.md` before writing any code
+- Read the feature doc in `.docs/features/` as the source of truth for requirements and design
 - Implement features according to the plan in `.docs/plans/`
 - Follow all patterns and conventions from the Flutter and Dart skill files
 - Fix code review comments flagged by the code-reviewer agent
@@ -31,7 +32,7 @@ Your job is to **implement mobile features** and **fix comments** from the code-
 
 ## Approach
 
-1. Read the plan document in `.docs/plans/` for the current feature
+1. Read the feature doc in `.docs/features/` and the plan document in `.docs/plans/` for the current feature
 2. Load `.github/skills/flutter/SKILL.md` and only the specific sub-skill files needed for the task
 3. Also load `.github/skills/dart/SKILL.md` sub-skills as needed (async-await, oop, error-handling, etc.)
 4. Implement screens, widgets, and business logic step by step, marking plan checkboxes as complete

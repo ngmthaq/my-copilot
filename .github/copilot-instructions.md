@@ -53,57 +53,9 @@ Use the `vscode_askQuestions` tool to collect answers in a structured way.
 
 ---
 
-## 4. Planning — Always Create a Plan First
+## 4. Feature Documentation — Always Create a Feature Doc First
 
-Before implementing any non-trivial feature or change, AI **must** ask the user's permission to create a plan document.
-
-### Plan Location & Naming Convention
-
-```
-.docs/plans/plan-<do-something>-<YYYY-MM-DD-HHmm>.md
-```
-
-Examples:
-
-- `.docs/plans/plan-add-user-authentication-2026-04-05-1430.md`
-- `.docs/plans/plan-refactor-product-module-2026-04-05-0900.md`
-- `.docs/plans/plan-setup-docker-compose-2026-04-05-1615.md`
-- `.docs/plans/plan-fix-cors-in-user-creation-form-2026-04-05-1715.md`
-- `.docs/plans/plan-fix-add-user-authentication-reviewer-comments-2026-04-05-1715.md`
-
-### What to ask the user
-
-> "Before I start, would you like me to create a plan document at `.docs/plans/plan-<do-something>-<datetime>.md` so we can track progress together?"
-
-### Plan Document Structure
-
-A plan document must follow this template:
-
-```
-# <Title>
-
-## Description
-
-<Short description of what is being built or changed.>
-
-## Purpose
-
-<Why this change is needed, additional context, constraints, or background information.>
-
-## Todo List
-
-- [ ] Step 1 — ...
-- [ ] Step 2 — ...
-- [ ] Step 3 — ...
-```
-
-Only create the plan file after the user explicitly approves. Update the checkboxes (`[ ]` → `[x]`) as each step is completed.
-
----
-
-## 5. Feature Documentation — Always Create Docs After Implementation
-
-After completing any feature, AI **must** ask the user's permission to create a feature documentation file.
+Before planning any non-trivial feature or change, AI **must** ask the user's permission to create a feature documentation file. This document is the **source of truth** that defines requirements and design upfront. All agents — developer, QA, DevOps, and code reviewer — must reference it throughout implementation.
 
 ### Doc Location & Naming Convention
 
@@ -122,7 +74,7 @@ Examples:
 
 ### What to ask the user
 
-> "The feature is complete. Would you like me to create a feature doc at `.docs/features/<feature-name>.md` to document what was built? This helps provide context for future development."
+> "Before I plan, would you like me to create a feature doc at `.docs/features/<module>/<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for the developer, QA, and DevOps agents."
 
 ### Feature Doc Structure
 
@@ -137,7 +89,7 @@ A feature document must follow this template:
 
 ## Architecture
 
-<Key files, modules, and their responsibilities.>
+<Key files, modules, and their planned responsibilities. Update as implementation progresses.>
 
 | File / Module  | Responsibility |
 | -------------- | -------------- |
@@ -161,7 +113,7 @@ A feature document must follow this template:
 
 ## Usage Examples
 
-<Code snippets or curl commands showing normal usage.>
+<Code snippets or curl commands showing expected usage.>
 
 curl -X POST http://localhost:3000/example \
  -H "Content-Type: application/json" \
@@ -173,11 +125,63 @@ curl -X POST http://localhost:3000/example \
 
 ## Related Plans
 
-- `plan-<do-something>-<datetime>` — link to the plan document in `.docs/plans/`
+- `plan-<do-something>-<datetime>` — link to the plan document created after this feature doc
 
 ```
 
 Only create the doc file after the user explicitly approves.
+
+---
+
+## 5. Planning — Always Create a Plan Based on the Feature Doc
+
+After the feature doc is approved and created, AI **must** ask the user's permission to create a plan document. The plan must be grounded in the feature doc and reference it.
+
+### Plan Location & Naming Convention
+
+```
+.docs/plans/plan-<do-something>-<YYYY-MM-DD-HHmm>.md
+```
+
+Examples:
+
+- `.docs/plans/plan-add-user-authentication-2026-04-05-1430.md`
+- `.docs/plans/plan-refactor-product-module-2026-04-05-0900.md`
+- `.docs/plans/plan-setup-docker-compose-2026-04-05-1615.md`
+- `.docs/plans/plan-fix-cors-in-user-creation-form-2026-04-05-1715.md`
+- `.docs/plans/plan-fix-add-user-authentication-reviewer-comments-2026-04-05-1715.md`
+
+### What to ask the user
+
+> "The feature doc is ready. Would you like me to create a plan document at `.docs/plans/plan-<do-something>-<datetime>.md` so we can track implementation progress?"
+
+### Plan Document Structure
+
+A plan document must follow this template:
+
+```
+# <Title>
+
+## Description
+
+<Short description of what is being built or changed.>
+
+## Purpose
+
+<Why this change is needed, additional context, constraints, or background information.>
+
+## Feature Doc
+
+- `.docs/features/<module>/<feature-name>.md` — the source of truth for requirements and design
+
+## Todo List
+
+- [ ] Step 1 — ...
+- [ ] Step 2 — ...
+- [ ] Step 3 — ...
+```
+
+Only create the plan file after the user explicitly approves. Update the checkboxes (`[ ]` → `[x]`) as each step is completed.
 
 ---
 
@@ -188,7 +192,7 @@ For every task, follow this order:
 1. **Load** the relevant framework `SKILL.md` and any needed sub-skill files.
 2. **Load** the relevant coding convention instruction file using `read_file` before writing or reviewing code.
 3. **Ask** clarifying questions — never assume requirements.
-4. **Propose** a plan document and wait for user approval before creating it.
-5. **Implement** following the loaded skill/instruction patterns.
-6. **Update** the plan checkboxes as steps complete.
-7. **Ask** the user to approve creating a feature doc once the feature is done.
+4. **Propose** a feature doc and wait for user approval before creating it. This is the source of truth for all agents.
+5. **Propose** a plan document (based on the feature doc) and wait for user approval before creating it.
+6. **Implement** following the feature doc and plan, using the loaded skill/instruction patterns.
+7. **Update** the plan checkboxes as steps complete.

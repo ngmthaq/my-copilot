@@ -30,7 +30,7 @@ Your job is to **implement all deployment and infrastructure code** for backend 
 ## Approach
 
 1. Load `.github/skills/docker/SKILL.md` and `.github/skills/nginx/SKILL.md` before starting
-2. Read the plan document in `.docs/plans/` for deployment requirements
+2. Read the feature doc in `.docs/features/` and the plan document in `.docs/plans/` for feature requirements and deployment scope
 3. Implement Dockerfile(s) using multi-stage builds
 4. Configure Docker Compose with proper networking, volumes, and env vars
 5. Set up Nginx config for reverse proxy and static asset serving

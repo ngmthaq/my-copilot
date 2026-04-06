@@ -30,7 +30,7 @@ Your job is to **implement all deployment and infrastructure code** for frontend
 ## Approach
 
 1. Load `.github/skills/docker/SKILL.md`, `.github/skills/nginx/SKILL.md`, and `.github/skills/vite/SKILL.md` before starting
-2. Read the plan document in `.docs/plans/` for deployment requirements
+2. Read the feature doc in `.docs/features/` and the plan document in `.docs/plans/` for feature requirements and deployment scope
 3. Implement a multi-stage Dockerfile (build → nginx serve)
 4. Configure Nginx with SPA fallback routing and optional reverse proxy to backend
 5. Set up Docker Compose with environment variable configuration
