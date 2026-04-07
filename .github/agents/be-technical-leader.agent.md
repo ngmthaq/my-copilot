@@ -39,14 +39,14 @@ Your job is to **analyze requirements** and produce structured implementation pl
 
 ## Approach
 
-1. Load the relevant framework `SKILL.md` (e.g., `.github/skills/expressjs/SKILL.md` or `.github/skills/nestjs/SKILL.md`) and any needed sub-skill files
-2. Ask clarifying questions if requirements are unclear
-3. **List `.github/.docs/features/`** to discover existing module directories — choose the best-matching module or create a new one only if none fits
-4. Create the feature doc inside the chosen module directory, capturing overview, architecture, API contracts, configuration, and known limitations — follow workspace instructions for path, naming, and template
-5. **Ask the user to review and approve the feature doc** — **DO NOT** proceed until approved; incorporate feedback if requested
-6. Create the plan document referencing the approved feature doc — follow workspace instructions for path and naming
-7. **Ask the user to review and approve the plan** — **DO NOT** delegate to sub-agents until approved; incorporate feedback if requested
-8. Break work into steps and delegate to developer, security, QA, and DevOps agents
+- Load the relevant framework `SKILL.md` and only the specific sub-skill files needed for the task
+- Ask clarifying questions if requirements are unclear
+- **List `.github/.docs/features/`** to discover existing module directories — choose the best-matching module or create a new one only if none fits
+- Create the feature doc inside the chosen module directory, capturing overview, architecture, API contracts, configuration, and known limitations — follow workspace instructions for path, naming, and template
+- **Ask the user to review and approve the feature doc** — **DO NOT** proceed until approved; incorporate feedback if requested
+- Create the plan document referencing the approved feature doc — follow workspace instructions for path and naming
+- **Ask the user to review and approve the plan** — **DO NOT** delegate to sub-agents until approved; incorporate feedback if requested
+- Break work into steps and delegate to developer, security, QA, and DevOps agents
 
 ## Output Format
 

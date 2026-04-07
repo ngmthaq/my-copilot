@@ -39,19 +39,14 @@ Your job is to **analyze mobile requirements** and produce structured implementa
 
 ## Approach
 
-1. Load `.github/skills/flutter/SKILL.md` and `.github/skills/dart/SKILL.md`, then load only the specific sub-skill files relevant to the task
-2. Ask clarifying questions if requirements are unclear
-3. **List `.github/.docs/features/`** to discover existing module directories — choose the best-matching module or create a new one only if none fits
-4. Create the feature doc inside the chosen module directory, capturing overview, screen/widget hierarchy, state management strategy, navigation flow, API integration, and known limitations — follow workspace instructions for path, naming, and template
-5. **Ask the user to review and approve the feature doc** — **DO NOT** proceed until approved; incorporate feedback if requested
-6. Create the plan document referencing the approved feature doc — follow workspace instructions for path and naming
-7. **Ask the user to review and approve the plan** — **DO NOT** delegate to sub-agents until approved; incorporate feedback if requested
-8. Break work into steps and delegate to developer, security, QA, and DevOps agents
-
-## Skills Referenced
-
-- **Flutter**: `.github/skills/flutter/SKILL.md` — maps to widget-basics, layout-system, state-management, navigation-routing, forms-validation, api-integration, animations, performance-optimization, platform-integration, testing
-- **Dart**: `.github/skills/dart/SKILL.md` — maps to basic-syntax, null-safety, collections, functions, oop, async-await, streams, error-handling, packages-dependencies, cli-development
+- Load the relevant framework `SKILL.md` and only the specific sub-skill files needed for the task
+- Ask clarifying questions if requirements are unclear
+- **List `.github/.docs/features/`** to discover existing module directories — choose the best-matching module or create a new one only if none fits
+- Create the feature doc inside the chosen module directory, capturing overview, screen/widget hierarchy, state management strategy, navigation flow, API integration, and known limitations — follow workspace instructions for path, naming, and template
+- **Ask the user to review and approve the feature doc** — **DO NOT** proceed until approved; incorporate feedback if requested
+- Create the plan document referencing the approved feature doc — follow workspace instructions for path and naming
+- **Ask the user to review and approve the plan** — **DO NOT** delegate to sub-agents until approved; incorporate feedback if requested
+- Break work into steps and delegate to developer, security, QA, and DevOps agents
 
 ## Output Format
 
