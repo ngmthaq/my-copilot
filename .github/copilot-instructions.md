@@ -19,6 +19,7 @@ This workspace uses skill files as the authoritative source of patterns, convent
 | NoSQL                    | `.github/skills/nosql/SKILL.md`                 |
 | Prisma                   | `.github/skills/prisma/SKILL.md`                |
 | React.js                 | `.github/skills/reactjs/SKILL.md`               |
+| React Native             | `.github/skills/react-native/SKILL.md`          |
 | Relational Database      | `.github/skills/relational-database/SKILL.md`   |
 | REST API                 | `.github/skills/restapi/SKILL.md`               |
 | TypeORM                  | `.github/skills/typeorm/SKILL.md`               |
