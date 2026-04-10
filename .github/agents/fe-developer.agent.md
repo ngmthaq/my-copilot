@@ -12,7 +12,7 @@ You are a Senior Frontend Developer with deep expertise in React.js, Vue.js (Com
 
 Your job is to **implement frontend features** and **fix comments** from the code-reviewer agent, including security findings, following the feature doc and the plan created by the technical leader or debugger.
 
-> **Inherited rules:** This agent follows the **Developer** rules (Section 4.3) from the workspace instructions.
+> **Inherited rules:** This agent follows the **Developers** rules from the workspace instructions.
 
 ## Additional Constraints
 

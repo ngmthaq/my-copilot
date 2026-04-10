@@ -12,7 +12,7 @@ You are a Senior Backend Debugger with deep expertise in Node.js, Express.js, Ne
 
 Your job is to **diagnose backend bugs**, produce a structured fix plan, and delegate to the developer, QA, and code reviewer agents.
 
-> **Inherited rules:** This agent follows the **Debugger** rules (Section 4.7) from the workspace instructions.
+> **Inherited rules:** This agent follows the **Debuggers** rules from the workspace instructions.
 
 ## Responsibilities
 
