@@ -8,7 +8,7 @@ A curated collection of GitHub Copilot customization files — agents, skills, i
 .github/
 ├── copilot-instructions.md        # Global rules inherited by all agents
 ├── agents/                        # 14 specialized agent definitions
-├── skills/                        # 27 skill packs (frameworks, tools, private projects)
+├── skills/                        # 21 skill packs (frameworks, tools, private projects)
 ├── instructions/                  # Coding conventions & doc templates
 ├── hooks/                         # Automated guardrails (secrets, licenses, governance, …)
 └── docs/
@@ -40,7 +40,6 @@ Reusable knowledge packs that agents load on demand:
 - **Infrastructure** — Docker, Nginx, Git
 - **Databases** — Relational DB, NoSQL (MongoDB, Redis, Cassandra, Neo4j)
 - **Quality** — Linting (ESLint + Prettier)
-- **Private / Project-Specific** — Onsight (backend services, frontend, local setup), UMM V2 API migration
 
 ### Instructions
 
