@@ -1,9 +1,9 @@
 ---
-applyTo: "**"
-description: "Comprehensive web accessibility standards based on WCAG 2.2 AA, with 38+ anti-patterns, legal enforcement context (EAA, ADA Title II), WAI-ARIA patterns, and framework-specific fixes for modern web frameworks and libraries."
+name: html-accessibility
+description: "Comprehensive web accessibility — WCAG 2.2 AA reference, ARIA roles/states/properties, landmark regions, live regions, widget patterns, accessible names, keyboard interaction, focus management, 38+ anti-patterns with severity/detection/fix, framework-specific patterns (React, Angular, Vue), color contrast, legal context (EAA, ADA). Use when: adding ARIA attributes; making widgets accessible; building keyboard-operable components; managing focus; reviewing code for accessibility; checking WCAG compliance. DO NOT USE FOR: general page structure (use html-semantic-elements)."
 ---
 
-# Accessibility Standards
+# HTML Accessibility & ARIA
 
 Comprehensive accessibility rules for web application development. Every anti-pattern includes a severity classification, detection method, WCAG 2.2 reference, and corrective code examples.
 
@@ -15,7 +15,7 @@ Comprehensive accessibility rules for web application development. Every anti-pa
 
 ---
 
-## WCAG 2.2 Quick Reference (AA Level)
+## 1. WCAG 2.2 Quick Reference (AA Level)
 
 ### Perceivable
 
@@ -89,7 +89,9 @@ Comprehensive accessibility rules for web application development. Every anti-pa
 
 > **Looking ahead:** WCAG 3.0 (W3C Accessibility Guidelines) is in Working Draft (March 2026). It replaces pass/fail with Bronze/Silver/Gold conformance and "Outcomes" instead of "Success Criteria." It is NOT yet a standard — continue targeting WCAG 2.2 AA.
 
-## Legal Enforcement Context (2026)
+---
+
+## 2. Legal Enforcement Context (2026)
 
 - **European Accessibility Act (EAA)**: Enforced since June 2025 across all 27 EU member states. Applies to digital products and services. Fines up to EUR 3 million. References EN 301 549 (maps to WCAG 2.1 AA).
 - **ADA Title II (US)**: Digital accessibility rule effective April 2026 for state/local governments serving 50,000+ people (April 2027 for smaller entities). Requires WCAG 2.1 AA.
@@ -99,7 +101,7 @@ Comprehensive accessibility rules for web application development. Every anti-pa
 
 ---
 
-## Five Rules of ARIA
+## 3. Five Rules of ARIA
 
 1. **Prefer native HTML** — Use `<button>` not `<div role="button">`. Native elements have built-in keyboard, focus, and semantics.
 2. **Don't change native semantics** — Don't add `role="heading"` to a `<button>`. Use the correct element.
@@ -109,7 +111,449 @@ Comprehensive accessibility rules for web application development. Every anti-pa
 
 ---
 
-## Semantic HTML Anti-Patterns (S1-S8)
+## 4. Landmark Regions
+
+```html
+<header>
+  <!-- banner (top-level only) -->
+  <nav aria-label="Main">
+    <!-- navigation -->
+    <main>
+      <!-- main -->
+      <aside>
+        <!-- complementary -->
+        <footer>
+          <!-- contentinfo (top-level only) -->
+          <section aria-label="Features">
+            <!-- region (when labelled) -->
+            <form aria-label="Search">
+              <!-- form (when labelled) -->
+              <search><!-- search --></search>
+            </form>
+          </section>
+        </footer>
+      </aside>
+    </main>
+  </nav>
+</header>
+```
+
+### Rules
+
+- Every page should have `<header>`, `<nav>`, `<main>`, `<footer>`.
+- Multiple `<nav>` elements must have distinct `aria-label`.
+- `<section>` only becomes a `region` landmark when labelled.
+- Screen reader users navigate by landmarks — provide them.
+
+---
+
+## 5. Accessible Names
+
+### Techniques (in priority order)
+
+```html
+<!-- 1. aria-labelledby (references visible text, highest priority) -->
+<h2 id="section-title">User Settings</h2>
+<section aria-labelledby="section-title">...</section>
+
+<!-- 2. aria-label (invisible label) -->
+<button aria-label="Close dialog">✕</button>
+
+<!-- 3. <label> for form controls -->
+<label for="email">Email</label>
+<input id="email" type="email" />
+
+<!-- 4. Text content (for buttons, links) -->
+<button>Save Changes</button>
+
+<!-- 5. title attribute (last resort, poor support) -->
+<abbr title="HyperText Markup Language">HTML</abbr>
+```
+
+### Name Computation Priority
+
+1. `aria-labelledby`
+2. `aria-label`
+3. `<label>` (for form controls)
+4. Text content / `alt` / `value`
+5. `title`
+6. `placeholder` (not reliable)
+
+---
+
+## 6. ARIA States and Properties
+
+### Common States
+
+```html
+<!-- Expanded/collapsed -->
+<button aria-expanded="false" aria-controls="menu-panel">Menu</button>
+<div id="menu-panel" hidden>...</div>
+
+<!-- Checked (custom checkbox) -->
+<div role="checkbox" aria-checked="true" tabindex="0">Accept terms</div>
+
+<!-- Disabled -->
+<button aria-disabled="true">Submit</button>
+<!-- Prefer native: <button disabled>Submit</button> -->
+
+<!-- Current (navigation) -->
+<a href="/home" aria-current="page">Home</a>
+
+<!-- Selected (tabs, listbox) -->
+<div role="tab" aria-selected="true">Tab 1</div>
+
+<!-- Invalid (form validation) -->
+<input type="email" aria-invalid="true" aria-describedby="email-err" />
+<span id="email-err">Invalid email format</span>
+
+<!-- Busy (loading state) -->
+<div role="feed" aria-busy="true">Loading...</div>
+
+<!-- Pressed (toggle button) -->
+<button aria-pressed="true">Bold</button>
+```
+
+### Common Properties
+
+```html
+<!-- Describes the purpose (supplementary text) -->
+<input type="password" aria-describedby="pw-hint" />
+<p id="pw-hint">Must be at least 8 characters.</p>
+
+<!-- Controls another element -->
+<button aria-controls="panel-1" aria-expanded="false">Details</button>
+<div id="panel-1" hidden>Panel content</div>
+
+<!-- Required -->
+<input type="text" aria-required="true" />
+<!-- Prefer native: <input type="text" required /> -->
+
+<!-- Owns (for DOM-disconnected relationships) -->
+<div role="listbox" aria-owns="option-1 option-2">...</div>
+
+<!-- Role description (custom naming) -->
+<div role="region" aria-roledescription="slide" aria-label="Slide 1 of 5">...</div>
+
+<!-- Has popup -->
+<button aria-haspopup="menu">Options</button>
+```
+
+---
+
+## 7. Live Regions
+
+```html
+<!-- Polite: announced after current speech -->
+<div role="status" aria-live="polite">3 items in cart</div>
+
+<!-- Assertive: interrupts current speech -->
+<div role="alert">Session expires in 2 minutes!</div>
+
+<!-- Log: chronological updates -->
+<div role="log" aria-live="polite">
+  <p>User joined the chat</p>
+</div>
+
+<!-- Timer -->
+<div role="timer" aria-live="off" aria-atomic="true">05:30</div>
+
+<!-- Progress bar -->
+<div role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Upload progress">75%</div>
+<!-- Prefer native: <progress value="75" max="100">75%</progress> -->
+```
+
+### Live Region Attributes
+
+| Attribute       | Values                                 | Purpose                                |
+| --------------- | -------------------------------------- | -------------------------------------- |
+| `aria-live`     | `off`, `polite`, `assertive`           | Urgency level of announcements         |
+| `aria-atomic`   | `true`, `false`                        | Announce entire region or just changes |
+| `aria-relevant` | `additions`, `removals`, `text`, `all` | What changes to announce               |
+
+### Rules
+
+- Use `role="status"` for status messages (inherits `aria-live="polite"`).
+- Use `role="alert"` for errors/warnings (inherits `aria-live="assertive"`).
+- Live region must exist in DOM **before** content is injected.
+- Don't make large sections live — only small, relevant updates.
+
+---
+
+## 8. Widget Patterns
+
+### Tabs
+
+```html
+<div role="tablist" aria-label="Account settings">
+  <button role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1">Profile</button>
+  <button role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1">Security</button>
+</div>
+<div role="tabpanel" id="panel-1" aria-labelledby="tab-1">Profile content...</div>
+<div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>Security content...</div>
+```
+
+**Keyboard:** Arrow Left/Right to switch tabs; Tab enters panel; Enter/Space activates.
+
+### Accordion (Disclosure Pattern)
+
+```html
+<!-- Native disclosure (preferred) -->
+<details>
+  <summary>Section 1</summary>
+  <p>Content for section 1</p>
+</details>
+
+<!-- ARIA disclosure (when custom styling needed) -->
+<h3>
+  <button aria-expanded="false" aria-controls="sect1-content">Section 1</button>
+</h3>
+<div id="sect1-content" hidden>
+  <p>Content for section 1</p>
+</div>
+```
+
+### Dialog (Modal)
+
+```html
+<!-- Native dialog (strongly preferred) -->
+<dialog id="my-dialog">
+  <h2>Confirm Action</h2>
+  <p>Are you sure?</p>
+  <form method="dialog">
+    <button value="cancel">Cancel</button>
+    <button value="confirm" autofocus>Confirm</button>
+  </form>
+</dialog>
+
+<!-- ARIA dialog (only if native dialog not possible) -->
+<div role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+  <h2 id="dlg-title">Confirm Action</h2>
+  <p>Are you sure?</p>
+  <button>Cancel</button>
+  <button>Confirm</button>
+</div>
+```
+
+**Requirements:** Focus trap (Tab cycles within), Escape to close, return focus to trigger.
+
+### Menu
+
+```html
+<button aria-haspopup="menu" aria-expanded="false" aria-controls="action-menu">Actions</button>
+<ul role="menu" id="action-menu" hidden>
+  <li role="menuitem"><button>Edit</button></li>
+  <li role="menuitem"><button>Duplicate</button></li>
+  <li role="separator"></li>
+  <li role="menuitem"><button>Delete</button></li>
+</ul>
+```
+
+**Keyboard:** Arrow Up/Down to navigate; Enter to activate; Escape to close.
+
+### Combobox (Autocomplete)
+
+```html
+<label for="city-input">City</label>
+<div role="combobox" aria-expanded="true" aria-owns="city-listbox" aria-haspopup="listbox">
+  <input
+    id="city-input"
+    type="text"
+    aria-autocomplete="list"
+    aria-controls="city-listbox"
+    aria-activedescendant="city-2"
+  />
+</div>
+<ul role="listbox" id="city-listbox">
+  <li role="option" id="city-1">New York</li>
+  <li role="option" id="city-2" aria-selected="true">San Francisco</li>
+  <li role="option" id="city-3">Seattle</li>
+</ul>
+```
+
+**Keyboard:** Arrow Up/Down to navigate options; Enter to select; Escape to close.
+
+### Tooltip
+
+```html
+<button aria-describedby="tooltip-1">Settings</button>
+<div role="tooltip" id="tooltip-1">Manage your account settings</div>
+```
+
+**WCAG 1.4.13 requirements:** Dismissible (Escape), hoverable, persistent while hovered.
+
+---
+
+## 9. Focus Management
+
+### Skip Link
+
+```html
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<nav>...</nav>
+<main id="main-content" tabindex="-1">...</main>
+```
+
+```css
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 16px;
+  background: #000;
+  color: #fff;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 0;
+}
+```
+
+### Managing Focus Programmatically
+
+```javascript
+// After modal close, return focus to trigger
+const trigger = document.getElementById("open-btn");
+dialog.addEventListener("close", () => {
+  trigger.focus();
+});
+
+// After dynamic content load, focus the new content
+const newSection = document.getElementById("results");
+newSection.setAttribute("tabindex", "-1");
+newSection.focus();
+
+// After route change (SPA)
+const heading = document.querySelector("h1");
+heading.setAttribute("tabindex", "-1");
+heading.focus();
+```
+
+### Inert (Disable Background)
+
+```html
+<!-- When dialog is open, background is inert -->
+<main inert>
+  <!-- Cannot focus or interact with anything here -->
+</main>
+<dialog open>
+  <!-- Only this is interactive -->
+</dialog>
+```
+
+---
+
+## 10. Hiding Content
+
+| Technique            | Visible?     | Accessible? | Use Case                            |
+| -------------------- | ------------ | ----------- | ----------------------------------- |
+| `display: none`      | No           | No          | Fully hidden                        |
+| `visibility: hidden` | No (space)   | No          | Hidden but preserves layout         |
+| `hidden` attribute   | No           | No          | Semantic equivalent of display:none |
+| `aria-hidden="true"` | Yes          | No          | Decorative visuals                  |
+| `.sr-only` (CSS)     | No           | Yes         | Screen-reader-only text             |
+| `inert`              | Yes (dimmed) | No          | Background behind modal             |
+
+### SR-Only (Screen Reader Only) CSS
+
+```css
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+```
+
+---
+
+## 11. Keyboard Interaction Reference
+
+| Key                | Expected Behavior                                         |
+| ------------------ | --------------------------------------------------------- |
+| `Tab`              | Move focus to next focusable element in DOM order         |
+| `Shift+Tab`        | Move focus to previous focusable element                  |
+| `Enter`            | Activate buttons and links                                |
+| `Space`            | Activate buttons, toggle checkboxes, select radio buttons |
+| `Escape`           | Close modals, dialogs, popovers, dropdowns                |
+| `Arrow Up/Down`    | Navigate within menus, listboxes, radio groups, tabs      |
+| `Arrow Left/Right` | Navigate within tab bars, sliders, radio groups           |
+| `Home`             | Move to first item in list, menu, or tab bar              |
+| `End`              | Move to last item in list, menu, or tab bar               |
+
+### Widget-Specific Patterns
+
+| Widget    | Tab enters          | Internal nav      | Activate           | Exit          |
+| --------- | ------------------- | ----------------- | ------------------ | ------------- |
+| Tab bar   | Focus active tab    | Arrow Left/Right  | automatic or Enter | Tab out       |
+| Menu      | Focus first item    | Arrow Up/Down     | Enter              | Escape        |
+| Dialog    | Focus first element | Tab cycles within | Enter on buttons   | Escape        |
+| Combobox  | Focus input         | Arrow Up/Down     | Enter selects      | Escape closes |
+| Tree view | Focus first node    | Arrow keys        | Enter/Space        | Tab out       |
+
+---
+
+## 12. Color Contrast Quick Reference
+
+### Text Contrast (WCAG 1.4.3 AA)
+
+| Text Type                           | Minimum Ratio  |
+| ----------------------------------- | -------------- |
+| Normal text (< 18pt / < 14pt bold)  | 4.5:1          |
+| Large text (>= 18pt / >= 14pt bold) | 3:1            |
+| Incidental (disabled, decorative)   | No requirement |
+
+### Non-Text Contrast (WCAG 1.4.11 AA)
+
+| Element                        | Minimum Ratio          |
+| ------------------------------ | ---------------------- |
+| UI components (borders, icons) | 3:1 against adjacent   |
+| Graphical objects              | 3:1 against adjacent   |
+| Focus indicators               | 3:1 against background |
+
+---
+
+## 13. Common ARIA Roles Reference
+
+### Landmark Roles
+
+| Role            | HTML Equivalent        |
+| --------------- | ---------------------- |
+| `banner`        | `<header>` (top)       |
+| `navigation`    | `<nav>`                |
+| `main`          | `<main>`               |
+| `complementary` | `<aside>`              |
+| `contentinfo`   | `<footer>` (top)       |
+| `region`        | `<section>` (labelled) |
+| `form`          | `<form>` (labelled)    |
+| `search`        | `<search>`             |
+
+### Widget Roles
+
+| Role          | Required Properties                               |
+| ------------- | ------------------------------------------------- |
+| `button`      | Accessible name                                   |
+| `checkbox`    | `aria-checked`                                    |
+| `radio`       | `aria-checked` (within `radiogroup`)              |
+| `tab`         | `aria-selected`, `aria-controls`                  |
+| `tabpanel`    | `aria-labelledby`                                 |
+| `dialog`      | `aria-label` or `aria-labelledby`                 |
+| `alertdialog` | `aria-label` or `aria-labelledby`                 |
+| `slider`      | `aria-valuemin`, `aria-valuemax`, `aria-valuenow` |
+| `combobox`    | `aria-expanded`, `aria-controls`                  |
+| `listbox`     | Contains `option` roles                           |
+| `menu`        | Contains `menuitem` roles                         |
+| `tree`        | Contains `treeitem` roles                         |
+| `grid`        | Contains `row` > `gridcell` roles                 |
+
+---
+
+## 14. Semantic HTML Anti-Patterns (S1-S8)
 
 ### S1: Missing `lang` Attribute on `<html>`
 
@@ -222,7 +666,7 @@ Use CSS Grid/Flexbox for layout. If table must be used for layout, add `role="pr
 
 ---
 
-## ARIA Anti-Patterns (A1-A8)
+## 15. ARIA Anti-Patterns (A1-A8)
 
 ### A1: Redundant ARIA on Native Elements
 
@@ -302,7 +746,7 @@ Invalid roles are ignored by assistive technology. Common mistakes: `role="input
 
 ---
 
-## Keyboard and Focus Anti-Patterns (K1-K7)
+## 16. Keyboard and Focus Anti-Patterns (K1-K7)
 
 ### K1: `onClick` Without `onKeyDown` on Non-Native Elements
 
@@ -340,21 +784,6 @@ Use native `<dialog>` with `showModal()` — it provides focus trapping, Escape-
 <main id="main-content" tabindex="-1">...</main>
 ```
 
-```css
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  padding: 8px 16px;
-  background: #000;
-  color: #fff;
-  z-index: 100;
-}
-.skip-link:focus {
-  top: 0;
-}
-```
-
 ### K5: `outline: none` Without Replacement
 
 - **Severity**: CRITICAL
@@ -387,7 +816,7 @@ Store reference to trigger element. On modal close, call `triggerElement.focus()
 
 ---
 
-## Form Anti-Patterns (F1-F6)
+## 17. Form Anti-Patterns (F1-F6)
 
 ### F1: Input Without Associated Label
 
@@ -450,7 +879,7 @@ Always pair placeholder with a visible `<label>`. Placeholder is a hint, not a l
 
 ---
 
-## Visual and Color Anti-Patterns (V1-V5)
+## 18. Visual and Color Anti-Patterns (V1-V5)
 
 ### V1: Insufficient Text Contrast
 
@@ -517,7 +946,7 @@ Best practice and AAA enhancement. Gate non-essential animations behind `prefers
 
 ---
 
-## Media Anti-Patterns (D1-D4)
+## 19. Media Anti-Patterns (D1-D4)
 
 ### D1: Informational Image Without Alt Text
 
@@ -557,7 +986,7 @@ Never autoplay audio. If video autoplays, start muted with controls.
 
 ---
 
-## Framework-Specific: React / Next.js (RX1-RX4)
+## 20. Framework-Specific: React / Next.js (RX1-RX4)
 
 ### RX1: Missing `htmlFor` on `<label>`
 
@@ -591,7 +1020,7 @@ Sanitize and validate injected HTML for heading hierarchy, alt text, and ARIA st
 
 ---
 
-## Framework-Specific: Angular (NG1-NG4)
+## 21. Framework-Specific: Angular (NG1-NG4)
 
 ### NG1: `(click)` on `<div>` Without Role and Keyboard Support
 
@@ -635,7 +1064,7 @@ Bind `[attr.aria-invalid]` and `[attr.aria-describedby]` to form control state.
 
 ---
 
-## Framework-Specific: Vue (VU1-VU3)
+## 22. Framework-Specific: Vue (VU1-VU3)
 
 ### VU1: `@click` on Non-Interactive Element Without Role and Keyboard
 
@@ -675,53 +1104,7 @@ Sanitize and validate HTML for heading hierarchy, alt text, and ARIA structure b
 
 ---
 
-## Keyboard Interaction Reference
-
-| Key                | Expected Behavior                                         |
-| ------------------ | --------------------------------------------------------- |
-| `Tab`              | Move focus to next focusable element in DOM order         |
-| `Shift+Tab`        | Move focus to previous focusable element                  |
-| `Enter`            | Activate buttons and links                                |
-| `Space`            | Activate buttons, toggle checkboxes, select radio buttons |
-| `Escape`           | Close modals, dialogs, popovers, dropdowns                |
-| `Arrow Up/Down`    | Navigate within menus, listboxes, radio groups, tabs      |
-| `Arrow Left/Right` | Navigate within tab bars, sliders, radio groups           |
-| `Home`             | Move to first item in list, menu, or tab bar              |
-| `End`              | Move to last item in list, menu, or tab bar               |
-
-### Widget-Specific Patterns
-
-| Widget    | Tab enters          | Internal nav      | Activate           | Exit          |
-| --------- | ------------------- | ----------------- | ------------------ | ------------- |
-| Tab bar   | Focus active tab    | Arrow Left/Right  | automatic or Enter | Tab out       |
-| Menu      | Focus first item    | Arrow Up/Down     | Enter              | Escape        |
-| Dialog    | Focus first element | Tab cycles within | Enter on buttons   | Escape        |
-| Combobox  | Focus input         | Arrow Up/Down     | Enter selects      | Escape closes |
-| Tree view | Focus first node    | Arrow keys        | Enter/Space        | Tab out       |
-
----
-
-## Color Contrast Quick Reference
-
-### Text Contrast (WCAG 1.4.3 AA)
-
-| Text Type                           | Minimum Ratio  |
-| ----------------------------------- | -------------- |
-| Normal text (< 18pt / < 14pt bold)  | 4.5:1          |
-| Large text (>= 18pt / >= 14pt bold) | 3:1            |
-| Incidental (disabled, decorative)   | No requirement |
-
-### Non-Text Contrast (WCAG 1.4.11 AA)
-
-| Element                        | Minimum Ratio          |
-| ------------------------------ | ---------------------- |
-| UI components (borders, icons) | 3:1 against adjacent   |
-| Graphical objects              | 3:1 against adjacent   |
-| Focus indicators               | 3:1 against background |
-
----
-
-## Accessibility Checklist (POUR)
+## 23. Accessibility Checklist (POUR)
 
 ### Perceivable
 
