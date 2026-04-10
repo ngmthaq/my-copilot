@@ -7,7 +7,7 @@
         "bash": ".github/hooks/dependency-license-checker/check-licenses.sh",
         "cwd": ".",
         "env": {
-          "LICENSE_MODE": "warn"
+          "LICENSE_MODE": "block"
         },
         "timeoutSec": 60
       }
