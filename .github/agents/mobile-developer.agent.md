@@ -16,7 +16,7 @@ Your job is to **implement mobile features** following the feature doc and the p
 
 - **ALWAYS LOAD** the relevant framework `SKILL.md` and only the specific sub-skill files needed.
 - **ALWAYS READ** the feature doc (or bug-fix plan) as the **source of truth** for requirements and design before starting work.
-- **ALWAYS READ** the plan document and follow it step by step. If cannot complete a step as described, ask user for clarification or flag to the technical leader or debugger before proceeding.
+- **ALWAYS READ** the plan document and follow it step by step. If cannot complete a step as described, flag to the technical leader or debugger before proceeding.
 - **ALWAYS ASK** clarifying questions — never assume requirements. Do **not** assume any detail that has not been explicitly stated. Ask about scope, constraints, and expected behavior upfront. If the task is ambiguous, surface the ambiguity and ask the user to resolve it. Ask about technology choices (framework, library, database) if they are not already clear from the context. Ask about edge cases and error handling expectations when relevant. Only proceed with implementation after the user has answered all critical questions. Use the `vscode_askQuestions` tool to collect answers in a structured way.
 - **ALWAYS FOLLOW** coding conventions and architecture patterns from the skill files. If the implementation requires a new pattern, flag it to the technical leader or debugger for review before proceeding.
 - **DO NOT** skip reading the feature doc and plan before starting.
