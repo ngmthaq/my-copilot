@@ -1,6 +1,6 @@
 ---
 name: flutter
-description: "Unified Flutter skill index — covers widget basics, layout system, state management (Riverpod/Bloc/Provider), navigation & routing (GoRouter), forms & validation, API integration, animations, performance optimization, platform integration (camera, permissions, native channels), and testing (widget, unit, integration). Use this as the entry point; it delegates to focused sub-skill files for each domain."
+description: "Unified Flutter skill index — covers coding convention & architecture recommendations, widget basics, layout system, state management (Riverpod/Bloc/Provider), navigation & routing (GoRouter), forms & validation, API integration, animations, performance optimization, platform integration (camera, permissions, native channels), and testing (widget, unit, integration). Use this as the entry point; it delegates to focused sub-skill files for each domain."
 ---
 
 # Flutter Skill
@@ -15,6 +15,7 @@ This file is the top-level entry point for all Flutter-related topics. It identi
 
 | Domain                   | File                                                       | When to use                                                                                                                                                                                    |
 | ------------------------ | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Convention               | [convention.md](convention.md)                             | Writing or reviewing Flutter widgets for style; structuring a Flutter app; applying Flutter architecture patterns (MVVM, repository, unidirectional data flow); widget constructor conventions |
 | Widget Basics            | [widget-basics.md](widget-basics.md)                       | Understanding StatelessWidget vs StatefulWidget; using BuildContext; working with keys; composing widget trees; applying themes; using common material/cupertino widgets                       |
 | Layout System            | [layout-system.md](layout-system.md)                       | Using Row, Column, Stack, Expanded, Flexible, SizedBox, Padding, Align, Center, ConstrainedBox; understanding constraints; building responsive/adaptive layouts                                |
 | State Management         | [state-management.md](state-management.md)                 | Choosing and using Riverpod, Bloc/Cubit, or Provider; lifting state; using ValueNotifier; structuring state across the widget tree; handling async state                                       |
@@ -32,6 +33,9 @@ This file is the top-level entry point for all Flutter-related topics. It identi
 
 ```
 What are you trying to do?
+│
+├── Follow Flutter widget conventions, architecture patterns (MVVM, repository), or naming standards?
+│   └── → convention.md
 │
 ├── Build a widget, understand StatelessWidget vs StatefulWidget, or use BuildContext?
 │   └── → widget-basics.md

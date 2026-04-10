@@ -15,6 +15,7 @@ This index covers all NestJS skill domains. Load the specific sub-skill file tha
 
 | Domain                         | File                                                                               | When to use                                                                                                                                                                |
 | ------------------------------ | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Convention                     | [convention.md](convention.md)                                                     | Naming NestJS files (modules, controllers, services, DTOs, guards, pipes); deciding file suffixes; organizing NestJS modules; applying NestJS-specific naming patterns.    |
 | Module Architecture            | [module-architecture.md](module-architecture.md)                                   | Structuring a NestJS app; sharing providers across modules; building reusable feature, shared, or global modules; `forRoot`/`forFeature` patterns.                         |
 | Controller Design              | [controller-design.md](controller-design.md)                                       | Defining REST controllers; handling HTTP requests with `@Get`/`@Post`/etc.; extracting `@Body`/`@Param`/`@Query`; building resource endpoints with DTOs.                   |
 | Service Layer                  | [service-layer.md](service-layer.md)                                               | Implementing business logic; separating concerns from controllers; composing multiple repositories; managing transactions inside services.                                 |
@@ -44,6 +45,9 @@ This index covers all NestJS skill domains. Load the specific sub-skill file tha
 
 ```
 What are you working on?
+│
+├── File naming or folder structure conventions?
+│   └── → convention.md
 │
 ├── App structure / wiring
 │   ├── Organising feature modules, shared modules → module-architecture.md

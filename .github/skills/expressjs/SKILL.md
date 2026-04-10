@@ -15,6 +15,7 @@ This file is the top-level entry point for all Express.js-related topics. It ide
 
 | Domain                         | File                                                               | When to use                                                                                                                                                                                                                                 |
 | ------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Convention                     | [convention.md](convention.md)                                     | Naming Express files (routers, services, middleware); deciding file suffixes; organizing Express modules; applying Express-specific naming patterns                                                                                         |
 | API Security                   | [api-security.md](api-security.md)                                 | Setting up Helmet, CORS, rate limiting, CSRF protection; sanitizing user input; preventing injection attacks (SQL, NoSQL, XSS, command injection); securing HTTP headers; implementing request size limits; applying OWASP best practices   |
 | Authentication & Authorization | [authentication-authorization.md](authentication-authorization.md) | Setting up login/register flows; generating and verifying JWTs; implementing refresh tokens; configuring Passport.js strategies; building auth middleware; implementing RBAC or ABAC; protecting routes by role or permission               |
 | Database Integration           | [database-integration.md](database-integration.md)                 | Connecting Express to PostgreSQL/MySQL/SQLite via Prisma; writing CRUD operations; managing database client lifecycle; structuring data access layers; handling connection pooling and error handling                                       |
@@ -33,6 +34,9 @@ This file is the top-level entry point for all Express.js-related topics. It ide
 
 ```
 What are you trying to do?
+│
+├── Apply file naming or folder structure conventions?
+│   └── → convention.md
 │
 ├── Harden the API against attacks or set security headers?
 │   └── → api-security.md

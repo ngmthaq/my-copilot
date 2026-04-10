@@ -5,6 +5,27 @@ description: "TypeScript coding conventions — naming, file organization, type 
 
 # TypeScript Conventions
 
+> **Prerequisite:** Also load [javascript/convention.md](../javascript/convention.md) for base formatting, Prettier, naming, import organization, EditorConfig, and ESLint rules. This file covers TypeScript-specific conventions only.
+
+## TypeScript-Specific Rules (from project standard)
+
+- Always annotate function return types explicitly.
+- Avoid `any`; prefer `unknown` and narrow the type.
+- Prefer `interface` for object shapes; use `type` for unions, intersections, and aliases.
+- Use `readonly` for properties that must not change after construction.
+- Avoid non-null assertion (`!`) unless absolutely certain; prefer optional chaining (`?.`).
+- Use strict mode (`"strict": true` in `tsconfig.json`).
+
+```ts
+// Good
+function getUser(id: string): Promise<User | null> { ... }
+
+// Avoid
+function getUser(id: any): any { ... }
+```
+
+---
+
 ## 1. Naming Conventions
 
 ```typescript

@@ -7,18 +7,19 @@ description: "Unified JavaScript skill index — covers core fundamentals, ES6+ 
 
 ## Sub-Skills Reference
 
-| Domain                 | File                                                   | When to use                                                                                                                   |
-| ---------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| Async Programming      | [async-programming.md](async-programming.md)           | Writing async code; handling API calls; managing concurrent operations; debugging async bugs                                  |
-| Browser APIs           | [browser-apis.md](browser-apis.md)                     | Making HTTP requests; using localStorage/sessionStorage; implementing observers; working with browser-specific APIs           |
-| Core Fundamentals      | [core-fundamentals.md](core-fundamentals.md)           | Explaining JS type system; debugging coercion bugs; understanding scope chains; working with closures; prototypal inheritance |
-| DOM Manipulation       | [dom-manipulation.md](dom-manipulation.md)             | Manipulating the DOM; handling user events; building UI without a framework                                                   |
-| Error Handling         | [error-handling.md](error-handling.md)                 | Implementing error handling; creating custom error classes; debugging errors; setting up global error catchers                |
-| ES6+ Features          | [es6-plus.md](es6-plus.md)                             | Writing modern JS; refactoring legacy code to ES6+; using destructuring or spread patterns                                    |
-| Event Loop             | [event-loop.md](event-loop.md)                         | Debugging async execution order; understanding why code runs in a certain sequence; performance tuning                        |
-| Functional Programming | [functional-programming.md](functional-programming.md) | Writing declarative code; composing functions; working with array transformations; implementing functional patterns           |
-| Module System          | [module-system.md](module-system.md)                   | Structuring code into modules; choosing between ESM and CJS; lazy-loading code; understanding module resolution               |
-| Object-Oriented        | [object-oriented.md](object-oriented.md)               | Designing class hierarchies; implementing design patterns; choosing composition vs inheritance; encapsulating behavior        |
+| Domain                 | File                                                   | When to use                                                                                                                                        |
+| ---------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Convention             | [convention.md](convention.md)                         | Formatting or refactoring JS/TS code; reviewing for style consistency; setting up Prettier/ESLint; applying naming conventions; organizing imports |
+| Async Programming      | [async-programming.md](async-programming.md)           | Writing async code; handling API calls; managing concurrent operations; debugging async bugs                                                       |
+| Browser APIs           | [browser-apis.md](browser-apis.md)                     | Making HTTP requests; using localStorage/sessionStorage; implementing observers; working with browser-specific APIs                                |
+| Core Fundamentals      | [core-fundamentals.md](core-fundamentals.md)           | Explaining JS type system; debugging coercion bugs; understanding scope chains; working with closures; prototypal inheritance                      |
+| DOM Manipulation       | [dom-manipulation.md](dom-manipulation.md)             | Manipulating the DOM; handling user events; building UI without a framework                                                                        |
+| Error Handling         | [error-handling.md](error-handling.md)                 | Implementing error handling; creating custom error classes; debugging errors; setting up global error catchers                                     |
+| ES6+ Features          | [es6-plus.md](es6-plus.md)                             | Writing modern JS; refactoring legacy code to ES6+; using destructuring or spread patterns                                                         |
+| Event Loop             | [event-loop.md](event-loop.md)                         | Debugging async execution order; understanding why code runs in a certain sequence; performance tuning                                             |
+| Functional Programming | [functional-programming.md](functional-programming.md) | Writing declarative code; composing functions; working with array transformations; implementing functional patterns                                |
+| Module System          | [module-system.md](module-system.md)                   | Structuring code into modules; choosing between ESM and CJS; lazy-loading code; understanding module resolution                                    |
+| Object-Oriented        | [object-oriented.md](object-oriented.md)               | Designing class hierarchies; implementing design patterns; choosing composition vs inheritance; encapsulating behavior                             |
 
 ---
 
@@ -26,6 +27,9 @@ description: "Unified JavaScript skill index — covers core fundamentals, ES6+ 
 
 ```
 What is your goal?
+│
+├─ I need formatting, naming, import ordering, or Prettier/ESLint config
+│   └─▶ convention.md
 │
 ├─ I need to write or fix async code (Promises, async/await, fetch calls)
 │   └─▶ async-programming.md

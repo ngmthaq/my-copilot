@@ -25,8 +25,8 @@ Role-based AI agents that follow a structured team workflow:
 | **Technical Leader** | `technical-leader` — analyzes requirements, creates plans, delegates work |
 | **Developers**       | `be-developer`, `fe-developer`, `mobile-developer`                        |
 | **QA Engineers**     | `be-qa-engineer`, `fe-qa-engineer`, `mobile-qa-engineer`                  |
-| **Code Reviewers**   | `be-code-reviewer`, `fe-code-reviewer`, `mobile-code-reviewer`            |
-| **DevOps Engineers** | `be-devops-engineer`, `fe-devops-engineer`, `mobile-devops-engineer`      |
+| **Code Reviewer**    | `code-reviewer` — cross-stack code, test, and DevOps review               |
+| **DevOps Engineer**  | `devops-engineer` — cross-stack infrastructure, CI/CD, and deployment     |
 | **Debugger**         | `debugger` — cross-stack error diagnosis                                  |
 
 ### Skills

@@ -1,6 +1,6 @@
 ---
 name: dart
-description: "Unified Dart skill index — covers basic syntax, null safety, collections, functions, object-oriented programming, async/await, streams, error handling, packages & dependencies, and CLI development. Use this as the entry point; it delegates to focused sub-skill files for each domain."
+description: "Unified Dart skill index — covers coding convention & Effective Dart, basic syntax, null safety, collections, functions, object-oriented programming, async/await, streams, error handling, packages & dependencies, and CLI development. Use this as the entry point; it delegates to focused sub-skill files for each domain."
 ---
 
 # Dart Skill
@@ -15,6 +15,7 @@ This file is the top-level entry point for all Dart-related topics. It identifie
 
 | Domain                  | File                                                 | When to use                                                                                                                                                                                  |
 | ----------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Convention              | [convention.md](convention.md)                       | Formatting or refactoring Dart code to match project style; reviewing for style consistency; applying naming conventions; organizing imports; checking Effective Dart compliance             |
 | Basic Syntax            | [basic-syntax.md](basic-syntax.md)                   | Declaring variables with `var`, `final`, `const`; understanding types; using operators; writing control flow (if, for, while, switch); understanding comments and string interpolation       |
 | Null Safety             | [null-safety.md](null-safety.md)                     | Writing null-safe code; using `?`, `!`, `??`, `?.`; working with nullable vs non-nullable types; using `late`; understanding sound null safety and migration from legacy code                |
 | Collections             | [collections.md](collections.md)                     | Working with `List`, `Set`, `Map`, and `Iterable`; using spread operators and collection-if/for; transforming collections with `map`, `where`, `fold`; understanding growable vs fixed       |
@@ -32,6 +33,9 @@ This file is the top-level entry point for all Dart-related topics. It identifie
 
 ```
 What are you trying to do?
+│
+├── Format Dart code, check naming conventions, organize imports, or follow Effective Dart?
+│   └── → convention.md
 │
 ├── Declare a variable, write a loop, or understand basic Dart syntax?
 │   └── → basic-syntax.md

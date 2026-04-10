@@ -5,6 +5,8 @@ description: "React Native (Expo) conventions — project structure, naming rule
 
 # React Native Conventions Skill
 
+> **Prerequisite:** Also load [javascript/convention.md](../javascript/convention.md) for base formatting, Prettier, naming, import organization, EditorConfig, and ESLint rules, and [typescript/convention.md](../typescript/convention.md) for TypeScript-specific rules. This file covers React Native-specific conventions only.
+
 ## Overview
 
 This skill covers the naming rules, file layout, and TypeScript conventions used across React Native (Expo) projects. Follow these to keep the codebase consistent and easy to navigate.
