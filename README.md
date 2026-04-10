@@ -8,7 +8,7 @@ A curated collection of GitHub Copilot customization files — agents, skills, i
 .github/
 ├── copilot-instructions.md        # Global rules inherited by all agents
 ├── agents/                        # 14 specialized agent definitions
-├── skills/                        # 27 skill packs (frameworks, tools, private projects)
+├── skills/                        # 21 skill packs (frameworks, tools, projects)
 ├── instructions/                  # Coding conventions & doc templates
 ├── hooks/                         # Automated guardrails (secrets, licenses, governance, …)
 └── docs/
@@ -20,14 +20,14 @@ A curated collection of GitHub Copilot customization files — agents, skills, i
 
 Role-based AI agents that follow a structured team workflow:
 
-| Role                 | Agents                                                                    |
-| -------------------- | ------------------------------------------------------------------------- |
+| Role | Agents |
+| --- | --- |
 | **Technical Leader** | `technical-leader` — analyzes requirements, creates plans, delegates work |
-| **Developers**       | `be-developer`, `fe-developer`, `mobile-developer`                        |
-| **QA Engineers**     | `be-qa-engineer`, `fe-qa-engineer`, `mobile-qa-engineer`                  |
-| **Code Reviewers**   | `be-code-reviewer`, `fe-code-reviewer`, `mobile-code-reviewer`            |
-| **DevOps Engineers** | `be-devops-engineer`, `fe-devops-engineer`, `mobile-devops-engineer`      |
-| **Debugger**         | `debugger` — cross-stack error diagnosis                                  |
+| **Developers** | `be-developer`, `fe-developer`, `mobile-developer` |
+| **QA Engineers** | `be-qa-engineer`, `fe-qa-engineer`, `mobile-qa-engineer` |
+| **Code Reviewers** | `be-code-reviewer`, `fe-code-reviewer`, `mobile-code-reviewer` |
+| **DevOps Engineers** | `be-devops-engineer`, `fe-devops-engineer`, `mobile-devops-engineer` |
+| **Debugger** | `debugger` — cross-stack error diagnosis |
 
 ### Skills
 
@@ -37,10 +37,9 @@ Reusable knowledge packs that agents load on demand:
 - **Backend** — NestJS, Express.js, Prisma, TypeORM, GraphQL, REST API
 - **Frontend** — React.js, Vue.js (Composition API), Vite
 - **Mobile** — Flutter, React Native (Expo)
-- **Infrastructure** — Docker, Nginx, Git
+- **Infrastructure** — Docker, Nginx, Git, GitHub MCP
 - **Databases** — Relational DB, NoSQL (MongoDB, Redis, Cassandra, Neo4j)
 - **Quality** — Linting (ESLint + Prettier)
-- **Private / Project-Specific** — Onsight (backend services, frontend, local setup), UMM V2 API migration
 
 ### Instructions
 
