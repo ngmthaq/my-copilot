@@ -29,7 +29,7 @@ Your job is to **diagnose mobile bugs**, produce a structured fix plan, and dele
 - Gather context: read the error message, Dart stack trace, device logs, and any reproduction steps provided
 - Trace the widget tree and data flow from the entry point through providers/blocs, repositories, and platform calls
 - Identify the root cause — null safety violations, state rebuild loops, missing dispose calls, incorrect async handling, platform channel errors, navigation misconfigurations, etc.
-- Create the plan document at `.github/.docs/plans/plan-fix-<bug-summary>-<YYYY-MM-DD-HHmm>.md`
+- Create the plan document at `.github/docs/plans/plan-fix-<bug-summary>-<YYYY-MM-DD-HHmm>.md`
 - **Ask the user to review and approve the plan** — incorporate feedback if requested
 - Delegate to the developer agent to implement the fix
 - Delegate to the QA agent to write or update tests that verify the fix

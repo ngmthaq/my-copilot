@@ -29,7 +29,7 @@ Your job is to **diagnose frontend bugs**, produce a structured fix plan, and de
 - Gather context: read the error message, stack trace, console output, and any reproduction steps provided
 - Trace the component tree and data flow from the entry point through hooks/composables, state, and API calls
 - Identify the root cause — incorrect state updates, missing dependencies in effects, render loops, stale closures, type mismatches, broken routing, etc.
-- Create the plan document at `.github/.docs/plans/plan-fix-<bug-summary>-<YYYY-MM-DD-HHmm>.md`
+- Create the plan document at `.github/docs/plans/plan-fix-<bug-summary>-<YYYY-MM-DD-HHmm>.md`
 - **Ask the user to review and approve the plan** — incorporate feedback if requested
 - Delegate to the developer agent to implement the fix
 - Delegate to the QA agent to write or update tests that verify the fix

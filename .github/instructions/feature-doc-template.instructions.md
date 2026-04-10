@@ -1,5 +1,5 @@
 ---
-applyTo: "**/.github/.docs/features/**/*.md"
+applyTo: "**/.github/docs/features/**/*.md"
 ---
 
 # Feature Document Template
@@ -12,22 +12,22 @@ applyTo: "**/.github/.docs/features/**/*.md"
 ## Location & Naming Convention
 
 ```
-.github/.docs/features/<module>/<feature-name>.md
+.github/docs/features/<module>/<feature-name>.md
 ```
 
 Examples:
 
-- `.github/.docs/features/auth/login-api.md`
-- `.github/.docs/features/auth/login-ui.md`
-- `.github/.docs/features/auth/register-ui.md`
-- `.github/.docs/features/auth/refresh-token-api.md`
-- `.github/.docs/features/product/create-product-ui.md`
-- `.github/.docs/features/product/list-products-api.md`
-- `.github/.docs/features/infra/docker-setup.md`
+- `.github/docs/features/auth/login-api.md`
+- `.github/docs/features/auth/login-ui.md`
+- `.github/docs/features/auth/register-ui.md`
+- `.github/docs/features/auth/refresh-token-api.md`
+- `.github/docs/features/product/create-product-ui.md`
+- `.github/docs/features/product/list-products-api.md`
+- `.github/docs/features/infra/docker-setup.md`
 
 ## What to Ask the User
 
-> "Before I plan, would you like me to create a feature doc at `.github/.docs/features/<module>/<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for the developer, QA, and DevOps agents."
+> "Before I plan, would you like me to create a feature doc at `.github/docs/features/<module>/<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for the developer, QA, and DevOps agents."
 
 ## Rules
 

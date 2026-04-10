@@ -1,5 +1,5 @@
 ---
-applyTo: "**/.github/.docs/plans/plan-fix-*.md"
+applyTo: "**/.github/docs/plans/plan-fix-*.md"
 ---
 
 # Bug-Fix Plan Template
@@ -14,13 +14,13 @@ applyTo: "**/.github/.docs/plans/plan-fix-*.md"
 Follows the same location as plan documents, with a `fix-` prefix:
 
 ```
-.github/.docs/plans/plan-fix-<bug-summary>-<YYYY-MM-DD-HHmm>.md
+.github/docs/plans/plan-fix-<bug-summary>-<YYYY-MM-DD-HHmm>.md
 ```
 
 Examples:
 
-- `.github/.docs/plans/plan-fix-cors-in-user-creation-form-2026-04-05-1715.md`
-- `.github/.docs/plans/plan-fix-null-pointer-in-auth-service-2026-04-06-0930.md`
+- `.github/docs/plans/plan-fix-cors-in-user-creation-form-2026-04-05-1715.md`
+- `.github/docs/plans/plan-fix-null-pointer-in-auth-service-2026-04-06-0930.md`
 
 ## Template
 

@@ -26,7 +26,7 @@ Your job is to **analyze frontend requirements** and produce structured implemen
 ## Approach
 
 - Ask clarifying questions if requirements are unclear
-- **List `.github/.docs/features/`** to discover existing module directories — choose the best-matching module or create a new one only if none fits
+- **List `.github/docs/features/`** to discover existing module directories — choose the best-matching module or create a new one only if none fits
 - Create the feature doc inside the chosen module directory, capturing overview, component architecture, routing, state strategy, API integration, and known limitations
 - **Ask the user to review and approve the feature doc** — incorporate feedback if requested
 - Create the plan document referencing the approved feature doc

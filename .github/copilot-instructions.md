@@ -31,9 +31,9 @@ This workspace uses skill files as the authoritative source of patterns, convent
 
 ---
 
-## 2. Coding Convention Instructions
+## 2. Available Instructions
 
-These instruction files define formatting rules, naming conventions, and style standards. They apply automatically to matching files via the `applyTo` glob, but **agents must also load them explicitly with `read_file` before writing or reviewing code**.
+These instruction files define formatting rules, naming conventions, file templates, and style standards. They apply automatically to matching files via the `applyTo` glob, but **agents must also load them explicitly with `read_file` before writing or reviewing code**.
 
 | Instruction File                                                 | Covers                                                    |
 | ---------------------------------------------------------------- | --------------------------------------------------------- |
@@ -47,7 +47,23 @@ These instruction files define formatting rules, naming conventions, and style s
 
 ---
 
-## 3. Requirement Clarification — Never Assume
+## 3. Available Hooks
+
+This workspace uses Copilot coding agent hooks (`.github/hooks/`) to enforce governance, security, compliance, and observability. Hooks run automatically at specific lifecycle events — agents do **not** need to invoke them manually.
+
+| Hook                       | Path                                        | Event(s)                                            | Description                                                                                                             |
+| -------------------------- | ------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Governance Audit           | `.github/hooks/governance-audit/`           | `sessionStart`, `sessionEnd`, `userPromptSubmitted` | Scans prompts for threat signals (data exfiltration, privilege escalation, prompt injection) and logs governance events |
+| Dependency License Checker | `.github/hooks/dependency-license-checker/` | `sessionEnd`                                        | Scans newly added dependencies for copyleft / restrictive licenses (GPL, AGPL, SSPL, etc.)                              |
+| Secrets Scanner            | `.github/hooks/secrets-scanner/`            | `sessionEnd`                                        | Scans modified files for leaked secrets, API keys, credentials, and private keys before commit                          |
+| Session Logger             | `.github/hooks/session-logger/`             | `sessionStart`, `sessionEnd`, `userPromptSubmitted` | Logs session start/end times and user prompt events for audit trails and usage analytics                                |
+| Tool Guardian              | `.github/hooks/tool-guardian/`              | `preToolUse`                                        | Blocks dangerous tool operations (destructive file ops, force pushes, DB drops) before execution                        |
+
+**Note:** Each hook folder contains a `hooks.json` (lifecycle config), shell scripts, and a `README.md` with full documentation. Refer to the individual README for configuration options (guard modes, allowlists, environment variables).
+
+---
+
+## 4. Requirement Clarification — Never Assume
 
 Before starting any task, AI **must** ask the user clarifying questions to fully understand the requirement. Do **not** assume any detail that has not been explicitly stated.
 
@@ -63,11 +79,11 @@ Use the `vscode_askQuestions` tool to collect answers in a structured way.
 
 ---
 
-## 4. Agent Common Rules
+## 5. Agent Common Rules
 
 These rules are inherited by all agents via `copilot-instructions.md`. Individual agent files should **only** contain role-specific additions — not repeat these common rules.
 
-### 4.1. All Agents
+### 5.1. All Agents
 
 For every task, follow this order:
 
@@ -76,43 +92,43 @@ For every task, follow this order:
 3. **Ask** clarifying questions — never assume requirements.
 4. Follow all patterns and conventions from the loaded skill files and coding convention instructions.
 
-### 4.2. Implementers (developer, QA engineer, DevOps engineer)
+### 5.2. Implementers (developer, QA engineer, DevOps engineer)
 
-In addition to Section 4.1:
+In addition to Section 5.1:
 
 - **ALWAYS** read the feature doc (or bug-fix plan) as the **source of truth** for requirements and design before starting work
 - **ALWAYS** read the plan document and follow it step by step
 - **DO NOT** skip reading the feature doc and plan before starting
 - Mark plan checkboxes (`[ ]` → `[x]`) as each step is completed
 
-### 4.3. Developers
+### 5.3. Developers
 
-In addition to Section 4.2:
+In addition to Section 5.2:
 
 - **DO NOT** skip loading the framework `SKILL.md` before coding
 - **DO NOT** deviate from the plan without flagging it to the technical leader
 - Fix code review comments and security issues flagged by the code-reviewer agent
 
-### 4.4. QA Engineers
+### 5.4. QA Engineers
 
-In addition to Section 4.2:
+In addition to Section 5.2:
 
 - **DO NOT** modify production source code to make tests pass — fix the tests instead
 - **DO NOT** write tests that test implementation details — test behavior
 - Follow the AAA pattern (Arrange, Act, Assert)
 - Run tests to verify they pass before reporting completion
 
-### 4.5. DevOps Engineers
+### 5.5. DevOps Engineers
 
-In addition to Section 4.2:
+In addition to Section 5.2:
 
 - **DO NOT** modify application business logic — only infra and deployment config
 - **DO NOT** hardcode secrets or credentials in any configuration file
 - **ONLY** use secure, minimal base images and follow platform best practices
 
-### 4.6. Code Reviewers
+### 5.6. Code Reviewers
 
-In addition to Section 4.1:
+In addition to Section 5.1:
 
 - **ALWAYS** read the feature doc (or bug-fix plan) as the **source of truth** before reviewing any code
 - **ALWAYS** read the plan document to verify implementation completeness
@@ -122,9 +138,9 @@ In addition to Section 4.1:
 - **DO NOT** approve code with critical or high severity security issues without flagging them
 - **ONLY** produce structured code review feedback
 
-### 4.7. Debuggers
+### 5.7. Debuggers
 
-In addition to Section 4.1:
+In addition to Section 5.1:
 
 - **ALWAYS** create the plan document with diagnosis and fix steps — this is the **source of truth** for all agents (follow workspace instructions for the Bug-Fix Plan Structure)
 - **WAIT** for user approval of the plan before delegating tasks to sub-agents
@@ -136,12 +152,12 @@ In addition to Section 4.1:
 - **ALWAYS** explain the root cause before suggesting a fix
 - **ONLY** produce diagnoses, plans, and task delegations
 
-### 4.8. Technical Leaders
+### 5.8. Technical Leaders
 
-In addition to Section 4.1:
+In addition to Section 5.1:
 
 - **ALWAYS** create the feature document — this is the **source of truth** for all agents (follow workspace instructions for path and structure)
-- Before creating the feature doc, **ALWAYS list `.github/.docs/features/`** to discover existing module directories — place the doc inside an existing module folder if one matches; **ONLY** create a new module directory when no existing one fits
+- Before creating the feature doc, **ALWAYS list `.github/docs/features/`** to discover existing module directories — place the doc inside an existing module folder if one matches; **ONLY** create a new module directory when no existing one fits
 - **WAIT** for user approval of the feature doc before proceeding to the plan
 - **ALWAYS** create the plan document based on the approved feature doc (follow workspace instructions for path and naming)
 - **WAIT** for user approval of the plan before delegating tasks to sub-agents

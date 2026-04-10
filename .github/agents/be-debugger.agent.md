@@ -29,7 +29,7 @@ Your job is to **diagnose backend bugs**, produce a structured fix plan, and del
 - Gather context: read the error message, stack trace, logs, and any reproduction steps provided
 - Trace the code path from the entry point (route/controller) through middleware, services, and database calls
 - Identify the root cause — mismatched types, missing error handling, incorrect queries, race conditions, misconfiguration, etc.
-- Create the plan document at `.github/.docs/plans/plan-fix-<bug-summary>-<YYYY-MM-DD-HHmm>.md`
+- Create the plan document at `.github/docs/plans/plan-fix-<bug-summary>-<YYYY-MM-DD-HHmm>.md`
 - **Ask the user to review and approve the plan** — incorporate feedback if requested
 - Delegate to the developer agent to implement the fix
 - Delegate to the QA agent to write or update tests that verify the fix
