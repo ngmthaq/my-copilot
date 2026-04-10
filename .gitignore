@@ -1,1 +1,5 @@
 /node_modules
+/.github/skills/private-*
+/.github/docs
+!/.github/docs/features/.gitkeep
+!/.github/docs/plans/.gitkeep
