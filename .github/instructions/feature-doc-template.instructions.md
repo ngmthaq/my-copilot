@@ -1,5 +1,5 @@
 ---
-applyTo: "**/.github/docs/features/**/*.md"
+applyTo: "**/agent-feature-*.md"
 ---
 
 # Feature Document Template
@@ -12,22 +12,22 @@ applyTo: "**/.github/docs/features/**/*.md"
 ## Location & Naming Convention
 
 ```
-.github/docs/features/<module>/<feature-name>.md
+{features_directory}/<module>/agent-feature-<feature-name>.md
 ```
 
 Examples:
 
-- `.github/docs/features/auth/login-api.md`
-- `.github/docs/features/auth/login-ui.md`
-- `.github/docs/features/auth/register-ui.md`
-- `.github/docs/features/auth/refresh-token-api.md`
-- `.github/docs/features/product/create-product-ui.md`
-- `.github/docs/features/product/list-products-api.md`
-- `.github/docs/features/infra/docker-setup.md`
+- `{features_directory}/auth/agent-feature-login-api.md`
+- `{features_directory}/auth/agent-feature-login-ui.md`
+- `{features_directory}/auth/agent-feature-register-ui.md`
+- `{features_directory}/auth/agent-feature-refresh-token-api.md`
+- `{features_directory}/product/agent-feature-create-product-ui.md`
+- `{features_directory}/product/agent-feature-list-products-api.md`
+- `{features_directory}/infra/agent-feature-docker-setup.md`
 
 ## What to Ask the User
 
-> "Before I plan, would you like me to create a feature doc at `.github/docs/features/<module>/<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for the developer, QA, and DevOps agents."
+> "Before I plan, would you like me to create a feature doc at `{features_directory}/<module>/agent-feature-<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for the developer, QA, and DevOps agents."
 
 ## Rules
 
@@ -76,5 +76,5 @@ Examples:
 
 ## Related Plans
 
-- `plan-<do-something>-<datetime>` — link to the plan document created after this feature doc
+- `agent-plan-<do-something>-<datetime>` — link to the plan document created after this feature doc
 ```

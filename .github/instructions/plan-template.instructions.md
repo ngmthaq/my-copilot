@@ -1,5 +1,5 @@
 ---
-applyTo: "**/.github/docs/plans/plan-*.md"
+applyTo: "**/agent-plan-*.md"
 ---
 
 # Plan Document Template
@@ -12,20 +12,20 @@ applyTo: "**/.github/docs/plans/plan-*.md"
 ## Location & Naming Convention
 
 ```
-.github/docs/plans/plan-<do-something>-<YYYY-MM-DD-HHmm>.md
+{plans_directory}/agent-plan-<do-something>-<YYYY-MM-DD-HHmm>.md
 ```
 
 Examples:
 
-- `.github/docs/plans/plan-add-user-authentication-2026-04-05-1430.md`
-- `.github/docs/plans/plan-refactor-product-module-2026-04-05-0900.md`
-- `.github/docs/plans/plan-setup-docker-compose-2026-04-05-1615.md`
-- `.github/docs/plans/plan-fix-cors-in-user-creation-form-2026-04-05-1715.md`
-- `.github/docs/plans/plan-fix-add-user-authentication-reviewer-comments-2026-04-05-1715.md`
+- `{plans_directory}/agent-plan-add-user-authentication-2026-04-05-1430.md`
+- `{plans_directory}/agent-plan-refactor-product-module-2026-04-05-0900.md`
+- `{plans_directory}/agent-plan-setup-docker-compose-2026-04-05-1615.md`
+- `{plans_directory}/agent-plan-fix-cors-in-user-creation-form-2026-04-05-1715.md`
+- `{plans_directory}/agent-plan-fix-add-user-authentication-reviewer-comments-2026-04-05-1715.md`
 
 ## What to Ask the User
 
-> "The feature doc is ready. Would you like me to create a plan document at `.github/docs/plans/plan-<do-something>-<datetime>.md` so we can track implementation progress?"
+> "The feature doc is ready. Would you like me to create a plan document at `{plans_directory}/agent-plan-<do-something>-<datetime>.md` so we can track implementation progress?"
 
 ## Template
 
@@ -42,7 +42,7 @@ Examples:
 
 ## Feature Doc
 
-- `.github/docs/features/<module>/<feature-name>.md` — the source of truth for requirements and design
+- `{features_directory}/<module>/agent-feature-<feature-name>.md` — the source of truth for requirements and design
 
 ## Todo List
 
