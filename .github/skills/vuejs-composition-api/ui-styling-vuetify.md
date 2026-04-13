@@ -1,13 +1,13 @@
 ---
-name: vuejs-options-api-ui-styling
-description: "Vue 3 Options API UI styling — Vuetify 3: theme setup, Vuetify components, inline styles, scoped CSS, dark mode, AG Grid for high-performance tables, and date pickers. Use when: styling components; customizing the theme; using Vuetify components or AG Grid."
+name: vuejs-ui-styling-vuetify
+description: "Vue 3 UI styling — Vuetify 3: theme setup, Vuetify components, inline styles, scoped CSS, dark mode, AG Grid for high-performance tables, and date pickers. Use when: styling components; customizing the theme; using Vuetify components or AG Grid."
 ---
 
-# Vue 3 Options API UI & Styling Skill
+# Vue 3 UI & Styling Skill
 
 ## Overview
 
-This project uses **Vuetify 3** as the primary component library and design system. AG Grid is used for high-performance data tables. Vuetify components work identically in template — the only difference is the `<script>` section uses `defineComponent()`.
+This project uses **Vuetify 3** as the primary component library and design system. AG Grid is used for high-performance data tables.
 
 Packages: `vuetify @mdi/font ag-grid-vue3 ag-grid-community`
 
@@ -72,36 +72,20 @@ export const vuetify = createVuetify({
 ```
 
 ```vue
-<script lang="ts">
-import { defineComponent } from "vue";
+<!-- Toggle dark mode from any component -->
+<script setup lang="ts">
 import { useTheme } from "vuetify";
 
-export default defineComponent({
-  name: "ThemeToggle",
-  setup() {
-    // ✅ useTheme is a Composition API composable — use it in setup()
-    const theme = useTheme();
-    return { theme };
-  },
-  computed: {
-    isDark(): boolean {
-      return this.theme.global.current.value.dark;
-    },
-    themeIcon(): string {
-      return this.isDark ? "mdi-weather-sunny" : "mdi-weather-night";
-    },
-  },
-  methods: {
-    toggleTheme() {
-      this.theme.global.name.value = this.isDark ? "light" : "dark";
-    },
-  },
-});
+const theme = useTheme();
+
+const toggleTheme = () => {
+  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+};
 </script>
 
 <template>
   <v-btn icon @click="toggleTheme">
-    <v-icon>{{ themeIcon }}</v-icon>
+    <v-icon>{{ theme.global.current.value.dark ? "mdi-weather-sunny" : "mdi-weather-night" }}</v-icon>
   </v-btn>
 </template>
 ```
@@ -110,22 +94,9 @@ export default defineComponent({
 
 ## 3. Common Vuetify Components
 
-Templates are identical to Composition API — only the `<script>` section changes.
-
 ```vue
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "LayoutDemo",
-  data() {
-    return {
-      email: "",
-      role: "",
-      snackbar: false,
-    };
-  },
-});
+<script setup lang="ts">
+// No special imports needed when using the component plugin (wildcard import)
 </script>
 
 <template>
@@ -141,6 +112,9 @@ export default defineComponent({
   <v-btn color="primary" variant="elevated">Save</v-btn>
   <v-btn color="secondary" variant="outlined">Cancel</v-btn>
   <v-btn icon="mdi-delete" color="error" variant="text" />
+
+  <!-- Typography -->
+  <v-card-title class="text-h6">Title</v-card-title>
 
   <!-- Card -->
   <v-card>
@@ -175,19 +149,12 @@ export default defineComponent({
 
 ## 4. Component Styling — Scoped CSS
 
-```vue
-<script lang="ts">
-import { defineComponent, type PropType } from "vue";
+For component-specific styles, use `<style scoped>` or CSS variables.
 
-export default defineComponent({
-  name: "StatusBadge",
-  props: {
-    status: {
-      type: String as PropType<"active" | "inactive" | "pending">,
-      required: true,
-    },
-  },
-});
+```vue
+<script setup lang="ts">
+// Props drive conditional classes
+const props = defineProps<{ status: "active" | "inactive" | "pending" }>();
 </script>
 
 <template>
@@ -238,32 +205,18 @@ export default defineComponent({
 ## 6. Data Table — v-data-table
 
 ```vue
-<script lang="ts">
-import { defineComponent, type PropType } from "vue";
+<script setup lang="ts">
 import type { User } from "@/types/user";
 
-export default defineComponent({
-  name: "UsersTable",
-  props: {
-    rows: { type: Array as PropType<User[]>, required: true },
-  },
-  data() {
-    return {
-      headers: [
-        { title: "ID", key: "id", width: 80 },
-        { title: "Name", key: "name", sortable: true },
-        { title: "Email", key: "email" },
-        { title: "Role", key: "role", width: 120 },
-        { title: "", key: "actions", sortable: false },
-      ],
-    };
-  },
-  methods: {
-    handleEdit(item: User) {
-      this.$router.push({ name: "edit-user", params: { userId: item.id } });
-    },
-  },
-});
+const props = defineProps<{ rows: User[] }>();
+
+const headers = [
+  { title: "ID", key: "id", width: 80 },
+  { title: "Name", key: "name", sortable: true },
+  { title: "Email", key: "email" },
+  { title: "Role", key: "role", width: 120 },
+  { title: "", key: "actions", sortable: false },
+];
 </script>
 
 <template>
@@ -286,19 +239,11 @@ export default defineComponent({
 ## 7. Date Picker
 
 ```vue
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 import { VDateInput } from "vuetify/labs/VDateInput";
 
-export default defineComponent({
-  name: "DatePickerDemo",
-  components: { VDateInput },
-  data() {
-    return {
-      date: null as Date | null,
-    };
-  },
-});
+const date = ref<Date | null>(null);
 </script>
 
 <template>
@@ -315,30 +260,20 @@ Use AG Grid for very large datasets (10,000+ rows) where Vuetify DataTable perfo
 Install: `npm install ag-grid-vue3 ag-grid-community`
 
 ```vue
-<script lang="ts">
-import { defineComponent, type PropType } from "vue";
+<script setup lang="ts">
 import { AgGridVue } from "ag-grid-vue3";
 import type { ColDef } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import type { User } from "@/types/user";
 
-export default defineComponent({
-  name: "UsersGrid",
-  components: { AgGridVue },
-  props: {
-    rows: { type: Array as PropType<User[]>, required: true },
-  },
-  data() {
-    return {
-      colDefs: [
-        { field: "name", headerName: "Name", flex: 1, sortable: true, filter: true },
-        { field: "email", headerName: "Email", flex: 1 },
-        { field: "role", headerName: "Role", width: 120 },
-      ] as ColDef<User>[],
-    };
-  },
-});
+const props = defineProps<{ rows: User[] }>();
+
+const colDefs: ColDef<User>[] = [
+  { field: "name", headerName: "Name", flex: 1, sortable: true, filter: true },
+  { field: "email", headerName: "Email", flex: 1 },
+  { field: "role", headerName: "Role", width: 120 },
+];
 </script>
 
 <template>
@@ -359,31 +294,14 @@ export default defineComponent({
 ## 9. Dialog (Modal) with Vuetify
 
 ```vue
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 
-export default defineComponent({
-  name: "ConfirmDialog",
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
-  emits: ["confirm"],
-  methods: {
-    open() {
-      this.isOpen = true;
-    },
-    handleDelete() {
-      this.$emit("confirm");
-      this.isOpen = false;
-    },
-  },
-});
+const isOpen = ref(false);
 </script>
 
 <template>
-  <v-btn @click="open">Open Dialog</v-btn>
+  <v-btn @click="isOpen = true">Open Dialog</v-btn>
 
   <v-dialog v-model="isOpen" max-width="500">
     <v-card>

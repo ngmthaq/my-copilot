@@ -23,7 +23,7 @@ This file is the top-level entry point for all Vue 3 Composition API-related top
 | Routing & Navigation       | [routing-navigation.md](routing-navigation.md)             | Vue Router 4: routes/, dynamic segments, navigation guards, nested routes, programmatic navigation            |
 | API Integration            | [api-integration.md](api-integration.md)                   | Axios in utils/api.ts, TanStack Vue Query hooks in queries/ and mutations/, cache invalidation                |
 | Form Handling & Validation | [form-handling-validation.md](form-handling-validation.md) | VeeValidate + Zod: schemas in forms/, form setup, validation, error display, server-side errors               |
-| UI & Styling               | [ui-styling.md](ui-styling.md)                             | Vuetify 3 components, theme customization, dark mode, AG Grid                                                 |
+| UI & Styling (Vuetify)     | [ui-styling-vuetify.md](ui-styling-vuetify.md)             | Vuetify 3 components, theme customization, dark mode, AG Grid                                                 |
 | Performance Optimization   | [performance-optimization.md](performance-optimization.md) | computed caching, shallowRef, defineAsyncComponent, v-memo, keep-alive, avoiding unnecessary re-renders       |
 | Mock API                   | [mock-api.md](mock-api.md)                                 | Static JSON files in src/mocks/, env flag to toggle mock vs real API, usage in query and mutation composables |
 | Unit Testing & Storybook   | [unit-test.md](unit-test.md)                               | Vitest + Vue Testing Library: component tests, async tests, mocking; Storybook for component documentation    |
@@ -60,7 +60,7 @@ What are you trying to do?
 │   └── → form-handling-validation.md
 │
 ├── Style components with Vuetify 3 or use AG Grid?
-│   └── → ui-styling.md
+│   └── → ui-styling-vuetify.md
 │
 ├── Optimize performance, reduce re-renders, or lazy load?
 │   └── → performance-optimization.md
