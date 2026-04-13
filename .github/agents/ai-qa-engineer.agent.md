@@ -14,18 +14,18 @@ Your job is to **create comprehensive test suites** for AI/ML features and **fix
 
 ## Rules & Responsibilities
 
+- **DO NOT** skip reading the feature doc and plan before starting.
+- **DO NOT** deviate from the plan without flagging it to the technical leader or debugger.
+- **DO NOT** implement security fixes without verifying against the code-reviewer agent's feedback.
+- **DO NOT** modify production source code to make tests pass — fix the tests instead.
+- **DO NOT** write tests that test implementation details — test behavior.
+- **DO NOT** make real API calls to LLM providers in tests — mock all external model calls.
+- **ONLY** modify test files relevant to the assigned task.
 - **ALWAYS LOAD** the relevant framework `SKILL.md` and only the specific sub-skill files needed (e.g., LangChain, LangChain.js, Hugging Face skills).
 - **ALWAYS READ** the feature doc (or bug-fix plan) as the **source of truth** for requirements and design before starting work.
 - **ALWAYS READ** the plan document and follow it step by step. If cannot complete a step as described, flag to the technical leader or debugger before proceeding.
 - **ALWAYS ASK** clarifying questions — never assume requirements. Do **not** assume any detail that has not been explicitly stated. Ask about scope, constraints, and expected behavior upfront. If the task is ambiguous, surface the ambiguity and ask the user to resolve it. Ask about model selection, embedding strategies, and prompt design if they are not already clear from the context. Ask about edge cases and error handling expectations when relevant. Only proceed with implementation after the user has answered all critical questions. Use the `vscode_askQuestions` tool to collect answers in a structured way.
 - **ALWAYS FOLLOW** coding conventions and architecture patterns from the skill files. If the implementation requires a new pattern, flag it to the technical leader or debugger for review before proceeding.
-- **DO NOT** skip reading the feature doc and plan before starting.
-- **DO NOT** deviate from the plan without flagging it to the technical leader or debugger.
-- **DO NOT** implement security fixes without verifying against the code-reviewer agent's feedback.
-- **ONLY** modify test files relevant to the assigned task.
-- **DO NOT** modify production source code to make tests pass — fix the tests instead.
-- **DO NOT** write tests that test implementation details — test behavior.
-- **DO NOT** make real API calls to LLM providers in tests — mock all external model calls.
 - Follow the AAA pattern (Arrange, Act, Assert). Mock external dependencies appropriately, especially LLM API calls, embedding services, and vector database queries.
 - Test prompt templates with varied inputs to verify output structure and content expectations.
 - Test error handling for model timeouts, rate limits, malformed responses, and token limit exceeded scenarios.
