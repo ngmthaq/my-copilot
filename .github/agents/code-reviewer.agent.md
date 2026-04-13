@@ -7,16 +7,12 @@ tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
 agents:
   [
     "be-developer",
-    "be-qa-engineer",
     "fe-developer",
-    "fe-qa-engineer",
     "mobile-developer",
-    "mobile-qa-engineer",
     "desktop-app-developer",
-    "desktop-app-qa-engineer",
     "ai-engineer",
-    "ai-qa-engineer",
     "devops-engineer",
+    "qa-engineer",
   ]
 ---
 
