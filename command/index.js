@@ -11,11 +11,11 @@ const COMMAND = process.argv[2];
 // --- Commands ---
 
 async function init() {
-  const sourceDir = path.join(__dirname, "..", ".github");
+  const sourceDir = path.join(__dirname, "..", "github");
   const targetDir = path.join(process.cwd(), ".github");
   const force = process.argv.includes("--force");
   if (!fs.existsSync(sourceDir)) {
-    console.error("Error: .github folder not found in the package.");
+    console.error("Error: github folder not found in the package.");
     process.exit(1);
   }
   if (fs.existsSync(targetDir)) {

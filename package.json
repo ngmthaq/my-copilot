@@ -14,11 +14,11 @@
   "author": "ngmthaq",
   "type": "commonjs",
   "bin": {
-    "my-copilot": "./.bin/index.js"
+    "my-copilot": "./command/index.js"
   },
   "files": [
-    ".bin/",
-    ".github/"
+    "command/",
+    "github/"
   ],
   "keywords": [
     "copilot",

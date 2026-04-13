@@ -48,10 +48,7 @@ function selectTemplate() {
       output.push("\n  Select a template:\n");
       for (let i = 0; i < TEMPLATES.length; i++) {
         const cursor = i === selected ? "\x1b[36m❯\x1b[0m" : " ";
-        const label =
-          i === selected
-            ? `\x1b[36m${TEMPLATES[i].label}\x1b[0m`
-            : TEMPLATES[i].label;
+        const label = i === selected ? `\x1b[36m${TEMPLATES[i].label}\x1b[0m` : TEMPLATES[i].label;
         const desc = `\x1b[2m${TEMPLATES[i].description}\x1b[0m`;
         output.push(`  ${cursor} ${label}  ${desc}`);
       }

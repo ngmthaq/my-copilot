@@ -5,7 +5,7 @@ A curated collection of GitHub Copilot customization files — agents, skills, i
 ## What's Inside
 
 ```
-.github/
+github/
 ├── copilot-instructions.md        # Global rules inherited by all agents
 ├── agents/                        # 14 specialized agent definitions
 ├── skills/                        # 21 skill packs (frameworks, tools, private projects)
@@ -61,26 +61,19 @@ Automated checks that run as Copilot guardrails:
 
 ## Getting Started
 
-### Option 1: npx (Recommended)
-
 Run in your project directory:
 
 ```bash
 npx @ngmthaq/my-copilot init
 ```
 
-This copies the `.github` folder into your current directory.
+This copies the `github` folder as `.github` into your current directory.
 
 To overwrite an existing `.github` folder:
 
 ```bash
 npx @ngmthaq/my-copilot init --force
 ```
-
-### Option 2: Clone
-
-1. Clone the repo into your workspace.
-2. Run `copy-github.sh` to copy `.github/` to a sibling project.
 
 ### Then
 
