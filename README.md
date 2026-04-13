@@ -61,9 +61,30 @@ Automated checks that run as Copilot guardrails:
 
 ## Getting Started
 
+### Option 1: npx (Recommended)
+
+Run in your project directory:
+
+```bash
+npx @ngmthaq/my-copilot init
+```
+
+This copies the `.github` folder into your current directory.
+
+To overwrite an existing `.github` folder:
+
+```bash
+npx @ngmthaq/my-copilot init --force
+```
+
+### Option 2: Clone
+
 1. Clone the repo into your workspace.
-2. Open the workspace in VS Code with GitHub Copilot Chat enabled.
-3. Agents, skills, instructions, and hooks are picked up automatically from `.github/`.
+2. Run `copy-github.sh` to copy `.github/` to a sibling project.
+
+### Then
+
+Open the workspace in VS Code with GitHub Copilot Chat enabled. Agents, skills, instructions, and hooks are picked up automatically from `.github/`.
 
 ## Formatting
 

@@ -1,7 +1,7 @@
 {
-  "name": "my-copilot",
+  "name": "@ngmthaq/my-copilot",
   "version": "1.0.0",
-  "description": "",
+  "description": "A curated collection of GitHub Copilot customization files — agents, skills, instructions, hooks, and document templates.",
   "homepage": "https://github.com/ngmthaq/my-copilot#readme",
   "bugs": {
     "url": "https://github.com/ngmthaq/my-copilot/issues"
@@ -11,9 +11,23 @@
     "url": "git+https://github.com/ngmthaq/my-copilot.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "ngmthaq",
   "type": "commonjs",
-  "main": "index.js",
+  "bin": {
+    "my-copilot": "./.bin/index.js"
+  },
+  "files": [
+    ".bin/",
+    ".github/"
+  ],
+  "keywords": [
+    "copilot",
+    "github-copilot",
+    "agents",
+    "skills",
+    "instructions",
+    "ai"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write .",

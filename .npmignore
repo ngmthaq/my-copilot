@@ -1,0 +1,7 @@
+# Include everything in .github (override .gitignore)
+!.github/docs/
+
+# Exclude dev/repo files
+node_modules/
+copy-github.sh
+.gitignore
