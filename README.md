@@ -1,90 +1,291 @@
-# My Copilot
+# @ngmthaq20/my-copilot
 
-A curated collection of GitHub Copilot customization files — agents, skills, instructions, hooks, and document templates — designed to power an AI-assisted software development workflow across backend, frontend, and mobile teams.
+A curated, ready-to-use collection of GitHub Copilot customization files — **agents**, **skills**, **instructions**, **hooks**, and **document templates** — designed to power an AI-assisted software development workflow across backend, frontend, mobile, desktop, and AI/ML teams.
+
+Drop it into any project and get a fully structured AI team out of the box.
+
+---
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Initialization](#initialization)
+- [What's Inside](#whats-inside)
+  - [Agents](#agents)
+  - [Skills](#skills)
+  - [Hooks](#hooks)
+  - [Instructions](#instructions)
+  - [Docs](#docs)
+  - [agent-configs.json](#agent-configsjson)
+- [Customization](#customization)
+  - [Custom Agent](#custom-agent)
+  - [Custom Skill](#custom-skill)
+  - [Custom Instruction](#custom-instruction)
+- [License](#license)
+
+---
+
+## Installation
+
+```bash
+npm install -g @ngmthaq20/my-copilot
+```
+
+Or run directly with `npx` (no install needed):
+
+```bash
+npx @ngmthaq20/my-copilot --help
+```
+
+---
+
+## Initialization
+
+Run in your project directory:
+
+```bash
+npx @ngmthaq20/my-copilot init
+```
+
+An interactive template selector will appear — pick the stack that matches your project:
+
+| Template                   | Description               |
+| -------------------------- | ------------------------- |
+| `all`                      | All agents and skills     |
+| `web-fullstack`            | Frontend + Backend        |
+| `ai-application-fullstack` | AI + Frontend + Backend   |
+| `ai-backend`               | AI services + Backend     |
+| `mobile-fullstack`         | Mobile + Backend          |
+| `desktop-app-fullstack`    | Desktop + Backend         |
+| `backend-only`             | Backend APIs only         |
+| `frontend-only`            | Frontend development only |
+
+You can also skip the interactive selector:
+
+```bash
+npx @ngmthaq20/my-copilot init --template web-fullstack
+```
+
+To overwrite an existing `.github` folder:
+
+```bash
+npx @ngmthaq20/my-copilot init --force
+```
+
+After running `init`, a `.github` folder is created in your project root. Open the workspace in **VS Code** with **GitHub Copilot Chat** enabled — agents, skills, instructions, and hooks are picked up automatically.
+
+---
 
 ## What's Inside
 
 ```
-github/
+.github/
 ├── copilot-instructions.md        # Global rules inherited by all agents
-├── agents/                        # 14 specialized agent definitions
-├── skills/                        # 21 skill packs (frameworks, tools, private projects)
-├── instructions/                  # Coding conventions & doc templates
-├── hooks/                         # Automated guardrails (secrets, licenses, governance, …)
+├── agent-configs.json             # Workspace-level agent configuration
+├── agents/                        # Specialized agent definitions
+├── skills/                        # Skill packs (frameworks, tools, languages)
+├── instructions/                  # Document templates & conventions
+├── hooks/                         # Automated guardrails
 └── docs/
     ├── features/                  # Feature documentation
     └── plans/                     # Implementation & bugfix plans
 ```
 
+---
+
 ### Agents
 
-Role-based AI agents that follow a structured team workflow:
+Role-based AI agents that follow a structured team workflow. Each agent has a defined role, model, tool access, and sub-agent delegation.
 
-| Role                 | Agents                                                                    |
-| -------------------- | ------------------------------------------------------------------------- |
-| **Technical Leader** | `technical-leader` — analyzes requirements, creates plans, delegates work |
-| **Developers**       | `be-developer`, `fe-developer`, `mobile-developer`                        |
-| **QA Engineers**     | `be-qa-engineer`, `fe-qa-engineer`, `mobile-qa-engineer`                  |
-| **Code Reviewer**    | `code-reviewer` — cross-stack code, test, and DevOps review               |
-| **DevOps Engineer**  | `devops-engineer` — cross-stack infrastructure, CI/CD, and deployment     |
-| **Debugger**         | `debugger` — cross-stack error diagnosis                                  |
+| Agent                   | Role                                                                |
+| ----------------------- | ------------------------------------------------------------------- |
+| `technical-leader`      | Analyzes requirements, creates feature docs & plans, delegates work |
+| `be-developer`          | Implements backend features, routes, services, DB integrations      |
+| `fe-developer`          | Implements frontend features, components, state management          |
+| `mobile-developer`      | Implements mobile features (Flutter, React Native)                  |
+| `desktop-app-developer` | Implements desktop app features (Electron, Electron Forge)          |
+| `ai-engineer`           | Implements AI/ML features (LangChain, HuggingFace, Ollama)          |
+| `qa-engineer`           | Writes and runs tests, verifies implementations                     |
+| `code-reviewer`         | Reviews code, tests, and DevOps configurations across stacks        |
+| `devops-engineer`       | Manages infrastructure, CI/CD, Docker, Nginx, deployment            |
+| `debugger`              | Diagnoses errors and creates bug-fix plans                          |
+
+Agents are defined as `.agent.md` files inside `.github/agents/`.
+
+---
 
 ### Skills
 
-Reusable knowledge packs that agents load on demand:
+Reusable knowledge packs that agents load on demand. Each skill is a folder containing a `SKILL.md` index and focused sub-skill files.
 
-- **Languages & Runtimes** — TypeScript, JavaScript, Dart
-- **Backend** — NestJS, Express.js, Prisma, TypeORM, GraphQL, REST API
-- **Frontend** — React.js, Vue.js (Composition API), Vite
-- **Mobile** — Flutter, React Native (Expo)
-- **Infrastructure** — Docker, Nginx, Git
-- **Databases** — Relational DB, NoSQL (MongoDB, Redis, Cassandra, Neo4j)
-- **Quality** — Linting (ESLint + Prettier)
+| Category           | Skills                                                                      |
+| ------------------ | --------------------------------------------------------------------------- |
+| **Languages**      | TypeScript, JavaScript, Dart, Python                                        |
+| **Backend**        | NestJS, Express.js, Prisma, TypeORM, GraphQL, REST API                      |
+| **Frontend**       | React.js, Vue.js (Composition & Options API), Vite, HTML, CSS/SCSS, Linting |
+| **Mobile**         | Flutter, React Native                                                       |
+| **Desktop**        | Electron.js, Electron Forge                                                 |
+| **AI / ML**        | LangChain, LangChain.js, HuggingFace, Ollama                                |
+| **Infrastructure** | Docker, Nginx, Git, GitHub MCP                                              |
+| **Databases**      | Relational DB, NoSQL (MongoDB, Redis, Cassandra, Neo4j)                     |
 
-### Instructions
+Skills are stored in `.github/skills/<skill-name>/`.
 
-- `js-coding-convention.instructions.md` — JS/TS naming, formatting, and style rules
-- `flutter-coding-convention.instructions.md` — Dart/Flutter style rules
-- `feature-doc-template.instructions.md` — Template for feature documentation
-- `plan-template.instructions.md` — Template for implementation plans
-- `bugfix-plan-template.instructions.md` — Template for bugfix plans
+---
 
 ### Hooks
 
-Automated checks that run as Copilot guardrails:
+Automated guardrails that run as Copilot hooks at different lifecycle events:
 
-- **secrets-scanner** — Detects leaked credentials
-- **dependency-license-checker** — Flags problematic licenses
-- **governance-audit** — Enforces repo governance rules
-- **session-logger** — Logs agent session activity
-- **tool-guardian** — Controls tool access per agent
+| Hook                           | Event                                               | Description                                       |
+| ------------------------------ | --------------------------------------------------- | ------------------------------------------------- |
+| **secrets-scanner**            | `sessionEnd`                                        | Scans diffs for leaked credentials and secrets    |
+| **dependency-license-checker** | `sessionEnd`                                        | Flags dependencies with problematic licenses      |
+| **governance-audit**           | `sessionStart`, `sessionEnd`, `userPromptSubmitted` | Enforces repo governance policies                 |
+| **session-logger**             | `sessionStart`, `sessionEnd`, `userPromptSubmitted` | Logs all agent session activity                   |
+| **tool-guardian**              | `preToolUse`                                        | Controls which tools each agent is allowed to use |
 
-## Getting Started
+Hooks are stored in `.github/hooks/<hook-name>/` with a `hooks.json` config and shell scripts.
 
-Run in your project directory:
+---
 
-```bash
-npx @ngmthaq/my-copilot init
+### Instructions
+
+Document templates that guide agents when creating feature docs, plans, and bugfix plans:
+
+| Instruction                            | `applyTo` Pattern        | Purpose                                              |
+| -------------------------------------- | ------------------------ | ---------------------------------------------------- |
+| `feature-doc-template.instructions.md` | `**/agent-feature-*.md`  | Template for feature documentation (source of truth) |
+| `plan-template.instructions.md`        | `**/agent-plan-*.md`     | Template for implementation plans                    |
+| `bugfix-plan-template.instructions.md` | `**/agent-plan-fix-*.md` | Template for bug-fix plans (no feature doc needed)   |
+
+Instructions are stored in `.github/instructions/`.
+
+---
+
+### Docs
+
+The `docs/` directory holds two sub-folders used by agents to organize project documentation:
+
+- **`features/`** — Feature documents created by the technical leader. Organized by module (e.g., `features/auth/agent-feature-login-api.md`).
+- **`plans/`** — Implementation and bugfix plans (e.g., `plans/agent-plan-add-user-authentication-2026-04-05-1430.md`).
+
+---
+
+### agent-configs.json
+
+A workspace-level configuration file that tells agents where to find docs:
+
+```json
+{
+  "features_directory": "<workspace>/.github/docs/features",
+  "plans_directory": "<workspace>/.github/docs/plans"
+}
 ```
 
-This copies the `github` folder as `.github` into your current directory.
+`<workspace>` is resolved to the workspace root at runtime. Agents reference these paths when creating or reading feature docs and plans.
 
-To overwrite an existing `.github` folder:
+---
 
-```bash
-npx @ngmthaq/my-copilot init --force
+## Customization
+
+### Custom Agent
+
+Create a new `.agent.md` file inside `.github/agents/`:
+
+```markdown
+---
+name: my-agent
+model: Claude Sonnet 4.6 (copilot)
+description: "Short description of the agent's role."
+argument-hint: "What the user should provide, e.g., 'Implement the login feature.'"
+tools: [vscode, execute, read, browser, edit, search, web, todo]
+agents: ["be-developer", "fe-developer"]
+---
+
+You are a [role description].
+
+## Role
+
+Your job is to ...
+
+## Rules & Responsibilities
+
+- **ALWAYS** ...
+- **DO NOT** ...
+
+## Output Format
+
+- ...
 ```
 
-### Then
+**Key fields in the YAML frontmatter:**
 
-Open the workspace in VS Code with GitHub Copilot Chat enabled. Agents, skills, instructions, and hooks are picked up automatically from `.github/`.
+| Field           | Description                                       |
+| --------------- | ------------------------------------------------- |
+| `name`          | Unique agent identifier (used in `agents` arrays) |
+| `model`         | The model to use                                  |
+| `description`   | Shown in the Copilot Chat agent picker            |
+| `argument-hint` | Placeholder text for the input box                |
+| `tools`         | Tools the agent is allowed to use                 |
+| `agents`        | Sub-agents this agent can delegate to             |
 
-## Formatting
+---
 
-```bash
-yarn format          # Auto-fix with Prettier
-yarn format:check    # Check only
+### Custom Skill
+
+Create a new folder inside `.github/skills/<skill-name>/` with a `SKILL.md` entry point:
+
+```markdown
+---
+name: my-skill
+description: "Brief description — this text helps Copilot decide when to load the skill."
+---
+
+# My Skill Index
+
+## Sub-Skills Reference
+
+| Domain  | File                     | When to use                 |
+| ------- | ------------------------ | --------------------------- |
+| Topic A | [topic-a.md](topic-a.md) | When the user needs Topic A |
+| Topic B | [topic-b.md](topic-b.md) | When the user needs Topic B |
 ```
+
+Then add sub-skill files (e.g., `topic-a.md`, `topic-b.md`) in the same folder. Agents will load `SKILL.md` first and then read only the sub-skill files they need.
+
+---
+
+### Custom Instruction
+
+Create a new `.instructions.md` file inside `.github/instructions/`:
+
+````markdown
+---
+applyTo: "**/pattern-to-match-*.md"
+---
+
+# My Instruction Title
+
+## When to Use
+
+- Describe when this instruction should be applied.
+
+## Template
+
+\```markdown
+
+# Title
+
+## Section 1
+
+...
+\```
+````
+
+The `applyTo` glob pattern determines which files trigger this instruction. When an agent creates or edits a file matching the pattern, the instruction is automatically applied.
+
+---
 
 ## License
 
