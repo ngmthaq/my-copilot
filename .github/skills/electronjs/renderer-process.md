@@ -143,12 +143,3 @@ See `security.md` for comprehensive CSP configuration.
 4. **Use `setWindowOpenHandler`** — control how new window requests are handled
 5. **Open DevTools only in dev** — use `app.isPackaged` to gate DevTools
 6. **Set CSP headers** — restrict resource loading in your HTML
-
-## Related Skills
-
-For **renderer UI development**, load the appropriate frontend skill:
-
-| Skill                   | When to use                                                        |
-| ----------------------- | ------------------------------------------------------------------ |
-| `reactjs`               | React components, hooks, state management, routing, forms, styling |
-| `vuejs-composition-api` | Vue 3 components, composables, Pinia, Vue Router, Vuetify          |

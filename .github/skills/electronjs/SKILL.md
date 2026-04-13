@@ -76,4 +76,3 @@ What are you trying to do?
 2. **Load the corresponding sub-skill file** with `read_file`.
 3. **Follow the patterns and examples** in that file to produce the response.
 4. **Load multiple sub-skill files** when the task spans domains — for example, a new feature typically involves `ipc-communication.md` + `preload-scripts.md` + `security.md`.
-5. **Check Related Skills** in each sub-skill file for cross-references to other skills (e.g., `reactjs`, `vuejs-composition-api`, `electron-forge`, `javascript`, `typescript`).
