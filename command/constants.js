@@ -15,6 +15,8 @@ const BE_AGENTS = [
 
 // Specific skills for Backend development
 const BE_SKILLS = [
+  "c",
+  "cpp",
   "docker",
   "expressjs",
   "git",
