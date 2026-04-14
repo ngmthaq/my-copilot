@@ -34,7 +34,11 @@ import gql from "graphql-tag";
 
 // Users subgraph
 const typeDefs = gql`
-  extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable"])
+  extend schema
+    @link(
+      url: "https://specs.apollo.dev/federation/v2.0"
+      import: ["@key", "@shareable"]
+    )
 
   type Query {
     me: User
@@ -61,7 +65,8 @@ const resolvers = {
   },
   User: {
     // Reference resolver — how this subgraph resolves User when referenced by others
-    __resolveReference: (ref, { prisma }) => prisma.user.findUnique({ where: { id: ref.id } }),
+    __resolveReference: (ref, { prisma }) =>
+      prisma.user.findUnique({ where: { id: ref.id } }),
   },
 };
 
@@ -76,7 +81,11 @@ const server = new ApolloServer({
 
 ```graphql
 # Posts subgraph — extends User from Users subgraph
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@external"])
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@external"]
+  )
 
 type Query {
   posts(first: Int, after: String): PostConnection!
@@ -107,7 +116,8 @@ const resolvers = {
   },
   User: {
     // Resolve the posts field that this subgraph contributes to User
-    posts: (user, _args, { prisma }) => prisma.post.findMany({ where: { authorId: user.id } }),
+    posts: (user, _args, { prisma }) =>
+      prisma.post.findMany({ where: { authorId: user.id } }),
   },
 };
 ```

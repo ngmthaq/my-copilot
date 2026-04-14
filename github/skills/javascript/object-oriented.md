@@ -152,7 +152,8 @@ const Validatable = (Base) =>
     validate() {
       for (const [key, rules] of Object.entries(this.constructor.rules || {})) {
         for (const rule of rules) {
-          if (!rule.check(this[key])) throw new Error(`${key}: ${rule.message}`);
+          if (!rule.check(this[key]))
+            throw new Error(`${key}: ${rule.message}`);
         }
       }
       return true;
@@ -379,7 +380,11 @@ class QueryBuilder {
   }
 }
 
-new QueryBuilder().select("name", "email").where({ active: true }).limit(10).build();
+new QueryBuilder()
+  .select("name", "email")
+  .where({ active: true })
+  .limit(10)
+  .build();
 ```
 
 ---

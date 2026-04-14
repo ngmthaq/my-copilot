@@ -38,10 +38,12 @@ export class GqlAuthGuard extends AuthGuard("jwt") {
 import { createParamDecorator, ExecutionContext } from "@nestjs/common";
 import { GqlExecutionContext } from "@nestjs/graphql";
 
-export const CurrentUser = createParamDecorator((data: unknown, context: ExecutionContext) => {
-  const ctx = GqlExecutionContext.create(context);
-  return ctx.getContext().req.user;
-});
+export const CurrentUser = createParamDecorator(
+  (data: unknown, context: ExecutionContext) => {
+    const ctx = GqlExecutionContext.create(context);
+    return ctx.getContext().req.user;
+  },
+);
 ```
 
 ---
@@ -69,7 +71,10 @@ export class UserResolver {
   // Authenticated mutation
   @Mutation(() => User)
   @UseGuards(GqlAuthGuard)
-  async updateProfile(@CurrentUser() user: User, @Args("input") input: UpdateProfileInput) {
+  async updateProfile(
+    @CurrentUser() user: User,
+    @Args("input") input: UpdateProfileInput,
+  ) {
     return this.userService.update(user.id, input);
   }
 }
@@ -182,7 +187,10 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
-  async updateProfile(@CurrentUser() user: User, @Args("input") input: UpdateProfileInput) {
+  async updateProfile(
+    @CurrentUser() user: User,
+    @Args("input") input: UpdateProfileInput,
+  ) {
     return this.userService.update(user.id, input);
   }
 

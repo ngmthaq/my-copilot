@@ -49,7 +49,9 @@ import { z } from "../lib/zod";
 export const paginationSchema = z.object({
   page: z.coerce.number().int().positive().default(1),
   limit: z.coerce.number().int().positive().max(100).default(20),
-  sortBy: z.enum(["createdAt", "updatedAt", "name", "title"]).default("createdAt"),
+  sortBy: z
+    .enum(["createdAt", "updatedAt", "name", "title"])
+    .default("createdAt"),
   sortOrder: z.enum(["asc", "desc"]).default("desc"),
 });
 
@@ -289,7 +291,11 @@ import { registry } from "../../lib/openapi-registry";
 import { z } from "../../lib/zod";
 import { createUserSchema, updateUserSchema } from "./dto";
 import { userSchema } from "./dto/user-response.dto";
-import { paginationMetaSchema, errorSchema, validationErrorSchema } from "../../dto/common.dto";
+import {
+  paginationMetaSchema,
+  errorSchema,
+  validationErrorSchema,
+} from "../../dto/common.dto";
 
 registry.registerPath({
   method: "get",
@@ -598,7 +604,11 @@ if (config.app.isProduction) {
     swaggerUi.setup(swaggerSpec),
   );
 } else {
-  app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
+  app.use(
+    "/api/docs",
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec, { explorer: true }),
+  );
 }
 ```
 

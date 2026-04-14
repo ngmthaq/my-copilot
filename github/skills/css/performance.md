@@ -37,7 +37,12 @@
 - Load remaining CSS asynchronously:
 
 ```html
-<link rel="preload" href="/styles/main.css" as="style" onload="this.rel='stylesheet'" />
+<link
+  rel="preload"
+  href="/styles/main.css"
+  as="style"
+  onload="this.rel='stylesheet'"
+/>
 <noscript><link rel="stylesheet" href="/styles/main.css" /></noscript>
 ```
 

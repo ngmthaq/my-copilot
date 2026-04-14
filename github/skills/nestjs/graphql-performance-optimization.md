@@ -34,14 +34,21 @@ GraphQLModule.forRoot<ApolloDriverConfig>({
 
 ```typescript
 // npm install graphql-query-complexity
-import { createComplexityLimitRule, fieldExtensionsEstimator, simpleEstimator } from "graphql-query-complexity";
+import {
+  createComplexityLimitRule,
+  fieldExtensionsEstimator,
+  simpleEstimator,
+} from "graphql-query-complexity";
 
 GraphQLModule.forRoot<ApolloDriverConfig>({
   driver: ApolloDriver,
   autoSchemaFile: true,
   validationRules: [
     createComplexityLimitRule(1000, {
-      estimators: [fieldExtensionsEstimator(), simpleEstimator({ defaultComplexity: 1 })],
+      estimators: [
+        fieldExtensionsEstimator(),
+        simpleEstimator({ defaultComplexity: 1 }),
+      ],
     }),
   ],
 });
@@ -194,7 +201,9 @@ export class SlowQueryPlugin implements ApolloServerPlugin {
       async willSendResponse(ctx) {
         const duration = Date.now() - start;
         if (duration > 1000) {
-          this.logger.warn(`Slow query (${duration}ms): ${ctx.request.query?.slice(0, 200)}`);
+          this.logger.warn(
+            `Slow query (${duration}ms): ${ctx.request.query?.slice(0, 200)}`,
+          );
         }
       },
     };

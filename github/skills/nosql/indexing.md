@@ -78,14 +78,20 @@ Only indexes documents matching a filter. More targeted than sparse.
 
 ```typescript
 // Index only active orders
-await Order.collection.createIndex({ userId: 1, createdAt: -1 }, { partialFilterExpression: { status: "active" } });
+await Order.collection.createIndex(
+  { userId: 1, createdAt: -1 },
+  { partialFilterExpression: { status: "active" } },
+);
 ```
 
 ### TTL Index (auto-delete documents after expiry)
 
 ```typescript
 // Auto-delete session documents 30 minutes after `createdAt`
-await Session.collection.createIndex({ createdAt: 1 }, { expireAfterSeconds: 1800 });
+await Session.collection.createIndex(
+  { createdAt: 1 },
+  { expireAfterSeconds: 1800 },
+);
 ```
 
 ---
@@ -112,7 +118,9 @@ userSchema.index({ firstName: "text", lastName: "text" }); // text search
 
 ```typescript
 // Add .explain('executionStats') to any query
-const explanation = await User.find({ email: "alice@example.com" }).explain("executionStats");
+const explanation = await User.find({ email: "alice@example.com" }).explain(
+  "executionStats",
+);
 
 // Key fields to check:
 console.log(explanation.executionStats.totalDocsExamined); // should equal totalDocsReturned

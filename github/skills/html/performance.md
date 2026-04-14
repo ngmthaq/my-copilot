@@ -33,14 +33,30 @@ description: "HTML performance optimization — resource hints (preload, prefetc
 
 ```html
 <!-- Preload critical resources discovered late by browser -->
-<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+<link
+  rel="preload"
+  href="/fonts/inter.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
 <link rel="preload" href="/css/critical.css" as="style" />
 <link rel="preload" href="/img/hero.avif" as="image" />
 <link rel="preload" href="/js/app.js" as="script" />
 
 <!-- Responsive preload -->
-<link rel="preload" href="/img/hero-mobile.jpg" as="image" media="(max-width: 640px)" />
-<link rel="preload" href="/img/hero-desktop.jpg" as="image" media="(min-width: 641px)" />
+<link
+  rel="preload"
+  href="/img/hero-mobile.jpg"
+  as="image"
+  media="(max-width: 640px)"
+/>
+<link
+  rel="preload"
+  href="/img/hero-desktop.jpg"
+  as="image"
+  media="(min-width: 641px)"
+/>
 ```
 
 ### `as` Values Reference
@@ -116,7 +132,8 @@ Is this a critical rendering script?
 <!-- Small critical JS can be inlined -->
 <script>
   // Theme detection to avoid FOUC
-  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  document.documentElement.dataset.theme =
+    localStorage.getItem("theme") || "light";
 </script>
 ```
 
@@ -146,7 +163,12 @@ Is this a critical rendering script?
   </style>
 
   <!-- Load full CSS asynchronously -->
-  <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link
+    rel="preload"
+    href="/css/main.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
   <noscript><link rel="stylesheet" href="/css/main.css" /></noscript>
 </head>
 ```
@@ -167,10 +189,24 @@ Is this a critical rendering script?
 
 ```html
 <!-- High priority: LCP image -->
-<img src="/hero.jpg" alt="..." fetchpriority="high" loading="eager" width="1200" height="600" />
+<img
+  src="/hero.jpg"
+  alt="..."
+  fetchpriority="high"
+  loading="eager"
+  width="1200"
+  height="600"
+/>
 
 <!-- Low priority: below-fold decorative -->
-<img src="/decoration.jpg" alt="" fetchpriority="low" loading="lazy" width="400" height="300" />
+<img
+  src="/decoration.jpg"
+  alt=""
+  fetchpriority="low"
+  loading="lazy"
+  width="400"
+  height="300"
+/>
 ```
 
 ### Lazy Loading
@@ -180,7 +216,13 @@ Is this a critical rendering script?
 <img src="/photo.jpg" alt="..." loading="lazy" width="800" height="600" />
 
 <!-- Lazy load iframes -->
-<iframe src="/widget" loading="lazy" title="Widget" width="600" height="400"></iframe>
+<iframe
+  src="/widget"
+  loading="lazy"
+  title="Widget"
+  width="600"
+  height="400"
+></iframe>
 ```
 
 ### Rules
@@ -195,7 +237,11 @@ Is this a critical rendering script?
 ```html
 <img
   src="/img/photo-800.jpg"
-  srcset="/img/photo-400.jpg 400w, /img/photo-800.jpg 800w, /img/photo-1200.jpg 1200w"
+  srcset="
+    /img/photo-400.jpg   400w,
+    /img/photo-800.jpg   800w,
+    /img/photo-1200.jpg 1200w
+  "
   sizes="(max-width: 600px) 100vw, 50vw"
   alt="..."
   width="1200"
@@ -234,7 +280,13 @@ Is this a critical rendering script?
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- 5. Preload critical resources -->
-    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/inter.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- 6. Critical inline styles -->
     <style>

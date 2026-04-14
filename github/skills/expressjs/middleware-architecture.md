@@ -51,7 +51,12 @@ const myGuard = requestHandler(async (req, res, next) => {
 });
 
 // Error middleware (4 params — must have all 4, cannot use requestHandler)
-function myErrorMiddleware(err: Error, req: Request, res: Response, next: NextFunction) {
+function myErrorMiddleware(
+  err: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   // Handle error
   res.status(500).json({ error: err.message });
 }
@@ -100,7 +105,11 @@ app.use("/api/users", router);
 router.get("/:id", authenticate, authorize("ADMIN"), getUserHandler);
 
 // Multiple middleware as array
-router.post("/", [authenticate, validate({ body: createUserSchema.body })], createUserHandler);
+router.post(
+  "/",
+  [authenticate, validate({ body: createUserSchema.body })],
+  createUserHandler,
+);
 ```
 
 ### Error-Level (must be last)
@@ -216,7 +225,11 @@ A middleware factory is a function that returns middleware — it lets you param
 // src/middleware/rate-limit-by-role.ts
 import rateLimit from "express-rate-limit";
 
-export function rateLimitByRole(options: { defaultMax: number; adminMax: number; windowMs: number }) {
+export function rateLimitByRole(options: {
+  defaultMax: number;
+  adminMax: number;
+  windowMs: number;
+}) {
   return rateLimit({
     windowMs: options.windowMs,
     max: (req) => {
@@ -260,7 +273,12 @@ export function authorize(...allowedRoles: Role[]) {
 }
 
 // Usage
-router.delete("/:id", authenticate, authorize("ADMIN", "SUPER_ADMIN"), deleteHandler);
+router.delete(
+  "/:id",
+  authenticate,
+  authorize("ADMIN", "SUPER_ADMIN"),
+  deleteHandler,
+);
 ```
 
 ```typescript
@@ -286,10 +304,20 @@ Just list middleware as flat arguments — no composition utility needed:
 
 ```typescript
 // Flat middleware chain — auth + role + handler
-router.get("/", authenticate, authorize("ADMIN", "SUPER_ADMIN"), listUsersHandler);
+router.get(
+  "/",
+  authenticate,
+  authorize("ADMIN", "SUPER_ADMIN"),
+  listUsersHandler,
+);
 
 // Flat middleware chain — auth + validation + handler
-router.post("/", authenticate, validate({ body: createUserSchema.body }), createHandler);
+router.post(
+  "/",
+  authenticate,
+  validate({ body: createUserSchema.body }),
+  createHandler,
+);
 
 // Flat middleware chain — auth + role + validation + handler
 router.put(
@@ -303,7 +331,11 @@ router.put(
 // Multiple middleware as array (also flat)
 router.delete(
   "/:id",
-  [authenticate, authorize("ADMIN", "SUPER_ADMIN"), validate({ params: idParamSchema })],
+  [
+    authenticate,
+    authorize("ADMIN", "SUPER_ADMIN"),
+    validate({ params: idParamSchema }),
+  ],
   deleteHandler,
 );
 ```
@@ -317,7 +349,10 @@ import { requestHandler } from "./request-handler";
 import { RequestHandler } from "express";
 
 // Apply middleware only when a condition is met
-export function when(condition: (req: Request) => boolean, middleware: RequestHandler) {
+export function when(
+  condition: (req: Request) => boolean,
+  middleware: RequestHandler,
+) {
   return requestHandler(async (req, res, next) => {
     if (condition(req)) {
       return middleware(req, res, next);
@@ -327,11 +362,19 @@ export function when(condition: (req: Request) => boolean, middleware: RequestHa
 }
 
 // Usage — only rate limit non-authenticated users
-app.use(when((req) => !req.headers.authorization, rateLimit({ windowMs: 60 * 1000, max: 10 })));
+app.use(
+  when(
+    (req) => !req.headers.authorization,
+    rateLimit({ windowMs: 60 * 1000, max: 10 }),
+  ),
+);
 
 // Only parse JSON for specific content types
 app.use(
-  when((req) => req.headers["content-type"]?.includes("application/json") ?? false, express.json({ limit: "10kb" })),
+  when(
+    (req) => req.headers["content-type"]?.includes("application/json") ?? false,
+    express.json({ limit: "10kb" }),
+  ),
 );
 ```
 

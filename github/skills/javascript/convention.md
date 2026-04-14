@@ -229,7 +229,15 @@ Enforce these rules in `.eslintrc` / `eslint.config.mjs`:
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "type"],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "type"
+        ],
         "newlines-between": "always"
       }
     ]

@@ -105,7 +105,10 @@ const loader = new JSONLoader("./data/messages.json");
 const docs = await loader.load();
 
 // Load specific JSON path using JSON Pointer
-const specificLoader = new JSONLoader("./data/messages.json", "/messages/*/text");
+const specificLoader = new JSONLoader(
+  "./data/messages.json",
+  "/messages/*/text",
+);
 const docs2 = await specificLoader.load();
 // Extracts text field from each item in messages array
 ```
@@ -170,9 +173,12 @@ const docs = await loader.load();
 // metadata → { source: "https://example.com/article" }
 
 // With CSS selector to target specific content
-const selectiveLoader = new CheerioWebBaseLoader("https://example.com/article", {
-  selector: "article", // only load <article> content
-});
+const selectiveLoader = new CheerioWebBaseLoader(
+  "https://example.com/article",
+  {
+    selector: "article", // only load <article> content
+  },
+);
 ```
 
 ### PuppeteerWebBaseLoader (full browser, JavaScript-rendered pages)
@@ -293,7 +299,10 @@ class CustomAPILoader extends BaseDocumentLoader {
 }
 
 // Usage
-const loader = new CustomAPILoader("https://api.example.com/articles", "your-api-key");
+const loader = new CustomAPILoader(
+  "https://api.example.com/articles",
+  "your-api-key",
+);
 const docs = await loader.load();
 ```
 

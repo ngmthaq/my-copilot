@@ -20,7 +20,12 @@ export class AppError extends Error {
   public readonly code: string;
   public readonly isOperational: boolean;
 
-  constructor(message: string, statusCode: number, code: string, isOperational = true) {
+  constructor(
+    message: string,
+    statusCode: number,
+    code: string,
+    isOperational = true,
+  ) {
     super(message);
     this.statusCode = statusCode;
     this.code = code;
@@ -217,7 +222,12 @@ interface ErrorResponse {
   stack?: string;
 }
 
-export function errorHandler(err: Error, _req: Request, res: Response, _next: NextFunction) {
+export function errorHandler(
+  err: Error,
+  _req: Request,
+  res: Response,
+  _next: NextFunction,
+) {
   // Log the error
   console.error(`[ERROR] ${err.message}`, {
     name: err.name,
@@ -319,7 +329,10 @@ export function errorHandler(err: Error, _req: Request, res: Response, _next: Ne
 ### Prisma Error Mapper
 
 ```typescript
-function handlePrismaError(err: Prisma.PrismaClientKnownRequestError, res: Response) {
+function handlePrismaError(
+  err: Prisma.PrismaClientKnownRequestError,
+  res: Response,
+) {
   switch (err.code) {
     case "P2002": {
       const fields = (err.meta?.target as string[]) || ["field"];
@@ -474,7 +487,11 @@ All errors follow a unified JSON structure:
 ```typescript
 // src/services/user.service.ts
 import { userRepository } from "../repositories/user.repository";
-import { NotFoundError, ConflictError, BadRequestError } from "../errors/http-errors";
+import {
+  NotFoundError,
+  ConflictError,
+  BadRequestError,
+} from "../errors/http-errors";
 import bcrypt from "bcrypt";
 
 export class UserService {
@@ -499,7 +516,11 @@ export class UserService {
     });
   }
 
-  async updatePassword(userId: string, oldPassword: string, newPassword: string) {
+  async updatePassword(
+    userId: string,
+    oldPassword: string,
+    newPassword: string,
+  ) {
     const user = await userRepository.findByEmail(userId);
     if (!user) {
       throw new NotFoundError("User not found");
@@ -507,7 +528,10 @@ export class UserService {
 
     const isValid = await bcrypt.compare(oldPassword, user.password);
     if (!isValid) {
-      throw new BadRequestError("Current password is incorrect", "INVALID_PASSWORD");
+      throw new BadRequestError(
+        "Current password is incorrect",
+        "INVALID_PASSWORD",
+      );
     }
 
     const hashedPassword = await bcrypt.hash(newPassword, 12);

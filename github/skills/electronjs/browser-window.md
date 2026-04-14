@@ -138,7 +138,10 @@ import { BrowserWindow } from "electron";
 
 const windows = new Map<string, BrowserWindow>();
 
-export function createWindow(id: string, options: Electron.BrowserWindowConstructorOptions): BrowserWindow {
+export function createWindow(
+  id: string,
+  options: Electron.BrowserWindowConstructorOptions,
+): BrowserWindow {
   if (windows.has(id)) {
     const existing = windows.get(id)!;
     existing.focus();

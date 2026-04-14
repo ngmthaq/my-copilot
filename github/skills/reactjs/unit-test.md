@@ -161,7 +161,10 @@ vi.mock("@/services/userService", () => ({
 
 // Mock a custom hook
 vi.mock("@/hooks/useAuth", () => ({
-  useAuth: () => ({ user: { id: "1", name: "Alice", role: "admin" }, logout: vi.fn() }),
+  useAuth: () => ({
+    user: { id: "1", name: "Alice", role: "admin" },
+    logout: vi.fn(),
+  }),
 }));
 ```
 

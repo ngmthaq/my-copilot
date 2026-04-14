@@ -168,11 +168,21 @@ Guard events are written to `.github/logs/copilot/tool-guardian/guard.log` in JS
 ```
 
 ```json
-{ "timestamp": "2026-03-16T10:30:00Z", "event": "guard_passed", "mode": "block", "tool": "bash" }
+{
+  "timestamp": "2026-03-16T10:30:00Z",
+  "event": "guard_passed",
+  "mode": "block",
+  "tool": "bash"
+}
 ```
 
 ```json
-{ "timestamp": "2026-03-16T10:30:00Z", "event": "guard_skipped", "reason": "allowlisted", "tool": "bash" }
+{
+  "timestamp": "2026-03-16T10:30:00Z",
+  "event": "guard_skipped",
+  "reason": "allowlisted",
+  "tool": "bash"
+}
 ```
 
 ## Customization

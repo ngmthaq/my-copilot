@@ -73,7 +73,10 @@ mainWindow.webContents.send("download:progress", { percent: 45 });
 // Preload — expose listener with cleanup
 contextBridge.exposeInMainWorld("electronAPI", {
   onDownloadProgress: (callback: (data: { percent: number }) => void) => {
-    const handler = (_event: Electron.IpcRendererEvent, data: { percent: number }) => callback(data);
+    const handler = (
+      _event: Electron.IpcRendererEvent,
+      data: { percent: number },
+    ) => callback(data);
     ipcRenderer.on("download:progress", handler);
     return () => ipcRenderer.removeListener("download:progress", handler);
   },
@@ -146,10 +149,13 @@ export function registerFileHandlers() {
     return fs.readFile(result.filePaths[0], "utf-8");
   });
 
-  ipcMain.handle("file:save", async (_event, content: string, filePath: string) => {
-    await fs.writeFile(filePath, content, "utf-8");
-    return true;
-  });
+  ipcMain.handle(
+    "file:save",
+    async (_event, content: string, filePath: string) => {
+      await fs.writeFile(filePath, content, "utf-8");
+      return true;
+    },
+  );
 }
 ```
 

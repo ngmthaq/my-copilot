@@ -317,15 +317,25 @@ function authorize(...allowedRoles: Role[]) {
 }
 
 // Usage — chain after authenticate
-app.get("/api/admin/users", authenticate, authorize("ADMIN", "SUPER_ADMIN"), async (_req, res) => {
-  const users = await prisma.user.findMany();
-  res.json(users);
-});
+app.get(
+  "/api/admin/users",
+  authenticate,
+  authorize("ADMIN", "SUPER_ADMIN"),
+  async (_req, res) => {
+    const users = await prisma.user.findMany();
+    res.json(users);
+  },
+);
 
-app.delete("/api/admin/users/:id", authenticate, authorize("SUPER_ADMIN"), async (req, res) => {
-  await prisma.user.delete({ where: { id: req.params.id } });
-  res.status(204).send();
-});
+app.delete(
+  "/api/admin/users/:id",
+  authenticate,
+  authorize("SUPER_ADMIN"),
+  async (req, res) => {
+    await prisma.user.delete({ where: { id: req.params.id } });
+    res.status(204).send();
+  },
+);
 ```
 
 ### Role Hierarchy
@@ -353,9 +363,14 @@ function authorizeMinRole(minimumRole: Role) {
 }
 
 // Any user with MODERATOR role or higher can access
-app.put("/api/posts/:id/moderate", authenticate, authorizeMinRole("MODERATOR"), async (req, res) => {
-  // ...
-});
+app.put(
+  "/api/posts/:id/moderate",
+  authenticate,
+  authorizeMinRole("MODERATOR"),
+  async (req, res) => {
+    // ...
+  },
+);
 ```
 
 ---
@@ -387,7 +402,11 @@ const PERMISSIONS = {
 type Permission = (typeof PERMISSIONS)[keyof typeof PERMISSIONS];
 
 const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
-  USER: [PERMISSIONS.CAN_LIST_POSTS, PERMISSIONS.CAN_READ_POST_DETAIL, PERMISSIONS.CAN_CREATE_POST],
+  USER: [
+    PERMISSIONS.CAN_LIST_POSTS,
+    PERMISSIONS.CAN_READ_POST_DETAIL,
+    PERMISSIONS.CAN_CREATE_POST,
+  ],
   MODERATOR: [
     PERMISSIONS.CAN_LIST_POSTS,
     PERMISSIONS.CAN_READ_POST_DETAIL,
@@ -432,7 +451,9 @@ function requirePermissions(...requiredPermissions: Permission[]) {
     }
 
     const userPermissions = ROLE_PERMISSIONS[req.user.role as Role] || [];
-    const hasAll = requiredPermissions.every((p) => userPermissions.includes(p));
+    const hasAll = requiredPermissions.every((p) =>
+      userPermissions.includes(p),
+    );
 
     if (!hasAll) {
       return res.status(403).json({ error: "Insufficient permissions" });
@@ -442,21 +463,34 @@ function requirePermissions(...requiredPermissions: Permission[]) {
 }
 
 // Usage
-app.get("/api/users", authenticate, requirePermissions(PERMISSIONS.CAN_LIST_USERS), async (_req, res) => {
-  const users = await prisma.user.findMany();
-  res.json(users);
-});
+app.get(
+  "/api/users",
+  authenticate,
+  requirePermissions(PERMISSIONS.CAN_LIST_USERS),
+  async (_req, res) => {
+    const users = await prisma.user.findMany();
+    res.json(users);
+  },
+);
 
-app.delete("/api/users/:id", authenticate, requirePermissions(PERMISSIONS.CAN_DELETE_USER), async (req, res) => {
-  await prisma.user.delete({ where: { id: req.params.id } });
-  res.status(204).send();
-});
+app.delete(
+  "/api/users/:id",
+  authenticate,
+  requirePermissions(PERMISSIONS.CAN_DELETE_USER),
+  async (req, res) => {
+    await prisma.user.delete({ where: { id: req.params.id } });
+    res.status(204).send();
+  },
+);
 
 // Require multiple permissions
 app.post(
   "/api/admin/roles",
   authenticate,
-  requirePermissions(PERMISSIONS.CAN_ACCESS_ADMIN_PANEL, PERMISSIONS.CAN_MANAGE_ROLES),
+  requirePermissions(
+    PERMISSIONS.CAN_ACCESS_ADMIN_PANEL,
+    PERMISSIONS.CAN_MANAGE_ROLES,
+  ),
   async (req, res) => {
     // ...
   },
@@ -477,7 +511,8 @@ function authorizeOwnerOrAdmin(resourceUserIdParam: string = "id") {
 
     const resourceUserId = req.params[resourceUserIdParam];
     const isOwner = req.user.userId === resourceUserId;
-    const isAdmin = (ROLE_HIERARCHY[req.user.role as Role] ?? -1) >= ROLE_HIERARCHY.ADMIN;
+    const isAdmin =
+      (ROLE_HIERARCHY[req.user.role as Role] ?? -1) >= ROLE_HIERARCHY.ADMIN;
 
     if (!isOwner && !isAdmin) {
       return res.status(403).json({ error: "Access denied" });
@@ -487,13 +522,18 @@ function authorizeOwnerOrAdmin(resourceUserIdParam: string = "id") {
 }
 
 // User can update their own profile; admins can update anyone's
-app.put("/api/users/:id", authenticate, authorizeOwnerOrAdmin("id"), async (req, res) => {
-  const user = await prisma.user.update({
-    where: { id: req.params.id },
-    data: req.body,
-  });
-  res.json(user);
-});
+app.put(
+  "/api/users/:id",
+  authenticate,
+  authorizeOwnerOrAdmin("id"),
+  async (req, res) => {
+    const user = await prisma.user.update({
+      where: { id: req.params.id },
+      data: req.body,
+    });
+    res.json(user);
+  },
+);
 ```
 
 ---
@@ -598,7 +638,10 @@ passport.use(
 );
 
 // Routes
-app.get("/api/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+app.get(
+  "/api/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] }),
+);
 
 app.get(
   "/api/auth/google/callback",
@@ -625,7 +668,9 @@ app.get(
     });
 
     // Redirect to frontend with access token
-    res.redirect(`${process.env.FRONTEND_URL}/auth/callback?token=${accessToken}`);
+    res.redirect(
+      `${process.env.FRONTEND_URL}/auth/callback?token=${accessToken}`,
+    );
   },
 );
 ```
@@ -642,7 +687,12 @@ passport.use(
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
       callbackURL: "/api/auth/github/callback",
     },
-    async (_accessToken: string, _refreshToken: string, profile: any, done: any) => {
+    async (
+      _accessToken: string,
+      _refreshToken: string,
+      profile: any,
+      done: any,
+    ) => {
       let user = await prisma.user.findUnique({
         where: { githubId: profile.id },
       });
@@ -663,7 +713,10 @@ passport.use(
   ),
 );
 
-app.get("/api/auth/github", passport.authenticate("github", { scope: ["user:email"] }));
+app.get(
+  "/api/auth/github",
+  passport.authenticate("github", { scope: ["user:email"] }),
+);
 
 app.get(
   "/api/auth/github/callback",
@@ -679,7 +732,9 @@ app.get(
       role: user.role,
     };
     const accessToken = generateAccessToken(payload);
-    res.redirect(`${process.env.FRONTEND_URL}/auth/callback?token=${accessToken}`);
+    res.redirect(
+      `${process.env.FRONTEND_URL}/auth/callback?token=${accessToken}`,
+    );
   },
 );
 ```
@@ -705,7 +760,10 @@ app.post("/api/auth/forgot-password", async (req, res) => {
 
   // Generate reset token
   const resetToken = crypto.randomBytes(32).toString("hex");
-  const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+  const hashedToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
 
   await prisma.passwordReset.create({
     data: {
@@ -717,7 +775,11 @@ app.post("/api/auth/forgot-password", async (req, res) => {
 
   // Send email with reset link (use your email service)
   const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
-  await sendEmail(user.email, "Password Reset", `Reset your password: ${resetUrl}`);
+  await sendEmail(
+    user.email,
+    "Password Reset",
+    `Reset your password: ${resetUrl}`,
+  );
 
   res.json({ message: "If the email exists, a reset link has been sent." });
 });

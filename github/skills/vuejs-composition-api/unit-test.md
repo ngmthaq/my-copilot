@@ -48,7 +48,9 @@ import AppButton from "./AppButton.vue";
 describe("AppButton", () => {
   it("renders slot content", () => {
     render(AppButton, { slots: { default: "Click me" } });
-    expect(screen.getByRole("button", { name: /click me/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /click me/i }),
+    ).toBeInTheDocument();
   });
 
   it("emits click when clicked", async () => {
@@ -61,7 +63,10 @@ describe("AppButton", () => {
   });
 
   it("is disabled when loading is true", () => {
-    render(AppButton, { props: { loading: true }, slots: { default: "Click me" } });
+    render(AppButton, {
+      props: { loading: true },
+      slots: { default: "Click me" },
+    });
     expect(screen.getByRole("button")).toBeDisabled();
   });
 });
@@ -136,7 +141,10 @@ const vuetify = createVuetify({ components, directives });
 
 export function renderWithProviders(
   component: Component,
-  options: RenderOptions & { props?: Record<string, unknown>; slots?: Record<string, string> } = {},
+  options: RenderOptions & {
+    props?: Record<string, unknown>;
+    slots?: Record<string, string>;
+  } = {},
 ) {
   const queryClient = new QueryClient({
     defaultOptions: { queries: { retry: false } }, // no retries in tests
@@ -149,7 +157,12 @@ export function renderWithProviders(
 
   return render(component, {
     global: {
-      plugins: [createPinia(), [VueQueryPlugin, { queryClient }], router, vuetify],
+      plugins: [
+        createPinia(),
+        [VueQueryPlugin, { queryClient }],
+        router,
+        vuetify,
+      ],
     },
     ...options,
   });
@@ -167,7 +180,9 @@ renderWithProviders(UserList);
 // Mock a whole module
 vi.mock("@/utils/authApi", () => ({
   authApi: {
-    get: vi.fn().mockResolvedValue({ data: { data: [{ id: "1", name: "Alice" }] } }),
+    get: vi
+      .fn()
+      .mockResolvedValue({ data: { data: [{ id: "1", name: "Alice" }] } }),
   },
 }));
 

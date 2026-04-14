@@ -23,7 +23,10 @@ npm install -D pino-pretty
 import pino from "pino";
 import { config } from "../config";
 
-function buildTransport(): pino.TransportSingleOptions | pino.TransportMultiOptions | undefined {
+function buildTransport():
+  | pino.TransportSingleOptions
+  | pino.TransportMultiOptions
+  | undefined {
   // Development — pretty-print to console
   if (config.app.isDevelopment) {
     return {
@@ -122,7 +125,9 @@ logs/
 // Add to src/config/env.ts
 const envSchema = z.object({
   // ... other vars
-  LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace"]).default("info"),
+  LOG_LEVEL: z
+    .enum(["fatal", "error", "warn", "info", "debug", "trace"])
+    .default("info"),
   LOG_DIR: z.string().default("logs"),
 });
 
@@ -149,7 +154,9 @@ logs/
 // Write all logs to a single file (no rotation)
 import pino from "pino";
 
-const logger = pino(pino.destination({ dest: "./logs/app.log", mkdir: true, sync: false }));
+const logger = pino(
+  pino.destination({ dest: "./logs/app.log", mkdir: true, sync: false }),
+);
 
 // Write to both console and file
 import { multistream } from "pino";
@@ -345,12 +352,18 @@ export class UserService {
 
     const existing = await userRepository.findByEmail(data.email);
     if (existing) {
-      this.log.warn({ email: data.email }, "Duplicate email registration attempt");
+      this.log.warn(
+        { email: data.email },
+        "Duplicate email registration attempt",
+      );
       throw new ConflictError("Email already registered");
     }
 
     const user = await userRepository.create(data);
-    this.log.info({ userId: user.id, email: user.email }, "User created successfully");
+    this.log.info(
+      { userId: user.id, email: user.email },
+      "User created successfully",
+    );
     return user;
   }
 
@@ -570,7 +583,11 @@ interface RouteMetric {
 
 const metrics: RouteMetric[] = [];
 
-export function metricsCollector(req: Request, res: Response, next: NextFunction) {
+export function metricsCollector(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   const start = process.hrtime.bigint();
 
   res.on("finish", () => {
@@ -601,7 +618,11 @@ export function getMetrics() {
     totalRequests: metrics.length,
     averageResponseTime:
       metrics.length > 0
-        ? Math.round((metrics.reduce((sum, m) => sum + m.responseTime, 0) / metrics.length) * 100) / 100
+        ? Math.round(
+            (metrics.reduce((sum, m) => sum + m.responseTime, 0) /
+              metrics.length) *
+              100,
+          ) / 100
         : 0,
     statusCodes: metrics.reduce(
       (acc, m) => {
@@ -619,9 +640,14 @@ export function getMetrics() {
 app.use(metricsCollector);
 
 // Internal metrics endpoint
-app.get("/api/internal/metrics", authenticate, authorize("ADMIN"), (_req, res) => {
-  res.json(getMetrics());
-});
+app.get(
+  "/api/internal/metrics",
+  authenticate,
+  authorize("ADMIN"),
+  (_req, res) => {
+    res.json(getMetrics());
+  },
+);
 ```
 
 ---
@@ -632,7 +658,12 @@ app.get("/api/internal/metrics", authenticate, authorize("ADMIN"), (_req, res) =
 // src/middleware/error-handler.ts — integrate with logger
 import { logger } from "../lib/logger";
 
-export function errorHandler(err: Error, req: Request, res: Response, _next: NextFunction) {
+export function errorHandler(
+  err: Error,
+  req: Request,
+  res: Response,
+  _next: NextFunction,
+) {
   // Use request-scoped logger if available (includes requestId)
   const log = req.log || logger;
 

@@ -49,7 +49,10 @@ async function showConfirmDialog(parentWindow: BrowserWindow) {
 }
 
 // Error dialog (synchronous, works before app is ready)
-dialog.showErrorBox("Fatal Error", "The application encountered an unrecoverable error.");
+dialog.showErrorBox(
+  "Fatal Error",
+  "The application encountered an unrecoverable error.",
+);
 ```
 
 ## Application Menu
@@ -185,7 +188,9 @@ import { Tray, Menu, nativeImage, app } from "electron";
 let tray: Tray | null = null;
 
 export function createTray() {
-  const icon = nativeImage.createFromPath(path.join(__dirname, "../../resources/tray-icon.png"));
+  const icon = nativeImage.createFromPath(
+    path.join(__dirname, "../../resources/tray-icon.png"),
+  );
 
   tray = new Tray(icon.resize({ width: 16, height: 16 }));
   tray.setToolTip(app.name);

@@ -172,7 +172,13 @@ Scan events are written to `logs/copilot/secrets/scan.log` in JSON Lines format:
   "files_scanned": 3,
   "finding_count": 2,
   "findings": [
-    { "file": "src/config.ts", "line": 12, "pattern": "GITHUB_PAT", "severity": "critical", "match": "ghp_...xyz1" }
+    {
+      "file": "src/config.ts",
+      "line": 12,
+      "pattern": "GITHUB_PAT",
+      "severity": "critical",
+      "match": "ghp_...xyz1"
+    }
   ]
 }
 ```

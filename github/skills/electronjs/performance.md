@@ -46,7 +46,8 @@ Keep preload scripts minimal — they run before every page load:
 import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld("electronAPI", {
-  invoke: (channel: string, ...args: unknown[]) => ipcRenderer.invoke(channel, ...args),
+  invoke: (channel: string, ...args: unknown[]) =>
+    ipcRenderer.invoke(channel, ...args),
 });
 
 // BAD — importing heavy modules in preload
@@ -70,7 +71,9 @@ mainWindow.webContents.on("render-process-gone", (_event, details) => {
 // Get all process metrics
 const metrics = app.getAppMetrics();
 metrics.forEach((metric) => {
-  console.log(`${metric.type}: ${Math.round(metric.memory.workingSetSize / 1024)}MB`);
+  console.log(
+    `${metric.type}: ${Math.round(metric.memory.workingSetSize / 1024)}MB`,
+  );
 });
 ```
 

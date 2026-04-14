@@ -21,7 +21,8 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
   // Listen for messages from main
   onUpdateAvailable: (callback: (version: string) => void) => {
-    const listener = (_event: Electron.IpcRendererEvent, version: string) => callback(version);
+    const listener = (_event: Electron.IpcRendererEvent, version: string) =>
+      callback(version);
     ipcRenderer.on("update-available", listener);
     // Return cleanup function
     return () => ipcRenderer.removeListener("update-available", listener);
@@ -86,7 +87,8 @@ contextBridge.exposeInMainWorld("electronAPI", {
 // CORRECT — wrap the callback to strip the event object
 contextBridge.exposeInMainWorld("electronAPI", {
   onMessage: (callback: (data: string) => void) => {
-    const listener = (_event: Electron.IpcRendererEvent, data: string) => callback(data);
+    const listener = (_event: Electron.IpcRendererEvent, data: string) =>
+      callback(data);
     ipcRenderer.on("message", listener);
     return () => ipcRenderer.removeListener("message", listener);
   },
@@ -133,7 +135,8 @@ Provide cleanup for event listeners to prevent memory leaks:
 ```typescript
 contextBridge.exposeInMainWorld("electronAPI", {
   onProgress: (callback: (percent: number) => void) => {
-    const handler = (_event: Electron.IpcRendererEvent, percent: number) => callback(percent);
+    const handler = (_event: Electron.IpcRendererEvent, percent: number) =>
+      callback(percent);
     ipcRenderer.on("download:progress", handler);
     return () => {
       ipcRenderer.removeListener("download:progress", handler);

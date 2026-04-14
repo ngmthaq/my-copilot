@@ -40,7 +40,10 @@ const [isVisible, setIsVisible] = useState(false);
 
 ```typescript
 // ✅ Complex shape: useReducer
-type Action = { type: "SET_NAME"; payload: string } | { type: "SET_EMAIL"; payload: string } | { type: "RESET" };
+type Action =
+  | { type: "SET_NAME"; payload: string }
+  | { type: "SET_EMAIL"; payload: string }
+  | { type: "RESET" };
 
 interface FormState {
   name: string;
@@ -133,7 +136,11 @@ import type { User } from "@/types/user";
 
 // ✅ Persisted token atom — survives app restarts
 const storage = createJSONStorage<string | null>(() => AsyncStorage);
-export const tokenAtom = atomWithStorage<string | null>("auth-token", null, storage);
+export const tokenAtom = atomWithStorage<string | null>(
+  "auth-token",
+  null,
+  storage,
+);
 
 // ✅ In-memory atom
 export const currentUserAtom = atom<User | null>(null);
@@ -169,7 +176,9 @@ export const addToCartAtom = atom(null, (get, set, newItem: CartItem) => {
   if (existing) {
     set(
       cartItemsAtom,
-      items.map((i) => (i.id === newItem.id ? { ...i, quantity: i.quantity + 1 } : i)),
+      items.map((i) =>
+        i.id === newItem.id ? { ...i, quantity: i.quantity + 1 } : i,
+      ),
     );
   } else {
     set(cartItemsAtom, [...items, { ...newItem, quantity: 1 }]);
@@ -204,7 +213,11 @@ import { atomWithStorage, createJSONStorage } from "jotai/utils";
 const asyncStorage = createJSONStorage<string>(() => AsyncStorage);
 
 // Value is persisted to AsyncStorage under the key "app-theme"
-export const themeAtom = atomWithStorage<"light" | "dark">("app-theme", "light", asyncStorage);
+export const themeAtom = atomWithStorage<"light" | "dark">(
+  "app-theme",
+  "light",
+  asyncStorage,
+);
 ```
 
 Install: `npx expo install @react-native-async-storage/async-storage`

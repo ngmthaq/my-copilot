@@ -43,7 +43,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <button :class="`btn btn--${variant} btn--${size}`" :disabled="disabled || loading">
+  <button
+    :class="`btn btn--${variant} btn--${size}`"
+    :disabled="disabled || loading"
+  >
     <span v-if="loading" class="spinner" />
     <slot v-else />
   </button>

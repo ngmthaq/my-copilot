@@ -152,7 +152,10 @@ const posts = await prisma.post.findMany({
     AND: [
       { published: true },
       {
-        OR: [{ title: { contains: "prisma" } }, { content: { contains: "prisma" } }],
+        OR: [
+          { title: { contains: "prisma" } },
+          { content: { contains: "prisma" } },
+        ],
       },
     ],
   },
@@ -232,7 +235,14 @@ interface QueryParams {
 }
 
 async function searchPosts(params: QueryParams) {
-  const { search, status, page = 1, pageSize = 10, sortBy = "createdAt", sortOrder = "desc" } = params;
+  const {
+    search,
+    status,
+    page = 1,
+    pageSize = 10,
+    sortBy = "createdAt",
+    sortOrder = "desc",
+  } = params;
 
   const where = {
     ...(search && {

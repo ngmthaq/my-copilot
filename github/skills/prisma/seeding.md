@@ -69,7 +69,11 @@ async function main() {
   // Create posts for Alice
   await prisma.post.createMany({
     data: [
-      { title: "Getting Started with Prisma", authorId: alice.id, published: true },
+      {
+        title: "Getting Started with Prisma",
+        authorId: alice.id,
+        published: true,
+      },
       { title: "Advanced Prisma Patterns", authorId: alice.id },
     ],
   });
@@ -141,7 +145,9 @@ async function main() {
   await prisma.user.deleteMany();
 
   // Now seed fresh data
-  await prisma.user.create({ data: { email: "alice@example.com", name: "Alice" } });
+  await prisma.user.create({
+    data: { email: "alice@example.com", name: "Alice" },
+  });
 }
 ```
 
@@ -162,7 +168,10 @@ async function main() {
         create: { bio: "I love Prisma!" },
       },
       posts: {
-        create: [{ title: "My First Post", published: true }, { title: "Draft Post" }],
+        create: [
+          { title: "My First Post", published: true },
+          { title: "Draft Post" },
+        ],
       },
     },
     include: { profile: true, posts: true },

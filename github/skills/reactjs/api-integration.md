@@ -30,11 +30,19 @@ export class Api {
     this.instance.defaults.timeout = 30000;
   }
 
-  public get(url: string, params: Record<string, unknown> = {}, config: AxiosRequestConfig = {}) {
+  public get(
+    url: string,
+    params: Record<string, unknown> = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.get(url, { params, ...config });
   }
 
-  public post(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public post(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.post(url, data, config);
   }
 
@@ -42,11 +50,19 @@ export class Api {
     return this.instance.put(url, data, config);
   }
 
-  public patch(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public patch(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.patch(url, data, config);
   }
 
-  public delete(url: string, params: Record<string, unknown> = {}, config: AxiosRequestConfig = {}) {
+  public delete(
+    url: string,
+    params: Record<string, unknown> = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.delete(url, { params, ...config });
   }
 }
@@ -148,7 +164,8 @@ import type { User, ApiResponse } from "@/types/user";
 export function useUsers() {
   return useQuery({
     queryKey: ["users"],
-    queryFn: () => authApi.get<ApiResponse<User[]>>("/users").then((r) => r.data.data),
+    queryFn: () =>
+      authApi.get<ApiResponse<User[]>>("/users").then((r) => r.data.data),
   });
 }
 ```
@@ -162,7 +179,8 @@ import type { User, ApiResponse } from "@/types/user";
 export function useUser(id: string) {
   return useQuery({
     queryKey: ["users", id],
-    queryFn: () => authApi.get<ApiResponse<User>>(`/users/${id}`).then((r) => r.data.data),
+    queryFn: () =>
+      authApi.get<ApiResponse<User>>(`/users/${id}`).then((r) => r.data.data),
     enabled: Boolean(id), // ✅ skip if no id
   });
 }
@@ -199,7 +217,9 @@ export function useCreateUser() {
 
   return useMutation({
     mutationFn: (payload: Omit<User, "id">) =>
-      authApi.post<ApiResponse<User>>("/users", payload).then((r) => r.data.data),
+      authApi
+        .post<ApiResponse<User>>("/users", payload)
+        .then((r) => r.data.data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },

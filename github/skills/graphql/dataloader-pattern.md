@@ -136,7 +136,8 @@ app.use(
 // Query/Mutation resolvers are called once — no N+1 problem there.
 const resolvers = {
   Query: {
-    posts: (_parent, args, { prisma }) => prisma.post.findMany({ take: args.first }), // No loader needed — single call
+    posts: (_parent, args, { prisma }) =>
+      prisma.post.findMany({ take: args.first }), // No loader needed — single call
   },
 
   Post: {
@@ -146,9 +147,11 @@ const resolvers = {
   },
 
   User: {
-    posts: (parent, _args, { loaders }) => loaders.postsByAuthor.load(parent.id),
+    posts: (parent, _args, { loaders }) =>
+      loaders.postsByAuthor.load(parent.id),
 
-    postsCount: (parent, _args, { loaders }) => loaders.postsCountByAuthor.load(parent.id),
+    postsCount: (parent, _args, { loaders }) =>
+      loaders.postsCountByAuthor.load(parent.id),
   },
 
   Comment: {

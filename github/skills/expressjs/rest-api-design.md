@@ -201,7 +201,11 @@ export function sendNoContent(res: Response) {
   res.status(204).send();
 }
 
-export function sendPaginated(res: Response, data: unknown[], meta: { page: number; limit: number; total: number }) {
+export function sendPaginated(
+  res: Response,
+  data: unknown[],
+  meta: { page: number; limit: number; total: number },
+) {
   const totalPages = Math.ceil(meta.total / meta.limit);
   res.json({
     data,
@@ -220,7 +224,12 @@ export function sendPaginated(res: Response, data: unknown[], meta: { page: numb
 ```typescript
 // src/modules/user/user.controller.ts
 import { requestHandler } from "../../middleware/request-handler";
-import { sendSuccess, sendCreated, sendNoContent, sendPaginated } from "../../utils/response";
+import {
+  sendSuccess,
+  sendCreated,
+  sendNoContent,
+  sendPaginated,
+} from "../../utils/response";
 import { userService } from "./user.service";
 
 export class UserController {
@@ -407,7 +416,9 @@ GET /api/users?sortBy=name&sortOrder=asc
 ```typescript
 // Extend pagination with sort options
 export const sortablePaginationSchema = paginationSchema.extend({
-  sortBy: z.enum(["createdAt", "updatedAt", "name", "title"]).default("createdAt"),
+  sortBy: z
+    .enum(["createdAt", "updatedAt", "name", "title"])
+    .default("createdAt"),
   sortOrder: z.enum(["asc", "desc"]).default("desc"),
 });
 ```
@@ -490,7 +501,8 @@ import { requestHandler } from "./request-handler";
 
 export function apiVersion(version: string) {
   return requestHandler(async (req, res, next) => {
-    const requestedVersion = req.headers["api-version"] || req.headers["accept-version"] || "1";
+    const requestedVersion =
+      req.headers["api-version"] || req.headers["accept-version"] || "1";
     if (requestedVersion !== version) {
       return res.status(400).json({
         status: "error",
@@ -585,14 +597,24 @@ router.get("/", validate({ query: listPostSchema.query }), postController.list);
 router.get("/:id", validate({ params: idParamSchema }), postController.getById);
 
 // Authenticated
-router.post("/", authenticate, validate({ body: createPostSchema.body }), postController.create);
+router.post(
+  "/",
+  authenticate,
+  validate({ body: createPostSchema.body }),
+  postController.create,
+);
 router.patch(
   "/:id",
   authenticate,
   validate({ params: idParamSchema, body: updatePostSchema.body }),
   postController.update,
 );
-router.delete("/:id", authenticate, validate({ params: idParamSchema }), postController.delete);
+router.delete(
+  "/:id",
+  authenticate,
+  validate({ params: idParamSchema }),
+  postController.delete,
+);
 
 // Admin
 router.post(

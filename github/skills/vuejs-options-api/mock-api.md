@@ -32,7 +32,12 @@ Name files after the resource and HTTP method when there are multiple operations
 // src/mocks/users.json
 {
   "data": [
-    { "id": "1", "name": "Alice", "email": "alice@example.com", "role": "admin" },
+    {
+      "id": "1",
+      "name": "Alice",
+      "email": "alice@example.com",
+      "role": "admin"
+    },
     { "id": "2", "name": "Bob", "email": "bob@example.com", "role": "user" }
   ],
   "message": "OK",
@@ -43,7 +48,12 @@ Name files after the resource and HTTP method when there are multiple operations
 ```json
 // src/mocks/user.json
 {
-  "data": { "id": "1", "name": "Alice", "email": "alice@example.com", "role": "admin" },
+  "data": {
+    "id": "1",
+    "name": "Alice",
+    "email": "alice@example.com",
+    "role": "admin"
+  },
   "message": "OK",
   "success": true
 }
@@ -123,7 +133,10 @@ class UserService {
       const { userMock } = await import("@/mocks");
       return { ...userMock.data, ...payload } as User;
     }
-    const response = await authApi.put<ApiResponse<User>>(`/users/${id}`, payload);
+    const response = await authApi.put<ApiResponse<User>>(
+      `/users/${id}`,
+      payload,
+    );
     return response.data.data;
   }
 
@@ -161,7 +174,10 @@ class AuthService {
       const { authLoginMock } = await import("@/mocks");
       return authLoginMock.data;
     }
-    const response = await api.post<ApiResponse<LoginResponse>>("/auth/login", payload);
+    const response = await api.post<ApiResponse<LoginResponse>>(
+      "/auth/login",
+      payload,
+    );
     return response.data.data;
   }
 }

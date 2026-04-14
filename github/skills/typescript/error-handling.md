@@ -162,7 +162,9 @@ class Result<T, E extends Error = Error> {
   }
 
   map<U>(fn: (val: T) => U): Result<U, E> {
-    return this.isOk() ? Result.ok(fn(this.value as T)) : Result.fail(this.error as E);
+    return this.isOk()
+      ? Result.ok(fn(this.value as T))
+      : Result.fail(this.error as E);
   }
 
   flatMap<U>(fn: (val: T) => Result<U, E>): Result<U, E> {
@@ -229,7 +231,9 @@ const CreateUserSchema = z.object({
 type CreateUserInput = z.infer<typeof CreateUserSchema>;
 
 // Parse and handle errors
-function validateUser(input: unknown): Result<CreateUserInput, ValidationError> {
+function validateUser(
+  input: unknown,
+): Result<CreateUserInput, ValidationError> {
   const parsed = CreateUserSchema.safeParse(input);
   if (!parsed.success) {
     const errors = formatZodErrors(parsed.error);
@@ -299,7 +303,10 @@ if (!result.ok) return handleError(result.error);
 const user = result.data;
 
 // Retry with typed errors
-async function retry<T>(fn: () => Promise<T>, options: { retries?: number; delay?: number } = {}): Promise<T> {
+async function retry<T>(
+  fn: () => Promise<T>,
+  options: { retries?: number; delay?: number } = {},
+): Promise<T> {
   const { retries = 3, delay = 1000 } = options;
   for (let i = 0; i <= retries; i++) {
     try {
@@ -313,7 +320,10 @@ async function retry<T>(fn: () => Promise<T>, options: { retries?: number; delay
 }
 
 // Typed error map
-async function mapError<T, E extends Error>(promise: Promise<T>, mapper: (err: unknown) => E): Promise<T> {
+async function mapError<T, E extends Error>(
+  promise: Promise<T>,
+  mapper: (err: unknown) => E,
+): Promise<T> {
   try {
     return await promise;
   } catch (err) {
@@ -321,7 +331,10 @@ async function mapError<T, E extends Error>(promise: Promise<T>, mapper: (err: u
   }
 }
 
-const user = await mapError(db.users.findUniqueOrThrow({ where: { id } }), () => new NotFoundError("User", id));
+const user = await mapError(
+  db.users.findUniqueOrThrow({ where: { id } }),
+  () => new NotFoundError("User", id),
+);
 ```
 
 ---
@@ -330,7 +343,10 @@ const user = await mapError(db.users.findUniqueOrThrow({ where: { id } }), () =>
 
 ```typescript
 // Assert functions — narrow types by throwing
-function assertDefined<T>(value: T | null | undefined, message?: string): asserts value is T {
+function assertDefined<T>(
+  value: T | null | undefined,
+  message?: string,
+): asserts value is T {
   if (value == null) throw new Error(message ?? "Value is null/undefined");
 }
 

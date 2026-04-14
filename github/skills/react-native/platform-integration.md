@@ -23,10 +23,14 @@ import { Alert, Linking } from "react-native";
 export async function requestCameraPermission(): Promise<boolean> {
   const { status } = await Camera.requestCameraPermissionsAsync();
   if (status !== "granted") {
-    Alert.alert("Permission Required", "Camera access is needed. Please enable it in Settings.", [
-      { text: "Cancel", style: "cancel" },
-      { text: "Open Settings", onPress: () => Linking.openSettings() },
-    ]);
+    Alert.alert(
+      "Permission Required",
+      "Camera access is needed. Please enable it in Settings.",
+      [
+        { text: "Cancel", style: "cancel" },
+        { text: "Open Settings", onPress: () => Linking.openSettings() },
+      ],
+    );
     return false;
   }
   return true;
@@ -117,7 +121,11 @@ export function useLocation() {
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        setLocation((prev) => ({ ...prev, isLoading: false, error: "Permission denied" }));
+        setLocation((prev) => ({
+          ...prev,
+          isLoading: false,
+          error: "Permission denied",
+        }));
         return;
       }
 
@@ -146,10 +154,15 @@ export function useLocation() {
 import * as FileSystem from "expo-file-system";
 
 // Read a file
-const content = await FileSystem.readAsStringAsync(FileSystem.documentDirectory + "data.json");
+const content = await FileSystem.readAsStringAsync(
+  FileSystem.documentDirectory + "data.json",
+);
 
 // Write a file
-await FileSystem.writeAsStringAsync(FileSystem.documentDirectory + "data.json", JSON.stringify(data));
+await FileSystem.writeAsStringAsync(
+  FileSystem.documentDirectory + "data.json",
+  JSON.stringify(data),
+);
 
 // Download a file
 const download = await FileSystem.downloadAsync(
@@ -159,13 +172,17 @@ const download = await FileSystem.downloadAsync(
 console.log("Downloaded to:", download.uri);
 
 // Check if file exists
-const info = await FileSystem.getInfoAsync(FileSystem.documentDirectory + "data.json");
+const info = await FileSystem.getInfoAsync(
+  FileSystem.documentDirectory + "data.json",
+);
 if (info.exists) {
   // file exists
 }
 
 // Delete a file
-await FileSystem.deleteAsync(FileSystem.documentDirectory + "data.json", { idempotent: true });
+await FileSystem.deleteAsync(FileSystem.documentDirectory + "data.json", {
+  idempotent: true,
+});
 ```
 
 Install: `npx expo install expo-file-system`
@@ -323,8 +340,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     "expo-router",
     "expo-secure-store",
-    ["expo-camera", { cameraPermission: "Allow $(PRODUCT_NAME) to access your camera." }],
-    ["expo-location", { locationWhenInUsePermission: "Allow $(PRODUCT_NAME) to use your location." }],
+    [
+      "expo-camera",
+      { cameraPermission: "Allow $(PRODUCT_NAME) to access your camera." },
+    ],
+    [
+      "expo-location",
+      {
+        locationWhenInUsePermission:
+          "Allow $(PRODUCT_NAME) to use your location.",
+      },
+    ],
   ],
 });
 ```

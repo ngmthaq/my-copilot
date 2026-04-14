@@ -35,13 +35,18 @@ import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { OpenAIEmbeddings } from "@langchain/openai";
 
 // Assume vectorStore is already populated with documents
-const vectorStore = await MemoryVectorStore.fromDocuments(chunks, new OpenAIEmbeddings());
+const vectorStore = await MemoryVectorStore.fromDocuments(
+  chunks,
+  new OpenAIEmbeddings(),
+);
 
 // Wrap vector store as an agent tool
 const retrievalTool = tool(
   async ({ query }) => {
     const results = await vectorStore.similaritySearch(query, 4);
-    return results.map((doc, i) => `[${i + 1}] ${doc.pageContent}`).join("\n\n");
+    return results
+      .map((doc, i) => `[${i + 1}] ${doc.pageContent}`)
+      .join("\n\n");
   },
   {
     name: "search_knowledge_base",
@@ -100,7 +105,8 @@ const webSearchTool = tool(
   },
   {
     name: "web_search",
-    description: "Search the web for current information not in the knowledge base",
+    description:
+      "Search the web for current information not in the knowledge base",
     schema: z.object({
       query: z.string().describe("Web search query"),
     }),
@@ -191,7 +197,10 @@ const app = express();
 app.use(express.json());
 
 // Initialize vector store (load your documents here)
-const vectorStore = await MemoryVectorStore.fromDocuments(chunks, new OpenAIEmbeddings());
+const vectorStore = await MemoryVectorStore.fromDocuments(
+  chunks,
+  new OpenAIEmbeddings(),
+);
 
 // Create MCP server with retrieval tool
 const mcpServer = new McpServer({
@@ -209,7 +218,9 @@ mcpServer.tool(
       content: [
         {
           type: "text",
-          text: results.map((doc, i) => `[${i + 1}] ${doc.pageContent}`).join("\n\n"),
+          text: results
+            .map((doc, i) => `[${i + 1}] ${doc.pageContent}`)
+            .join("\n\n"),
         },
       ],
     };
@@ -219,7 +230,9 @@ mcpServer.tool(
 // HTTP transport endpoint
 const transports = {};
 app.post("/mcp", async (req, res) => {
-  const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: undefined,
+  });
   transports[transport.sessionId] = transport;
   await mcpServer.connect(transport);
   await transport.handleRequest(req, res);

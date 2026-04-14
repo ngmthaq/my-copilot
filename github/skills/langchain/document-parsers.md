@@ -128,8 +128,16 @@ docs = loader.load()
 ```json
 {
   "messages": [
-    { "sender": "Alice", "text": "Hello, how can I help?", "timestamp": "2024-01-15T10:00:00Z" },
-    { "sender": "Bob", "text": "I need help with billing.", "timestamp": "2024-01-15T10:01:00Z" }
+    {
+      "sender": "Alice",
+      "text": "Hello, how can I help?",
+      "timestamp": "2024-01-15T10:00:00Z"
+    },
+    {
+      "sender": "Bob",
+      "text": "I need help with billing.",
+      "timestamp": "2024-01-15T10:01:00Z"
+    }
   ]
 }
 ```

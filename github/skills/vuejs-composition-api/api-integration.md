@@ -30,23 +30,43 @@ export class Api {
     this.instance.defaults.timeout = 30000;
   }
 
-  public get<T>(url: string, params: Record<string, unknown> = {}, config: AxiosRequestConfig = {}) {
+  public get<T>(
+    url: string,
+    params: Record<string, unknown> = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.get<T>(url, { params, ...config });
   }
 
-  public post<T>(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public post<T>(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.post<T>(url, data, config);
   }
 
-  public put<T>(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public put<T>(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.put<T>(url, data, config);
   }
 
-  public patch<T>(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public patch<T>(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.patch<T>(url, data, config);
   }
 
-  public delete<T>(url: string, params: Record<string, unknown> = {}, config: AxiosRequestConfig = {}) {
+  public delete<T>(
+    url: string,
+    params: Record<string, unknown> = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.delete<T>(url, { params, ...config });
   }
 }
@@ -142,7 +162,8 @@ import type { User, ApiResponse } from "@/types/user";
 export function useUsers() {
   return useQuery({
     queryKey: ["users"],
-    queryFn: () => authApi.get<ApiResponse<User[]>>("/users").then((r) => r.data.data),
+    queryFn: () =>
+      authApi.get<ApiResponse<User[]>>("/users").then((r) => r.data.data),
   });
 }
 ```
@@ -158,7 +179,10 @@ import { toValue } from "vue";
 export function useUser(id: MaybeRef<string>) {
   return useQuery({
     queryKey: computed(() => ["users", toValue(id)]),
-    queryFn: () => authApi.get<ApiResponse<User>>(`/users/${toValue(id)}`).then((r) => r.data.data),
+    queryFn: () =>
+      authApi
+        .get<ApiResponse<User>>(`/users/${toValue(id)}`)
+        .then((r) => r.data.data),
     enabled: computed(() => Boolean(toValue(id))), // ✅ skip if no id
   });
 }
@@ -198,7 +222,9 @@ export function useCreateUser() {
 
   return useMutation({
     mutationFn: (payload: Omit<User, "id">) =>
-      authApi.post<ApiResponse<User>>("/users", payload).then((r) => r.data.data),
+      authApi
+        .post<ApiResponse<User>>("/users", payload)
+        .then((r) => r.data.data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
@@ -232,7 +258,12 @@ const { mutate: createUser, isPending } = useCreateUser();
 </script>
 
 <template>
-  <button :disabled="isPending" @click="createUser({ name: 'Alice', email: 'alice@example.com', role: 'user' })">
+  <button
+    :disabled="isPending"
+    @click="
+      createUser({ name: 'Alice', email: 'alice@example.com', role: 'user' })
+    "
+  >
     {{ isPending ? "Saving..." : "Create" }}
   </button>
 </template>
@@ -273,7 +304,10 @@ import { authApi } from "@/utils/authApi";
 export function useUsers(page: MaybeRef<number>, q: MaybeRef<string>) {
   return useQuery({
     queryKey: computed(() => ["users", { page: toValue(page), q: toValue(q) }]),
-    queryFn: () => authApi.get("/users", { page: toValue(page), q: toValue(q) }).then((r) => r.data.data),
+    queryFn: () =>
+      authApi
+        .get("/users", { page: toValue(page), q: toValue(q) })
+        .then((r) => r.data.data),
   });
 }
 

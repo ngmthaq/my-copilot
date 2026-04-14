@@ -123,7 +123,8 @@ export class PostResolver {
 
   // Subscription with payload transformation
   @Subscription(() => Comment, {
-    filter: (payload, variables) => payload.commentAdded.postId === variables.postId,
+    filter: (payload, variables) =>
+      payload.commentAdded.postId === variables.postId,
     resolve: (payload) => payload.commentAdded,
   })
   commentAdded(@Args("postId", { type: () => ID }) postId: string) {

@@ -322,7 +322,10 @@ export default [
       "@typescript-eslint/no-inferrable-types": "off",
 
       // Change options:
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
     },
   },
 ];
@@ -385,9 +388,15 @@ export default [
     rules: {
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "no-unused-vars": "off", // replaced by TS rule
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
       "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports" }],
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        { prefer: "type-imports" },
+      ],
       "prefer-const": "error",
       eqeqeq: ["error", "always"],
     },

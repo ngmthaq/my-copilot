@@ -5,7 +5,11 @@
 const fs = require("fs");
 const path = require("path");
 const { TEMPLATES } = require("./constants");
-const { copyWithTemplate, selectTemplate, resolveTemplate } = require("./helpers");
+const {
+  copyWithTemplate,
+  selectTemplate,
+  resolveTemplate,
+} = require("./helpers");
 const COMMAND = process.argv[2];
 
 // --- Commands ---
@@ -29,14 +33,18 @@ async function init() {
   }
   const template = resolveTemplate(process.argv) || (await selectTemplate());
   console.log(`\n  Template: \x1b[36m${template.label}\x1b[0m`);
-  console.log(`  Agents: ${template.includeAgents.map((a) => a.replace(".agent.md", "")).join(", ")}`);
+  console.log(
+    `  Agents: ${template.includeAgents.map((a) => a.replace(".agent.md", "")).join(", ")}`,
+  );
   console.log(`  Skills: ${template.includeSkills.join(", ")}`);
   copyWithTemplate(sourceDir, targetDir, template);
   console.log(`\n  ✔ Copied .github folder to ${process.cwd()}\n`);
 }
 
 function showHelp() {
-  const templateList = TEMPLATES.map((t) => `    ${t.name.padEnd(28)} ${t.description}`).join("\n");
+  const templateList = TEMPLATES.map(
+    (t) => `    ${t.name.padEnd(28)} ${t.description}`,
+  ).join("\n");
   console.log(`
   @ngmthaq/my-copilot
 

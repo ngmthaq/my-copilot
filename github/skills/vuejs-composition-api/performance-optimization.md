@@ -33,7 +33,9 @@ const searchTerm = ref("");
 
 // ✅ Only re-filters when products or searchTerm changes
 const filtered = computed(() =>
-  products.value.filter((p) => p.name.toLowerCase().includes(searchTerm.value.toLowerCase())),
+  products.value.filter((p) =>
+    p.name.toLowerCase().includes(searchTerm.value.toLowerCase()),
+  ),
 );
 ```
 
@@ -68,7 +70,9 @@ Split large components so they only load when needed.
 import { defineAsyncComponent } from "vue";
 
 // ✅ AdminDashboard bundle is only downloaded when the component renders
-const AdminDashboard = defineAsyncComponent(() => import("@/pages/AdminDashboard/AdminDashboard.vue"));
+const AdminDashboard = defineAsyncComponent(
+  () => import("@/pages/AdminDashboard/AdminDashboard.vue"),
+);
 
 // ✅ With loading/error states
 const HeavyChart = defineAsyncComponent({
@@ -101,7 +105,11 @@ const HeavyChart = defineAsyncComponent({
 ```vue
 <template>
   <!-- ✅ Each row only re-renders when user.id or selected changes -->
-  <div v-for="user in users" :key="user.id" v-memo="[user.id, selected === user.id]">
+  <div
+    v-for="user in users"
+    :key="user.id"
+    v-memo="[user.id, selected === user.id]"
+  >
     <UserRow :user="user" :is-selected="selected === user.id" />
   </div>
 </template>
@@ -170,7 +178,13 @@ import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 </script>
 
 <template>
-  <RecycleScroller class="scroller" :items="items" :item-size="48" key-field="id" v-slot="{ item }">
+  <RecycleScroller
+    class="scroller"
+    :items="items"
+    :item-size="48"
+    key-field="id"
+    v-slot="{ item }"
+  >
     <div class="user-row">{{ item.name }}</div>
   </RecycleScroller>
 </template>

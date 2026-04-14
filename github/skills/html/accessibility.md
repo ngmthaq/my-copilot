@@ -233,7 +233,9 @@ Comprehensive accessibility rules for web application development. Every anti-pa
 <div role="listbox" aria-owns="option-1 option-2">...</div>
 
 <!-- Role description (custom naming) -->
-<div role="region" aria-roledescription="slide" aria-label="Slide 1 of 5">...</div>
+<div role="region" aria-roledescription="slide" aria-label="Slide 1 of 5">
+  ...
+</div>
 
 <!-- Has popup -->
 <button aria-haspopup="menu">Options</button>
@@ -259,7 +261,15 @@ Comprehensive accessibility rules for web application development. Every anti-pa
 <div role="timer" aria-live="off" aria-atomic="true">05:30</div>
 
 <!-- Progress bar -->
-<div role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Upload progress">75%</div>
+<div
+  role="progressbar"
+  aria-valuenow="75"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-label="Upload progress"
+>
+  75%
+</div>
 <!-- Prefer native: <progress value="75" max="100">75%</progress> -->
 ```
 
@@ -286,11 +296,25 @@ Comprehensive accessibility rules for web application development. Every anti-pa
 
 ```html
 <div role="tablist" aria-label="Account settings">
-  <button role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1">Profile</button>
-  <button role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1">Security</button>
+  <button role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1">
+    Profile
+  </button>
+  <button
+    role="tab"
+    id="tab-2"
+    aria-selected="false"
+    aria-controls="panel-2"
+    tabindex="-1"
+  >
+    Security
+  </button>
 </div>
-<div role="tabpanel" id="panel-1" aria-labelledby="tab-1">Profile content...</div>
-<div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>Security content...</div>
+<div role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+  Profile content...
+</div>
+<div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+  Security content...
+</div>
 ```
 
 **Keyboard:** Arrow Left/Right to switch tabs; Tab enters panel; Enter/Space activates.
@@ -340,7 +364,9 @@ Comprehensive accessibility rules for web application development. Every anti-pa
 ### Menu
 
 ```html
-<button aria-haspopup="menu" aria-expanded="false" aria-controls="action-menu">Actions</button>
+<button aria-haspopup="menu" aria-expanded="false" aria-controls="action-menu">
+  Actions
+</button>
 <ul role="menu" id="action-menu" hidden>
   <li role="menuitem"><button>Edit</button></li>
   <li role="menuitem"><button>Duplicate</button></li>
@@ -355,7 +381,12 @@ Comprehensive accessibility rules for web application development. Every anti-pa
 
 ```html
 <label for="city-input">City</label>
-<div role="combobox" aria-expanded="true" aria-owns="city-listbox" aria-haspopup="listbox">
+<div
+  role="combobox"
+  aria-expanded="true"
+  aria-owns="city-listbox"
+  aria-haspopup="listbox"
+>
   <input
     id="city-input"
     type="text"
@@ -837,7 +868,12 @@ Store reference to trigger element. On modal close, call `triggerElement.focus()
 - **WCAG**: 3.3.1 (A)
 
 ```html
-<input id="email" type="email" aria-describedby="email-error" aria-invalid="true" />
+<input
+  id="email"
+  type="email"
+  aria-describedby="email-error"
+  aria-invalid="true"
+/>
 <span id="email-error" class="error">Invalid email format</span>
 ```
 
@@ -972,7 +1008,13 @@ Use `alt=""` for decorative images. Add `aria-hidden="true"` for decorative SVGs
 
 ```html
 <video src="/tutorial.mp4" controls>
-  <track kind="captions" src="/tutorial-en.vtt" srclang="en" label="English" default />
+  <track
+    kind="captions"
+    src="/tutorial-en.vtt"
+    srclang="en"
+    label="English"
+    default
+  />
 </video>
 ```
 

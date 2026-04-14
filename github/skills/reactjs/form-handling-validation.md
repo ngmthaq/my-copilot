@@ -100,9 +100,15 @@ const registerSchema = z
     email: z.string().email("Invalid email"),
     password: z.string().min(8, "Password too short"),
     confirmPassword: z.string(),
-    age: z.number({ invalid_type_error: "Age must be a number" }).min(18, "Must be 18 or older"),
-    role: z.enum(["admin", "user"], { errorMap: () => ({ message: "Invalid role" }) }),
-    agree: z.literal(true, { errorMap: () => ({ message: "You must accept the terms" }) }),
+    age: z
+      .number({ invalid_type_error: "Age must be a number" })
+      .min(18, "Must be 18 or older"),
+    role: z.enum(["admin", "user"], {
+      errorMap: () => ({ message: "Invalid role" }),
+    }),
+    agree: z.literal(true, {
+      errorMap: () => ({ message: "You must accept the terms" }),
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -121,7 +127,8 @@ export const registerInitialValues: RegisterFormValues = {
   agree: true,
 };
 
-export const registerValidationSchema = toFormikValidationSchema(registerSchema);
+export const registerValidationSchema =
+  toFormikValidationSchema(registerSchema);
 ```
 
 ---

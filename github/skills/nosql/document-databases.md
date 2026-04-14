@@ -54,7 +54,11 @@ const User = model<IUser>("User", userSchema);
 
 ```typescript
 // Create one
-const user = await User.create({ name: "Alice", email: "alice@example.com", age: 30 });
+const user = await User.create({
+  name: "Alice",
+  email: "alice@example.com",
+  age: 30,
+});
 
 // Create many
 const users = await User.insertMany([
@@ -242,7 +246,11 @@ const session = await mongoose.startSession();
 session.startTransaction();
 try {
   await Order.create([orderData], { session });
-  await Inventory.updateOne({ _id: productId }, { $inc: { stock: -1 } }, { session });
+  await Inventory.updateOne(
+    { _id: productId },
+    { $inc: { stock: -1 } },
+    { session },
+  );
   await session.commitTransaction();
 } catch (err) {
   await session.abortTransaction();

@@ -48,18 +48,27 @@ function selectTemplate() {
       output.push("\n  Select a template:\n");
       for (let i = 0; i < TEMPLATES.length; i++) {
         const cursor = i === selected ? "\x1b[36m❯\x1b[0m" : " ";
-        const label = i === selected ? `\x1b[36m${TEMPLATES[i].label}\x1b[0m` : TEMPLATES[i].label;
+        const label =
+          i === selected
+            ? `\x1b[36m${TEMPLATES[i].label}\x1b[0m`
+            : TEMPLATES[i].label;
         const desc = `\x1b[2m${TEMPLATES[i].description}\x1b[0m`;
         output.push(`  ${cursor} ${label}  ${desc}`);
       }
-      output.push("\n  \x1b[2mUse ↑↓ arrows to navigate, Enter to select\x1b[0m\n");
+      output.push(
+        "\n  \x1b[2mUse ↑↓ arrows to navigate, Enter to select\x1b[0m\n",
+      );
       return output.join("\n");
     }
     const totalLines = TEMPLATES.length + 5;
     process.stdout.write(render());
     if (!process.stdin.isTTY) {
-      console.error("Error: interactive terminal required for template selection.");
-      console.error("Use --template <name> to specify a template non-interactively.");
+      console.error(
+        "Error: interactive terminal required for template selection.",
+      );
+      console.error(
+        "Use --template <name> to specify a template non-interactively.",
+      );
       process.exit(1);
     }
     readline.emitKeypressEvents(process.stdin);
@@ -100,7 +109,9 @@ function resolveTemplate(argv) {
     const template = TEMPLATES.find((t) => t.name === name);
     if (!template) {
       console.error(`Unknown template: ${name}`);
-      console.error("Available templates: " + TEMPLATES.map((t) => t.name).join(", "));
+      console.error(
+        "Available templates: " + TEMPLATES.map((t) => t.name).join(", "),
+      );
       process.exit(1);
     }
     return template;
@@ -110,7 +121,9 @@ function resolveTemplate(argv) {
     const template = TEMPLATES.find((t) => t.name === name);
     if (!template) {
       console.error(`Unknown template: ${name}`);
-      console.error("Available templates: " + TEMPLATES.map((t) => t.name).join(", "));
+      console.error(
+        "Available templates: " + TEMPLATES.map((t) => t.name).join(", "),
+      );
       process.exit(1);
     }
     return template;

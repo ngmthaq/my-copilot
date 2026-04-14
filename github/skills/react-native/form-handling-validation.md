@@ -151,7 +151,8 @@ export const registerInitialValues: RegisterFormValues = {
   phone: "",
 };
 
-export const registerValidationSchema = toFormikValidationSchema(registerSchema);
+export const registerValidationSchema =
+  toFormikValidationSchema(registerSchema);
 ```
 
 ---

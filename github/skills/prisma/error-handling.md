@@ -36,7 +36,10 @@ Prisma throws specific error types with error codes you can check to handle data
 ## 3. Catching Prisma Errors
 
 ```typescript
-import { PrismaClientKnownRequestError, PrismaClientValidationError } from "@prisma/client/runtime/library";
+import {
+  PrismaClientKnownRequestError,
+  PrismaClientValidationError,
+} from "@prisma/client/runtime/library";
 
 try {
   await prisma.user.create({
@@ -73,7 +76,10 @@ Create a utility function to centralize Prisma error mapping:
 
 ```typescript
 // src/utils/prisma-error.ts
-import { PrismaClientKnownRequestError, PrismaClientValidationError } from "@prisma/client/runtime/library";
+import {
+  PrismaClientKnownRequestError,
+  PrismaClientValidationError,
+} from "@prisma/client/runtime/library";
 
 export function handlePrismaError(error: unknown): never {
   if (error instanceof PrismaClientKnownRequestError) {
@@ -144,7 +150,10 @@ if (!user) {
 try {
   await prisma.user.delete({ where: { id: 999 } });
 } catch (error) {
-  if (error instanceof PrismaClientKnownRequestError && error.code === "P2025") {
+  if (
+    error instanceof PrismaClientKnownRequestError &&
+    error.code === "P2025"
+  ) {
     throw new NotFoundError("User not found");
   }
   throw error;

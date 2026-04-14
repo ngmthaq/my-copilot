@@ -52,7 +52,13 @@ async function bootstrap() {
 ```typescript
 // user/dto/create-user.dto.ts
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsEmail, IsString, MinLength, IsOptional, IsEnum } from "class-validator";
+import {
+  IsEmail,
+  IsString,
+  MinLength,
+  IsOptional,
+  IsEnum,
+} from "class-validator";
 
 export enum UserRole {
   ADMIN = "admin",
@@ -60,11 +66,18 @@ export enum UserRole {
 }
 
 export class CreateUserDto {
-  @ApiProperty({ example: "user@example.com", description: "User email address" })
+  @ApiProperty({
+    example: "user@example.com",
+    description: "User email address",
+  })
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: "SecurePass123!", minLength: 8, description: "User password" })
+  @ApiProperty({
+    example: "SecurePass123!",
+    minLength: 8,
+    description: "User password",
+  })
   @IsString()
   @MinLength(8)
   password: string;
@@ -85,14 +98,25 @@ export class CreateUserDto {
 ## 3. Documenting Controllers
 
 ```typescript
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiParam, ApiQuery, ApiBody } from "@nestjs/swagger";
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+  ApiParam,
+  ApiQuery,
+  ApiBody,
+} from "@nestjs/swagger";
 
 @ApiTags("users")
 @ApiBearerAuth("access-token")
 @Controller("users")
 export class UserController {
   @Get()
-  @ApiOperation({ summary: "List all users", description: "Returns a paginated list of users." })
+  @ApiOperation({
+    summary: "List all users",
+    description: "Returns a paginated list of users.",
+  })
   @ApiQuery({ name: "page", required: false, type: Number, example: 1 })
   @ApiQuery({ name: "limit", required: false, type: Number, example: 20 })
   @ApiResponse({ status: 200, description: "Users retrieved", type: [UserDto] })
@@ -219,7 +243,9 @@ export function PaginatedDto<T>(ItemDto: new () => T) {
 import { PartialType, PickType, OmitType } from "@nestjs/swagger";
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}
-export class ChangePasswordDto extends PickType(CreateUserDto, ["password"] as const) {}
+export class ChangePasswordDto extends PickType(CreateUserDto, [
+  "password",
+] as const) {}
 ```
 
 ---

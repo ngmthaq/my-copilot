@@ -65,7 +65,9 @@ Always use `include` or `select` with nested relations to batch the data in a si
 ```typescript
 // GOOD — findUnique on primary key (always uses index)
 const user = await prisma.user.findUnique({ where: { id: 1 } });
-const user = await prisma.user.findUnique({ where: { email: "alice@example.com" } });
+const user = await prisma.user.findUnique({
+  where: { email: "alice@example.com" },
+});
 
 // OK — findFirst on non-unique field, but ensure @@index exists in schema
 const post = await prisma.post.findFirst({ where: { authorId: 1 } });

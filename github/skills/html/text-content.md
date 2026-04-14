@@ -63,7 +63,9 @@ description: "HTML text content & typography — headings, paragraphs, lists, li
 ```html
 <dl>
   <dt>HTML</dt>
-  <dd>HyperText Markup Language — the standard markup language for web pages.</dd>
+  <dd>
+    HyperText Markup Language — the standard markup language for web pages.
+  </dd>
 
   <dt>CSS</dt>
   <dd>Cascading Style Sheets — used for styling and layout.</dd>
@@ -105,7 +107,9 @@ description: "HTML text content & typography — headings, paragraphs, lists, li
 <a href="/about">About us</a>
 
 <!-- External link (open in new tab) -->
-<a href="https://example.com" target="_blank" rel="noopener noreferrer"> Visit Example.com </a>
+<a href="https://example.com" target="_blank" rel="noopener noreferrer">
+  Visit Example.com
+</a>
 
 <!-- Skip link (accessibility, WCAG 2.4.1) -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -117,7 +121,9 @@ description: "HTML text content & typography — headings, paragraphs, lists, li
 <a href="tel:+15551234567">Call us: (555) 123-4567</a>
 
 <!-- Download link -->
-<a href="/files/report.pdf" download="annual-report-2025.pdf"> Download annual report (PDF, 2.3 MB) </a>
+<a href="/files/report.pdf" download="annual-report-2025.pdf">
+  Download annual report (PDF, 2.3 MB)
+</a>
 
 <!-- Fragment/anchor link -->
 <a href="#section-2">Jump to Section 2</a>
@@ -257,10 +263,16 @@ description: "HTML text content & typography — headings, paragraphs, lists, li
 
 ```html
 <!-- Abbreviation with expansion -->
-<p>The <abbr title="World Wide Web Consortium">W3C</abbr> maintains web standards.</p>
+<p>
+  The <abbr title="World Wide Web Consortium">W3C</abbr> maintains web
+  standards.
+</p>
 
 <!-- Definition -->
-<p>An <dfn>API</dfn> (Application Programming Interface) is a set of protocols for building software.</p>
+<p>
+  An <dfn>API</dfn> (Application Programming Interface) is a set of protocols
+  for building software.
+</p>
 ```
 
 ---

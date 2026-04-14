@@ -35,14 +35,21 @@ const server = new ApolloServer({
 ```typescript
 // Assign cost to fields, reject queries exceeding a budget
 // npm install graphql-query-complexity
-import { createComplexityLimitRule, simpleEstimator, fieldExtensionsEstimator } from "graphql-query-complexity";
+import {
+  createComplexityLimitRule,
+  simpleEstimator,
+  fieldExtensionsEstimator,
+} from "graphql-query-complexity";
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   validationRules: [
     createComplexityLimitRule(1000, {
-      estimators: [fieldExtensionsEstimator(), simpleEstimator({ defaultComplexity: 1 })],
+      estimators: [
+        fieldExtensionsEstimator(),
+        simpleEstimator({ defaultComplexity: 1 }),
+      ],
       onComplete: (complexity) => {
         console.log("Query complexity:", complexity);
       },

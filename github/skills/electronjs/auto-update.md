@@ -94,7 +94,8 @@ contextBridge.exposeInMainWorld("electronAPI", {
   onDownloadProgress: (callback: (progress: { percent: number }) => void) => {
     const handler = (_event: any, progress: any) => callback(progress);
     ipcRenderer.on("update:download-progress", handler);
-    return () => ipcRenderer.removeListener("update:download-progress", handler);
+    return () =>
+      ipcRenderer.removeListener("update:download-progress", handler);
   },
   onUpdateDownloaded: (callback: () => void) => {
     const handler = () => callback();

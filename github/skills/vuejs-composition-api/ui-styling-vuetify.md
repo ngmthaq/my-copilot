@@ -85,7 +85,11 @@ const toggleTheme = () => {
 
 <template>
   <v-btn icon @click="toggleTheme">
-    <v-icon>{{ theme.global.current.value.dark ? "mdi-weather-sunny" : "mdi-weather-night" }}</v-icon>
+    <v-icon>{{
+      theme.global.current.value.dark
+        ? "mdi-weather-sunny"
+        : "mdi-weather-night"
+    }}</v-icon>
   </v-btn>
 </template>
 ```
@@ -222,13 +226,21 @@ const headers = [
 <template>
   <v-data-table :headers="headers" :items="rows" :items-per-page="10" hover>
     <template #item.role="{ item }">
-      <v-chip :color="item.role === 'admin' ? 'primary' : 'default'" size="small">
+      <v-chip
+        :color="item.role === 'admin' ? 'primary' : 'default'"
+        size="small"
+      >
         {{ item.role }}
       </v-chip>
     </template>
 
     <template #item.actions="{ item }">
-      <v-btn icon="mdi-pencil" size="small" variant="text" @click="handleEdit(item)" />
+      <v-btn
+        icon="mdi-pencil"
+        size="small"
+        variant="text"
+        @click="handleEdit(item)"
+      />
     </template>
   </v-data-table>
 </template>
@@ -310,7 +322,9 @@ const isOpen = ref(false);
       <v-card-actions>
         <v-spacer />
         <v-btn variant="text" @click="isOpen = false">Cancel</v-btn>
-        <v-btn color="error" variant="elevated" @click="handleDelete">Delete</v-btn>
+        <v-btn color="error" variant="elevated" @click="handleDelete"
+          >Delete</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>

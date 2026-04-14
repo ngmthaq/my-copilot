@@ -107,10 +107,14 @@ Cassandra lets you choose the consistency level per query. More nodes required =
 | `LOCAL_QUORUM` | Majority in local datacenter | Majority in local datacenter | Multi-region, low cross-DC latency |
 
 ```typescript
-const result = await client.execute("SELECT * FROM users WHERE id = ?", [userId], {
-  prepare: true,
-  consistency: types.consistencies.localQuorum,
-});
+const result = await client.execute(
+  "SELECT * FROM users WHERE id = ?",
+  [userId],
+  {
+    prepare: true,
+    consistency: types.consistencies.localQuorum,
+  },
+);
 ```
 
 **Formula for strong consistency:** `WRITE + READ > replication_factor`

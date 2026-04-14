@@ -117,7 +117,9 @@ const observer = new IntersectionObserver(
   },
   { threshold: 0.1 },
 );
-document.querySelectorAll("img[data-src]").forEach((img) => observer.observe(img));
+document
+  .querySelectorAll("img[data-src]")
+  .forEach((img) => observer.observe(img));
 
 // MutationObserver — watch DOM changes
 const mutationObs = new MutationObserver((mutations) => {
@@ -225,7 +227,8 @@ params.get("q");
 ```javascript
 const ws = new WebSocket("wss://example.com/socket");
 
-ws.onopen = () => ws.send(JSON.stringify({ type: "subscribe", channel: "chat" }));
+ws.onopen = () =>
+  ws.send(JSON.stringify({ type: "subscribe", channel: "chat" }));
 ws.onmessage = (e) => console.log(JSON.parse(e.data));
 ws.onerror = (e) => console.error("WebSocket error:", e);
 ws.onclose = (e) => console.log(`Closed: ${e.code} ${e.reason}`);

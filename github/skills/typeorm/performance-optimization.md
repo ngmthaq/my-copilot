@@ -29,7 +29,10 @@ const users = await userRepository.find({
 });
 
 // GOOD (QueryBuilder) — same result
-const users = await userRepository.createQueryBuilder("user").select(["user.id", "user.email", "user.name"]).getMany();
+const users = await userRepository
+  .createQueryBuilder("user")
+  .select(["user.id", "user.email", "user.name"])
+  .getMany();
 ```
 
 ---
@@ -57,7 +60,9 @@ Or using `QueryBuilder` for more control:
 // Efficient join — fetches everything in one query
 const users = await userRepository
   .createQueryBuilder("user")
-  .leftJoinAndSelect("user.posts", "post", "post.published = :published", { published: true })
+  .leftJoinAndSelect("user.posts", "post", "post.published = :published", {
+    published: true,
+  })
   .getMany();
 ```
 
@@ -199,10 +204,16 @@ await AppDataSource.queryResultCache?.remove(["all_roles"]);
 
 ```typescript
 // Use getOne() when you expect a single result
-const user = await userRepository.createQueryBuilder("user").where("user.id = :id", { id: 1 }).getOne(); // returns User | null
+const user = await userRepository
+  .createQueryBuilder("user")
+  .where("user.id = :id", { id: 1 })
+  .getOne(); // returns User | null
 
 // Use getOneOrFail() to throw if not found
-const user = await userRepository.createQueryBuilder("user").where("user.id = :id", { id: 1 }).getOneOrFail(); // throws EntityNotFoundError if missing
+const user = await userRepository
+  .createQueryBuilder("user")
+  .where("user.id = :id", { id: 1 })
+  .getOneOrFail(); // throws EntityNotFoundError if missing
 ```
 
 ---

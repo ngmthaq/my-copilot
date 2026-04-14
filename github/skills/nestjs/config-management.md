@@ -104,7 +104,10 @@ ConfigModule.forRoot({
 // Typed access in a service
 @Injectable()
 export class DatabaseService {
-  constructor(@InjectConfig("database") private readonly dbConfig: ConfigType<typeof databaseConfig>) {}
+  constructor(
+    @InjectConfig("database")
+    private readonly dbConfig: ConfigType<typeof databaseConfig>,
+  ) {}
   // dbConfig.url, dbConfig.poolSize, dbConfig.ssl are all typed
 }
 
@@ -169,7 +172,12 @@ bootstrap();
 ```typescript
 ConfigModule.forRoot({
   isGlobal: true,
-  envFilePath: [`.env.${process.env.NODE_ENV}.local`, `.env.${process.env.NODE_ENV}`, ".env.local", ".env"],
+  envFilePath: [
+    `.env.${process.env.NODE_ENV}.local`,
+    `.env.${process.env.NODE_ENV}`,
+    ".env.local",
+    ".env",
+  ],
   // Files earlier in the array take precedence
 });
 ```

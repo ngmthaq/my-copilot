@@ -219,7 +219,12 @@ For tables where `scope` is insufficient (multi-level headers, irregular structu
 ### Horizontal Scroll
 
 ```html
-<div class="table-wrapper" role="region" aria-labelledby="table-caption" tabindex="0">
+<div
+  class="table-wrapper"
+  role="region"
+  aria-labelledby="table-caption"
+  tabindex="0"
+>
   <table>
     <caption id="table-caption">
       Wide data table

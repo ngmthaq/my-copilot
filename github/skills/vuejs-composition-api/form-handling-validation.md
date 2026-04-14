@@ -49,7 +49,11 @@ export const loginValidationSchema = toTypedSchema(loginSchema);
 <!-- src/pages/LoginPage/LoginPage.vue -->
 <script setup lang="ts">
 import { useForm } from "vee-validate";
-import { loginInitialValues, loginValidationSchema, type LoginFormValues } from "@/forms";
+import {
+  loginInitialValues,
+  loginValidationSchema,
+  type LoginFormValues,
+} from "@/forms";
 
 const { handleSubmit, isSubmitting } = useForm<LoginFormValues>({
   initialValues: loginInitialValues,
@@ -97,13 +101,22 @@ const props = defineProps<{
   label?: string;
 }>();
 
-const { value, errorMessage, handleBlur, handleChange } = useField<string>(() => props.name);
+const { value, errorMessage, handleBlur, handleChange } = useField<string>(
+  () => props.name,
+);
 </script>
 
 <template>
   <div class="field">
     <label v-if="label" :for="name">{{ label }}</label>
-    <input :id="name" :name="name" :type="type ?? 'text'" :value="value" @input="handleChange" @blur="handleBlur" />
+    <input
+      :id="name"
+      :name="name"
+      :type="type ?? 'text'"
+      :value="value"
+      @input="handleChange"
+      @blur="handleBlur"
+    />
     <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
 </template>
@@ -124,9 +137,15 @@ const registerSchema = z
     email: z.string().email("Invalid email"),
     password: z.string().min(8, "Password too short"),
     confirmPassword: z.string(),
-    age: z.number({ invalid_type_error: "Age must be a number" }).min(18, "Must be 18 or older"),
-    role: z.enum(["admin", "user"], { errorMap: () => ({ message: "Invalid role" }) }),
-    agree: z.literal(true, { errorMap: () => ({ message: "You must accept the terms" }) }),
+    age: z
+      .number({ invalid_type_error: "Age must be a number" })
+      .min(18, "Must be 18 or older"),
+    role: z.enum(["admin", "user"], {
+      errorMap: () => ({ message: "Invalid role" }),
+    }),
+    agree: z.literal(true, {
+      errorMap: () => ({ message: "You must accept the terms" }),
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -157,7 +176,11 @@ Use `useField` per field when you need full control over each input without a cu
 ```vue
 <script setup lang="ts">
 import { useForm, useField } from "vee-validate";
-import { loginInitialValues, loginValidationSchema, type LoginFormValues } from "@/forms";
+import {
+  loginInitialValues,
+  loginValidationSchema,
+  type LoginFormValues,
+} from "@/forms";
 
 const { handleSubmit, isSubmitting } = useForm<LoginFormValues>({
   initialValues: loginInitialValues,
@@ -187,7 +210,12 @@ const onSubmit = handleSubmit(async (values) => {
   <form @submit="onSubmit">
     <div>
       <label>Email</label>
-      <input type="email" :value="email" @input="onEmailChange" @blur="onEmailBlur" />
+      <input
+        type="email"
+        :value="email"
+        @input="onEmailChange"
+        @blur="onEmailBlur"
+      />
       <p v-if="emailError" class="error">{{ emailError }}</p>
     </div>
 
@@ -252,7 +280,10 @@ const onSubmit = handleSubmit(async (values) => {
     await createUser(values);
   } catch (err: any) {
     // Map API error to a specific field
-    setFieldError("email", err.response?.data?.message ?? "Something went wrong");
+    setFieldError(
+      "email",
+      err.response?.data?.message ?? "Something went wrong",
+    );
   }
 });
 </script>

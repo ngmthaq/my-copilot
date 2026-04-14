@@ -28,7 +28,11 @@ const result = await AppDataSource.transaction(async (manager) => {
   await manager.increment(Account, { id: toAccountId }, "balance", amount);
 
   // Step 3: Record the transfer
-  const transfer = manager.create(Transfer, { fromAccountId, toAccountId, amount });
+  const transfer = manager.create(Transfer, {
+    fromAccountId,
+    toAccountId,
+    amount,
+  });
   return manager.save(transfer);
 });
 // result is the saved Transfer
@@ -63,13 +67,27 @@ try {
   }
 
   // Step 2: Deduct
-  await queryRunner.manager.decrement(Account, { id: fromAccountId }, "balance", amount);
+  await queryRunner.manager.decrement(
+    Account,
+    { id: fromAccountId },
+    "balance",
+    amount,
+  );
 
   // Step 3: Add
-  await queryRunner.manager.increment(Account, { id: toAccountId }, "balance", amount);
+  await queryRunner.manager.increment(
+    Account,
+    { id: toAccountId },
+    "balance",
+    amount,
+  );
 
   // Step 4: Record transfer
-  const transfer = queryRunner.manager.create(Transfer, { fromAccountId, toAccountId, amount });
+  const transfer = queryRunner.manager.create(Transfer, {
+    fromAccountId,
+    toAccountId,
+    amount,
+  });
   await queryRunner.manager.save(transfer);
 
   // All good — commit
@@ -101,10 +119,16 @@ try {
 ## 4. Practical Example: Create Order with Stock Check
 
 ```typescript
-async function createOrder(userId: number, productId: number, quantity: number) {
+async function createOrder(
+  userId: number,
+  productId: number,
+  quantity: number,
+) {
   return AppDataSource.transaction(async (manager) => {
     // Check availability
-    const product = await manager.findOne(Product, { where: { id: productId } });
+    const product = await manager.findOne(Product, {
+      where: { id: productId },
+    });
 
     if (!product || product.stock < quantity) {
       throw new Error("Not enough stock"); // auto-rollback

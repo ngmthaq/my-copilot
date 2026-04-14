@@ -15,7 +15,13 @@ In TypeORM, entities are TypeScript classes decorated with `@Entity()`. Each pro
 
 ```typescript
 // src/entities/user.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 @Entity("users") // maps to the "users" table
 export class User {
@@ -214,7 +220,14 @@ export class Post {
 
 ```typescript
 // src/entities/product.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Index } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  Index,
+} from "typeorm";
 
 export enum ProductStatus {
   ACTIVE = "ACTIVE",

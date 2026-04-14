@@ -213,7 +213,10 @@ import { User } from "../entities/user.entity";
 export class MainSeeder implements Seeder {
   async run(dataSource: DataSource, factoryManager: SeederFactoryManager) {
     const userRepository = dataSource.getRepository(User);
-    await userRepository.upsert([{ email: "alice@example.com", name: "Alice" }], ["email"]);
+    await userRepository.upsert(
+      [{ email: "alice@example.com", name: "Alice" }],
+      ["email"],
+    );
   }
 }
 ```

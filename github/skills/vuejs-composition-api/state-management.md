@@ -151,7 +151,9 @@ export const useCartStore = defineStore("cart", () => {
   const items = ref<CartItem[]>([]);
 
   // Derived state
-  const total = computed(() => items.value.reduce((sum, i) => sum + i.price * i.quantity, 0));
+  const total = computed(() =>
+    items.value.reduce((sum, i) => sum + i.price * i.quantity, 0),
+  );
 
   function addItem(item: CartItem) {
     const existing = items.value.find((i) => i.id === item.id);

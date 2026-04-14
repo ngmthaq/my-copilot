@@ -14,7 +14,13 @@ description: "HTML forms — input types, client-side validation, fieldsets, aut
     <legend>Personal Information</legend>
 
     <label for="full-name">Full name</label>
-    <input id="full-name" name="fullName" type="text" required autocomplete="name" />
+    <input
+      id="full-name"
+      name="fullName"
+      type="text"
+      required
+      autocomplete="name"
+    />
 
     <label for="email">Email</label>
     <input id="email" name="email" type="email" required autocomplete="email" />
@@ -210,11 +216,18 @@ input.addEventListener("input", () => {
 
 <!-- Textarea -->
 <label for="message">Message</label>
-<textarea id="message" name="message" rows="5" maxlength="500" required></textarea>
+<textarea
+  id="message"
+  name="message"
+  rows="5"
+  maxlength="500"
+  required
+></textarea>
 
 <!-- Output (result of a calculation) -->
 <form oninput="result.value = parseInt(a.value) + parseInt(b.value)">
-  <input type="number" id="a" name="a" value="0" /> + <input type="number" id="b" name="b" value="0" /> =
+  <input type="number" id="a" name="a" value="0" /> +
+  <input type="number" id="b" name="b" value="0" /> =
   <output name="result" for="a b">0</output>
 </form>
 ```
@@ -225,7 +238,13 @@ input.addEventListener("input", () => {
 
 ```html
 <label for="avatar">Profile picture</label>
-<input id="avatar" name="avatar" type="file" accept="image/png, image/jpeg" aria-describedby="avatar-hint" />
+<input
+  id="avatar"
+  name="avatar"
+  type="file"
+  accept="image/png, image/jpeg"
+  aria-describedby="avatar-hint"
+/>
 <p id="avatar-hint">Max 5 MB. PNG or JPEG only.</p>
 
 <!-- Multiple files -->
@@ -244,8 +263,17 @@ input.addEventListener("input", () => {
 
 ```html
 <label for="email">Email</label>
-<input id="email" name="email" type="email" required aria-invalid="true" aria-describedby="email-error" />
-<span id="email-error" class="error" role="alert"> Please enter a valid email address. </span>
+<input
+  id="email"
+  name="email"
+  type="email"
+  required
+  aria-invalid="true"
+  aria-describedby="email-error"
+/>
+<span id="email-error" class="error" role="alert">
+  Please enter a valid email address.
+</span>
 ```
 
 ### Error Summary Pattern

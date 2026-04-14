@@ -145,10 +145,15 @@ import { MigrationInterface, QueryRunner, TableIndex } from "typeorm";
 export class AddEmailIndex1704067200001 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     // Add an index
-    await queryRunner.createIndex("users", new TableIndex({ name: "IDX_users_email", columnNames: ["email"] }));
+    await queryRunner.createIndex(
+      "users",
+      new TableIndex({ name: "IDX_users_email", columnNames: ["email"] }),
+    );
 
     // Or run raw SQL
-    await queryRunner.query(`UPDATE "users" SET "role" = 'USER' WHERE "role" IS NULL`);
+    await queryRunner.query(
+      `UPDATE "users" SET "role" = 'USER' WHERE "role" IS NULL`,
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

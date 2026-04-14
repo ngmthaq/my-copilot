@@ -139,7 +139,9 @@ async function getPage(page: number, limit: number) {
 
 ```typescript
 async function getNextPage(cursor: string | null, limit: number) {
-  const filter = cursor ? { _id: { $lt: new mongoose.Types.ObjectId(cursor) } } : {};
+  const filter = cursor
+    ? { _id: { $lt: new mongoose.Types.ObjectId(cursor) } }
+    : {};
   const data = await Product.find(filter)
     .sort({ _id: -1 })
     .limit(limit + 1);
@@ -191,7 +193,13 @@ const activeCount = await User.countDocuments({ status: "active" });
 ```typescript
 const byCategory = await Product.aggregate([
   { $match: { status: "active" } },
-  { $group: { _id: "$category", count: { $sum: 1 }, avgPrice: { $avg: "$price" } } },
+  {
+    $group: {
+      _id: "$category",
+      count: { $sum: 1 },
+      avgPrice: { $avg: "$price" },
+    },
+  },
   { $sort: { count: -1 } },
 ]);
 ```

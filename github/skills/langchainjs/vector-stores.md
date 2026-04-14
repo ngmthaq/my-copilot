@@ -104,7 +104,10 @@ const store2 = await FaissStore.fromDocuments(chunks2, embeddings);
 await store1.mergeFrom(store2);
 
 // Search with scores
-const resultsWithScores = await vectorStore.similaritySearchWithScore("query", 4);
+const resultsWithScores = await vectorStore.similaritySearchWithScore(
+  "query",
+  4,
+);
 for (const [doc, score] of resultsWithScores) {
   console.log(`Score: ${score.toFixed(4)} — ${doc.pageContent.slice(0, 80)}`);
 }
@@ -184,7 +187,11 @@ const vectorStore = await PGVectorStore.initialize(embeddings, config);
 await vectorStore.addDocuments(chunks);
 
 // Or create from documents
-const vectorStore2 = await PGVectorStore.fromDocuments(chunks, embeddings, config);
+const vectorStore2 = await PGVectorStore.fromDocuments(
+  chunks,
+  embeddings,
+  config,
+);
 
 // Metadata filtering
 const results = await vectorStore.similaritySearch("query", 4, {
@@ -270,7 +277,10 @@ await vectorStore.addDocuments(newDocuments);
 const results = await vectorStore.similaritySearch("query", 4);
 
 // Search with scores
-const resultsWithScores = await vectorStore.similaritySearchWithScore("query", 4);
+const resultsWithScores = await vectorStore.similaritySearchWithScore(
+  "query",
+  4,
+);
 for (const [doc, score] of resultsWithScores) {
   console.log(`Score: ${score} — ${doc.pageContent.slice(0, 80)}`);
 }
@@ -317,7 +327,9 @@ const BATCH_SIZE = 500;
 for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
   const batch = chunks.slice(i, i + BATCH_SIZE);
   await vectorStore.addDocuments(batch);
-  console.log(`Inserted ${Math.min(i + BATCH_SIZE, chunks.length)}/${chunks.length}`);
+  console.log(
+    `Inserted ${Math.min(i + BATCH_SIZE, chunks.length)}/${chunks.length}`,
+  );
 }
 ```
 

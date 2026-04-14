@@ -43,7 +43,9 @@ export default defineComponent({
   computed: {
     // ✅ Only re-filters when products or searchTerm changes
     filtered(): Product[] {
-      return this.products.filter((p) => p.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
+      return this.products.filter((p) =>
+        p.name.toLowerCase().includes(this.searchTerm.toLowerCase()),
+      );
     },
   },
 });
@@ -90,7 +92,9 @@ export default defineComponent({
   name: "AdminPage",
   components: {
     // ✅ AdminDashboard bundle is only downloaded when rendered
-    AdminDashboard: defineAsyncComponent(() => import("@/pages/AdminDashboard/AdminDashboard.vue")),
+    AdminDashboard: defineAsyncComponent(
+      () => import("@/pages/AdminDashboard/AdminDashboard.vue"),
+    ),
 
     // ✅ With loading/error states
     HeavyChart: defineAsyncComponent({
@@ -122,7 +126,11 @@ export default defineComponent({
 ```vue
 <template>
   <!-- ✅ Each row only re-renders when user.id or selected changes -->
-  <div v-for="user in users" :key="user.id" v-memo="[user.id, selected === user.id]">
+  <div
+    v-for="user in users"
+    :key="user.id"
+    v-memo="[user.id, selected === user.id]"
+  >
     <UserRow :user="user" :is-selected="selected === user.id" />
   </div>
 </template>
@@ -208,13 +216,22 @@ export default defineComponent({
   name: "VirtualList",
   components: { RecycleScroller },
   props: {
-    items: { type: Array as PropType<{ id: string; name: string }[]>, required: true },
+    items: {
+      type: Array as PropType<{ id: string; name: string }[]>,
+      required: true,
+    },
   },
 });
 </script>
 
 <template>
-  <RecycleScroller class="scroller" :items="items" :item-size="48" key-field="id" v-slot="{ item }">
+  <RecycleScroller
+    class="scroller"
+    :items="items"
+    :item-size="48"
+    key-field="id"
+    v-slot="{ item }"
+  >
     <div class="user-row">{{ item.name }}</div>
   </RecycleScroller>
 </template>

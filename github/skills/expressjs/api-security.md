@@ -232,7 +232,9 @@ const query = `SELECT * FROM users WHERE id = '${req.params.id}'`;
 
 // ALWAYS use parameterized queries
 // With pg (node-postgres)
-const result = await pool.query("SELECT * FROM users WHERE id = $1", [req.params.id]);
+const result = await pool.query("SELECT * FROM users WHERE id = $1", [
+  req.params.id,
+]);
 
 // With Prisma (safe by default)
 const user = await prisma.user.findUnique({ where: { id: req.params.id } });
@@ -341,7 +343,10 @@ import fs from "fs";
 
 // Force HTTPS redirect
 app.use((req, res, next) => {
-  if (req.headers["x-forwarded-proto"] !== "https" && process.env.NODE_ENV === "production") {
+  if (
+    req.headers["x-forwarded-proto"] !== "https" &&
+    process.env.NODE_ENV === "production"
+  ) {
     return res.redirect(301, `https://${req.hostname}${req.url}`);
   }
   next();

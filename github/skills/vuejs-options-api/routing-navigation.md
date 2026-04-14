@@ -287,9 +287,15 @@ export default defineComponent({
     };
   },
   // ✅ Runs before navigating away from this component's route
-  beforeRouteLeave(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
+  beforeRouteLeave(
+    to: RouteLocationNormalized,
+    from: RouteLocationNormalized,
+    next: NavigationGuardNext,
+  ) {
     if (this.hasUnsavedChanges) {
-      const confirmed = window.confirm("You have unsaved changes. Leave anyway?");
+      const confirmed = window.confirm(
+        "You have unsaved changes. Leave anyway?",
+      );
       if (!confirmed) return next(false);
     }
     next();
@@ -347,7 +353,9 @@ export default defineComponent({
   </RouterLink>
 
   <!-- ✅ Active class — automatically applied when route matches -->
-  <RouterLink :to="{ name: 'dashboard' }" active-class="nav--active"> Dashboard </RouterLink>
+  <RouterLink :to="{ name: 'dashboard' }" active-class="nav--active">
+    Dashboard
+  </RouterLink>
 </template>
 ```
 

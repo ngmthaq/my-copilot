@@ -58,7 +58,9 @@ await User.find({ age: { $gt: 18 } });
 const all = await Log.find({ level: "error" });
 
 // Good: limit to what you actually need
-const recent = await Log.find({ level: "error" }).sort({ createdAt: -1 }).limit(100);
+const recent = await Log.find({ level: "error" })
+  .sort({ createdAt: -1 })
+  .limit(100);
 ```
 
 ### Avoid `countDocuments()` for large collections
@@ -82,7 +84,9 @@ See [indexing.md](indexing.md) for full guidance. Quick checklist:
 
 ```typescript
 // Check if a query is using an index
-const plan = await User.find({ email: "alice@example.com" }).explain("executionStats");
+const plan = await User.find({ email: "alice@example.com" }).explain(
+  "executionStats",
+);
 
 // Red flags in explain output:
 // stage: 'COLLSCAN'     → no index, fix immediately
@@ -206,7 +210,12 @@ await Product.insertMany(items);
 // db.setProfilingLevel(1, { slowms: 100 })
 
 // View the slowest queries from the profiler
-const slowQueries = await db.collection("system.profile").find({}).sort({ millis: -1 }).limit(10).toArray();
+const slowQueries = await db
+  .collection("system.profile")
+  .find({})
+  .sort({ millis: -1 })
+  .limit(10)
+  .toArray();
 
 // Alternatively: use MongoDB Atlas Performance Advisor (UI-based)
 ```

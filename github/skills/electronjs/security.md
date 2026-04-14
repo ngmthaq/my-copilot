@@ -79,7 +79,9 @@ app.whenReady().then(() => {
     callback({
       responseHeaders: {
         ...details.responseHeaders,
-        "Content-Security-Policy": ["default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"],
+        "Content-Security-Policy": [
+          "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
+        ],
       },
     });
   });
@@ -118,16 +120,18 @@ Control what permissions the renderer can request:
 ```typescript
 import { session } from "electron";
 
-session.defaultSession.setPermissionRequestHandler((webContents, permission, callback) => {
-  const allowedPermissions = ["clipboard-read", "notifications"];
+session.defaultSession.setPermissionRequestHandler(
+  (webContents, permission, callback) => {
+    const allowedPermissions = ["clipboard-read", "notifications"];
 
-  if (allowedPermissions.includes(permission)) {
-    callback(true);
-  } else {
-    console.warn(`Denied permission: ${permission}`);
-    callback(false);
-  }
-});
+    if (allowedPermissions.includes(permission)) {
+      callback(true);
+    } else {
+      console.warn(`Denied permission: ${permission}`);
+      callback(false);
+    }
+  },
+);
 
 // Check permission status
 session.defaultSession.setPermissionCheckHandler((_webContents, permission) => {

@@ -17,7 +17,10 @@ Covers composing multiple NestJS GraphQL services — Apollo Federation subgraph
 // npm install @nestjs/graphql @nestjs/apollo @apollo/server @apollo/subgraph
 
 // app.module.ts — Users subgraph
-import { ApolloFederationDriver, ApolloFederationDriverConfig } from "@nestjs/apollo";
+import {
+  ApolloFederationDriver,
+  ApolloFederationDriverConfig,
+} from "@nestjs/apollo";
 
 @Module({
   imports: [

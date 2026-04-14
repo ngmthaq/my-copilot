@@ -15,7 +15,18 @@ Covers building REST controllers in NestJS — routing decorators, parameter ext
 
 ```typescript
 // user/user.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body, Query, HttpCode, HttpStatus } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+  Query,
+  HttpCode,
+  HttpStatus,
+} from "@nestjs/common";
 import { UserService } from "./user.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
@@ -147,7 +158,10 @@ export class PostController {
   }
 
   @Post()
-  createForUser(@Param("userId", ParseUUIDPipe) userId: string, @Body() dto: CreatePostDto) {
+  createForUser(
+    @Param("userId", ParseUUIDPipe) userId: string,
+    @Body() dto: CreatePostDto,
+  ) {
     return this.postService.create({ ...dto, authorId: userId });
   }
 }
@@ -185,7 +199,12 @@ export class UserV2Controller {
 ## 7. Applying Guards, Pipes, Interceptors at Controller Level
 
 ```typescript
-import { UseGuards, UseInterceptors, UsePipes, ValidationPipe } from "@nestjs/common";
+import {
+  UseGuards,
+  UseInterceptors,
+  UsePipes,
+  ValidationPipe,
+} from "@nestjs/common";
 
 @Controller("users")
 @UseGuards(JwtAuthGuard) // applies to all routes in this controller

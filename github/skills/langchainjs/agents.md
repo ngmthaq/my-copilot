@@ -220,7 +220,12 @@ const researchResult = await researchAgent.invoke({
 });
 
 const analysisResult = await analysisAgent.invoke({
-  messages: [{ role: "user", content: `Analyze this data: ${researchResult.messages.at(-1).content}` }],
+  messages: [
+    {
+      role: "user",
+      content: `Analyze this data: ${researchResult.messages.at(-1).content}`,
+    },
+  ],
 });
 ```
 

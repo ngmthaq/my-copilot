@@ -52,7 +52,11 @@ await redis.ttl("key"); // get remaining TTL
 
 ```typescript
 // Store a user object
-await redis.hset("user:42", { name: "Alice", email: "alice@example.com", age: "30" });
+await redis.hset("user:42", {
+  name: "Alice",
+  email: "alice@example.com",
+  age: "30",
+});
 
 // Get all fields
 const user = await redis.hgetall("user:42"); // { name: 'Alice', ... }
@@ -161,7 +165,11 @@ async function deleteSession(sessionId: string) {
 ### Rate Limiting
 
 ```typescript
-async function isRateLimited(ip: string, limit = 100, windowSec = 60): Promise<boolean> {
+async function isRateLimited(
+  ip: string,
+  limit = 100,
+  windowSec = 60,
+): Promise<boolean> {
   const key = `rate:${ip}`;
   const current = await redis.incr(key);
   if (current === 1) {
@@ -184,7 +192,10 @@ app.use(async (req, res, next) => {
 ```typescript
 // Publisher
 const publisher = new Redis();
-await publisher.publish("notifications", JSON.stringify({ userId: "42", msg: "Hello!" }));
+await publisher.publish(
+  "notifications",
+  JSON.stringify({ userId: "42", msg: "Hello!" }),
+);
 
 // Subscriber (use a separate connection)
 const subscriber = new Redis();
@@ -198,7 +209,11 @@ subscriber.on("message", (channel, message) => {
 ### Distributed Lock (prevent race conditions)
 
 ```typescript
-async function withLock<T>(lockKey: string, ttlSec: number, fn: () => Promise<T>): Promise<T | null> {
+async function withLock<T>(
+  lockKey: string,
+  ttlSec: number,
+  fn: () => Promise<T>,
+): Promise<T | null> {
   const lockValue = crypto.randomUUID();
   const acquired = await redis.set(lockKey, lockValue, "NX", "EX", ttlSec);
   if (!acquired) return null; // someone else holds the lock

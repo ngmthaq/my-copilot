@@ -206,7 +206,11 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder().setTitle("My API").setVersion("1.0").addBearerAuth().build();
+  const config = new DocumentBuilder()
+    .setTitle("My API")
+    .setVersion("1.0")
+    .addBearerAuth()
+    .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("docs", app, document);
@@ -235,7 +239,12 @@ export class CreateUserDto {
 **Controller with decorators:**
 
 ```typescript
-import { ApiTags, ApiBearerAuth, ApiOperation, ApiResponse } from "@nestjs/swagger";
+import {
+  ApiTags,
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+} from "@nestjs/swagger";
 
 @ApiTags("Users")
 @ApiBearerAuth()

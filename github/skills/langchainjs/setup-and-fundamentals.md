@@ -64,7 +64,11 @@ console.log(response2.content);
 ## 4. Message Types
 
 ```javascript
-import { SystemMessage, HumanMessage, AIMessage } from "@langchain/core/messages";
+import {
+  SystemMessage,
+  HumanMessage,
+  AIMessage,
+} from "@langchain/core/messages";
 
 // SystemMessage — sets behavior/persona
 const system = new SystemMessage("You are a helpful coding assistant.");

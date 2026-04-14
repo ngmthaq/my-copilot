@@ -160,7 +160,10 @@ const globalForPrisma = globalThis as unknown as {
 export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
-    log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "error", "warn"]
+        : ["error"],
   });
 
 if (process.env.NODE_ENV !== "production") {
@@ -300,13 +303,20 @@ export class PostRepository {
     });
   }
 
-  async create(data: { title: string; content?: string; authorId: string; categoryIds?: string[] }) {
+  async create(data: {
+    title: string;
+    content?: string;
+    authorId: string;
+    categoryIds?: string[];
+  }) {
     return prisma.post.create({
       data: {
         title: data.title,
         content: data.content,
         author: { connect: { id: data.authorId } },
-        categories: data.categoryIds ? { connect: data.categoryIds.map((id) => ({ id })) } : undefined,
+        categories: data.categoryIds
+          ? { connect: data.categoryIds.map((id) => ({ id })) }
+          : undefined,
       },
       include: {
         author: { select: { id: true, name: true } },
@@ -330,7 +340,9 @@ export class PostRepository {
         title: data.title,
         content: data.content,
         published: data.published,
-        categories: data.categoryIds ? { set: data.categoryIds.map((id) => ({ id })) } : undefined,
+        categories: data.categoryIds
+          ? { set: data.categoryIds.map((id) => ({ id })) }
+          : undefined,
       },
       include: {
         author: { select: { id: true, name: true } },
@@ -366,7 +378,10 @@ const router = Router();
 // GET /api/users — list users (paginated)
 router.get("/", authenticate, async (req: Request, res: Response) => {
   const page = Math.max(1, parseInt(req.query.page as string) || 1);
-  const limit = Math.min(100, Math.max(1, parseInt(req.query.limit as string) || 20));
+  const limit = Math.min(
+    100,
+    Math.max(1, parseInt(req.query.limit as string) || 20),
+  );
   const skip = (page - 1) * limit;
 
   const [users, total] = await Promise.all([
@@ -406,10 +421,15 @@ router.put("/:id", authenticate, async (req: Request, res: Response) => {
 });
 
 // DELETE /api/users/:id — delete user (admin only)
-router.delete("/:id", authenticate, authorize("ADMIN", "SUPER_ADMIN"), async (req: Request, res: Response) => {
-  await userRepository.delete(req.params.id);
-  res.status(204).send();
-});
+router.delete(
+  "/:id",
+  authenticate,
+  authorize("ADMIN", "SUPER_ADMIN"),
+  async (req: Request, res: Response) => {
+    await userRepository.delete(req.params.id);
+    res.status(204).send();
+  },
+);
 
 export default router;
 ```
@@ -425,7 +445,10 @@ const router = Router();
 // GET /api/posts — list published posts (public)
 router.get("/", async (req: Request, res: Response) => {
   const page = Math.max(1, parseInt(req.query.page as string) || 1);
-  const limit = Math.min(100, Math.max(1, parseInt(req.query.limit as string) || 20));
+  const limit = Math.min(
+    100,
+    Math.max(1, parseInt(req.query.limit as string) || 20),
+  );
   const skip = (page - 1) * limit;
 
   const search = req.query.search as string | undefined;
@@ -536,7 +559,12 @@ app.use("/api/posts", postRoutes);
 import { prisma } from "../lib/prisma";
 
 // Create user with profile in a single transaction
-async function createUserWithProfile(data: { email: string; name: string; password: string; bio?: string }) {
+async function createUserWithProfile(data: {
+  email: string;
+  name: string;
+  password: string;
+  bio?: string;
+}) {
   return prisma.$transaction(async (tx) => {
     const user = await tx.user.create({
       data: {
@@ -660,7 +688,12 @@ async function listPosts(query: ListPostsQuery) {
 import { Prisma } from "@prisma/client";
 import { Request, Response, NextFunction } from "express";
 
-export function prismaErrorHandler(err: Error, _req: Request, res: Response, next: NextFunction) {
+export function prismaErrorHandler(
+  err: Error,
+  _req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     switch (err.code) {
       case "P2002": {
@@ -745,7 +778,10 @@ const prisma = new PrismaClient({
       url: process.env.DATABASE_URL,
     },
   },
-  log: process.env.NODE_ENV === "production" ? ["error"] : ["query", "error", "warn"],
+  log:
+    process.env.NODE_ENV === "production"
+      ? ["error"]
+      : ["query", "error", "warn"],
 });
 
 // Connection pool settings via DATABASE_URL query params:

@@ -34,7 +34,10 @@ defineEmits<{ click: [] }>();
 </script>
 
 <template>
-  <button :class="`btn btn--${props.variant} btn--${props.size}`" :disabled="props.disabled || props.loading">
+  <button
+    :class="`btn btn--${props.variant} btn--${props.size}`"
+    :disabled="props.disabled || props.loading"
+  >
     <span v-if="props.loading" class="spinner" />
     <slot v-else />
   </button>

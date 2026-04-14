@@ -206,7 +206,9 @@ onErrorCaptured((err, instance, info) => {
 </script>
 
 <template>
-  <div v-if="error" class="error-boundary">Something went wrong: {{ error.message }}</div>
+  <div v-if="error" class="error-boundary">
+    Something went wrong: {{ error.message }}
+  </div>
   <slot v-else />
 </template>
 ```

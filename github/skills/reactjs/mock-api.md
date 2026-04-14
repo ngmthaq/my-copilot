@@ -32,7 +32,12 @@ Name files after the resource and HTTP method when there are multiple operations
 // src/mocks/users.json
 {
   "data": [
-    { "id": "1", "name": "Alice", "email": "alice@example.com", "role": "admin" },
+    {
+      "id": "1",
+      "name": "Alice",
+      "email": "alice@example.com",
+      "role": "admin"
+    },
     { "id": "2", "name": "Bob", "email": "bob@example.com", "role": "user" }
   ],
   "message": "OK",
@@ -43,7 +48,12 @@ Name files after the resource and HTTP method when there are multiple operations
 ```json
 // src/mocks/user.json
 {
-  "data": { "id": "1", "name": "Alice", "email": "alice@example.com", "role": "admin" },
+  "data": {
+    "id": "1",
+    "name": "Alice",
+    "email": "alice@example.com",
+    "role": "admin"
+  },
   "message": "OK",
   "success": true
 }
@@ -99,7 +109,9 @@ export function useUsers() {
         const { usersMock } = await import("@/mocks");
         return usersMock.data;
       }
-      return authApi.get<ApiResponse<User[]>>("/users").then((r) => r.data.data);
+      return authApi
+        .get<ApiResponse<User[]>>("/users")
+        .then((r) => r.data.data);
     },
   });
 }
@@ -121,7 +133,9 @@ export function useUser(id: string) {
         const { userMock } = await import("@/mocks");
         return userMock.data;
       }
-      return authApi.get<ApiResponse<User>>(`/users/${id}`).then((r) => r.data.data);
+      return authApi
+        .get<ApiResponse<User>>(`/users/${id}`)
+        .then((r) => r.data.data);
     },
     enabled: Boolean(id),
   });
@@ -151,7 +165,9 @@ export function useCreateUser() {
         // Simulate a created user with a fake id
         return { id: crypto.randomUUID(), ...payload };
       }
-      return authApi.post<ApiResponse<User>>("/users", payload).then((r) => r.data.data);
+      return authApi
+        .post<ApiResponse<User>>("/users", payload)
+        .then((r) => r.data.data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });

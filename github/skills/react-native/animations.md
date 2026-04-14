@@ -78,27 +78,49 @@ export function FadeIn({ children }: { children: React.ReactNode }) {
 ```typescript
 // Parallel — run animations simultaneously
 Animated.parallel([
-  Animated.timing(opacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+  Animated.timing(opacity, {
+    toValue: 1,
+    duration: 300,
+    useNativeDriver: true,
+  }),
   Animated.spring(translateY, { toValue: 0, useNativeDriver: true }),
 ]).start();
 
 // Sequence — run one after another
 Animated.sequence([
-  Animated.timing(scale, { toValue: 1.2, duration: 150, useNativeDriver: true }),
+  Animated.timing(scale, {
+    toValue: 1.2,
+    duration: 150,
+    useNativeDriver: true,
+  }),
   Animated.spring(scale, { toValue: 1, friction: 3, useNativeDriver: true }),
 ]).start();
 
 // Stagger — same animation with delay between items
 Animated.stagger(
   100,
-  items.map((_, i) => Animated.timing(animatedValues[i], { toValue: 1, duration: 300, useNativeDriver: true })),
+  items.map((_, i) =>
+    Animated.timing(animatedValues[i], {
+      toValue: 1,
+      duration: 300,
+      useNativeDriver: true,
+    }),
+  ),
 ).start();
 
 // Loop
 Animated.loop(
   Animated.sequence([
-    Animated.timing(rotation, { toValue: 1, duration: 1000, useNativeDriver: true }),
-    Animated.timing(rotation, { toValue: 0, duration: 1000, useNativeDriver: true }),
+    Animated.timing(rotation, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }),
+    Animated.timing(rotation, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: true,
+    }),
   ]),
 ).start();
 ```

@@ -90,10 +90,18 @@ greet().then(console.log); // "hello"
 
 ```javascript
 // Promise.all — run in parallel, fail on first rejection
-const [users, posts, tags] = await Promise.all([fetchUsers(), fetchPosts(), fetchTags()]);
+const [users, posts, tags] = await Promise.all([
+  fetchUsers(),
+  fetchPosts(),
+  fetchTags(),
+]);
 
 // Promise.allSettled — run in parallel, never rejects
-const results = await Promise.allSettled([fetchUsers(), fetchPosts(), riskyOperation()]);
+const results = await Promise.allSettled([
+  fetchUsers(),
+  fetchPosts(),
+  riskyOperation(),
+]);
 // results: [{ status: "fulfilled", value }, { status: "rejected", reason }]
 
 // Promise.race — first to settle wins
@@ -103,7 +111,11 @@ const result = await Promise.race([
 ]);
 
 // Promise.any — first to FULFILL wins (ignores rejections)
-const fastest = await Promise.any([fetchFromCDN1(), fetchFromCDN2(), fetchFromCDN3()]);
+const fastest = await Promise.any([
+  fetchFromCDN1(),
+  fetchFromCDN2(),
+  fetchFromCDN3(),
+]);
 
 // Sequential execution (when order matters)
 const results = [];
@@ -155,7 +167,10 @@ await fetch("/api/data", { signal: AbortSignal.timeout(5000) });
 
 // Share signal across multiple requests
 const controller = new AbortController();
-await Promise.all([fetch("/api/a", { signal: controller.signal }), fetch("/api/b", { signal: controller.signal })]);
+await Promise.all([
+  fetch("/api/a", { signal: controller.signal }),
+  fetch("/api/b", { signal: controller.signal }),
+]);
 ```
 
 ---

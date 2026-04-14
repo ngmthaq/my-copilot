@@ -63,7 +63,14 @@ throw new BusinessException("INSUFFICIENT_FUNDS", "Account balance is too low");
 
 ```typescript
 // common/filters/http-exception.filter.ts
-import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, Logger } from "@nestjs/common";
+import {
+  ExceptionFilter,
+  Catch,
+  ArgumentsHost,
+  HttpException,
+  HttpStatus,
+  Logger,
+} from "@nestjs/common";
 import { Request, Response } from "express";
 
 @Catch(HttpException)
@@ -105,7 +112,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
 ```typescript
 // common/filters/all-exceptions.filter.ts
-import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, Logger } from "@nestjs/common";
+import {
+  ExceptionFilter,
+  Catch,
+  ArgumentsHost,
+  HttpException,
+  HttpStatus,
+  Logger,
+} from "@nestjs/common";
 import { Request, Response } from "express";
 
 @Catch() // no argument = catches everything
@@ -117,11 +131,20 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    const status = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
+    const status =
+      exception instanceof HttpException
+        ? exception.getStatus()
+        : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    const message = exception instanceof HttpException ? exception.message : "Internal server error";
+    const message =
+      exception instanceof HttpException
+        ? exception.message
+        : "Internal server error";
 
-    this.logger.error(`Unhandled exception on ${request.method} ${request.url}`, exception);
+    this.logger.error(
+      `Unhandled exception on ${request.method} ${request.url}`,
+      exception,
+    );
 
     response.status(status).json({
       statusCode: status,
@@ -139,7 +162,12 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
 ```typescript
 // common/filters/prisma-exception.filter.ts
-import { ExceptionFilter, Catch, ArgumentsHost, HttpStatus } from "@nestjs/common";
+import {
+  ExceptionFilter,
+  Catch,
+  ArgumentsHost,
+  HttpStatus,
+} from "@nestjs/common";
 import { Prisma } from "@prisma/client";
 import { Response } from "express";
 

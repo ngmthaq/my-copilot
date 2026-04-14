@@ -48,7 +48,11 @@ Use VeeValidate's component-based API which works naturally in Options API templ
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import { loginInitialValues, loginValidationSchema, type LoginFormValues } from "@/forms";
+import {
+  loginInitialValues,
+  loginValidationSchema,
+  type LoginFormValues,
+} from "@/forms";
 import { authService } from "@/services";
 
 export default defineComponent({
@@ -78,7 +82,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <Form :initial-values="initialValues" :validation-schema="validationSchema" @submit="onSubmit">
+  <Form
+    :initial-values="initialValues"
+    :validation-schema="validationSchema"
+    @submit="onSubmit"
+  >
     <div>
       <label for="email">Email</label>
       <Field id="email" name="email" type="email" />
@@ -125,7 +133,12 @@ export default defineComponent({
   <div class="field">
     <label v-if="label" :for="name">{{ label }}</label>
     <Field :name="name" v-slot="{ field, meta }">
-      <input :id="name" :type="type" v-bind="field" :class="{ 'is-invalid': meta.touched && !meta.valid }" />
+      <input
+        :id="name"
+        :type="type"
+        v-bind="field"
+        :class="{ 'is-invalid': meta.touched && !meta.valid }"
+      />
     </Field>
     <ErrorMessage :name="name" class="error" />
   </div>
@@ -157,9 +170,15 @@ const registerSchema = z
     email: z.string().email("Invalid email"),
     password: z.string().min(8, "Password too short"),
     confirmPassword: z.string(),
-    age: z.number({ invalid_type_error: "Age must be a number" }).min(18, "Must be 18 or older"),
-    role: z.enum(["admin", "user"], { errorMap: () => ({ message: "Invalid role" }) }),
-    agree: z.literal(true, { errorMap: () => ({ message: "You must accept the terms" }) }),
+    age: z
+      .number({ invalid_type_error: "Age must be a number" })
+      .min(18, "Must be 18 or older"),
+    role: z.enum(["admin", "user"], {
+      errorMap: () => ({ message: "Invalid role" }),
+    }),
+    agree: z.literal(true, {
+      errorMap: () => ({ message: "You must accept the terms" }),
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -191,7 +210,11 @@ Use the scoped slot on `<Form>` to access form-level state like errors, meta, an
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
-import { loginInitialValues, loginValidationSchema, type LoginFormValues } from "@/forms";
+import {
+  loginInitialValues,
+  loginValidationSchema,
+  type LoginFormValues,
+} from "@/forms";
 import { authService } from "@/services";
 
 export default defineComponent({
@@ -204,7 +227,10 @@ export default defineComponent({
     };
   },
   methods: {
-    async onSubmit(values: LoginFormValues, { setFieldError }: { setFieldError: Function }) {
+    async onSubmit(
+      values: LoginFormValues,
+      { setFieldError }: { setFieldError: Function },
+    ) {
       try {
         await authService.login(values);
         this.$router.push({ name: "dashboard" });
@@ -287,7 +313,12 @@ export default defineComponent({
 
 <template>
   <div v-if="isLoading">Loading...</div>
-  <Form v-else :initial-values="initialValues" :validation-schema="validationSchema" @submit="onSubmit">
+  <Form
+    v-else
+    :initial-values="initialValues"
+    :validation-schema="validationSchema"
+    @submit="onSubmit"
+  >
     <AppInput name="name" label="Name" />
     <AppInput name="email" label="Email" type="email" />
     <button type="submit">Save</button>
@@ -382,7 +413,11 @@ export default defineComponent({
   <Form :initial-values="initialValues" @submit="onSubmit">
     <FieldArray name="invites" v-slot="{ fields, push, remove }">
       <div v-for="(entry, idx) in fields" :key="entry.key">
-        <Field :name="`invites[${idx}].email`" type="email" placeholder="Email" />
+        <Field
+          :name="`invites[${idx}].email`"
+          type="email"
+          placeholder="Email"
+        />
         <ErrorMessage :name="`invites[${idx}].email`" class="error" />
         <button type="button" @click="remove(idx)">Remove</button>
       </div>

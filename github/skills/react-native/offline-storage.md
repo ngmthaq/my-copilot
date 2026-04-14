@@ -69,7 +69,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const storage = createJSONStorage<boolean>(() => AsyncStorage);
 
-export const onboardingCompleteAtom = atomWithStorage<boolean>("onboarding-complete", false, storage);
+export const onboardingCompleteAtom = atomWithStorage<boolean>(
+  "onboarding-complete",
+  false,
+  storage,
+);
 ```
 
 ---
@@ -131,7 +135,11 @@ const mmkvStorage = createJSONStorage<"light" | "dark">(() => ({
   },
 }));
 
-export const themeAtom = atomWithStorage<"light" | "dark">("app-theme", "light", mmkvStorage);
+export const themeAtom = atomWithStorage<"light" | "dark">(
+  "app-theme",
+  "light",
+  mmkvStorage,
+);
 ```
 
 ---
@@ -238,7 +246,10 @@ import { useQuery } from "@tanstack/react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNetworkStatus } from "@/hooks";
 
-export function useOfflineQuery<T>(queryKey: string[], queryFn: () => Promise<T>) {
+export function useOfflineQuery<T>(
+  queryKey: string[],
+  queryFn: () => Promise<T>,
+) {
   const isConnected = useNetworkStatus();
   const cacheKey = `cache:${queryKey.join(":")}`;
 

@@ -145,7 +145,8 @@ class Range {
     let current = this.start;
     const end = this.end;
     return {
-      next: () => (current <= end ? { value: current++, done: false } : { done: true }),
+      next: () =>
+        current <= end ? { value: current++, done: false } : { done: true },
     };
   }
 }

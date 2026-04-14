@@ -102,17 +102,26 @@ export class CreateUserDto {
 
 ```typescript
 // user/dto/update-user.dto.ts
-import { PartialType, PickType, OmitType, IntersectionType } from "@nestjs/mapped-types";
+import {
+  PartialType,
+  PickType,
+  OmitType,
+  IntersectionType,
+} from "@nestjs/mapped-types";
 import { CreateUserDto } from "./create-user.dto";
 
 // All fields become optional
 export class UpdateUserDto extends PartialType(CreateUserDto) {}
 
 // Only specific fields
-export class ChangeEmailDto extends PickType(CreateUserDto, ["email"] as const) {}
+export class ChangeEmailDto extends PickType(CreateUserDto, [
+  "email",
+] as const) {}
 
 // Exclude specific fields
-export class CreateUserWithoutPasswordDto extends OmitType(CreateUserDto, ["password"] as const) {}
+export class CreateUserWithoutPasswordDto extends OmitType(CreateUserDto, [
+  "password",
+] as const) {}
 ```
 
 ---

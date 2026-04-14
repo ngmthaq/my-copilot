@@ -89,7 +89,11 @@ const result = await prisma.$transaction(async (tx) => {
 ## 4. Practical Example: Create Order with Inventory Check
 
 ```typescript
-async function createOrder(userId: number, productId: number, quantity: number) {
+async function createOrder(
+  userId: number,
+  productId: number,
+  quantity: number,
+) {
   return prisma.$transaction(async (tx) => {
     // Check product availability
     const product = await tx.product.findUnique({

@@ -1,34 +1,27 @@
 "use strict";
 
-// Common agents that are included in all templates by default
-const COMMON_AGENTS = [
-  "technical-leader.agent.md",
-  "debugger.agent.md",
-  "code-reviewer.agent.md",
+// Merge and deduplicate arrays
+const unique = (...arrays) => [...new Set(arrays.flat())].sort();
+
+// Specific agents for Backend development
+const BE_AGENTS = [
   "be-developer.agent.md",
-  "qa-engineer.agent.md",
+  "code-reviewer.agent.md",
+  "debugger.agent.md",
   "devops-engineer.agent.md",
+  "qa-engineer.agent.md",
+  "technical-leader.agent.md",
 ];
 
-// Specific agents for AI domains
-const AI_AGENTS = ["ai-engineer.agent.md"];
-
-// Specific agents for Frontend development
-const FE_AGENTS = ["fe-developer.agent.md"];
-
-// Specific agents for Mobile development
-const MOBILE_AGENTS = ["mobile-developer.agent.md"];
-
-// Specific agents for Desktop development
-const DESKTOP_AGENTS = ["desktop-app-developer.agent.md"];
-
-// Common skills that are included in all templates by default
-const COMMON_SKILLS = [
+// Specific skills for Backend development
+const BE_SKILLS = [
   "docker",
+  "expressjs",
   "git",
   "github-mcp",
   "graphql",
-  "expressjs",
+  "javascript",
+  "linting",
   "nestjs",
   "nginx",
   "nosql",
@@ -39,26 +32,114 @@ const COMMON_SKILLS = [
   "typescript",
 ];
 
-// Specific skills for AI domains
-const AI_SKILLS = ["huggingface", "langchain", "langchainjs", "ollama", "python"];
+// Specific agents for Frontend development
+const FE_AGENTS = [
+  "code-reviewer.agent.md",
+  "debugger.agent.md",
+  "devops-engineer.agent.md",
+  "fe-developer.agent.md",
+  "qa-engineer.agent.md",
+  "technical-leader.agent.md",
+];
 
 // Specific skills for Frontend development
 const FE_SKILLS = [
   "css",
+  "docker",
+  "git",
+  "github-mcp",
+  "graphql",
   "html",
   "javascript",
   "linting",
+  "nginx",
   "reactjs",
+  "restapi",
+  "typescript",
   "vite",
   "vuejs-composition-api",
   "vuejs-options-api",
 ];
 
+// Specific agents for AI domains
+const AI_AGENTS = [
+  "ai-engineer.agent.md",
+  "code-reviewer.agent.md",
+  "debugger.agent.md",
+  "devops-engineer.agent.md",
+  "qa-engineer.agent.md",
+  "technical-leader.agent.md",
+];
+
+// Specific skills for AI domains
+const AI_SKILLS = [
+  "docker",
+  "git",
+  "github-mcp",
+  "graphql",
+  "huggingface",
+  "javascript",
+  "langchain",
+  "langchainjs",
+  "linting",
+  "nginx",
+  "ollama",
+  "python",
+  "restapi",
+  "typescript",
+];
+
+// Specific agents for Mobile development
+const MOBILE_AGENTS = [
+  "code-reviewer.agent.md",
+  "debugger.agent.md",
+  "devops-engineer.agent.md",
+  "mobile-developer.agent.md",
+  "qa-engineer.agent.md",
+  "technical-leader.agent.md",
+];
+
 // Specific skills for Mobile development
-const MOBILE_SKILLS = ["dart", "flutter", "react-native"];
+const MOBILE_SKILLS = [
+  "dart",
+  "docker",
+  "flutter",
+  "git",
+  "github-mcp",
+  "graphql",
+  "javascript",
+  "linting",
+  "nginx",
+  "react-native",
+  "restapi",
+  "typescript",
+];
+
+// Specific agents for Desktop development
+const DESKTOP_AGENTS = [
+  "code-reviewer.agent.md",
+  "debugger.agent.md",
+  "desktop-app-developer.agent.md",
+  "devops-engineer.agent.md",
+  "qa-engineer.agent.md",
+  "technical-leader.agent.md",
+];
 
 // Specific skills for Desktop development
-const DESKTOP_SKILLS = ["electron-forge", "electronjs"];
+const DESKTOP_SKILLS = [
+  "docker",
+  "electron-forge",
+  "electronjs",
+  "git",
+  "github-mcp",
+  "graphql",
+  "javascript",
+  "linting",
+  "nginx",
+  "restapi",
+  "typescript",
+  "vite",
+];
 
 // Template definitions
 const TEMPLATES = [
@@ -66,57 +147,69 @@ const TEMPLATES = [
     name: "all",
     label: "All (everything)",
     description: "All agents and skills",
-    includeAgents: [...COMMON_AGENTS, ...AI_AGENTS, ...FE_AGENTS, ...MOBILE_AGENTS, ...DESKTOP_AGENTS],
-    includeSkills: [...COMMON_SKILLS, ...AI_SKILLS, ...FE_SKILLS, ...MOBILE_SKILLS, ...DESKTOP_SKILLS],
+    includeAgents: unique(
+      AI_AGENTS,
+      BE_AGENTS,
+      FE_AGENTS,
+      MOBILE_AGENTS,
+      DESKTOP_AGENTS,
+    ),
+    includeSkills: unique(
+      AI_SKILLS,
+      BE_SKILLS,
+      FE_SKILLS,
+      MOBILE_SKILLS,
+      DESKTOP_SKILLS,
+    ),
   },
   {
     name: "web-fullstack",
     label: "Web Fullstack",
     description: "Frontend + Backend",
-    includeAgents: [...COMMON_AGENTS, ...FE_AGENTS],
-    includeSkills: [...COMMON_SKILLS, ...FE_SKILLS],
+    includeAgents: unique(BE_AGENTS, FE_AGENTS),
+    includeSkills: unique(BE_SKILLS, FE_SKILLS),
   },
   {
     name: "ai-application-fullstack",
     label: "AI Application Fullstack",
     description: "AI + Frontend + Backend",
-    includeAgents: [...COMMON_AGENTS, ...AI_AGENTS, ...FE_AGENTS],
-    includeSkills: [...COMMON_SKILLS, ...AI_SKILLS, ...FE_SKILLS],
+    includeAgents: unique(AI_AGENTS, BE_AGENTS, FE_AGENTS),
+    includeSkills: unique(AI_SKILLS, BE_SKILLS, FE_SKILLS),
   },
   {
     name: "ai-backend",
     label: "AI + Backend",
     description: "AI services + Backend APIs",
-    includeAgents: [...COMMON_AGENTS, ...AI_AGENTS],
-    includeSkills: [...COMMON_SKILLS, ...AI_SKILLS],
+    includeAgents: unique(AI_AGENTS, BE_AGENTS),
+    includeSkills: unique(AI_SKILLS, BE_SKILLS),
   },
   {
     name: "mobile-fullstack",
     label: "Mobile Fullstack",
     description: "Mobile + Backend",
-    includeAgents: [...COMMON_AGENTS, ...MOBILE_AGENTS],
-    includeSkills: [...COMMON_SKILLS, ...MOBILE_SKILLS],
+    includeAgents: unique(MOBILE_AGENTS, BE_AGENTS),
+    includeSkills: unique(MOBILE_SKILLS, BE_SKILLS),
   },
   {
     name: "desktop-app-fullstack",
     label: "Desktop App Fullstack",
     description: "Desktop + Backend",
-    includeAgents: [...COMMON_AGENTS, ...DESKTOP_AGENTS],
-    includeSkills: [...COMMON_SKILLS, ...DESKTOP_SKILLS],
+    includeAgents: unique(DESKTOP_AGENTS, BE_AGENTS),
+    includeSkills: unique(DESKTOP_SKILLS, BE_SKILLS),
   },
   {
     name: "backend-only",
     label: "Backend Only",
     description: "Backend APIs only",
-    includeAgents: [...COMMON_AGENTS],
-    includeSkills: [...COMMON_SKILLS],
+    includeAgents: unique(BE_AGENTS),
+    includeSkills: unique(BE_SKILLS),
   },
   {
     name: "frontend-only",
     label: "Frontend Only",
     description: "Frontend development only",
-    includeAgents: [...COMMON_AGENTS, ...FE_AGENTS],
-    includeSkills: [...COMMON_SKILLS, ...FE_SKILLS],
+    includeAgents: unique(FE_AGENTS),
+    includeSkills: unique(FE_SKILLS),
   },
 ];
 

@@ -14,7 +14,12 @@ Covers NestJS interceptors for cross-cutting concerns — response wrapping, req
 ## 1. Basic Interceptor Structure
 
 ```typescript
-import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from "@nestjs/common";
+import {
+  Injectable,
+  NestInterceptor,
+  ExecutionContext,
+  CallHandler,
+} from "@nestjs/common";
 import { Observable } from "rxjs";
 import { tap, map } from "rxjs/operators";
 
@@ -41,7 +46,12 @@ export class LoggingInterceptor implements NestInterceptor {
 
 ```typescript
 // interceptors/transform.interceptor.ts
-import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from "@nestjs/common";
+import {
+  Injectable,
+  NestInterceptor,
+  ExecutionContext,
+  CallHandler,
+} from "@nestjs/common";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
@@ -52,8 +62,14 @@ export interface ApiResponse<T> {
 }
 
 @Injectable()
-export class TransformInterceptor<T> implements NestInterceptor<T, ApiResponse<T>> {
-  intercept(context: ExecutionContext, next: CallHandler<T>): Observable<ApiResponse<T>> {
+export class TransformInterceptor<T> implements NestInterceptor<
+  T,
+  ApiResponse<T>
+> {
+  intercept(
+    context: ExecutionContext,
+    next: CallHandler<T>,
+  ): Observable<ApiResponse<T>> {
     const req = context.switchToHttp().getRequest();
     return next.handle().pipe(
       map((data) => ({
@@ -75,7 +91,13 @@ app.useGlobalInterceptors(new TransformInterceptor());
 
 ```typescript
 // interceptors/logging.interceptor.ts
-import { Injectable, NestInterceptor, ExecutionContext, CallHandler, Logger } from "@nestjs/common";
+import {
+  Injectable,
+  NestInterceptor,
+  ExecutionContext,
+  CallHandler,
+  Logger,
+} from "@nestjs/common";
 import { Observable } from "rxjs";
 import { tap, catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
@@ -112,7 +134,12 @@ export class LoggingInterceptor implements NestInterceptor {
 
 ```typescript
 // interceptors/timing.interceptor.ts
-import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from "@nestjs/common";
+import {
+  Injectable,
+  NestInterceptor,
+  ExecutionContext,
+  CallHandler,
+} from "@nestjs/common";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 
@@ -137,7 +164,13 @@ export class TimingInterceptor implements NestInterceptor {
 
 ```typescript
 // interceptors/cache.interceptor.ts
-import { Injectable, NestInterceptor, ExecutionContext, CallHandler, Inject } from "@nestjs/common";
+import {
+  Injectable,
+  NestInterceptor,
+  ExecutionContext,
+  CallHandler,
+  Inject,
+} from "@nestjs/common";
 import { Observable, of } from "rxjs";
 import { tap } from "rxjs/operators";
 
@@ -145,7 +178,10 @@ import { tap } from "rxjs/operators";
 export class HttpCacheInterceptor implements NestInterceptor {
   constructor(@Inject("REDIS_CLIENT") private readonly redis: RedisClient) {}
 
-  async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<unknown>> {
+  async intercept(
+    context: ExecutionContext,
+    next: CallHandler,
+  ): Promise<Observable<unknown>> {
     const req = context.switchToHttp().getRequest();
     if (req.method !== "GET") return next.handle();
 
@@ -205,7 +241,10 @@ import { LoggerModule } from "nestjs-pino";
     LoggerModule.forRoot({
       pinoHttp: {
         level: process.env.NODE_ENV === "production" ? "info" : "debug",
-        transport: process.env.NODE_ENV !== "production" ? { target: "pino-pretty" } : undefined,
+        transport:
+          process.env.NODE_ENV !== "production"
+            ? { target: "pino-pretty" }
+            : undefined,
         redact: ["req.headers.authorization"], // mask sensitive headers
       },
     }),

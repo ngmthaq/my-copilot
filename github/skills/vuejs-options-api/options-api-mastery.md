@@ -82,7 +82,9 @@ export default defineComponent({
   computed: {
     // ✅ Only re-filters when products or searchTerm changes
     filteredProducts(): Product[] {
-      return this.products.filter((p) => p.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
+      return this.products.filter((p) =>
+        p.name.toLowerCase().includes(this.searchTerm.toLowerCase()),
+      );
     },
     productCount(): number {
       return this.filteredProducts.length;

@@ -62,11 +62,15 @@ export function validate(schema: ValidationSchema) {
 import { validate } from "../middleware/validate";
 import { createUserSchema } from "../schemas/user.schema";
 
-router.post("/", validate({ body: createUserSchema.body }), async (req, res) => {
-  // req.body is validated and typed
-  const user = await userService.create(req.body);
-  res.status(201).json({ data: user });
-});
+router.post(
+  "/",
+  validate({ body: createUserSchema.body }),
+  async (req, res) => {
+    // req.body is validated and typed
+    const user = await userService.create(req.body);
+    res.status(201).json({ data: user });
+  },
+);
 ```
 
 ---
@@ -172,7 +176,9 @@ import { z } from "../lib/zod";
 export const paginationSchema = z.object({
   page: z.coerce.number().int().positive().default(1),
   limit: z.coerce.number().int().positive().max(100).default(20),
-  sortBy: z.enum(["createdAt", "updatedAt", "name", "title"]).default("createdAt"),
+  sortBy: z
+    .enum(["createdAt", "updatedAt", "name", "title"])
+    .default("createdAt"),
   sortOrder: z.enum(["asc", "desc"]).default("desc"),
 });
 
@@ -198,12 +204,16 @@ export type ListPostsQuery = z.infer<typeof listPostsSchema.query>;
 ### Usage with Pagination
 
 ```typescript
-router.get("/", validate({ query: listPostsSchema.query }), async (req, res) => {
-  // req.query is validated and transformed:
-  // page/limit are numbers (coerced from strings), published is boolean
-  const posts = await postService.list(req.query as ListPostsQuery);
-  res.json(posts);
-});
+router.get(
+  "/",
+  validate({ query: listPostsSchema.query }),
+  async (req, res) => {
+    // req.query is validated and transformed:
+    // page/limit are numbers (coerced from strings), published is boolean
+    const posts = await postService.list(req.query as ListPostsQuery);
+    res.json(posts);
+  },
+);
 ```
 
 ---
@@ -224,10 +234,15 @@ export const uuidParamSchema = z.object({
 
 ```typescript
 // Usage — combine param + body validation
-router.put("/:id", authenticate, validate({ params: idParamSchema, body: updatePostSchema.body }), async (req, res) => {
-  const post = await postService.update(req.params.id, req.body);
-  res.json({ data: post });
-});
+router.put(
+  "/:id",
+  authenticate,
+  validate({ params: idParamSchema, body: updatePostSchema.body }),
+  async (req, res) => {
+    const post = await postService.update(req.params.id, req.body);
+    res.json({ data: post });
+  },
+);
 ```
 
 ---
@@ -319,8 +334,15 @@ const searchSchema = z.object({
 
 ```typescript
 const fileUploadSchema = z.object({
-  filename: z.string().regex(/^[a-zA-Z0-9_-]+\.[a-zA-Z]{2,4}$/, "Invalid filename"),
-  mimeType: z.enum(["image/jpeg", "image/png", "image/webp", "application/pdf"]),
+  filename: z
+    .string()
+    .regex(/^[a-zA-Z0-9_-]+\.[a-zA-Z]{2,4}$/, "Invalid filename"),
+  mimeType: z.enum([
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "application/pdf",
+  ]),
   size: z.number().max(5 * 1024 * 1024, "File must be under 5MB"),
 });
 
@@ -331,7 +353,10 @@ const createUserSchema = z
       .string()
       .min(3)
       .max(30)
-      .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores"),
+      .regex(
+        /^[a-zA-Z0-9_]+$/,
+        "Username can only contain letters, numbers, and underscores",
+      ),
     email: z.string().email(),
     password: z.string().min(8),
     confirmPassword: z.string(),
@@ -373,12 +398,21 @@ const apiKeyHeaderSchema = z.object({
 });
 
 const contentTypeSchema = z.object({
-  "content-type": z.string().refine((val) => val.includes("application/json"), "Content-Type must be application/json"),
+  "content-type": z
+    .string()
+    .refine(
+      (val) => val.includes("application/json"),
+      "Content-Type must be application/json",
+    ),
 });
 
-router.post("/webhook", validate({ headers: apiKeyHeaderSchema }), async (req, res) => {
-  // x-api-key header is guaranteed to be present
-});
+router.post(
+  "/webhook",
+  validate({ headers: apiKeyHeaderSchema }),
+  async (req, res) => {
+    // x-api-key header is guaranteed to be present
+  },
+);
 ```
 
 ---

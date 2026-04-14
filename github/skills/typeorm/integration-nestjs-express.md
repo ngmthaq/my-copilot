@@ -233,7 +233,9 @@ const userRepository = AppDataSource.getRepository(User);
 
 export const UserService = {
   async findAll() {
-    return userRepository.find({ select: { id: true, email: true, name: true } });
+    return userRepository.find({
+      select: { id: true, email: true, name: true },
+    });
   },
 
   async findById(id: number) {

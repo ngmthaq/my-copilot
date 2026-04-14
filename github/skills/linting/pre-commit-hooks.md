@@ -169,7 +169,22 @@ export default {
   extends: ["@commitlint/config-conventional"],
   rules: {
     // Type must be one of the listed values
-    "type-enum": [2, "always", ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert", "ci"]],
+    "type-enum": [
+      2,
+      "always",
+      [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert",
+        "ci",
+      ],
+    ],
     // Subject must not end with a period
     "subject-full-stop": [2, "never", "."],
     // Max header length

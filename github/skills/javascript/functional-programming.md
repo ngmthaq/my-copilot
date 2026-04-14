@@ -256,7 +256,11 @@ Maybe(user)
 ```javascript
 // Recursive with base case
 function flatten(arr) {
-  return arr.reduce((flat, item) => (Array.isArray(item) ? [...flat, ...flatten(item)] : [...flat, item]), []);
+  return arr.reduce(
+    (flat, item) =>
+      Array.isArray(item) ? [...flat, ...flatten(item)] : [...flat, item],
+    [],
+  );
 }
 flatten([1, [2, [3, [4]]]]); // [1, 2, 3, 4]
 

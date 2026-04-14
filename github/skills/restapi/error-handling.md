@@ -39,7 +39,10 @@ When input validation fails (400 or 422), include per-field details:
     "message": "Validation failed.",
     "details": [
       { "field": "email", "message": "Email is required." },
-      { "field": "password", "message": "Password must be at least 8 characters." }
+      {
+        "field": "password",
+        "message": "Password must be at least 8 characters."
+      }
     ]
   }
 }

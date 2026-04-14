@@ -14,7 +14,15 @@ Covers resolver implementation in NestJS — `@Resolver`, `@ResolveField`, `@Par
 ## 1. Basic Resolver
 
 ```typescript
-import { Resolver, Query, Mutation, Args, ID, ResolveField, Parent } from "@nestjs/graphql";
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ID,
+  ResolveField,
+  Parent,
+} from "@nestjs/graphql";
 import { User } from "./models/user.model";
 import { UserService } from "./user.service";
 
@@ -39,7 +47,10 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
-  async updateUser(@Args("id", { type: () => ID }) id: string, @Args("input") input: UpdateUserInput) {
+  async updateUser(
+    @Args("id", { type: () => ID }) id: string,
+    @Args("input") input: UpdateUserInput,
+  ) {
     return this.userService.update(id, input);
   }
 
@@ -119,10 +130,12 @@ export class UserResolver {
 import { createParamDecorator, ExecutionContext } from "@nestjs/common";
 import { GqlExecutionContext } from "@nestjs/graphql";
 
-export const CurrentUser = createParamDecorator((data: unknown, context: ExecutionContext) => {
-  const ctx = GqlExecutionContext.create(context);
-  return ctx.getContext().req.user;
-});
+export const CurrentUser = createParamDecorator(
+  (data: unknown, context: ExecutionContext) => {
+    const ctx = GqlExecutionContext.create(context);
+    return ctx.getContext().req.user;
+  },
+);
 ```
 
 ---
@@ -132,7 +145,9 @@ export const CurrentUser = createParamDecorator((data: unknown, context: Executi
 ```typescript
 @Resolver(() => Post)
 export class PostResolver {
-  constructor(@Inject(UserLoader) private readonly userLoader: DataLoader<string, User>) {}
+  constructor(
+    @Inject(UserLoader) private readonly userLoader: DataLoader<string, User>,
+  ) {}
 
   @ResolveField(() => User)
   async author(@Parent() post: Post) {
@@ -151,7 +166,10 @@ export class PostResolver {
 export class SearchResolver {
   @Query(() => [SearchResultUnion])
   async search(@Args("query") query: string) {
-    const [users, posts] = await Promise.all([this.userService.search(query), this.postService.search(query)]);
+    const [users, posts] = await Promise.all([
+      this.userService.search(query),
+      this.postService.search(query),
+    ]);
     return [...users, ...posts];
   }
 

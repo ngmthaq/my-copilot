@@ -182,7 +182,14 @@ Check events are written to `logs/copilot/license-checker/check.log` in JSON Lin
   "mode": "warn",
   "dependencies_checked": 3,
   "violation_count": 1,
-  "violations": [{ "package": "readline-sync", "ecosystem": "npm", "license": "GPL-3.0", "status": "BLOCKED" }]
+  "violations": [
+    {
+      "package": "readline-sync",
+      "ecosystem": "npm",
+      "license": "GPL-3.0",
+      "status": "BLOCKED"
+    }
+  ]
 }
 ```
 

@@ -261,7 +261,9 @@ npm install --save-dev @typescript-eslint/parser @typescript-eslint/utils
 // rules/no-unsafe-any.js
 import { ESLintUtils } from "@typescript-eslint/utils";
 
-const createRule = ESLintUtils.RuleCreator((name) => `https://example.com/rules/${name}`);
+const createRule = ESLintUtils.RuleCreator(
+  (name) => `https://example.com/rules/${name}`,
+);
 
 export default createRule({
   name: "no-unsafe-any",
@@ -304,7 +306,9 @@ return {
   },
 
   // Match console.log calls
-  'CallExpression[callee.object.name="console"][callee.property.name="log"]'(node) {
+  'CallExpression[callee.object.name="console"][callee.property.name="log"]'(
+    node,
+  ) {
     context.report({ node, messageId: "noConsoleLog" });
   },
 

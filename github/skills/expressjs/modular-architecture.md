@@ -182,7 +182,9 @@ import { prisma } from "./lib/prisma";
 import { logger } from "./lib/logger";
 
 const server = app.listen(config.app.port, config.app.host, () => {
-  logger.info(`Server running on http://${config.app.host}:${config.app.port} [${config.app.nodeEnv}]`);
+  logger.info(
+    `Server running on http://${config.app.host}:${config.app.port} [${config.app.nodeEnv}]`,
+  );
 });
 
 async function gracefulShutdown() {
@@ -360,7 +362,16 @@ import { ListPostsQuery } from "../../dto/common.dto";
 
 export class PostService {
   async list(query: ListPostsQuery) {
-    const { page, limit, sortBy, sortOrder, search, published, authorId, categoryId } = query;
+    const {
+      page,
+      limit,
+      sortBy,
+      sortOrder,
+      search,
+      published,
+      authorId,
+      categoryId,
+    } = query;
     const skip = (page - 1) * limit;
 
     const where = {
@@ -413,7 +424,11 @@ export class PostService {
 
   async delete(id: string, userId: string, userRole: string) {
     const post = await this.getById(id);
-    if (post.authorId !== userId && userRole !== "ADMIN" && userRole !== "SUPER_ADMIN") {
+    if (
+      post.authorId !== userId &&
+      userRole !== "ADMIN" &&
+      userRole !== "SUPER_ADMIN"
+    ) {
       throw new ForbiddenError("Access denied");
     }
     return postRepository.delete(id);
@@ -488,7 +503,11 @@ export class PostController {
   });
 
   update = requestHandler(async (req, res) => {
-    const post = await postService.update(req.params.id, req.body, req.user!.userId);
+    const post = await postService.update(
+      req.params.id,
+      req.body,
+      req.user!.userId,
+    );
     res.json({ data: post });
   });
 
@@ -509,19 +528,33 @@ import { authService } from "./auth.service";
 export class AuthController {
   register = requestHandler(async (req, res) => {
     const result = await authService.register(req.body);
-    res.cookie("refreshToken", result.refreshToken, authService.cookieOptions());
-    res.status(201).json({ accessToken: result.accessToken, user: result.user });
+    res.cookie(
+      "refreshToken",
+      result.refreshToken,
+      authService.cookieOptions(),
+    );
+    res
+      .status(201)
+      .json({ accessToken: result.accessToken, user: result.user });
   });
 
   login = requestHandler(async (req, res) => {
     const result = await authService.login(req.body);
-    res.cookie("refreshToken", result.refreshToken, authService.cookieOptions());
+    res.cookie(
+      "refreshToken",
+      result.refreshToken,
+      authService.cookieOptions(),
+    );
     res.json({ accessToken: result.accessToken, user: result.user });
   });
 
   refresh = requestHandler(async (req, res) => {
     const result = await authService.refresh(req.cookies.refreshToken);
-    res.cookie("refreshToken", result.refreshToken, authService.cookieOptions());
+    res.cookie(
+      "refreshToken",
+      result.refreshToken,
+      authService.cookieOptions(),
+    );
     res.json({ accessToken: result.accessToken });
   });
 
@@ -559,8 +592,18 @@ import { paginationSchema } from "../../dto/common.dto";
 
 const router = Router();
 
-router.get("/", authenticate, validate({ query: paginationSchema }), userController.list);
-router.get("/:id", authenticate, validate({ params: getUserSchema.params }), userController.getById);
+router.get(
+  "/",
+  authenticate,
+  validate({ query: paginationSchema }),
+  userController.list,
+);
+router.get(
+  "/:id",
+  authenticate,
+  validate({ params: getUserSchema.params }),
+  userController.getById,
+);
 router.post(
   "/",
   authenticate,
@@ -596,16 +639,30 @@ import { listPostsSchema, idParamSchema } from "../../dto/common.dto";
 
 const router = Router();
 
-router.get("/", validate({ query: listPostsSchema.query }), postController.list);
+router.get(
+  "/",
+  validate({ query: listPostsSchema.query }),
+  postController.list,
+);
 router.get("/:id", validate({ params: idParamSchema }), postController.getById);
-router.post("/", authenticate, validate({ body: createPostSchema.body }), postController.create);
+router.post(
+  "/",
+  authenticate,
+  validate({ body: createPostSchema.body }),
+  postController.create,
+);
 router.put(
   "/:id",
   authenticate,
   validate({ params: idParamSchema, body: updatePostSchema.body }),
   postController.update,
 );
-router.delete("/:id", authenticate, validate({ params: idParamSchema }), postController.delete);
+router.delete(
+  "/:id",
+  authenticate,
+  validate({ params: idParamSchema }),
+  postController.delete,
+);
 
 export { router as postRoutes };
 ```
@@ -620,8 +677,16 @@ import { loginSchema, registerSchema } from "./dto";
 
 const router = Router();
 
-router.post("/register", validate({ body: registerSchema.body }), authController.register);
-router.post("/login", validate({ body: loginSchema.body }), authController.login);
+router.post(
+  "/register",
+  validate({ body: registerSchema.body }),
+  authController.register,
+);
+router.post(
+  "/login",
+  validate({ body: loginSchema.body }),
+  authController.login,
+);
 router.post("/refresh", authController.refresh);
 router.post("/logout", authController.logout);
 router.post("/logout-all", authenticate, authController.logoutAll);
@@ -637,7 +702,11 @@ import { prisma } from "../../lib/prisma";
 const router = Router();
 
 router.get("/", (_req, res) => {
-  res.json({ status: "ok", timestamp: new Date().toISOString(), uptime: process.uptime() });
+  res.json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+  });
 });
 
 router.get("/ready", async (_req, res) => {
@@ -684,7 +753,11 @@ export class AuthService {
 
 ```typescript
 // src/utils/pagination.ts
-export function buildPaginationMeta(total: number, page: number, limit: number) {
+export function buildPaginationMeta(
+  total: number,
+  page: number,
+  limit: number,
+) {
   return {
     page,
     limit,

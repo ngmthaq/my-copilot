@@ -95,8 +95,10 @@ throw new NotFoundError("User", userId);
 try {
   await findUser(id);
 } catch (err) {
-  if (err instanceof NotFoundError) return res.status(404).json({ error: err.message });
-  if (err instanceof ValidationError) return res.status(400).json({ error: err.message });
+  if (err instanceof NotFoundError)
+    return res.status(404).json({ error: err.message });
+  if (err instanceof ValidationError)
+    return res.status(400).json({ error: err.message });
   throw err;
 }
 ```

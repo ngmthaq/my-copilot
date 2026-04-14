@@ -48,7 +48,9 @@ import AppButton from "./AppButton.vue";
 describe("AppButton", () => {
   it("renders slot content", () => {
     render(AppButton, { slots: { default: "Click me" } });
-    expect(screen.getByRole("button", { name: /click me/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /click me/i }),
+    ).toBeInTheDocument();
   });
 
   it("emits click when clicked", async () => {
@@ -61,7 +63,10 @@ describe("AppButton", () => {
   });
 
   it("is disabled when loading is true", () => {
-    render(AppButton, { props: { loading: true }, slots: { default: "Click me" } });
+    render(AppButton, {
+      props: { loading: true },
+      slots: { default: "Click me" },
+    });
     expect(screen.getByRole("button")).toBeDisabled();
   });
 });
@@ -133,7 +138,10 @@ const vuetify = createVuetify({ components, directives });
 
 export function renderWithProviders(
   component: Component,
-  options: RenderOptions & { props?: Record<string, unknown>; slots?: Record<string, string> } = {},
+  options: RenderOptions & {
+    props?: Record<string, unknown>;
+    slots?: Record<string, string>;
+  } = {},
 ) {
   const router = createRouter({
     history: createMemoryHistory(),
@@ -162,7 +170,11 @@ In Options API components, API calls happen in service classes. Mock the service
 // Mock a service module
 vi.mock("@/services/userService", () => ({
   userService: {
-    getUsers: vi.fn().mockResolvedValue([{ id: "1", name: "Alice", email: "alice@example.com", role: "admin" }]),
+    getUsers: vi
+      .fn()
+      .mockResolvedValue([
+        { id: "1", name: "Alice", email: "alice@example.com", role: "admin" },
+      ]),
     createUser: vi.fn().mockResolvedValue({ id: "3", name: "Charlie" }),
     deleteUser: vi.fn().mockResolvedValue(undefined),
   },

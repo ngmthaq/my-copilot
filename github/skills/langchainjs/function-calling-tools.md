@@ -46,7 +46,9 @@ const calculatorTool = tool(
     name: "calculator",
     description: "Perform basic math operations",
     schema: z.object({
-      operation: z.enum(["add", "subtract", "multiply", "divide"]).describe("The math operation"),
+      operation: z
+        .enum(["add", "subtract", "multiply", "divide"])
+        .describe("The math operation"),
       a: z.number().describe("First number"),
       b: z.number().describe("Second number"),
     }),
@@ -184,7 +186,9 @@ const modelWithBuiltIn = model.bindTools([
   { type: "web_search_preview" }, // OpenAI built-in web search
 ]);
 
-const response = await modelWithBuiltIn.invoke("What are the latest news about LangChain?");
+const response = await modelWithBuiltIn.invoke(
+  "What are the latest news about LangChain?",
+);
 ```
 
 ---

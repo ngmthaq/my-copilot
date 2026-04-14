@@ -11,7 +11,12 @@ description: "HTML media elements — images, responsive images (srcset, picture
 
 ```html
 <!-- Informational image: descriptive alt text -->
-<img src="/photos/team.jpg" alt="Our team at the 2025 company retreat" width="800" height="600" />
+<img
+  src="/photos/team.jpg"
+  alt="Our team at the 2025 company retreat"
+  width="800"
+  height="600"
+/>
 
 <!-- Decorative image: empty alt -->
 <img src="/decorations/divider.svg" alt="" />
@@ -34,7 +39,12 @@ description: "HTML media elements — images, responsive images (srcset, picture
 <!-- Browser picks the best image based on viewport width -->
 <img
   src="/img/hero-800.jpg"
-  srcset="/img/hero-400.jpg 400w, /img/hero-800.jpg 800w, /img/hero-1200.jpg 1200w, /img/hero-1600.jpg 1600w"
+  srcset="
+    /img/hero-400.jpg   400w,
+    /img/hero-800.jpg   800w,
+    /img/hero-1200.jpg 1200w,
+    /img/hero-1600.jpg 1600w
+  "
   sizes="(max-width: 600px) 100vw,
             (max-width: 1200px) 50vw,
             33vw"
@@ -76,8 +86,16 @@ description: "HTML media elements — images, responsive images (srcset, picture
 
 <!-- Combined: art direction + format -->
 <picture>
-  <source media="(min-width: 1024px)" type="image/avif" srcset="/hero-wide.avif" />
-  <source media="(min-width: 1024px)" type="image/webp" srcset="/hero-wide.webp" />
+  <source
+    media="(min-width: 1024px)"
+    type="image/avif"
+    srcset="/hero-wide.avif"
+  />
+  <source
+    media="(min-width: 1024px)"
+    type="image/webp"
+    srcset="/hero-wide.webp"
+  />
   <source media="(min-width: 1024px)" srcset="/hero-wide.jpg" />
   <source type="image/avif" srcset="/hero-narrow.avif" />
   <source type="image/webp" srcset="/hero-narrow.webp" />
@@ -92,7 +110,12 @@ description: "HTML media elements — images, responsive images (srcset, picture
 ```html
 <!-- Image with caption -->
 <figure>
-  <img src="/chart.png" alt="Bar chart showing revenue by quarter" width="600" height="400" />
+  <img
+    src="/chart.png"
+    alt="Bar chart showing revenue by quarter"
+    width="600"
+    height="400"
+  />
   <figcaption>Figure 1: Revenue by quarter, FY 2025</figcaption>
 </figure>
 
@@ -117,17 +140,38 @@ description: "HTML media elements — images, responsive images (srcset, picture
 
 ```html
 <!-- Basic video with controls -->
-<video src="/demo.mp4" controls width="640" height="360" poster="/demo-poster.jpg" preload="metadata">
-  <p>Your browser doesn't support HTML video. <a href="/demo.mp4">Download the video</a>.</p>
+<video
+  src="/demo.mp4"
+  controls
+  width="640"
+  height="360"
+  poster="/demo-poster.jpg"
+  preload="metadata"
+>
+  <p>
+    Your browser doesn't support HTML video.
+    <a href="/demo.mp4">Download the video</a>.
+  </p>
 </video>
 
 <!-- Multiple sources with captions (WCAG 1.2.2) -->
 <video controls width="640" height="360" preload="metadata">
   <source src="/demo.mp4" type="video/mp4" />
   <source src="/demo.webm" type="video/webm" />
-  <track kind="captions" src="/demo-en.vtt" srclang="en" label="English" default />
+  <track
+    kind="captions"
+    src="/demo-en.vtt"
+    srclang="en"
+    label="English"
+    default
+  />
   <track kind="captions" src="/demo-es.vtt" srclang="es" label="Español" />
-  <track kind="descriptions" src="/demo-desc.vtt" srclang="en" label="Audio descriptions" />
+  <track
+    kind="descriptions"
+    src="/demo-desc.vtt"
+    srclang="en"
+    label="Audio descriptions"
+  />
 </video>
 ```
 
@@ -162,7 +206,10 @@ description: "HTML media elements — images, responsive images (srcset, picture
 <audio controls preload="metadata">
   <source src="/podcast.mp3" type="audio/mpeg" />
   <source src="/podcast.ogg" type="audio/ogg" />
-  <p>Your browser doesn't support HTML audio. <a href="/podcast.mp3">Download the episode</a>.</p>
+  <p>
+    Your browser doesn't support HTML audio.
+    <a href="/podcast.mp3">Download the episode</a>.
+  </p>
 </audio>
 ```
 
@@ -178,10 +225,23 @@ description: "HTML media elements — images, responsive images (srcset, picture
 <img src="/photo.jpg" alt="..." loading="lazy" width="400" height="300" />
 
 <!-- Eager-load above-the-fold (LCP) images -->
-<img src="/hero.jpg" alt="..." loading="eager" fetchpriority="high" width="1200" height="600" />
+<img
+  src="/hero.jpg"
+  alt="..."
+  loading="eager"
+  fetchpriority="high"
+  width="1200"
+  height="600"
+/>
 
 <!-- Lazy-load iframes -->
-<iframe src="/widget" loading="lazy" width="600" height="400" title="Interactive widget"></iframe>
+<iframe
+  src="/widget"
+  loading="lazy"
+  width="600"
+  height="400"
+  title="Interactive widget"
+></iframe>
 ```
 
 ### Rules

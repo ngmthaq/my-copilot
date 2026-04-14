@@ -57,8 +57,14 @@ export default tseslint.config(
     },
     rules: {
       "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-      "@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        { prefer: "type-imports" },
+      ],
       "@typescript-eslint/no-floating-promises": "error",
       "@typescript-eslint/await-thenable": "error",
     },
@@ -107,7 +113,14 @@ export default [
       "import/order": [
         "error",
         {
-          groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
+          ],
           "newlines-between": "always",
           alphabetize: { order: "asc", caseInsensitive: true },
         },
@@ -220,7 +233,10 @@ export default [
       "vue/no-v-html": "warn",
       "vue/require-v-for-key": "error",
       "vue/multi-word-component-names": "warn",
-      "vue/define-macros-order": ["error", { order: ["defineProps", "defineEmits"] }],
+      "vue/define-macros-order": [
+        "error",
+        { order: ["defineProps", "defineEmits"] },
+      ],
     },
   },
 ];

@@ -43,7 +43,9 @@ export class AuthModule {}
 // Consume with @Inject
 @Injectable()
 export class AuthService {
-  constructor(@Inject("JWT_CONFIG") private readonly jwtConfig: typeof JWT_CONFIG) {}
+  constructor(
+    @Inject("JWT_CONFIG") private readonly jwtConfig: typeof JWT_CONFIG,
+  ) {}
 }
 ```
 
@@ -73,7 +75,9 @@ export class RedisModule {}
 // Consume
 @Injectable()
 export class CacheService {
-  constructor(@Inject("REDIS_CLIENT") private readonly redis: RedisClientType) {}
+  constructor(
+    @Inject("REDIS_CLIENT") private readonly redis: RedisClientType,
+  ) {}
 }
 ```
 
@@ -85,7 +89,8 @@ export class CacheService {
 // Select a different class based on environment
 const mailerProvider = {
   provide: MailerService,
-  useClass: process.env.NODE_ENV === "test" ? MockMailerService : SmtpMailerService,
+  useClass:
+    process.env.NODE_ENV === "test" ? MockMailerService : SmtpMailerService,
 };
 
 @Module({ providers: [mailerProvider], exports: [MailerService] })
@@ -116,7 +121,10 @@ import { InjectionToken } from "@nestjs/common";
 export const MAILER_OPTIONS: InjectionToken = Symbol("MAILER_OPTIONS");
 
 @Module({
-  providers: [{ provide: MAILER_OPTIONS, useValue: { from: "noreply@example.com" } }, MailerService],
+  providers: [
+    { provide: MAILER_OPTIONS, useValue: { from: "noreply@example.com" } },
+    MailerService,
+  ],
 })
 export class MailerModule {}
 

@@ -104,7 +104,9 @@ dotenv.config();
 
 const envSchema = z.object({
   // App
-  NODE_ENV: z.enum(["development", "staging", "production", "test"]).default("development"),
+  NODE_ENV: z
+    .enum(["development", "staging", "production", "test"])
+    .default("development"),
   PORT: z.coerce.number().int().positive().default(3000),
   HOST: z.string().default("localhost"),
 
@@ -134,7 +136,9 @@ const envSchema = z.object({
   EMAIL_FROM: z.string().email().optional(),
 
   // Logging
-  LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace"]).default("info"),
+  LOG_LEVEL: z
+    .enum(["fatal", "error", "warn", "info", "debug", "trace"])
+    .default("info"),
 });
 
 const parsed = envSchema.safeParse(process.env);
@@ -160,7 +164,9 @@ export type Env = z.infer<typeof envSchema>;
 import { env } from "./config/env";
 
 app.listen(env.PORT, env.HOST, () => {
-  console.log(`Server running on http://${env.HOST}:${env.PORT} [${env.NODE_ENV}]`);
+  console.log(
+    `Server running on http://${env.HOST}:${env.PORT} [${env.NODE_ENV}]`,
+  );
 });
 ```
 
@@ -191,7 +197,9 @@ dotenv.config();
 
 export const env = createEnv({
   server: {
-    NODE_ENV: z.enum(["development", "staging", "production", "test"]).default("development"),
+    NODE_ENV: z
+      .enum(["development", "staging", "production", "test"])
+      .default("development"),
     PORT: z.coerce.number().default(3000),
     DATABASE_URL: z.string().url(),
     JWT_ACCESS_SECRET: z.string().min(32),
@@ -370,7 +378,10 @@ openssl rand -base64 48
 ```typescript
 // src/config/secrets.ts
 // Example: AWS Secrets Manager
-import { SecretsManagerClient, GetSecretValueCommand } from "@aws-sdk/client-secrets-manager";
+import {
+  SecretsManagerClient,
+  GetSecretValueCommand,
+} from "@aws-sdk/client-secrets-manager";
 
 const client = new SecretsManagerClient({ region: "us-east-1" });
 

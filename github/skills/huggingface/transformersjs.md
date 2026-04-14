@@ -53,7 +53,10 @@ const result = await classifier("I love transformers!");
 // [{ label: 'POSITIVE', score: 0.9998 }]
 
 // With a specific model
-const pipe = await pipeline("sentiment-analysis", "Xenova/bert-base-multilingual-uncased-sentiment");
+const pipe = await pipeline(
+  "sentiment-analysis",
+  "Xenova/bert-base-multilingual-uncased-sentiment",
+);
 const output = await pipe("This product is amazing!");
 ```
 
@@ -92,7 +95,10 @@ const output = await pipe("This product is amazing!");
 ### Text Classification
 
 ```javascript
-const classifier = await pipeline("text-classification", "Xenova/distilbert-base-uncased-finetuned-sst-2-english");
+const classifier = await pipeline(
+  "text-classification",
+  "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
+);
 const result = await classifier("I love this product!");
 // [{ label: 'POSITIVE', score: 0.9998 }]
 ```
@@ -108,10 +114,14 @@ const result = await ner("Hugging Face is based in New York City.");
 ### Text Generation
 
 ```javascript
-const generator = await pipeline("text-generation", "onnx-community/Qwen2.5-0.5B-Instruct", {
-  dtype: "q4",
-  device: "webgpu",
-});
+const generator = await pipeline(
+  "text-generation",
+  "onnx-community/Qwen2.5-0.5B-Instruct",
+  {
+    dtype: "q4",
+    device: "webgpu",
+  },
+);
 
 const messages = [
   { role: "system", content: "You are a helpful assistant." },
@@ -125,7 +135,10 @@ console.log(output[0].generated_text.at(-1).content);
 ### Translation
 
 ```javascript
-const translator = await pipeline("translation", "Xenova/nllb-200-distilled-600M");
+const translator = await pipeline(
+  "translation",
+  "Xenova/nllb-200-distilled-600M",
+);
 const result = await translator("Hello, how are you?", {
   src_lang: "eng_Latn",
   tgt_lang: "fra_Latn",
@@ -136,9 +149,13 @@ const result = await translator("Hello, how are you?", {
 ### Speech Recognition
 
 ```javascript
-const transcriber = await pipeline("automatic-speech-recognition", "onnx-community/whisper-tiny.en", {
-  device: "webgpu",
-});
+const transcriber = await pipeline(
+  "automatic-speech-recognition",
+  "onnx-community/whisper-tiny.en",
+  {
+    device: "webgpu",
+  },
+);
 
 const output = await transcriber("https://example.com/audio.wav");
 console.log(output.text);
@@ -147,9 +164,13 @@ console.log(output.text);
 ### Feature Extraction (Embeddings)
 
 ```javascript
-const extractor = await pipeline("feature-extraction", "mixedbread-ai/mxbai-embed-xsmall-v1", {
-  device: "webgpu",
-});
+const extractor = await pipeline(
+  "feature-extraction",
+  "mixedbread-ai/mxbai-embed-xsmall-v1",
+  {
+    device: "webgpu",
+  },
+);
 
 const texts = ["Hello world!", "This is an example sentence."];
 const embeddings = await extractor(texts, { pooling: "mean", normalize: true });
@@ -159,9 +180,13 @@ console.log(embeddings.tolist());
 ### Image Classification
 
 ```javascript
-const classifier = await pipeline("image-classification", "onnx-community/mobilenetv4_conv_small.e2400_r224_in1k", {
-  device: "webgpu",
-});
+const classifier = await pipeline(
+  "image-classification",
+  "onnx-community/mobilenetv4_conv_small.e2400_r224_in1k",
+  {
+    device: "webgpu",
+  },
+);
 
 const output = await classifier("https://example.com/cat.jpg");
 // [{ label: 'tabby cat', score: 0.92 }, ...]
@@ -170,7 +195,10 @@ const output = await classifier("https://example.com/cat.jpg");
 ### Zero-Shot Classification
 
 ```javascript
-const classifier = await pipeline("zero-shot-classification", "Xenova/mobilebert-uncased-mnli");
+const classifier = await pipeline(
+  "zero-shot-classification",
+  "Xenova/mobilebert-uncased-mnli",
+);
 const result = await classifier("I need to pay my electricity bill", {
   candidate_labels: ["urgent", "finance", "travel"],
 });
@@ -192,9 +220,13 @@ const pipe = await pipeline("sentiment-analysis");
 
 ```javascript
 // GPU acceleration via WebGPU
-const pipe = await pipeline("sentiment-analysis", "Xenova/distilbert-base-uncased-finetuned-sst-2-english", {
-  device: "webgpu",
-});
+const pipe = await pipeline(
+  "sentiment-analysis",
+  "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
+  {
+    device: "webgpu",
+  },
+);
 ```
 
 ### Rules
@@ -226,9 +258,13 @@ Quantized models reduce size and improve load time. Use `dtype` to select precis
 
 ```javascript
 // 4-bit quantization
-const pipe = await pipeline("sentiment-analysis", "Xenova/distilbert-base-uncased-finetuned-sst-2-english", {
-  dtype: "q4",
-});
+const pipe = await pipeline(
+  "sentiment-analysis",
+  "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
+  {
+    dtype: "q4",
+  },
+);
 ```
 
 ### Detecting Available dtypes
@@ -236,7 +272,9 @@ const pipe = await pipeline("sentiment-analysis", "Xenova/distilbert-base-uncase
 ```javascript
 import { ModelRegistry } from "@huggingface/transformers";
 
-const dtypes = await ModelRegistry.get_available_dtypes("onnx-community/all-MiniLM-L6-v2-ONNX");
+const dtypes = await ModelRegistry.get_available_dtypes(
+  "onnx-community/all-MiniLM-L6-v2-ONNX",
+);
 console.log(dtypes); // ['fp32', 'fp16', 'int8', 'uint8', 'q8', 'q4']
 ```
 
@@ -245,11 +283,17 @@ console.log(dtypes); // ['fp32', 'fp16', 'int8', 'uint8', 'q8', 'q4']
 ```javascript
 import { pipeline, ModelRegistry } from "@huggingface/transformers";
 
-const dtypes = await ModelRegistry.get_available_dtypes("onnx-community/Qwen3-0.6B-ONNX");
+const dtypes = await ModelRegistry.get_available_dtypes(
+  "onnx-community/Qwen3-0.6B-ONNX",
+);
 const preferred = ["q4", "q8", "fp16", "fp32"];
 const dtype = preferred.find((d) => dtypes.includes(d)) ?? "fp32";
 
-const generator = await pipeline("text-generation", "onnx-community/Qwen3-0.6B-ONNX", { dtype });
+const generator = await pipeline(
+  "text-generation",
+  "onnx-community/Qwen3-0.6B-ONNX",
+  { dtype },
+);
 ```
 
 ### Per-Module dtypes (Encoder-Decoder Models)
@@ -257,15 +301,18 @@ const generator = await pipeline("text-generation", "onnx-community/Qwen3-0.6B-O
 ```javascript
 import { Florence2ForConditionalGeneration } from "@huggingface/transformers";
 
-const model = await Florence2ForConditionalGeneration.from_pretrained("onnx-community/Florence-2-base-ft", {
-  dtype: {
-    embed_tokens: "fp16",
-    vision_encoder: "fp16",
-    encoder_model: "q4",
-    decoder_model_merged: "q4",
+const model = await Florence2ForConditionalGeneration.from_pretrained(
+  "onnx-community/Florence-2-base-ft",
+  {
+    dtype: {
+      embed_tokens: "fp16",
+      vision_encoder: "fp16",
+      encoder_model: "q4",
+      decoder_model_merged: "q4",
+    },
+    device: "webgpu",
   },
-  device: "webgpu",
-});
+);
 ```
 
 ---
@@ -275,19 +322,28 @@ const model = await Florence2ForConditionalGeneration.from_pretrained("onnx-comm
 Load models and tokenizers directly when you need more control than the pipeline API.
 
 ```javascript
-import { AutoTokenizer, AutoModel, AutoModelForCausalLM } from "@huggingface/transformers";
+import {
+  AutoTokenizer,
+  AutoModel,
+  AutoModelForCausalLM,
+} from "@huggingface/transformers";
 
 // Load tokenizer
-const tokenizer = await AutoTokenizer.from_pretrained("Xenova/bert-base-uncased");
+const tokenizer = await AutoTokenizer.from_pretrained(
+  "Xenova/bert-base-uncased",
+);
 
 // Load model
 const model = await AutoModel.from_pretrained("Xenova/bert-base-uncased");
 
 // Load with options
-const causalModel = await AutoModelForCausalLM.from_pretrained("onnx-community/Qwen2.5-0.5B-Instruct", {
-  dtype: "q4",
-  device: "webgpu",
-});
+const causalModel = await AutoModelForCausalLM.from_pretrained(
+  "onnx-community/Qwen2.5-0.5B-Instruct",
+  {
+    dtype: "q4",
+    device: "webgpu",
+  },
+);
 ```
 
 ### Available Auto Classes
@@ -315,9 +371,15 @@ Models are cached automatically after first download. In the browser, models are
 
 ```javascript
 // Models are cached by default — second load is instant
-const pipe1 = await pipeline("sentiment-analysis", "Xenova/distilbert-base-uncased-finetuned-sst-2-english");
+const pipe1 = await pipeline(
+  "sentiment-analysis",
+  "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
+);
 // Second call uses cached model
-const pipe2 = await pipeline("sentiment-analysis", "Xenova/distilbert-base-uncased-finetuned-sst-2-english");
+const pipe2 = await pipeline(
+  "sentiment-analysis",
+  "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
+);
 ```
 
 ### Custom Cache Directory (Node.js)
@@ -353,7 +415,10 @@ let classifier;
 
 self.onmessage = async (event) => {
   if (!classifier) {
-    classifier = await pipeline("sentiment-analysis", "Xenova/distilbert-base-uncased-finetuned-sst-2-english");
+    classifier = await pipeline(
+      "sentiment-analysis",
+      "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
+    );
   }
   const result = await classifier(event.data.text);
   self.postMessage(result);
@@ -370,7 +435,9 @@ export default function Classifier() {
   const [result, setResult] = useState(null);
 
   useEffect(() => {
-    workerRef.current = new Worker(new URL("./worker.js", import.meta.url), { type: "module" });
+    workerRef.current = new Worker(new URL("./worker.js", import.meta.url), {
+      type: "module",
+    });
     workerRef.current.onmessage = (event) => setResult(event.data);
     return () => workerRef.current?.terminate();
   }, []);
@@ -412,13 +479,19 @@ console.log(result);
 Track model download progress for better UX:
 
 ```javascript
-const pipe = await pipeline("sentiment-analysis", "Xenova/distilbert-base-uncased-finetuned-sst-2-english", {
-  progress_callback: (progress) => {
-    if (progress.status === "progress") {
-      console.log(`Downloading: ${progress.file} - ${Math.round(progress.progress)}%`);
-    }
+const pipe = await pipeline(
+  "sentiment-analysis",
+  "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
+  {
+    progress_callback: (progress) => {
+      if (progress.status === "progress") {
+        console.log(
+          `Downloading: ${progress.file} - ${Math.round(progress.progress)}%`,
+        );
+      }
+    },
   },
-});
+);
 ```
 
 ---

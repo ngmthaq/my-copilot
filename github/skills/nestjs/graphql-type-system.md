@@ -111,7 +111,14 @@ role: UserRole;
 ## 4. Input Types
 
 ```typescript
-import { InputType, Field, PartialType, OmitType, PickType, IntersectionType } from "@nestjs/graphql";
+import {
+  InputType,
+  Field,
+  PartialType,
+  OmitType,
+  PickType,
+  IntersectionType,
+} from "@nestjs/graphql";
 
 @InputType()
 export class CreateUserInput {
@@ -134,15 +141,24 @@ export class UpdateUserInput extends PartialType(CreateUserInput) {}
 
 // Omit — exclude fields
 @InputType()
-export class UpdateProfileInput extends OmitType(CreateUserInput, ["password", "role"]) {}
+export class UpdateProfileInput extends OmitType(CreateUserInput, [
+  "password",
+  "role",
+]) {}
 
 // Pick — select fields
 @InputType()
-export class LoginInput extends PickType(CreateUserInput, ["email", "password"]) {}
+export class LoginInput extends PickType(CreateUserInput, [
+  "email",
+  "password",
+]) {}
 
 // Intersection — merge two input types
 @InputType()
-export class CreateAdminInput extends IntersectionType(CreateUserInput, AdminMetadataInput) {}
+export class CreateAdminInput extends IntersectionType(
+  CreateUserInput,
+  AdminMetadataInput,
+) {}
 ```
 
 ---

@@ -269,13 +269,21 @@ export default defineComponent({
 <template>
   <v-data-table :headers="headers" :items="rows" :items-per-page="10" hover>
     <template #item.role="{ item }">
-      <v-chip :color="item.role === 'admin' ? 'primary' : 'default'" size="small">
+      <v-chip
+        :color="item.role === 'admin' ? 'primary' : 'default'"
+        size="small"
+      >
         {{ item.role }}
       </v-chip>
     </template>
 
     <template #item.actions="{ item }">
-      <v-btn icon="mdi-pencil" size="small" variant="text" @click="handleEdit(item)" />
+      <v-btn
+        icon="mdi-pencil"
+        size="small"
+        variant="text"
+        @click="handleEdit(item)"
+      />
     </template>
   </v-data-table>
 </template>
@@ -332,7 +340,13 @@ export default defineComponent({
   data() {
     return {
       colDefs: [
-        { field: "name", headerName: "Name", flex: 1, sortable: true, filter: true },
+        {
+          field: "name",
+          headerName: "Name",
+          flex: 1,
+          sortable: true,
+          filter: true,
+        },
         { field: "email", headerName: "Email", flex: 1 },
         { field: "role", headerName: "Role", width: 120 },
       ] as ColDef<User>[],
@@ -392,7 +406,9 @@ export default defineComponent({
       <v-card-actions>
         <v-spacer />
         <v-btn variant="text" @click="isOpen = false">Cancel</v-btn>
-        <v-btn color="error" variant="elevated" @click="handleDelete">Delete</v-btn>
+        <v-btn color="error" variant="elevated" @click="handleDelete"
+          >Delete</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -15,7 +15,11 @@ Covers writing well-structured NestJS services — business logic, error handlin
 
 ```typescript
 // user/user.service.ts
-import { Injectable, NotFoundException, ConflictException } from "@nestjs/common";
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from "@nestjs/common";
 import { PrismaService } from "../database/prisma.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";

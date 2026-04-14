@@ -35,7 +35,13 @@ export class User {
 
 ```typescript
 // src/entities/profile.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  JoinColumn,
+} from "typeorm";
 import { User } from "./user.entity";
 
 @Entity("profiles")
@@ -95,7 +101,14 @@ export class User {
 
 ```typescript
 // src/entities/post.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, Index } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  Index,
+} from "typeorm";
 import { User } from "./user.entity";
 
 @Entity("posts")
@@ -150,7 +163,13 @@ Posts can have many tags; tags can belong to many posts.
 
 ```typescript
 // src/entities/post.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  JoinTable,
+} from "typeorm";
 import { Tag } from "./tag.entity";
 
 @Entity("posts")
@@ -189,7 +208,13 @@ export class Tag {
 
 ```typescript
 // src/entities/post-tag.entity.ts
-import { Entity, ManyToOne, PrimaryColumn, Column, CreateDateColumn } from "typeorm";
+import {
+  Entity,
+  ManyToOne,
+  PrimaryColumn,
+  Column,
+  CreateDateColumn,
+} from "typeorm";
 import { Post } from "./post.entity";
 import { Tag } from "./tag.entity";
 

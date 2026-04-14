@@ -56,7 +56,9 @@ const response2 = await chain.invoke({
 import { PromptTemplate } from "@langchain/core/prompts";
 
 // Single string template
-const prompt = PromptTemplate.fromTemplate("Translate the following to {language}: {text}");
+const prompt = PromptTemplate.fromTemplate(
+  "Translate the following to {language}: {text}",
+);
 
 const formatted = await prompt.format({
   language: "Spanish",
@@ -70,7 +72,10 @@ const formatted = await prompt.format({
 ## 4. Few-Shot Prompting
 
 ```javascript
-import { FewShotChatMessagePromptTemplate, ChatPromptTemplate } from "@langchain/core/prompts";
+import {
+  FewShotChatMessagePromptTemplate,
+  ChatPromptTemplate,
+} from "@langchain/core/prompts";
 
 // Define example template
 const examplePrompt = ChatPromptTemplate.fromMessages([
@@ -111,9 +116,14 @@ const response = await chain.invoke({ input: "TypeScript" });
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 // Compose prompts from reusable parts
-const systemTemplate = ChatPromptTemplate.fromMessages([["system", "You are a {role}. Respond in {format} format."]]);
+const systemTemplate = ChatPromptTemplate.fromMessages([
+  ["system", "You are a {role}. Respond in {format} format."],
+]);
 
-const conversationTemplate = ChatPromptTemplate.fromMessages([...systemTemplate.promptMessages, ["human", "{input}"]]);
+const conversationTemplate = ChatPromptTemplate.fromMessages([
+  ...systemTemplate.promptMessages,
+  ["human", "{input}"],
+]);
 
 // MessagesPlaceholder for dynamic message insertion
 import { MessagesPlaceholder } from "@langchain/core/prompts";
@@ -168,7 +178,9 @@ console.log(result.skills); // ["TypeScript", "Python"]
 
 ```javascript
 const ReviewSchema = z.object({
-  sentiment: z.enum(["positive", "negative", "neutral"]).describe("Overall sentiment"),
+  sentiment: z
+    .enum(["positive", "negative", "neutral"])
+    .describe("Overall sentiment"),
   score: z.number().min(1).max(5).describe("Rating from 1 to 5"),
   summary: z.string().describe("Brief summary of the review"),
   topics: z

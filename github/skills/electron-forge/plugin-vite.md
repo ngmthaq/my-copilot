@@ -117,7 +117,9 @@ const createWindow = () => {
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
-    mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
+    mainWindow.loadFile(
+      path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
+    );
   }
 };
 ```
@@ -161,13 +163,17 @@ new VitePlugin({
 if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
   mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
 } else {
-  mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
+  mainWindow.loadFile(
+    path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
+  );
 }
 
 if (SETTINGS_WINDOW_VITE_DEV_SERVER_URL) {
   settingsWindow.loadURL(SETTINGS_WINDOW_VITE_DEV_SERVER_URL);
 } else {
-  settingsWindow.loadFile(path.join(__dirname, `../renderer/${SETTINGS_WINDOW_VITE_NAME}/index.html`));
+  settingsWindow.loadFile(
+    path.join(__dirname, `../renderer/${SETTINGS_WINDOW_VITE_NAME}/index.html`),
+  );
 }
 ```
 
@@ -218,7 +224,9 @@ export default defineConfig({ plugins: [svelte()] });
 // vite.renderer.config.ts
 export default defineConfig({
   define: {
-    "import.meta.env.APP_VERSION": JSON.stringify(process.env.npm_package_version),
+    "import.meta.env.APP_VERSION": JSON.stringify(
+      process.env.npm_package_version,
+    ),
   },
 });
 ```

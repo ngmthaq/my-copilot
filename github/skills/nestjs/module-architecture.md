@@ -41,7 +41,12 @@ import { PostModule } from "./post/post.module";
 import { DatabaseModule } from "./database/database.module";
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, UserModule, PostModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    DatabaseModule,
+    UserModule,
+    PostModule,
+  ],
 })
 export class AppModule {}
 ```
@@ -113,7 +118,10 @@ export class NotificationsModule {
     return {
       module: NotificationsModule,
       global: true,
-      providers: [{ provide: "NOTIFICATIONS_OPTIONS", useValue: options }, NotificationsService],
+      providers: [
+        { provide: "NOTIFICATIONS_OPTIONS", useValue: options },
+        NotificationsService,
+      ],
       exports: [NotificationsService],
     };
   }

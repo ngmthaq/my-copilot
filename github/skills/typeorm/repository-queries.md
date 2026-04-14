@@ -49,7 +49,9 @@ const activeUsers = await userRepository.find({
 const user = await userRepository.findOne({ where: { id: 1 } });
 
 // By any field
-const user = await userRepository.findOne({ where: { email: "alice@example.com" } });
+const user = await userRepository.findOne({
+  where: { email: "alice@example.com" },
+});
 
 // Returns null if not found — always check!
 if (!user) {
@@ -214,7 +216,10 @@ const posts = await postRepository
   .getMany();
 
 // Select specific columns
-const users = await userRepository.createQueryBuilder("user").select(["user.id", "user.email", "user.name"]).getMany();
+const users = await userRepository
+  .createQueryBuilder("user")
+  .select(["user.id", "user.email", "user.name"])
+  .getMany();
 ```
 
 ---

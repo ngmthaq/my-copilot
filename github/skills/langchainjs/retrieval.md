@@ -59,14 +59,20 @@ The simplest RAG chain: retrieve documents, stuff them into the prompt, generate
 
 ```javascript
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { RunnablePassthrough, RunnableSequence } from "@langchain/core/runnables";
+import {
+  RunnablePassthrough,
+  RunnableSequence,
+} from "@langchain/core/runnables";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { ChatOpenAI } from "@langchain/openai";
 
 const model = new ChatOpenAI({ modelName: "gpt-4o-mini" });
 
 const prompt = ChatPromptTemplate.fromMessages([
-  ["system", "Answer the question based only on the following context:\n\n{context}"],
+  [
+    "system",
+    "Answer the question based only on the following context:\n\n{context}",
+  ],
   ["human", "{question}"],
 ]);
 
@@ -106,7 +112,10 @@ function formatDocsWithSources(docs) {
 }
 
 const promptWithSources = ChatPromptTemplate.fromMessages([
-  ["system", "Answer the question based on the context below. Cite sources using [n] notation.\n\n{context}"],
+  [
+    "system",
+    "Answer the question based on the context below. Cite sources using [n] notation.\n\n{context}",
+  ],
   ["human", "{question}"],
 ]);
 
@@ -141,7 +150,9 @@ const multiQueryRetriever = MultiQueryRetriever.fromLLM({
 });
 
 // Generates 3 query variations, retrieves for each, deduplicates results
-const docs = await multiQueryRetriever.invoke("What are the benefits of using LangChain?");
+const docs = await multiQueryRetriever.invoke(
+  "What are the benefits of using LangChain?",
+);
 ```
 
 ### How It Works
@@ -313,7 +324,9 @@ const selfQueryRetriever = SelfQueryRetriever.fromLLM({
 });
 
 // Natural language → structured filter + semantic search
-const docs = await selfQueryRetriever.invoke("technical documents from 2024 about APIs");
+const docs = await selfQueryRetriever.invoke(
+  "technical documents from 2024 about APIs",
+);
 // Automatically filters: category="technical", year=2024, semantic search for "APIs"
 ```
 
@@ -322,21 +335,30 @@ const docs = await selfQueryRetriever.invoke("technical documents from 2024 abou
 ## 9. Conversational Retrieval (RAG with Memory)
 
 ```javascript
-import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
+import {
+  ChatPromptTemplate,
+  MessagesPlaceholder,
+} from "@langchain/core/prompts";
 import { RunnablePassthrough } from "@langchain/core/runnables";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
 
 // Prompt with chat history
 const prompt = ChatPromptTemplate.fromMessages([
-  ["system", "Answer based on the context and chat history. If you don't know, say so.\n\nContext:\n{context}"],
+  [
+    "system",
+    "Answer based on the context and chat history. If you don't know, say so.\n\nContext:\n{context}",
+  ],
   new MessagesPlaceholder("chatHistory"),
   ["human", "{question}"],
 ]);
 
 // Contextualize question based on history
 const contextualizePrompt = ChatPromptTemplate.fromMessages([
-  ["system", "Given the chat history and latest question, reformulate the question to be standalone."],
+  [
+    "system",
+    "Given the chat history and latest question, reformulate the question to be standalone.",
+  ],
   new MessagesPlaceholder("chatHistory"),
   ["human", "{question}"],
 ]);
@@ -355,7 +377,10 @@ function formatDocs(docs) {
 
 // Conversational RAG chain
 async function conversationalRag(question, chatHistory) {
-  const standaloneQuestion = await contextualizeQuestion({ question, chatHistory });
+  const standaloneQuestion = await contextualizeQuestion({
+    question,
+    chatHistory,
+  });
   const relevantDocs = await retriever.invoke(standaloneQuestion);
   const context = formatDocs(relevantDocs);
 
@@ -370,7 +395,10 @@ const answer1 = await conversationalRag("What is LangChain?", chatHistory);
 chatHistory.push(new HumanMessage("What is LangChain?"));
 chatHistory.push(new AIMessage(answer1));
 
-const answer2 = await conversationalRag("What tools does it support?", chatHistory);
+const answer2 = await conversationalRag(
+  "What tools does it support?",
+  chatHistory,
+);
 // "it" → contextualizer rewrites to "What tools does LangChain support?"
 ```
 

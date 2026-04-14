@@ -19,7 +19,10 @@ description: "HTML metadata & head — charset, viewport, title, meta tags, Open
   <title>Page Title — Site Name</title>
 
   <!-- Meta description (SEO, search result snippet) -->
-  <meta name="description" content="A concise 150-160 char description of the page content." />
+  <meta
+    name="description"
+    content="A concise 150-160 char description of the page content."
+  />
 
   <!-- Canonical URL (prevents duplicate content) -->
   <link rel="canonical" href="https://example.com/page" />
@@ -47,8 +50,16 @@ description: "HTML metadata & head — charset, viewport, title, meta tags, Open
 
 <!-- Theme color (browser UI tinting) -->
 <meta name="theme-color" content="#1a1a2e" />
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)" />
+<meta
+  name="theme-color"
+  content="#ffffff"
+  media="(prefers-color-scheme: light)"
+/>
+<meta
+  name="theme-color"
+  content="#1a1a2e"
+  media="(prefers-color-scheme: dark)"
+/>
 
 <!-- Language alternatives (hreflang) -->
 <link rel="alternate" hreflang="en" href="https://example.com/en/page" />
@@ -164,7 +175,10 @@ description: "HTML metadata & head — charset, viewport, title, meta tags, Open
 <!-- Google Fonts (optimized) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+/>
 ```
 
 ---

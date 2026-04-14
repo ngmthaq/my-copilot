@@ -30,7 +30,8 @@ Covers resolver implementation — the four arguments, parent chaining, field re
 ```typescript
 const resolvers = {
   Query: {
-    user: (_parent, { id }, { prisma }) => prisma.user.findUnique({ where: { id } }),
+    user: (_parent, { id }, { prisma }) =>
+      prisma.user.findUnique({ where: { id } }),
 
     users: (_parent, { filter, pagination }, { prisma }) => {
       const { page = 1, limit = 20 } = pagination || {};
@@ -48,9 +49,11 @@ const resolvers = {
   },
 
   Mutation: {
-    createUser: (_parent, { input }, { prisma }) => prisma.user.create({ data: input }),
+    createUser: (_parent, { input }, { prisma }) =>
+      prisma.user.create({ data: input }),
 
-    updateUser: (_parent, { id, input }, { prisma }) => prisma.user.update({ where: { id }, data: input }),
+    updateUser: (_parent, { id, input }, { prisma }) =>
+      prisma.user.update({ where: { id }, data: input }),
 
     deleteUser: async (_parent, { id }, { prisma }) => {
       await prisma.user.delete({ where: { id } });
@@ -68,13 +71,15 @@ const resolvers = {
 const resolvers = {
   User: {
     // parent = the User object from the parent resolver
-    posts: (parent, _args, { prisma }) => prisma.post.findMany({ where: { authorId: parent.id } }),
+    posts: (parent, _args, { prisma }) =>
+      prisma.post.findMany({ where: { authorId: parent.id } }),
 
     // Computed field
     fullName: (parent) => `${parent.firstName} ${parent.lastName}`,
 
     // With DataLoader (avoids N+1)
-    posts: (parent, _args, { loaders }) => loaders.postsByAuthor.load(parent.id),
+    posts: (parent, _args, { loaders }) =>
+      loaders.postsByAuthor.load(parent.id),
   },
 
   Post: {

@@ -74,7 +74,9 @@ const searchTerm = ref("");
 
 // ✅ Only re-filters when products or searchTerm changes
 const filtered = computed(() =>
-  products.value.filter((p) => p.name.toLowerCase().includes(searchTerm.value.toLowerCase())),
+  products.value.filter((p) =>
+    p.name.toLowerCase().includes(searchTerm.value.toLowerCase()),
+  ),
 );
 
 // In template: {{ filtered }} (automatically unwrapped)

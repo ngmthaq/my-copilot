@@ -83,10 +83,13 @@ const codeSplitter = RecursiveCharacterTextSplitter.fromLanguage("js", {
 });
 
 // For Markdown — splits on headers
-const markdownSplitter = RecursiveCharacterTextSplitter.fromLanguage("markdown", {
-  chunkSize: 1000,
-  chunkOverlap: 200,
-});
+const markdownSplitter = RecursiveCharacterTextSplitter.fromLanguage(
+  "markdown",
+  {
+    chunkSize: 1000,
+    chunkOverlap: 200,
+  },
+);
 ```
 
 ---
@@ -105,7 +108,11 @@ const vector = await embeddings.embedQuery("What is LangChain?");
 console.log(vector.length); // 1536 (dimension count)
 
 // Embed multiple texts (batch)
-const vectors = await embeddings.embedDocuments(["First document text", "Second document text", "Third document text"]);
+const vectors = await embeddings.embedDocuments([
+  "First document text",
+  "Second document text",
+  "Third document text",
+]);
 ```
 
 ---
@@ -171,7 +178,10 @@ for (const doc of results) {
 }
 
 // Similarity search with scores
-const resultsWithScores = await vectorStore.similaritySearchWithScore("How does LangChain handle agents?", 3);
+const resultsWithScores = await vectorStore.similaritySearchWithScore(
+  "How does LangChain handle agents?",
+  3,
+);
 
 for (const [doc, score] of resultsWithScores) {
   console.log(`Score: ${score}`);
@@ -234,7 +244,9 @@ const BATCH_SIZE = 100;
 for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
   const batch = chunks.slice(i, i + BATCH_SIZE);
   await vectorStore.addDocuments(batch);
-  console.log(`Processed ${Math.min(i + BATCH_SIZE, chunks.length)}/${chunks.length}`);
+  console.log(
+    `Processed ${Math.min(i + BATCH_SIZE, chunks.length)}/${chunks.length}`,
+  );
 }
 ```
 

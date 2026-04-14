@@ -82,15 +82,17 @@ export class DataLoaderService {
   });
 
   // Load count
-  readonly postsCountByAuthor = new DataLoader<string, number>(async (authorIds) => {
-    const counts = await this.prisma.post.groupBy({
-      by: ["authorId"],
-      where: { authorId: { in: [...authorIds] } },
-      _count: true,
-    });
-    const map = new Map(counts.map((c) => [c.authorId, c._count]));
-    return authorIds.map((id) => map.get(id) || 0);
-  });
+  readonly postsCountByAuthor = new DataLoader<string, number>(
+    async (authorIds) => {
+      const counts = await this.prisma.post.groupBy({
+        by: ["authorId"],
+        where: { authorId: { in: [...authorIds] } },
+        _count: true,
+      });
+      const map = new Map(counts.map((c) => [c.authorId, c._count]));
+      return authorIds.map((id) => map.get(id) || 0);
+    },
+  );
 }
 
 // Register in module

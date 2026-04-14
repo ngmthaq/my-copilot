@@ -111,7 +111,9 @@ interface CardProps {
 
 export function Card({ title, highlighted = false, children }: CardProps) {
   return (
-    <div className={cn(styles.card, highlighted && styles["card--highlighted"])}>
+    <div
+      className={cn(styles.card, highlighted && styles["card--highlighted"])}
+    >
       <h2 className={styles.card__title}>{title}</h2>
       {children}
     </div>
@@ -158,7 +160,9 @@ Tailwind uses **mobile-first** breakpoints. Apply base styles for mobile, then o
 ```typescript
 // src/hooks/useDarkMode.ts
 export function useDarkMode() {
-  const [isDark, setIsDark] = useState(() => localStorage.getItem("theme") === "dark");
+  const [isDark, setIsDark] = useState(
+    () => localStorage.getItem("theme") === "dark",
+  );
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
@@ -172,7 +176,9 @@ export function useDarkMode() {
 
 ```tsx
 // Apply dark mode variants in components
-<div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Content</div>
+<div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  Content
+</div>
 ```
 
 ```css

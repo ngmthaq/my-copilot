@@ -264,7 +264,9 @@ router.back();
   </RouterLink>
 
   <!-- ✅ Active class — automatically applied when route matches -->
-  <RouterLink :to="{ name: 'dashboard' }" active-class="nav--active"> Dashboard </RouterLink>
+  <RouterLink :to="{ name: 'dashboard' }" active-class="nav--active">
+    Dashboard
+  </RouterLink>
 </template>
 ```
 

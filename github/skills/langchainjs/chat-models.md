@@ -9,7 +9,11 @@ description: "LangChain.js chat models — multi-turn conversations, streaming, 
 
 ```javascript
 import { ChatOpenAI } from "@langchain/openai";
-import { SystemMessage, HumanMessage, AIMessage } from "@langchain/core/messages";
+import {
+  SystemMessage,
+  HumanMessage,
+  AIMessage,
+} from "@langchain/core/messages";
 
 const model = new ChatOpenAI({ modelName: "gpt-4o-mini" });
 

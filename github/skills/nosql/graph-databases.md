@@ -157,7 +157,10 @@ async function getUserFollowers(userId: string) {
        RETURN follower.name AS name, follower.id AS id`,
       { userId },
     );
-    return result.records.map((r) => ({ id: r.get("id"), name: r.get("name") }));
+    return result.records.map((r) => ({
+      id: r.get("id"),
+      name: r.get("name"),
+    }));
   } finally {
     await session.close(); // always close the session
   }

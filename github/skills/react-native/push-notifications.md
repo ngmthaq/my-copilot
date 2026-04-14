@@ -113,20 +113,22 @@ export function useNotifications() {
 
   useEffect(() => {
     // Called when a notification is received while app is in foreground
-    notificationListener.current = Notifications.addNotificationReceivedListener((notification) => {
-      const data = notification.request.content.data;
-      console.log("Notification received:", data);
-    });
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        const data = notification.request.content.data;
+        console.log("Notification received:", data);
+      });
 
     // Called when user taps a notification
-    responseListener.current = Notifications.addNotificationResponseReceivedListener((response) => {
-      const data = response.notification.request.content.data;
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        const data = response.notification.request.content.data;
 
-      // Navigate based on notification data
-      if (data.screen) {
-        router.push(data.screen as string);
-      }
-    });
+        // Navigate based on notification data
+        if (data.screen) {
+          router.push(data.screen as string);
+        }
+      });
 
     return () => {
       notificationListener.current?.remove();
@@ -172,7 +174,11 @@ export default function RootLayout() {
 import * as Notifications from "expo-notifications";
 
 // Schedule immediately
-export async function showLocalNotification(title: string, body: string, data?: Record<string, unknown>) {
+export async function showLocalNotification(
+  title: string,
+  body: string,
+  data?: Record<string, unknown>,
+) {
   await Notifications.scheduleNotificationAsync({
     content: {
       title,
@@ -185,7 +191,11 @@ export async function showLocalNotification(title: string, body: string, data?: 
 }
 
 // Schedule with delay
-export async function scheduleNotification(title: string, body: string, seconds: number) {
+export async function scheduleNotification(
+  title: string,
+  body: string,
+  seconds: number,
+) {
   await Notifications.scheduleNotificationAsync({
     content: { title, body, sound: "default" },
     trigger: { seconds, repeats: false },
@@ -193,7 +203,12 @@ export async function scheduleNotification(title: string, body: string, seconds:
 }
 
 // Schedule daily at a specific time
-export async function scheduleDailyReminder(title: string, body: string, hour: number, minute: number) {
+export async function scheduleDailyReminder(
+  title: string,
+  body: string,
+  hour: number,
+  minute: number,
+) {
   await Notifications.scheduleNotificationAsync({
     content: { title, body, sound: "default" },
     trigger: { hour, minute, repeats: true },

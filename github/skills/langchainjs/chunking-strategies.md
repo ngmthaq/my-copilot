@@ -158,7 +158,10 @@ const chunks = await htmlSplitter.createDocuments([htmlContent]);
 Split code files respecting language syntax boundaries (functions, classes).
 
 ```javascript
-import { RecursiveCharacterTextSplitter, SupportedTextSplitterLanguage } from "langchain/text_splitter";
+import {
+  RecursiveCharacterTextSplitter,
+  SupportedTextSplitterLanguage,
+} from "langchain/text_splitter";
 
 // JavaScript code splitter
 const jsSplitter = RecursiveCharacterTextSplitter.fromLanguage("js", {

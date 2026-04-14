@@ -22,7 +22,8 @@ Use a class-based approach so the base `Api` can be extended to create specializ
 import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios";
 import Constants from "expo-constants";
 
-const API_BASE_URL = Constants.expoConfig?.extra?.apiBaseUrl ?? "http://localhost:3000";
+const API_BASE_URL =
+  Constants.expoConfig?.extra?.apiBaseUrl ?? "http://localhost:3000";
 
 export class Api {
   protected instance: AxiosInstance;
@@ -33,11 +34,19 @@ export class Api {
     this.instance.defaults.timeout = 30000;
   }
 
-  public get(url: string, params: Record<string, unknown> = {}, config: AxiosRequestConfig = {}) {
+  public get(
+    url: string,
+    params: Record<string, unknown> = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.get(url, { params, ...config });
   }
 
-  public post(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public post(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.post(url, data, config);
   }
 
@@ -45,11 +54,19 @@ export class Api {
     return this.instance.put(url, data, config);
   }
 
-  public patch(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public patch(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.patch(url, data, config);
   }
 
-  public delete(url: string, params: Record<string, unknown> = {}, config: AxiosRequestConfig = {}) {
+  public delete(
+    url: string,
+    params: Record<string, unknown> = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.delete(url, { params, ...config });
   }
 }
@@ -142,7 +159,8 @@ import type { User, ApiResponse } from "@/types/user";
 export function useUsers() {
   return useQuery({
     queryKey: ["users"],
-    queryFn: () => authApi.get<ApiResponse<User[]>>("/users").then((r) => r.data.data),
+    queryFn: () =>
+      authApi.get<ApiResponse<User[]>>("/users").then((r) => r.data.data),
   });
 }
 ```
@@ -156,7 +174,8 @@ import type { User, ApiResponse } from "@/types/user";
 export function useUser(id: string) {
   return useQuery({
     queryKey: ["users", id],
-    queryFn: () => authApi.get<ApiResponse<User>>(`/users/${id}`).then((r) => r.data.data),
+    queryFn: () =>
+      authApi.get<ApiResponse<User>>(`/users/${id}`).then((r) => r.data.data),
     enabled: Boolean(id),
   });
 }
@@ -208,7 +227,9 @@ export function useCreateUser() {
 
   return useMutation({
     mutationFn: (payload: CreateUserPayload) =>
-      authApi.post<ApiResponse<User>>("/users", payload).then((r) => r.data.data),
+      authApi
+        .post<ApiResponse<User>>("/users", payload)
+        .then((r) => r.data.data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
@@ -242,10 +263,14 @@ export function useUsersInfinite() {
   return useInfiniteQuery({
     queryKey: ["users", "infinite"],
     queryFn: ({ pageParam = 1 }) =>
-      authApi.get<PaginatedResponse<User>>("/users", { page: pageParam, limit: 20 }).then((r) => r.data),
+      authApi
+        .get<PaginatedResponse<User>>("/users", { page: pageParam, limit: 20 })
+        .then((r) => r.data),
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>
-      lastPage.meta.currentPage < lastPage.meta.totalPages ? lastPage.meta.currentPage + 1 : undefined,
+      lastPage.meta.currentPage < lastPage.meta.totalPages
+        ? lastPage.meta.currentPage + 1
+        : undefined,
   });
 }
 ```
@@ -282,7 +307,9 @@ export function useToggleFavorite() {
       const previous = queryClient.getQueryData<Item[]>(["items"]);
 
       queryClient.setQueryData<Item[]>(["items"], (old) =>
-        old?.map((item) => (item.id === itemId ? { ...item, isFavorite: !item.isFavorite } : item)),
+        old?.map((item) =>
+          item.id === itemId ? { ...item, isFavorite: !item.isFavorite } : item,
+        ),
       );
 
       return { previous };
@@ -309,9 +336,12 @@ import { focusManager } from "@tanstack/react-query";
 
 function useOnlineManager() {
   useEffect(() => {
-    const subscription = AppState.addEventListener("change", (status: AppStateStatus) => {
-      focusManager.setFocused(status === "active");
-    });
+    const subscription = AppState.addEventListener(
+      "change",
+      (status: AppStateStatus) => {
+        focusManager.setFocused(status === "active");
+      },
+    );
     return () => subscription.remove();
   }, []);
 }

@@ -29,7 +29,10 @@ import { Injectable, OnModuleInit, OnModuleDestroy } from "@nestjs/common";
 import { PrismaClient } from "@prisma/client";
 
 @Injectable()
-export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+export class PrismaService
+  extends PrismaClient
+  implements OnModuleInit, OnModuleDestroy
+{
   async onModuleInit() {
     await this.$connect();
   }
@@ -128,7 +131,13 @@ export class AppModule {}
 
 ```typescript
 // user/entities/user.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 @Entity("users")
 export class User {
@@ -221,7 +230,11 @@ export class HealthModule {}
 
 // health/prisma.health.ts
 import { Injectable } from "@nestjs/common";
-import { HealthIndicator, HealthIndicatorResult, HealthCheckError } from "@nestjs/terminus";
+import {
+  HealthIndicator,
+  HealthIndicatorResult,
+  HealthCheckError,
+} from "@nestjs/terminus";
 
 @Injectable()
 export class PrismaHealthIndicator extends HealthIndicator {
@@ -234,7 +247,10 @@ export class PrismaHealthIndicator extends HealthIndicator {
       await this.prisma.$queryRaw`SELECT 1`;
       return this.getStatus(key, true);
     } catch (err) {
-      throw new HealthCheckError("Prisma check failed", this.getStatus(key, false));
+      throw new HealthCheckError(
+        "Prisma check failed",
+        this.getStatus(key, false),
+      );
     }
   }
 }

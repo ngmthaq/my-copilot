@@ -189,7 +189,9 @@ mcpServer.tool(
 // Set up HTTP transport
 const transports = {};
 app.post("/mcp", async (req, res) => {
-  const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: undefined,
+  });
   transports[transport.sessionId] = transport;
   await mcpServer.connect(transport);
   await transport.handleRequest(req, res);

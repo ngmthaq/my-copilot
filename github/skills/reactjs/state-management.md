@@ -40,7 +40,10 @@ const [isOpen, setIsOpen] = useState(false);
 
 ```typescript
 // ✅ Complex shape: useReducer
-type Action = { type: "SET_NAME"; payload: string } | { type: "SET_EMAIL"; payload: string } | { type: "RESET" };
+type Action =
+  | { type: "SET_NAME"; payload: string }
+  | { type: "SET_EMAIL"; payload: string }
+  | { type: "RESET" };
 
 interface FormState {
   name: string;
@@ -151,7 +154,9 @@ interface CartItem {
 export const cartItemsAtom = atom<CartItem[]>([]);
 
 // Derived: total price
-export const cartTotalAtom = atom((get) => get(cartItemsAtom).reduce((sum, i) => sum + i.price * i.quantity, 0));
+export const cartTotalAtom = atom((get) =>
+  get(cartItemsAtom).reduce((sum, i) => sum + i.price * i.quantity, 0),
+);
 ```
 
 ```typescript
@@ -195,7 +200,9 @@ export const addToCartAtom = atom(null, (get, set, item: CartItem) => {
   if (existing) {
     set(
       cartItemsAtom,
-      current.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i)),
+      current.map((i) =>
+        i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i,
+      ),
     );
   } else {
     set(cartItemsAtom, [...current, item]);
@@ -351,13 +358,16 @@ export const useCartStore = create<CartStore>((set, get) => ({
       const existing = state.items.find((i) => i.id === item.id);
       if (existing) {
         return {
-          items: state.items.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i)),
+          items: state.items.map((i) =>
+            i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i,
+          ),
         };
       }
       return { items: [...state.items, item] };
     }),
 
-  removeItem: (id) => set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
+  removeItem: (id) =>
+    set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
 
   clearCart: () => set({ items: [] }),
 

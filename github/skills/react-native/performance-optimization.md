@@ -89,7 +89,10 @@ const ExpensiveChart = memo(function ExpensiveChart({ data }: { data: number[] }
 
 ```typescript
 // ✅ Cache expensive computation
-const sortedItems = useMemo(() => [...items].sort((a, b) => a.name.localeCompare(b.name)), [items]);
+const sortedItems = useMemo(
+  () => [...items].sort((a, b) => a.name.localeCompare(b.name)),
+  [items],
+);
 
 // ✅ Stable function reference
 const handleSelect = useCallback((id: string) => {

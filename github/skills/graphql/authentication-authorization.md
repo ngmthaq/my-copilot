@@ -33,7 +33,10 @@ app.use(
 
       if (token) {
         try {
-          const payload = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
+          const payload = jwt.verify(
+            token,
+            process.env.JWT_SECRET!,
+          ) as JwtPayload;
           currentUser = await prisma.user.findUnique({
             where: { id: payload.sub },
           });
@@ -231,7 +234,10 @@ const resolvers = {
   User: {
     // Hide email from non-owners
     email: (parent, _args, ctx) => {
-      if (ctx.currentUser?.id === parent.id || ctx.currentUser?.role === "ADMIN") {
+      if (
+        ctx.currentUser?.id === parent.id ||
+        ctx.currentUser?.role === "ADMIN"
+      ) {
         return parent.email;
       }
       return null;

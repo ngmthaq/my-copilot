@@ -49,7 +49,17 @@ const result = await getUsers(2, 10);
 ### Basic filters (Repository API)
 
 ```typescript
-import { Equal, Not, In, Like, ILike, MoreThan, LessThan, Between, IsNull } from "typeorm";
+import {
+  Equal,
+  Not,
+  In,
+  Like,
+  ILike,
+  MoreThan,
+  LessThan,
+  Between,
+  IsNull,
+} from "typeorm";
 
 // Exact match
 await userRepository.find({ where: { role: "ADMIN" } });
@@ -117,9 +127,12 @@ const posts = await postRepository
   .where("post.published = :published", { published: true })
   .andWhere(
     new Brackets((qb) => {
-      qb.where("post.title ILIKE :search", { search: `%${search}%` }).orWhere("post.content ILIKE :search", {
-        search: `%${search}%`,
-      });
+      qb.where("post.title ILIKE :search", { search: `%${search}%` }).orWhere(
+        "post.content ILIKE :search",
+        {
+          search: `%${search}%`,
+        },
+      );
     }),
   )
   .orderBy("post.createdAt", "DESC")
@@ -145,12 +158,26 @@ interface QueryParams {
 }
 
 async function searchPosts(params: QueryParams) {
-  const { search, status, page = 1, pageSize = 10, sortBy = "createdAt", sortOrder = "DESC" } = params;
+  const {
+    search,
+    status,
+    page = 1,
+    pageSize = 10,
+    sortBy = "createdAt",
+    sortOrder = "DESC",
+  } = params;
 
   const qb = postRepository
     .createQueryBuilder("post")
     .leftJoinAndSelect("post.author", "author")
-    .select(["post.id", "post.title", "post.status", "post.createdAt", "author.id", "author.name"]);
+    .select([
+      "post.id",
+      "post.title",
+      "post.status",
+      "post.createdAt",
+      "author.id",
+      "author.name",
+    ]);
 
   if (status) {
     qb.andWhere("post.status = :status", { status });
@@ -159,9 +186,12 @@ async function searchPosts(params: QueryParams) {
   if (search) {
     qb.andWhere(
       new Brackets((qb) => {
-        qb.where("post.title ILIKE :search", { search: `%${search}%` }).orWhere("post.content ILIKE :search", {
-          search: `%${search}%`,
-        });
+        qb.where("post.title ILIKE :search", { search: `%${search}%` }).orWhere(
+          "post.content ILIKE :search",
+          {
+            search: `%${search}%`,
+          },
+        );
       }),
     );
   }

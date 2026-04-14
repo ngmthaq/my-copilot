@@ -30,23 +30,43 @@ export class Api {
     this.instance.defaults.timeout = 30000;
   }
 
-  public get<T>(url: string, params: Record<string, unknown> = {}, config: AxiosRequestConfig = {}) {
+  public get<T>(
+    url: string,
+    params: Record<string, unknown> = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.get<T>(url, { params, ...config });
   }
 
-  public post<T>(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public post<T>(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.post<T>(url, data, config);
   }
 
-  public put<T>(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public put<T>(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.put<T>(url, data, config);
   }
 
-  public patch<T>(url: string, data: unknown = {}, config: AxiosRequestConfig = {}) {
+  public patch<T>(
+    url: string,
+    data: unknown = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.patch<T>(url, data, config);
   }
 
-  public delete<T>(url: string, params: Record<string, unknown> = {}, config: AxiosRequestConfig = {}) {
+  public delete<T>(
+    url: string,
+    params: Record<string, unknown> = {},
+    config: AxiosRequestConfig = {},
+  ) {
     return this.instance.delete<T>(url, { params, ...config });
   }
 }
@@ -115,8 +135,13 @@ import { authApi } from "@/utils/authApi";
 import type { User, ApiResponse } from "@/types";
 
 class UserService {
-  async getUsers(page = 1, pageSize = 10): Promise<{ data: User[]; total: number }> {
-    const response = await authApi.get<ApiResponse<{ items: User[]; total: number }>>("/users", {
+  async getUsers(
+    page = 1,
+    pageSize = 10,
+  ): Promise<{ data: User[]; total: number }> {
+    const response = await authApi.get<
+      ApiResponse<{ items: User[]; total: number }>
+    >("/users", {
       page,
       pageSize,
     });
@@ -134,7 +159,10 @@ class UserService {
   }
 
   async updateUser(id: string, payload: Partial<User>): Promise<User> {
-    const response = await authApi.put<ApiResponse<User>>(`/users/${id}`, payload);
+    const response = await authApi.put<ApiResponse<User>>(
+      `/users/${id}`,
+      payload,
+    );
     return response.data.data;
   }
 
@@ -163,7 +191,10 @@ interface LoginResponse {
 
 class AuthService {
   async login(payload: LoginPayload): Promise<LoginResponse> {
-    const response = await api.post<ApiResponse<LoginResponse>>("/auth/login", payload);
+    const response = await api.post<ApiResponse<LoginResponse>>(
+      "/auth/login",
+      payload,
+    );
     return response.data.data;
   }
 
