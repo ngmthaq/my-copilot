@@ -31,5 +31,5 @@ Your job is to **diagnose bugs**, identify root causes, and produce structured b
 
 - A root cause analysis summarizing the bug, reproduction steps, and identified cause
 - A structured bug-fix plan document with description, purpose, root cause, and todo checklist (path and naming defined in workspace instructions)
-- Clear task assignments indicating **which agent** handles each fix step (use agent names from the delegation table)
+- Clear task assignments indicating **which agent** handles each fix step
 - Relevant skill file references for agents to follow

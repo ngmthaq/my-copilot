@@ -28,5 +28,5 @@ Your job is to **analyze requirements** and produce structured implementation pl
 
 - A feature document as the source of truth (path and template defined in workspace instructions), covering overview, architecture, configuration, usage examples, and known limitations
 - A structured plan document with description, purpose, a link to the feature doc, and todo checklist (path and naming defined in workspace instructions)
-- Clear task assignments indicating **which agent** handles each step (use agent names from the delegation table)
+- Clear task assignments indicating **which agent** handles each step
 - Relevant skill file references for agents to follow

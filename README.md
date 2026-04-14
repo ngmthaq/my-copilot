@@ -66,7 +66,7 @@ You can also skip the interactive selector:
 npx @ngmthaq20/my-copilot init --template web-fullstack
 ```
 
-To overwrite an existing `.github` folder:
+To overwrite an existing `.github` folder (the old one is renamed to `.github-legacy-<timestamp>`):
 
 ```bash
 npx @ngmthaq20/my-copilot init --force

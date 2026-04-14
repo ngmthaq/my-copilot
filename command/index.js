@@ -24,7 +24,20 @@ async function init() {
   }
   if (fs.existsSync(targetDir)) {
     if (force) {
-      fs.rmSync(targetDir, { recursive: true, force: true });
+      const now = new Date();
+      const timestamp = [
+        now.getFullYear(),
+        String(now.getMonth() + 1).padStart(2, "0"),
+        String(now.getDate()).padStart(2, "0"),
+        String(now.getHours()).padStart(2, "0"),
+        String(now.getMinutes()).padStart(2, "0"),
+        String(now.getSeconds()).padStart(2, "0"),
+      ].join("");
+      const backupDir = path.join(process.cwd(), `.github-legacy-${timestamp}`);
+      fs.renameSync(targetDir, backupDir);
+      console.log(
+        `  Backed up existing .github to ${path.basename(backupDir)}`,
+      );
     } else {
       console.log(".github folder already exists in the current directory.");
       console.log("Use --force to overwrite.");
@@ -56,7 +69,7 @@ function showHelp() {
 
   Options:
     --template <name>   Use a template (skip interactive selection)
-    --force             Overwrite existing .github folder
+    --force             Rename existing .github to .github-legacy-<timestamp> and recreate
     --help              Show this help message
 
   Templates:
