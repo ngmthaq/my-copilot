@@ -3,14 +3,18 @@
 // Merge and deduplicate arrays
 const unique = (...arrays) => [...new Set(arrays.flat())].sort();
 
-// Specific agents for Backend development
-const BE_AGENTS = [
-  "be-developer.agent.md",
+const REQUIRED_AGENTS = [
   "code-reviewer.agent.md",
   "debugger.agent.md",
+  "technical-leader.agent.md",
+];
+
+// Specific agents for Backend development
+const BE_AGENTS = [
+  ...REQUIRED_AGENTS,
+  "be-developer.agent.md",
   "devops-engineer.agent.md",
   "qa-engineer.agent.md",
-  "technical-leader.agent.md",
 ];
 
 // Specific skills for Backend development
@@ -36,12 +40,10 @@ const BE_SKILLS = [
 
 // Specific agents for Frontend development
 const FE_AGENTS = [
-  "code-reviewer.agent.md",
-  "debugger.agent.md",
+  ...REQUIRED_AGENTS,
   "devops-engineer.agent.md",
   "fe-developer.agent.md",
   "qa-engineer.agent.md",
-  "technical-leader.agent.md",
 ];
 
 // Specific skills for Frontend development
@@ -65,12 +67,10 @@ const FE_SKILLS = [
 
 // Specific agents for AI domains
 const AI_AGENTS = [
+  ...REQUIRED_AGENTS,
   "ai-engineer.agent.md",
-  "code-reviewer.agent.md",
-  "debugger.agent.md",
   "devops-engineer.agent.md",
   "qa-engineer.agent.md",
-  "technical-leader.agent.md",
 ];
 
 // Specific skills for AI domains
@@ -93,12 +93,10 @@ const AI_SKILLS = [
 
 // Specific agents for Mobile development
 const MOBILE_AGENTS = [
-  "code-reviewer.agent.md",
-  "debugger.agent.md",
+  ...REQUIRED_AGENTS,
   "devops-engineer.agent.md",
   "mobile-developer.agent.md",
   "qa-engineer.agent.md",
-  "technical-leader.agent.md",
 ];
 
 // Specific skills for Mobile development
@@ -119,12 +117,10 @@ const MOBILE_SKILLS = [
 
 // Specific agents for Desktop development
 const DESKTOP_AGENTS = [
-  "code-reviewer.agent.md",
-  "debugger.agent.md",
+  ...REQUIRED_AGENTS,
   "desktop-app-developer.agent.md",
   "devops-engineer.agent.md",
   "qa-engineer.agent.md",
-  "technical-leader.agent.md",
 ];
 
 // Specific skills for Desktop development
@@ -215,4 +211,30 @@ const TEMPLATES = [
   },
 ];
 
-module.exports = { TEMPLATES };
+const ALL_AGENTS = unique(
+  AI_AGENTS,
+  BE_AGENTS,
+  FE_AGENTS,
+  MOBILE_AGENTS,
+  DESKTOP_AGENTS,
+);
+
+const AGENT_SKILLS_MAP = {
+  "ai-engineer.agent.md": AI_SKILLS,
+  "be-developer.agent.md": BE_SKILLS,
+  "code-reviewer.agent.md": [],
+  "debugger.agent.md": [],
+  "desktop-app-developer.agent.md": DESKTOP_SKILLS,
+  "devops-engineer.agent.md": [],
+  "fe-developer.agent.md": FE_SKILLS,
+  "mobile-developer.agent.md": MOBILE_SKILLS,
+  "qa-engineer.agent.md": [],
+  "technical-leader.agent.md": [],
+};
+
+module.exports = {
+  AGENT_SKILLS_MAP,
+  ALL_AGENTS,
+  REQUIRED_AGENTS,
+  TEMPLATES,
+};

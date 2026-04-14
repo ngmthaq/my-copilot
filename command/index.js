@@ -7,6 +7,9 @@ const path = require("path");
 const { TEMPLATES } = require("./constants");
 const {
   copyWithTemplate,
+  selectAgents,
+  selectInitMode,
+  selectSkills,
   selectTemplate,
   resolveTemplate,
 } = require("./helpers");
@@ -44,7 +47,23 @@ async function init() {
       process.exit(1);
     }
   }
-  const template = resolveTemplate(process.argv) || (await selectTemplate());
+  let template = resolveTemplate(process.argv);
+
+  if (!template) {
+    const initMode = await selectInitMode();
+    if (initMode === "template") {
+      template = await selectTemplate();
+    } else {
+      const includeAgents = await selectAgents();
+      const includeSkills = await selectSkills(includeAgents);
+      template = {
+        label: "customize",
+        includeAgents,
+        includeSkills,
+      };
+    }
+  }
+
   console.log(`\n  Template: \x1b[36m${template.label}\x1b[0m`);
   console.log(
     `  Agents: ${template.includeAgents.map((a) => a.replace(".agent.md", "")).join(", ")}`,
@@ -66,6 +85,7 @@ function showHelp() {
 
   Commands:
     init      Copy the .github folder to the current directory
+              (interactive: choose template or customize)
 
   Options:
     --template <name>   Use a template (skip interactive selection)

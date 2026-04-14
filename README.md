@@ -27,14 +27,10 @@ Drop it into any project and get a fully structured AI team out of the box.
 
 ## Installation
 
-```bash
-npm install -g @ngmthaq20/my-copilot
-```
-
-Or run directly with `npx` (no install needed):
+Run directly with `npx` (no install needed):
 
 ```bash
-npx @ngmthaq20/my-copilot --help
+npx @ngmthaq20/my-copilot@latest --help
 ```
 
 ---
@@ -44,10 +40,21 @@ npx @ngmthaq20/my-copilot --help
 Run in your project directory:
 
 ```bash
-npx @ngmthaq20/my-copilot init
+npx @ngmthaq20/my-copilot@latest init
 ```
 
-An interactive template selector will appear — pick the stack that matches your project:
+An interactive initializer will appear. First, choose one mode:
+
+- **Template**: pick a predefined stack.
+- **Customize**: pick agents and then pick skills filtered by those agents.
+
+In **Customize** mode:
+
+- `technical-leader`, `debugger`, and `code-reviewer` are preselected and cannot be unselected.
+- Use **Space** to toggle non-required agents/skills, and **Enter** to confirm.
+- Skills are shown one-by-one and filtered from the selected agents.
+
+If you choose **Template**, the template selector appears:
 
 | Template                   | Description               |
 | -------------------------- | ------------------------- |
@@ -63,13 +70,13 @@ An interactive template selector will appear — pick the stack that matches you
 You can also skip the interactive selector:
 
 ```bash
-npx @ngmthaq20/my-copilot init --template web-fullstack
+npx @ngmthaq20/my-copilot@latest init --template web-fullstack
 ```
 
 To overwrite an existing `.github` folder (the old one is renamed to `.github-legacy-<timestamp>`):
 
 ```bash
-npx @ngmthaq20/my-copilot init --force
+npx @ngmthaq20/my-copilot@latest init --force
 ```
 
 After running `init`, a `.github` folder is created in your project root. Open the workspace in **VS Code** with **GitHub Copilot Chat** enabled — agents, skills, instructions, and hooks are picked up automatically.
