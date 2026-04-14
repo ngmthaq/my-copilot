@@ -1,6 +1,6 @@
 ---
 name: debugger
-model: GPT-5.3-Codex (copilot)
+model: GPT-5.4 (copilot)
 description: "Debugger — Diagnoses runtime errors, exceptions, and bugs across backend, frontend, mobile, desktop, and AI/ML stacks. Creates bug-fix plans and delegates fixes to the appropriate developer agent."
 argument-hint: "The bug or error to diagnose, e.g., 'Diagnose why the login API returns 500 when the email contains special characters.'"
 tools: [vscode, execute, read, agent, browser, edit, search, web, todo]

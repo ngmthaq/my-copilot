@@ -28,6 +28,7 @@ const BE_SKILLS = [
   "git",
   "github-mcp",
   "graphql",
+  "java",
   "javascript",
   "linting",
   "nestjs",
@@ -36,6 +37,7 @@ const BE_SKILLS = [
   "prisma",
   "relational-database",
   "restapi",
+  "spring-boot",
   "typeorm",
   "typescript",
 ];

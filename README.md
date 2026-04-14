@@ -127,8 +127,8 @@ Reusable knowledge packs that agents load on demand. Each skill is a folder cont
 
 | Category           | Skills                                                                      |
 | ------------------ | --------------------------------------------------------------------------- |
-| **Languages**      | C, C++, C#, TypeScript, JavaScript, Dart, Python                            |
-| **Backend**        | .NET, NestJS, Express.js, Prisma, TypeORM, GraphQL, REST API                |
+| **Languages**      | C, C++, C#, Java, TypeScript, JavaScript, Dart, Python                      |
+| **Backend**        | .NET, Spring Boot, NestJS, Express.js, Prisma, TypeORM, GraphQL, REST API   |
 | **Frontend**       | React.js, Vue.js (Composition & Options API), Vite, HTML, CSS/SCSS, Linting |
 | **Mobile**         | Flutter, React Native                                                       |
 | **Desktop**        | Electron.js, Electron Forge                                                 |

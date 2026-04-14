@@ -28,6 +28,8 @@ Use this skill as the entry point for end-to-end .NET work. It helps choose the 
 | Dependency Injection                     | [dependency-injection.md](dependency-injection.md)                                 | Service registration, lifetimes, composition root, and boundary wiring                  |
 | Configuration and Options                | [configuration-options.md](configuration-options.md)                               | appsettings layering, options binding, validation, and secrets handling                 |
 | Authentication and Authorization         | [authentication-authorization.md](authentication-authorization.md)                 | JWT/cookie auth, policy-based authorization, role/claim checks                          |
+| Resilience HTTP Clients                  | [resilience-http-clients.md](resilience-http-clients.md)                           | Outbound API resilience with `IHttpClientFactory`, retries, timeouts, circuit breakers  |
+| CQRS and MediatR                         | [cqrs-mediatr.md](cqrs-mediatr.md)                                                 | Command/query separation, handlers, pipeline behaviors, and complex flow orchestration  |
 | GraphQL Schema Design                    | [graphql-schema-design.md](graphql-schema-design.md)                               | Designing schema-first boundaries and code-first GraphQL types in .NET                  |
 | GraphQL Type System                      | [graphql-type-system.md](graphql-type-system.md)                                   | Scalars, enums, interfaces, unions, input/payload modeling                              |
 | GraphQL Resolvers                        | [graphql-resolvers.md](graphql-resolvers.md)                                       | Query/mutation/subscription resolver patterns with thin orchestration                   |
@@ -83,6 +85,14 @@ What are you implementing?
 |- App bootstrapping or config management concerns
 |  -> Start with configuration-options.md
 |  -> Pair with dependency-injection.md
+|
+|- Outbound API calls are flaky or latency-sensitive
+|  -> Start with resilience-http-clients.md
+|  -> Pair with observability.md and testing.md
+|
+|- Command/query complexity is growing in application logic
+|  -> Start with cqrs-mediatr.md
+|  -> Pair with service-layer.md and testing.md
 |
 |- Hosted background processing or queue consumers
 |  -> Start with worker-services.md

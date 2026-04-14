@@ -28,6 +28,8 @@ This index covers all NestJS skill domains. Load the specific sub-skill file tha
 | Exception Filters              | [exception-filters.md](exception-filters.md)                                       | Formatting error responses; catching specific exceptions with `@Catch`; applying global vs. local filters; building custom HTTP error shapes.                              |
 | Database Integration           | [database-integration.md](database-integration.md)                                 | Connecting a database with TypeORM, Prisma, or Mongoose; setting up repository/entity patterns; configuring database modules.                                              |
 | Swagger / OpenAPI              | [swagger-implementation.md](swagger-implementation.md)                             | Documenting a REST API with `@nestjs/swagger`; adding `@ApiProperty`/`@ApiOperation`/`@ApiTags`; setting up Swagger UI; generating the OpenAPI spec.                       |
+| Caching and Rate Limiting      | [caching-rate-limiting.md](caching-rate-limiting.md)                               | Improving API throughput using CacheModule/Redis and protecting endpoints with throttling guards.                                                                          |
+| Microservices Messaging        | [microservices-messaging.md](microservices-messaging.md)                           | Building distributed services with NestJS transports (RMQ/Kafka/NATS/TCP), event/message patterns, and RPC-safe error handling.                                            |
 | GraphQL — Schema Design        | [graphql-schema-design.md](graphql-schema-design.md)                               | Designing GraphQL schemas with the code-first approach; using `@ObjectType`/`@Field` decorators; organizing schema types across modules; setting nullability.              |
 | GraphQL — Type System          | [graphql-type-system.md](graphql-type-system.md)                                   | Defining `ObjectType`, `InputType`, enums, interfaces, unions, and custom scalars with NestJS code-first decorators; choosing type modifiers.                              |
 | GraphQL — Resolvers            | [graphql-resolvers.md](graphql-resolvers.md)                                       | Implementing resolver logic with `@Resolver`/`@ResolveField`/`@Parent`; accessing GraphQL context; organizing resolvers by module with dependency injection.               |
@@ -63,6 +65,8 @@ What are you working on?
 │   ├── Error formatting / exception handling → exception-filters.md
 │   ├── Protecting routes / JWT auth → guards-authentication.md
 │   ├── Database connection / ORM setup → database-integration.md
+│   ├── Caching reads / throttling abuse → caching-rate-limiting.md
+│   ├── Async service messaging / event bus → microservices-messaging.md
 │   └── API docs / Swagger UI → swagger-implementation.md
 │
 └── GraphQL API
