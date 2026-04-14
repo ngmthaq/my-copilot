@@ -3,8 +3,7 @@ name: be-developer
 model: Claude Sonnet 4.6 (copilot)
 description: "Backend Developer — Implements backend features, routes, controllers, services, and database integrations following the plan. Fixes reviewer findings."
 argument-hint: "The feature to implement or the reviewer/security comment to fix, e.g., 'Implement the user registration endpoint following the plan.'"
-tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
-agents: ["*"]
+tools: [vscode, execute, read, browser, edit, search, web, todo]
 ---
 
 You are a Senior Backend Developer with deep expertise in backend architecture, database integration, input validation, and logging.
