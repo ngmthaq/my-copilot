@@ -52,7 +52,7 @@ In **Customize** mode:
 
 - `technical-leader`, `debugger`, and `code-reviewer` are preselected and cannot be unselected.
 - Use **Space** to toggle non-required agents/skills, and **Enter** to confirm.
-- Skills are shown one-by-one and filtered from the selected agents.
+- Skills are shown as a filtered multi-select list based on the selected agents.
 
 If you choose **Template**, the template selector appears:
 
@@ -127,8 +127,8 @@ Reusable knowledge packs that agents load on demand. Each skill is a folder cont
 
 | Category           | Skills                                                                      |
 | ------------------ | --------------------------------------------------------------------------- |
-| **Languages**      | TypeScript, JavaScript, Dart, Python                                        |
-| **Backend**        | NestJS, Express.js, Prisma, TypeORM, GraphQL, REST API                      |
+| **Languages**      | C, C++, C#, TypeScript, JavaScript, Dart, Python                            |
+| **Backend**        | .NET, NestJS, Express.js, Prisma, TypeORM, GraphQL, REST API                |
 | **Frontend**       | React.js, Vue.js (Composition & Options API), Vite, HTML, CSS/SCSS, Linting |
 | **Mobile**         | Flutter, React Native                                                       |
 | **Desktop**        | Electron.js, Electron Forge                                                 |

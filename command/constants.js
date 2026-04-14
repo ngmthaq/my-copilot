@@ -23,6 +23,7 @@ const BE_SKILLS = [
   "cpp",
   "csharp",
   "docker",
+  "dotnet",
   "expressjs",
   "git",
   "github-mcp",

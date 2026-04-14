@@ -78,10 +78,10 @@ function showHelp() {
     (t) => `    ${t.name.padEnd(28)} ${t.description}`,
   ).join("\n");
   console.log(`
-  @ngmthaq/my-copilot
+  @ngmthaq20/my-copilot
 
   Usage:
-    npx @ngmthaq/my-copilot init [options]
+    npx @ngmthaq20/my-copilot init [options]
 
   Commands:
     init      Copy the .github folder to the current directory
