@@ -19,26 +19,34 @@ const BE_AGENTS = [
 
 // Specific skills for Backend development
 const BE_SKILLS = [
+  "asp",
+  "aws",
+  "bash",
   "c",
   "cpp",
   "csharp",
+  "django",
   "docker",
-  "dotnet",
+  "eslint",
   "expressjs",
   "git",
-  "github-mcp",
+  "go",
   "graphql",
   "java",
   "javascript",
-  "linting",
+  "mongodb",
+  "mysql",
   "nestjs",
   "nginx",
-  "nosql",
+  "nodejs",
+  "page-content-crawler",
+  "php",
+  "postgresql",
+  "prettier",
   "prisma",
-  "relational-database",
-  "restapi",
-  "spring-boot",
-  "typeorm",
+  "rust",
+  "spring",
+  "sql",
   "typescript",
 ];
 
@@ -52,21 +60,26 @@ const FE_AGENTS = [
 
 // Specific skills for Frontend development
 const FE_SKILLS = [
+  "angular",
+  "bootstrap",
   "css",
   "docker",
+  "eslint",
   "git",
-  "github-mcp",
   "graphql",
   "html",
   "javascript",
-  "linting",
+  "jquery",
   "nginx",
-  "reactjs",
-  "restapi",
+  "page-content-crawler",
+  "prettier",
+  "react",
+  "sass",
+  "scss",
   "typescript",
+  "ui-creation-guide",
   "vite",
-  "vuejs-composition-api",
-  "vuejs-options-api",
+  "vue",
 ];
 
 // Specific agents for AI domains
@@ -79,19 +92,25 @@ const AI_AGENTS = [
 
 // Specific skills for AI domains
 const AI_SKILLS = [
+  "ai",
   "docker",
+  "dsa",
+  "eslint",
   "git",
-  "github-mcp",
   "graphql",
   "huggingface",
   "javascript",
   "langchain",
-  "langchainjs",
-  "linting",
   "nginx",
+  "nodejs",
+  "numpy",
   "ollama",
+  "page-content-crawler",
+  "pandas",
+  "prettier",
   "python",
-  "restapi",
+  "r",
+  "scipy",
   "typescript",
 ];
 
@@ -107,16 +126,18 @@ const MOBILE_AGENTS = [
 const MOBILE_SKILLS = [
   "dart",
   "docker",
+  "eslint",
   "flutter",
   "git",
-  "github-mcp",
   "graphql",
   "javascript",
-  "linting",
+  "kotlin",
   "nginx",
-  "react-native",
-  "restapi",
+  "page-content-crawler",
+  "prettier",
+  "swift",
   "typescript",
+  "xml",
 ];
 
 // Specific agents for Desktop development
@@ -130,18 +151,34 @@ const DESKTOP_AGENTS = [
 // Specific skills for Desktop development
 const DESKTOP_SKILLS = [
   "docker",
-  "electron-forge",
-  "electronjs",
+  "eslint",
   "git",
-  "github-mcp",
   "graphql",
   "javascript",
-  "linting",
   "nginx",
-  "restapi",
+  "nodejs",
+  "page-content-crawler",
+  "prettier",
+  "react",
   "typescript",
   "vite",
+  "xml",
 ];
+
+// Specific skills for Code Reviewer
+const CODE_REVIEWER_SKILLS = ["cyber-security", "page-content-crawler"];
+
+// Specific skills for Debugger
+const DEBUGGER_SKILLS = ["page-content-crawler"];
+
+// Specific skills for DevOps
+const DEVOPS_SKILLS = ["aws", "bash", "page-content-crawler"];
+
+// Specific skills for QA Engineer
+const QA_SKILLS = ["page-content-crawler"];
+
+// Specific skills for Technical Leader
+const TECHNICAL_LEADER_SKILLS = ["page-content-crawler"];
 
 // Template definitions
 const TEMPLATES = [
@@ -159,9 +196,14 @@ const TEMPLATES = [
     includeSkills: unique(
       AI_SKILLS,
       BE_SKILLS,
+      CODE_REVIEWER_SKILLS,
+      DEBUGGER_SKILLS,
+      DESKTOP_SKILLS,
+      DEVOPS_SKILLS,
       FE_SKILLS,
       MOBILE_SKILLS,
-      DESKTOP_SKILLS,
+      QA_SKILLS,
+      TECHNICAL_LEADER_SKILLS,
     ),
   },
   {
@@ -169,49 +211,104 @@ const TEMPLATES = [
     label: "Web Fullstack",
     description: "Frontend + Backend",
     includeAgents: unique(BE_AGENTS, FE_AGENTS),
-    includeSkills: unique(BE_SKILLS, FE_SKILLS),
+    includeSkills: unique(
+      BE_SKILLS,
+      CODE_REVIEWER_SKILLS,
+      DEBUGGER_SKILLS,
+      DEVOPS_SKILLS,
+      FE_SKILLS,
+      QA_SKILLS,
+      TECHNICAL_LEADER_SKILLS,
+    ),
   },
   {
     name: "ai-application-fullstack",
     label: "AI Application Fullstack",
     description: "AI + Frontend + Backend",
     includeAgents: unique(AI_AGENTS, BE_AGENTS, FE_AGENTS),
-    includeSkills: unique(AI_SKILLS, BE_SKILLS, FE_SKILLS),
+    includeSkills: unique(
+      AI_SKILLS,
+      BE_SKILLS,
+      CODE_REVIEWER_SKILLS,
+      DEBUGGER_SKILLS,
+      DEVOPS_SKILLS,
+      FE_SKILLS,
+      QA_SKILLS,
+      TECHNICAL_LEADER_SKILLS,
+    ),
   },
   {
     name: "ai-backend",
     label: "AI + Backend",
     description: "AI services + Backend APIs",
     includeAgents: unique(AI_AGENTS, BE_AGENTS),
-    includeSkills: unique(AI_SKILLS, BE_SKILLS),
+    includeSkills: unique(
+      AI_SKILLS,
+      BE_SKILLS,
+      CODE_REVIEWER_SKILLS,
+      DEBUGGER_SKILLS,
+      DEVOPS_SKILLS,
+      QA_SKILLS,
+      TECHNICAL_LEADER_SKILLS,
+    ),
   },
   {
     name: "mobile-fullstack",
     label: "Mobile Fullstack",
     description: "Mobile + Backend",
     includeAgents: unique(MOBILE_AGENTS, BE_AGENTS),
-    includeSkills: unique(MOBILE_SKILLS, BE_SKILLS),
+    includeSkills: unique(
+      BE_SKILLS,
+      CODE_REVIEWER_SKILLS,
+      DEBUGGER_SKILLS,
+      DEVOPS_SKILLS,
+      MOBILE_SKILLS,
+      QA_SKILLS,
+      TECHNICAL_LEADER_SKILLS,
+    ),
   },
   {
     name: "desktop-app-fullstack",
     label: "Desktop App Fullstack",
     description: "Desktop + Backend",
     includeAgents: unique(DESKTOP_AGENTS, BE_AGENTS),
-    includeSkills: unique(DESKTOP_SKILLS, BE_SKILLS),
+    includeSkills: unique(
+      BE_SKILLS,
+      CODE_REVIEWER_SKILLS,
+      DEBUGGER_SKILLS,
+      DESKTOP_SKILLS,
+      DEVOPS_SKILLS,
+      QA_SKILLS,
+      TECHNICAL_LEADER_SKILLS,
+    ),
   },
   {
     name: "backend-only",
     label: "Backend Only",
     description: "Backend APIs only",
     includeAgents: unique(BE_AGENTS),
-    includeSkills: unique(BE_SKILLS),
+    includeSkills: unique(
+      BE_SKILLS,
+      CODE_REVIEWER_SKILLS,
+      DEBUGGER_SKILLS,
+      DEVOPS_SKILLS,
+      QA_SKILLS,
+      TECHNICAL_LEADER_SKILLS,
+    ),
   },
   {
     name: "frontend-only",
     label: "Frontend Only",
     description: "Frontend development only",
     includeAgents: unique(FE_AGENTS),
-    includeSkills: unique(FE_SKILLS),
+    includeSkills: unique(
+      CODE_REVIEWER_SKILLS,
+      DEBUGGER_SKILLS,
+      DEVOPS_SKILLS,
+      FE_SKILLS,
+      QA_SKILLS,
+      TECHNICAL_LEADER_SKILLS,
+    ),
   },
 ];
 
@@ -226,14 +323,14 @@ const ALL_AGENTS = unique(
 const AGENT_SKILLS_MAP = {
   "ai-engineer.agent.md": AI_SKILLS,
   "be-developer.agent.md": BE_SKILLS,
-  "code-reviewer.agent.md": [],
-  "debugger.agent.md": [],
+  "code-reviewer.agent.md": CODE_REVIEWER_SKILLS,
+  "debugger.agent.md": DEBUGGER_SKILLS,
   "desktop-app-developer.agent.md": DESKTOP_SKILLS,
-  "devops-engineer.agent.md": [],
+  "devops-engineer.agent.md": DEVOPS_SKILLS,
   "fe-developer.agent.md": FE_SKILLS,
   "mobile-developer.agent.md": MOBILE_SKILLS,
-  "qa-engineer.agent.md": [],
-  "technical-leader.agent.md": [],
+  "qa-engineer.agent.md": QA_SKILLS,
+  "technical-leader.agent.md": TECHNICAL_LEADER_SKILLS,
 };
 
 module.exports = {

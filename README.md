@@ -109,8 +109,8 @@ Role-based AI agents that follow a structured team workflow. Each agent has a de
 | `technical-leader`      | Analyzes requirements, creates feature docs & plans, delegates work |
 | `be-developer`          | Implements backend features, routes, services, DB integrations      |
 | `fe-developer`          | Implements frontend features, components, state management          |
-| `mobile-developer`      | Implements mobile features (Flutter, React Native)                  |
-| `desktop-app-developer` | Implements desktop app features (Electron, Electron Forge)          |
+| `mobile-developer`      | Implements mobile features (Flutter, Kotlin, Swift)                 |
+| `desktop-app-developer` | Implements desktop app features (React, Vite, Node.js)             |
 | `ai-engineer`           | Implements AI/ML features (LangChain, HuggingFace, Ollama)          |
 | `qa-engineer`           | Writes and runs tests, verifies implementations                     |
 | `code-reviewer`         | Reviews code, tests, and DevOps configurations across stacks        |
@@ -125,16 +125,17 @@ Agents are defined as `.agent.md` files inside `.github/agents/`.
 
 Reusable knowledge packs that agents load on demand. Each skill is a folder containing a `SKILL.md` index and focused sub-skill files.
 
-| Category           | Skills                                                                      |
-| ------------------ | --------------------------------------------------------------------------- |
-| **Languages**      | C, C++, C#, Java, TypeScript, JavaScript, Dart, Python                      |
-| **Backend**        | .NET, Spring Boot, NestJS, Express.js, Prisma, TypeORM, GraphQL, REST API   |
-| **Frontend**       | React.js, Vue.js (Composition & Options API), Vite, HTML, CSS/SCSS, Linting |
-| **Mobile**         | Flutter, React Native                                                       |
-| **Desktop**        | Electron.js, Electron Forge                                                 |
-| **AI / ML**        | LangChain, LangChain.js, HuggingFace, Ollama                                |
-| **Infrastructure** | Docker, Nginx, Git, GitHub MCP                                              |
-| **Databases**      | Relational DB, NoSQL (MongoDB, Redis, Cassandra, Neo4j)                     |
+| Category            | Skills                                                                                  |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| **Languages**       | C, C++, C#, Dart, Go, Java, JavaScript, Kotlin, PHP, Python, R, Rust, Swift, TypeScript |
+| **Backend**         | ASP.NET, Django, Express.js, NestJS, Node.js, Prisma, Spring                            |
+| **Frontend**        | Angular, Bootstrap, jQuery, React, Vue, Vite, HTML, CSS, Sass, SCSS, UI Creation Guide  |
+| **Mobile**          | Flutter, Dart, Kotlin, Swift, XML                                                       |
+| **AI / ML**         | AI, LangChain, HuggingFace, Ollama, NumPy, Pandas, SciPy                                |
+| **Infrastructure**  | AWS, Bash, Docker, Git, Nginx                                                           |
+| **Databases**       | MongoDB, MySQL, PostgreSQL, SQL                                                         |
+| **Quality & Tools** | Cyber Security, DSA, ESLint, Prettier, GraphQL, XML                                     |
+| **Utilities**       | Page Content Crawler                                                                    |
 
 Skills are stored in `.github/skills/<skill-name>/`.
 
