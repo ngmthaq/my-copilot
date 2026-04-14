@@ -52,12 +52,12 @@ Examples:
 
 ## Agent Assignments
 
-| Step      | Agent                   | Skill References       |
-| --------- | ----------------------- | ---------------------- |
-| Step 1    | `<dev-agent>`           | `<skill-1>, <skill-2>` |
-| Step 2    | `<dev-agent>`           | `<skill-1>, <skill-2>` |
-| Step 3    | `<qa-agent>`            | `<skill-1>, <skill-2>` |
-| All steps | `<code-reviewer-agent>` | `<skill-1>, <skill-2>` |
+| Step   | Agent                   | Skill References       |
+| ------ | ----------------------- | ---------------------- |
+| Step 1 | `<dev-agent>`           | `<skill-1>, <skill-2>` |
+| Step 2 | `<qa-agent>`            | `<skill-1>, <skill-2>` |
+| Step 3 | `<devops-agent>`        | `<skill-1>, <skill-2>` |
+| Step 4 | `<code-reviewer-agent>` | `<skill-1>, <skill-2>` |
 ```
 
 ## Rules
