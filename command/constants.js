@@ -21,6 +21,7 @@ const BE_AGENTS = [
 const BE_SKILLS = [
   "c",
   "cpp",
+  "csharp",
   "docker",
   "expressjs",
   "git",
