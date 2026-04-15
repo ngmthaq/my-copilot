@@ -43,35 +43,11 @@ Run in your project directory:
 npx @ngmthaq20/my-copilot@latest init
 ```
 
-An interactive initializer will appear. First, choose one mode:
-
-- **Template**: pick a predefined stack.
-- **Customize**: pick agents and then pick skills filtered by those agents.
-
-In **Customize** mode:
+An interactive initializer will appear:
 
 - `technical-leader`, `debugger`, and `code-reviewer` are preselected and cannot be unselected.
 - Use **Space** to toggle non-required agents/skills, and **Enter** to confirm.
 - Skills are shown as a filtered multi-select list based on the selected agents.
-
-If you choose **Template**, the template selector appears:
-
-| Template                   | Description               |
-| -------------------------- | ------------------------- |
-| `all`                      | All agents and skills     |
-| `web-fullstack`            | Frontend + Backend        |
-| `ai-application-fullstack` | AI + Frontend + Backend   |
-| `ai-backend`               | AI services + Backend     |
-| `mobile-fullstack`         | Mobile + Backend          |
-| `desktop-app-fullstack`    | Desktop + Backend         |
-| `backend-only`             | Backend APIs only         |
-| `frontend-only`            | Frontend development only |
-
-You can also skip the interactive selector:
-
-```bash
-npx @ngmthaq20/my-copilot@latest init --template web-fullstack
-```
 
 To overwrite an existing `.github` folder (the old one is renamed to `.github-legacy-<timestamp>`):
 
