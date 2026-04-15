@@ -12,7 +12,6 @@ Provide curated reference links for AI documentation. Use these links to quickly
 ## When to Use
 
 - When you want to make sure current task is using the most relevant and accurate documentation available
-- When you want to make sure current task is using the most relevant and accurate documentation available
 - When you need to find official documentation links for AI
 - When answering questions about AI and want to cite sources
 - When building learning paths or documentation indexes
@@ -26,17 +25,6 @@ Provide curated reference links for AI documentation. Use these links to quickly
 - Links may become outdated as documentation sites update their URLs
 - Only contains links crawled at a specific point in time; may not cover every topic
 - Do not assume link content — always verify by visiting the URL
-
-## Accessing Reference Content
-
-When you need to access or read the actual content of any reference URL listed in the JSON files from skill, use the **page-content-crawler** skill:
-
-1. Look up the URL from the reference JSON file
-2. Invoke the `page-content-crawler` skill to extract structured content from that URL
-3. The page-content-crawler will use VSCode built-in page context first, with automatic fallback to external crawlers for SPA or incomplete content
-4. Use the extracted content to answer questions accurately based on the official documentation
-
-> **Important**: Never manually fetch or scrape URLs. Always delegate to the page-content-crawler skill.
 
 ## Best Practices
 
