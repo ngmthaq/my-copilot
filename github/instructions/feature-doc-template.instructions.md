@@ -38,43 +38,169 @@ Examples:
 ```markdown
 # <Feature Name>
 
-## Overview
+---
+
+## 1. Overview
 
 <What the feature does and the problem it solves.>
 
-## Architecture
+---
 
-<Key files, modules, and their planned responsibilities. Update as implementation progresses.>
+## 2. Requirements
 
-| File / Module  | Responsibility |
-| -------------- | -------------- |
-| `path/to/file` | ...            |
+### 2.1 Functional Requirements (FR)
 
-## API / Interface
+- FR-1: ...
+- FR-2: ...
 
-<Endpoints, props, events, or public contracts. Remove this section if not applicable.>
+### 2.2 Non-Functional Requirements (NFR)
 
-| Method | Path     | Description |
-| ------ | -------- | ----------- |
-| GET    | /example | ...         |
+- Performance: ...
+- Scalability: ...
+- Reliability: ...
+- Security: ...
+- Accessibility: ...
 
-## Configuration
+### 2.3 Constraints
 
-<Environment variables, config options, or feature flags required.>
+- Technical:
+- Business:
+- Platform:
 
-| Variable  | Type   | Default | Description |
-| --------- | ------ | ------- | ----------- |
-| `ENV_VAR` | string | —       | ...         |
+### 2.4 Assumptions
 
-## Usage Examples
+- ...
 
-<Code snippets or curl commands showing expected usage.>
+### 2.5 Edge Cases
 
-## Known Limitations
+- ...
 
-<Any constraints, trade-offs, or known issues.>
+---
 
-## Related Plans
+## 3. Architecture
 
-- `agent-plan-<do-something>-<datetime>` — link to the plan document created after this feature doc
+### 3.1 System Context
+
+<Where this feature fits in the system>
+
+### 3.2 Components
+
+| Component | Responsibility |
+| --------- | -------------- |
+| ...       | ...            |
+
+### 3.3 Data Flow
+
+<Describe flow between components>
+
+### 3.4 External Integrations
+
+- APIs
+- Services
+- Third-party systems
+
+### 3.5 Architecture Decisions
+
+| Decision | Options Considered | Chosen | Reason |
+| -------- | ------------------ | ------ | ------ |
+
+---
+
+## 4. Data Model
+
+| Entity | Fields    | Description |
+| ------ | --------- | ----------- |
+| User   | id, email | ...         |
+
+---
+
+## 5. API / Interface
+
+| Method | Path | Description |
+| ------ | ---- | ----------- |
+| GET    | /... | ...         |
+
+---
+
+## 6. State Management (if applicable)
+
+- Client state:
+- Server state:
+- Caching strategy:
+
+---
+
+## 7. Configuration
+
+| Variable | Type | Default | Description |
+| -------- | ---- | ------- | ----------- |
+
+---
+
+## 8. Security Considerations
+
+- Authentication:
+- Authorization:
+- Data protection:
+- Threats & mitigations:
+
+---
+
+## 9. Performance Considerations
+
+- Expected load:
+- Bottlenecks:
+- Optimization strategy:
+
+---
+
+## 10. Testing Strategy
+
+### Unit Tests
+
+- Scope:
+
+### Integration Tests
+
+- Scope:
+
+### E2E Tests
+
+- Scope:
+
+---
+
+## 11. DevOps & Deployment
+
+- Environments:
+- CI/CD:
+- Migration strategy:
+- Rollback plan:
+
+---
+
+## 12. Observability
+
+- Logging:
+- Metrics:
+- Alerts:
+
+---
+
+## 13. Known Limitations
+
+- ...
+
+---
+
+## 14. Risks
+
+| Risk | Impact | Mitigation |
+| ---- | ------ | ---------- |
+
+---
+
+## 15. Related Plans
+
+- `agent-plan-<name>-<datetime>`
 ```

@@ -27,34 +27,129 @@ Examples:
 ```markdown
 # Fix: <Bug Summary>
 
-## Diagnosis
+---
 
-- **Error**: The error message or symptom
-- **Root Cause**: What is actually going wrong and why
-- **Affected Code**: File paths and line numbers
-- **Reproduction**: Steps to reproduce (if applicable)
+## 1. Diagnosis
 
-## Purpose
+- **Error**:
+- **Root Cause**:
+- **Affected Code**:
+- **Reproduction Steps**:
 
-<Why this fix is needed and what impact the bug has.>
+---
 
-## Todo List
+## 2. Impact Analysis
 
-- [ ] Step 1 — ...
-- [ ] Step 2 — ...
-- [ ] Step 3 — ...
+- Affected features:
+- User impact:
+- Severity: (Low / Medium / High / Critical)
 
-## Agent Assignments
+---
 
-| Step   | Agent                   | Skill References       |
-| ------ | ----------------------- | ---------------------- |
-| Step 1 | `<dev-agent>`           | `<skill-1>, <skill-2>` |
-| Step 2 | `<qa-agent>`            | `<skill-1>, <skill-2>` |
-| Step 3 | `<devops-agent>`        | `<skill-1>, <skill-2>` |
-| Step 4 | `<code-reviewer-agent>` | `<skill-1>, <skill-2>` |
+## 3. Purpose
+
+<Why this fix is needed and expected outcome>
+
+---
+
+## 4. Fix Strategy
+
+- Approach:
+- Alternative approaches considered:
+- Why this approach:
+
+---
+
+## 5. Task Breakdown
+
+---
+
+### T1
+
+- **Name**: Identify and isolate faulty logic
+- **Agent**: debugger
+- **Description**:
+- **Dependencies**: []
+- **Acceptance Criteria**:
+- Root cause confirmed in code
+
+---
+
+### T2
+
+- **Name**: Implement fix
+- **Agent**: relevant developer
+- **Description**:
+- **Dependencies**: [T1]
+- **Acceptance Criteria**:
+- Bug no longer reproducible
+
+---
+
+### T3
+
+- **Name**: Add/Update tests
+- **Agent**: qa-engineer
+- **Description**:
+- **Dependencies**: [T2]
+- **Acceptance Criteria**:
+- Test covers bug scenario
+
+---
+
+### T4
+
+- **Name**: Regression testing
+- **Agent**: qa-engineer
+- **Dependencies**: [T3]
+- **Acceptance Criteria**:
+- No existing functionality broken
+
+---
+
+### T5
+
+- **Name**: Code review
+- **Agent**: code-reviewer
+- **Dependencies**: [T2, T3]
+- **Acceptance Criteria**:
+- Code quality and security validated
+
+---
+
+## 6. Parallel Execution Notes
+
+- T2 and T3 can partially overlap (if safe)
+- T4 MUST wait for T2 & T3
+- T5 can run after implementation but before full regression completion
+
+---
+
+## 7. Validation Criteria (Definition of Done)
+
+- Bug cannot be reproduced
+- Automated test added
+- No regression issues
+- Code reviewed and approved
+
+---
+
+## 8. Risks
+
+| Risk        | Impact | Mitigation          |
+| ----------- | ------ | ------------------- |
+| Regression  | High   | Add tests           |
+| Partial fix | Medium | Validate edge cases |
+
+---
+
+## 9. Progress Tracking
+
+- [ ] T1
+- [ ] T2
+- [ ] T3
+- [ ] T4
+- [ ] T5
+
+> Update as tasks complete
 ```
-
-## Rules
-
-- Only create after the user explicitly approves
-- Update checkboxes (`[ ]` → `[x]`) as each step is completed
