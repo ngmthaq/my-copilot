@@ -4,15 +4,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { TEMPLATES } = require("./constants");
-const {
-  copyWithTemplate,
-  selectAgents,
-  selectInitMode,
-  selectSkills,
-  selectTemplate,
-  resolveTemplate,
-} = require("./helpers");
+const { copyWithTemplate, selectAgents, selectSkills } = require("./helpers");
 const COMMAND = process.argv[2];
 
 // --- Commands ---
@@ -47,26 +39,17 @@ async function init() {
       process.exit(1);
     }
   }
-  let template = resolveTemplate(process.argv);
 
-  if (!template) {
-    const initMode = await selectInitMode();
-    if (initMode === "template") {
-      template = await selectTemplate();
-    } else {
-      const includeAgents = await selectAgents();
-      const includeSkills = await selectSkills(includeAgents);
-      template = {
-        label: "customize",
-        includeAgents,
-        includeSkills,
-      };
-    }
-  }
+  const includeAgents = await selectAgents();
+  const includeSkills = await selectSkills();
+  const template = {
+    label: "customize",
+    includeAgents,
+    includeSkills,
+  };
 
-  console.log(`\n  Template: \x1b[36m${template.label}\x1b[0m`);
   console.log(
-    `  Agents: ${template.includeAgents.map((a) => a.replace(".agent.md", "")).join(", ")}`,
+    `\n  Agents: ${template.includeAgents.map((a) => a.replace(".agent.md", "")).join(", ")}`,
   );
   console.log(`  Skills: ${template.includeSkills.join(", ")}`);
   copyWithTemplate(sourceDir, targetDir, template);
@@ -74,9 +57,6 @@ async function init() {
 }
 
 function showHelp() {
-  const templateList = TEMPLATES.map(
-    (t) => `    ${t.name.padEnd(28)} ${t.description}`,
-  ).join("\n");
   console.log(`
   @ngmthaq20/my-copilot
 
@@ -85,15 +65,11 @@ function showHelp() {
 
   Commands:
     init      Copy the .github folder to the current directory
-              (interactive: choose template or customize)
+              (interactive: choose agents and skills)
 
   Options:
-    --template <name>   Use a template (skip interactive selection)
     --force             Rename existing .github to .github-legacy-<timestamp> and recreate
     --help              Show this help message
-
-  Templates:
-${templateList}
 `);
 }
 
