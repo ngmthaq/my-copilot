@@ -195,7 +195,7 @@ Then:
 - Use crawler only for SPA or incomplete content
 - Normalize all outputs into consistent schema
 - Keep extraction deterministic
-- Always log fetched content to `github/docs/crawled-contents/` following the path convention
+- Always log fetched content to `crawled_contents_directory` following the path convention
 
 ---
 
