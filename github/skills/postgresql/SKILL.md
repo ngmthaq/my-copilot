@@ -18,7 +18,7 @@ Provide curated reference links for PostgreSQL documentation. Use these links to
 
 ## Table of Contents
 
-- [w3school-postgresql-references.json](./w3school-postgresql-references.json)
+- [w3school-postgresql-references.md](./w3school-postgresql-references.md)
 
 ## Constraints
 

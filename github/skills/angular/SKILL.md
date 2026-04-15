@@ -18,8 +18,8 @@ Provide curated reference links for Angular documentation. Use these links to qu
 
 ## Table of Contents
 
-- [w3school-angular-references.json](./w3school-angular-references.json)
-- [w3school-angularjs-references.json](./w3school-angularjs-references.json)
+- [w3school-angular-references.md](./w3school-angular-references.md)
+- [w3school-angularjs-references.md](./w3school-angularjs-references.md)
 
 ## Constraints
 

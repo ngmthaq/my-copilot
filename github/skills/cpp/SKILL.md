@@ -18,7 +18,7 @@ Provide curated reference links for C++ documentation. Use these links to quickl
 
 ## Table of Contents
 
-- [w3school-cpp-references.json](./w3school-cpp-references.json)
+- [w3school-cpp-references.md](./w3school-cpp-references.md)
 
 ## Constraints
 

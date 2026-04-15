@@ -18,7 +18,7 @@ Provide curated reference links for Swift documentation. Use these links to quic
 
 ## Table of Contents
 
-- [w3school-swift-references.json](./w3school-swift-references.json)
+- [w3school-swift-references.md](./w3school-swift-references.md)
 
 ## Constraints
 

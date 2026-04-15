@@ -18,7 +18,7 @@ Provide curated reference links for Bootstrap documentation. Use these links to 
 
 ## Table of Contents
 
-- [w3school-bootstrap5-references.json](./w3school-bootstrap5-references.json)
+- [w3school-bootstrap5-references.md](./w3school-bootstrap5-references.md)
 
 ## Constraints
 

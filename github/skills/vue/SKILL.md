@@ -18,8 +18,8 @@ Provide curated reference links for Vue documentation. Use these links to quickl
 
 ## Table of Contents
 
-- [vue-3-references.json](./vue-3-references.json)
-- [w3school-vue-references.json](./w3school-vue-references.json)
+- [vue-3-references.md](./vue-3-references.md)
+- [w3school-vue-references.md](./w3school-vue-references.md)
 
 ## Constraints
 

@@ -18,7 +18,7 @@ Provide curated reference links for LangChain documentation. Use these links to 
 
 ## Table of Contents
 
-- [langchain-references.json](./langchain-references.json)
+- [langchain-references.md](./langchain-references.md)
 
 ## Constraints
 

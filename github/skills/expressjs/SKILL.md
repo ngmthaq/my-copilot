@@ -18,7 +18,7 @@ Provide curated reference links for Express.js documentation. Use these links to
 
 ## Table of Contents
 
-- [expressjs-references.json](./expressjs-references.json)
+- [expressjs-references.md](./expressjs-references.md)
 
 ## Constraints
 

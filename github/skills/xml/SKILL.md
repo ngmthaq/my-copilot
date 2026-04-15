@@ -18,7 +18,7 @@ Provide curated reference links for XML documentation. Use these links to quickl
 
 ## Table of Contents
 
-- [w3school-xml-references.json](./w3school-xml-references.json)
+- [w3school-xml-references.md](./w3school-xml-references.md)
 
 ## Constraints
 

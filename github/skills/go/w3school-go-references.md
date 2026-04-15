@@ -1,0 +1,56 @@
+# w3school-go-references
+
+| Topic                      | Link                                                      |
+| -------------------------- | --------------------------------------------------------- |
+| Go Home                    | https://www.w3schools.com/go/index.php                    |
+| Go Introduction            | https://www.w3schools.com/go/go_introduction.php          |
+| Go Get Started             | https://www.w3schools.com/go/go_getting_started.php       |
+| Go Syntax                  | https://www.w3schools.com/go/go_syntax.php                |
+| Go Comments                | https://www.w3schools.com/go/go_comments.php              |
+| Go Variables               | https://www.w3schools.com/go/go_variables.php             |
+| Declare Variables          | https://www.w3schools.com/go/go_variables.php             |
+| Declare Multiple Variables | https://www.w3schools.com/go/go_variable_multi.php        |
+| Naming Rules               | https://www.w3schools.com/go/go_variable_naming_rules.php |
+| Go Constants               | https://www.w3schools.com/go/go_constants.php             |
+| Go Output                  | https://www.w3schools.com/go/go_output.php                |
+| Output Functions           | https://www.w3schools.com/go/go_output.php                |
+| Formatting Verbs           | https://www.w3schools.com/go/go_formatting_verbs.php      |
+| Go Data Types              | https://www.w3schools.com/go/go_data_types.php            |
+| Basic Data Types           | https://www.w3schools.com/go/go_data_types.php            |
+| Boolean                    | https://www.w3schools.com/go/go_boolean_data_type.php     |
+| Integer                    | https://www.w3schools.com/go/go_integer_data_type.php     |
+| Float                      | https://www.w3schools.com/go/go_float_data_type.php       |
+| String                     | https://www.w3schools.com/go/go_string_data_type.php      |
+| Go Arrays                  | https://www.w3schools.com/go/go_arrays.php                |
+| Go Slices                  | https://www.w3schools.com/go/go_slices.php                |
+| Create Slice               | https://www.w3schools.com/go/go_slices.php                |
+| Modify Slice               | https://www.w3schools.com/go/go_slices_modify.php         |
+| Go Operators               | https://www.w3schools.com/go/go_operators.php             |
+| Operators                  | https://www.w3schools.com/go/go_operators.php             |
+| Arithmetic                 | https://www.w3schools.com/go/go_arithmetic_operators.php  |
+| Assignment                 | https://www.w3schools.com/go/go_assignment_operators.php  |
+| Comparison                 | https://www.w3schools.com/go/go_comparison_operators.php  |
+| Logical                    | https://www.w3schools.com/go/go_logical_operators.php     |
+| Bitwise                    | https://www.w3schools.com/go/go_bitwise_operators.php     |
+| Go Conditions              | https://www.w3schools.com/go/go_conditions.php            |
+| Conditions                 | https://www.w3schools.com/go/go_conditions.php            |
+| if Statement               | https://www.w3schools.com/go/go_if_statement.php          |
+| if else Statement          | https://www.w3schools.com/go/go_else_statement.php        |
+| else if Statement          | https://www.w3schools.com/go/go_elseif_statement.php      |
+| Nested if                  | https://www.w3schools.com/go/go_nested_if.php             |
+| Go Switch                  | https://www.w3schools.com/go/go_switch.php                |
+| Single-case                | https://www.w3schools.com/go/go_switch.php                |
+| Multi-case                 | https://www.w3schools.com/go/go_switch_multi.php          |
+| Go Loops                   | https://www.w3schools.com/go/go_loops.php                 |
+| Go Functions               | https://www.w3schools.com/go/go_functions.php             |
+| Create/Call Function       | https://www.w3schools.com/go/go_functions.php             |
+| Parameters/Arguments       | https://www.w3schools.com/go/go_function_parameters.php   |
+| Function Returns           | https://www.w3schools.com/go/go_function_returns.php      |
+| Recursion                  | https://www.w3schools.com/go/go_function_recursion.php    |
+| Go Struct                  | https://www.w3schools.com/go/go_struct.php                |
+| Go Maps                    | https://www.w3schools.com/go/go_maps.php                  |
+| Go Exercises               | https://www.w3schools.com/go/go_exercises.php             |
+| Go Compiler                | https://www.w3schools.com/go/go_compiler.php              |
+| Go Syllabus                | https://www.w3schools.com/go/go_syllabus.php              |
+| Go Study Plan              | https://www.w3schools.com/go/go_study_plan.php            |
+| Go Certificate             | https://www.w3schools.com/go/go_exam.php                  |

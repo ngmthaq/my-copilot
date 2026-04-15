@@ -1,0 +1,65 @@
+# w3school-r-references
+
+| Topic                | Link                                                  |
+| -------------------- | ----------------------------------------------------- |
+| R HOME               | https://www.w3schools.com/r/default.asp               |
+| R Intro              | https://www.w3schools.com/r/r_intro.asp               |
+| R Get Started        | https://www.w3schools.com/r/r_get_started.asp         |
+| R Syntax             | https://www.w3schools.com/r/r_syntax.asp              |
+| Syntax               | https://www.w3schools.com/r/r_syntax.asp              |
+| Print                | https://www.w3schools.com/r/r_print.asp               |
+| R Comments           | https://www.w3schools.com/r/r_comments.asp            |
+| R Variables          | https://www.w3schools.com/r/r_variables.asp           |
+| Variables            | https://www.w3schools.com/r/r_variables.asp           |
+| Concatenate Elements | https://www.w3schools.com/r/r_variables_concat.asp    |
+| Multiple Variables   | https://www.w3schools.com/r/r_variables_multiple.asp  |
+| Variable Names       | https://www.w3schools.com/r/r_variables_name.asp      |
+| R Data Types         | https://www.w3schools.com/r/r_data_types.asp          |
+| R Numbers            | https://www.w3schools.com/r/r_numbers.asp             |
+| R Math               | https://www.w3schools.com/r/r_math.asp                |
+| R Strings            | https://www.w3schools.com/r/r_strings.asp             |
+| Strings              | https://www.w3schools.com/r/r_strings.asp             |
+| Escape Characters    | https://www.w3schools.com/r/r_strings_esc.asp         |
+| R Booleans           | https://www.w3schools.com/r/r_booleans.asp            |
+| R Operators          | https://www.w3schools.com/r/r_operators.asp           |
+| R If...Else          | https://www.w3schools.com/r/r_if_else.asp             |
+| If...Else            | https://www.w3schools.com/r/r_if_else.asp             |
+| Nested If            | https://www.w3schools.com/r/r_if_else_nested.asp      |
+| And Or               | https://www.w3schools.com/r/r_if_else_andor.asp       |
+| R While Loop         | https://www.w3schools.com/r/r_while_loop.asp          |
+| R For Loop           | https://www.w3schools.com/r/r_for_loop.asp            |
+| For Loop             | https://www.w3schools.com/r/r_for_loop.asp            |
+| Nested Loop          | https://www.w3schools.com/r/r_for_loop_nested.asp     |
+| R Functions          | https://www.w3schools.com/r/r_functions.asp           |
+| Functions            | https://www.w3schools.com/r/r_functions.asp           |
+| Nested Functions     | https://www.w3schools.com/r/r_functions_nested.asp    |
+| Recursion            | https://www.w3schools.com/r/r_functions_recursion.asp |
+| Global Variables     | https://www.w3schools.com/r/r_variables_global.asp    |
+| R Data Structures    | https://www.w3schools.com/r/r_data_structures.asp     |
+| R Vectors            | https://www.w3schools.com/r/r_vectors.asp             |
+| R Lists              | https://www.w3schools.com/r/r_lists.asp               |
+| R Matrices           | https://www.w3schools.com/r/r_matrices.asp            |
+| R Arrays             | https://www.w3schools.com/r/r_arrays.asp              |
+| R Data Frames        | https://www.w3schools.com/r/r_data_frames.asp         |
+| R Factors            | https://www.w3schools.com/r/r_factors.asp             |
+| R Plot               | https://www.w3schools.com/r/r_graph_plot.asp          |
+| R Line               | https://www.w3schools.com/r/r_graph_line.asp          |
+| R Scatterplot        | https://www.w3schools.com/r/r_graph_scatterplot.asp   |
+| R Pie Charts         | https://www.w3schools.com/r/r_graph_pie.asp           |
+| R Bars               | https://www.w3schools.com/r/r_graph_bars.asp          |
+| R Statistics Intro   | https://www.w3schools.com/r/r_stat_intro.asp          |
+| R Data Set           | https://www.w3schools.com/r/r_stat_data_set.asp       |
+| R Max and Min        | https://www.w3schools.com/r/r_stat_max_min.asp        |
+| R Mean Median Mode   | https://www.w3schools.com/r/r_stat_mean.asp           |
+| R Mean               | https://www.w3schools.com/r/r_stat_mean.asp           |
+| R Median             | https://www.w3schools.com/r/r_stat_median.asp         |
+| R Mode               | https://www.w3schools.com/r/r_stat_mode.asp           |
+| R Percentiles        | https://www.w3schools.com/r/r_stat_percentiles.asp    |
+| R Examples           | https://www.w3schools.com/r/r_examples.asp            |
+| R Compiler           | https://www.w3schools.com/r/r_compiler.asp            |
+| R Exercises          | https://www.w3schools.com/r/r_exercises.asp           |
+| R Quiz               | https://www.w3schools.com/r/r_quiz.asp                |
+| R Practice Problems  | https://www.w3schools.com/r/r_practice.php            |
+| R Syllabus           | https://www.w3schools.com/r/r_syllabus.asp            |
+| R Study Plan         | https://www.w3schools.com/r/r_study_plan.asp          |
+| R Certificate        | https://www.w3schools.com/r/r_exam.asp                |

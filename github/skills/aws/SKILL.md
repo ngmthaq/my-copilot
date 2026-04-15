@@ -18,7 +18,7 @@ Provide curated reference links for AWS documentation. Use these links to quickl
 
 ## Table of Contents
 
-- [w3school-aws-references.json](./w3school-aws-references.json)
+- [w3school-aws-references.md](./w3school-aws-references.md)
 
 ## Constraints
 

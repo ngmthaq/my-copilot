@@ -18,7 +18,7 @@ Provide curated reference links for Flutter documentation. Use these links to qu
 
 ## Table of Contents
 
-- [flutter-references.json](./flutter-references.json)
+- [flutter-references.md](./flutter-references.md)
 
 ## Constraints
 

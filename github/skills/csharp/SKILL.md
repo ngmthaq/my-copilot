@@ -18,7 +18,7 @@ Provide curated reference links for C# documentation. Use these links to quickly
 
 ## Table of Contents
 
-- [w3school-cs-references.json](./w3school-cs-references.json)
+- [w3school-cs-references.md](./w3school-cs-references.md)
 
 ## Constraints
 

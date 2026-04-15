@@ -18,7 +18,7 @@ Provide curated reference links for Ollama documentation. Use these links to qui
 
 ## Table of Contents
 
-- [ollama-references.json](./ollama-references.json)
+- [ollama-references.md](./ollama-references.md)
 
 ## Constraints
 

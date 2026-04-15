@@ -18,7 +18,7 @@ Provide curated reference links for R documentation. Use these links to quickly 
 
 ## Table of Contents
 
-- [w3school-r-references.json](./w3school-r-references.json)
+- [w3school-r-references.md](./w3school-r-references.md)
 
 ## Constraints
 

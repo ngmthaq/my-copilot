@@ -18,7 +18,7 @@ Provide curated reference links for Nginx documentation. Use these links to quic
 
 ## Table of Contents
 
-- [nginx-references.json](./nginx-references.json)
+- [nginx-references.md](./nginx-references.md)
 
 ## Constraints
 

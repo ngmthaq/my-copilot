@@ -18,9 +18,9 @@ Provide curated reference links for ESLint documentation. Use these links to qui
 
 ## Table of Contents
 
-- [eslint-v10-references.json](./eslint-v10-references.json)
-- [eslint-v8-references.json](./eslint-v8-references.json)
-- [eslint-v9-references.json](./eslint-v9-references.json)
+- [eslint-v10-references.md](./eslint-v10-references.md)
+- [eslint-v8-references.md](./eslint-v8-references.md)
+- [eslint-v9-references.md](./eslint-v9-references.md)
 
 ## Constraints
 

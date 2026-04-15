@@ -18,7 +18,7 @@ Provide curated reference links for Vite documentation. Use these links to quick
 
 ## Table of Contents
 
-- [vite-references.json](./vite-references.json)
+- [vite-references.md](./vite-references.md)
 
 ## Constraints
 

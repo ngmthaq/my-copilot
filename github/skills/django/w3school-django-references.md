@@ -1,0 +1,69 @@
+# w3school-django-references
+
+| Topic                      | Link                                                                   |
+| -------------------------- | ---------------------------------------------------------------------- |
+| Django Home                | https://www.w3schools.com/django/index.php                             |
+| Django Intro               | https://www.w3schools.com/django/django_intro.php                      |
+| Django Get Started         | https://www.w3schools.com/django/django_getstarted.php                 |
+| Create Virtual Environment | https://www.w3schools.com/django/django_create_virtual_environment.php |
+| Install Django             | https://www.w3schools.com/django/django_install_django.php             |
+| Django Create Project      | https://www.w3schools.com/django/django_create_project.php             |
+| Django Create App          | https://www.w3schools.com/django/django_create_app.php                 |
+| Django Views               | https://www.w3schools.com/django/django_views.php                      |
+| Django URLs                | https://www.w3schools.com/django/django_urls.php                       |
+| Django Templates           | https://www.w3schools.com/django/django_templates.php                  |
+| Django Models              | https://www.w3schools.com/django/django_models.php                     |
+| Django Insert Data         | https://www.w3schools.com/django/django_insert_data.php                |
+| Django Update Data         | https://www.w3schools.com/django/django_update_data.php                |
+| Django Delete Data         | https://www.w3schools.com/django/django_delete_data.php                |
+| Django Update Model        | https://www.w3schools.com/django/django_update_model.php               |
+| Prep Template and View     | https://www.w3schools.com/django/django_prepare_template.php           |
+| Add Link to Details        | https://www.w3schools.com/django/django_add_link_details.php           |
+| Add Master Template        | https://www.w3schools.com/django/django_master_template.php            |
+| Add Main Index Page        | https://www.w3schools.com/django/django_add_main.php                   |
+| Django 404 Template        | https://www.w3schools.com/django/django_404.php                        |
+| Add Test View              | https://www.w3schools.com/django/django_test_view.php                  |
+| Django Admin               | https://www.w3schools.com/django/django_admin.php                      |
+| Create User                | https://www.w3schools.com/django/django_admin_create_user.php          |
+| Include Models             | https://www.w3schools.com/django/django_admin_include_members.php      |
+| Set List Display           | https://www.w3schools.com/django/django_admin_set_list_display.php     |
+| Update Members             | https://www.w3schools.com/django/django_admin_update_members.php       |
+| Add Members                | https://www.w3schools.com/django/django_db_add_members.php             |
+| Delete Members             | https://www.w3schools.com/django/django_admin_delete_members.php       |
+| Django Variables           | https://www.w3schools.com/django/django_template_variables.php         |
+| Django Tags                | https://www.w3schools.com/django/django_template_tags.php              |
+| Django If Else             | https://www.w3schools.com/django/django_tags_if.php                    |
+| Django For Loop            | https://www.w3schools.com/django/django_tags_for.php                   |
+| Django Comment             | https://www.w3schools.com/django/django_tags_comment.php               |
+| Django Include             | https://www.w3schools.com/django/django_tags_include.php               |
+| QuerySet Introduction      | https://www.w3schools.com/django/django_queryset.php                   |
+| QuerySet Get               | https://www.w3schools.com/django/django_queryset_get.php               |
+| QuerySet Filter            | https://www.w3schools.com/django/django_queryset_filter.php            |
+| QuerySet Order By          | https://www.w3schools.com/django/django_queryset_orderby.php           |
+| Add Static Files           | https://www.w3schools.com/django/django_add_static_files.php           |
+| Install WhiteNoise         | https://www.w3schools.com/django/django_static_whitenoise.php          |
+| Collect Static Files       | https://www.w3schools.com/django/django_collect_static_files.php       |
+| Add Global Static Files    | https://www.w3schools.com/django/django_add_global_static_files.php    |
+| Add Styles to the Project  | https://www.w3schools.com/django/django_add_css_file_project.php       |
+| PostgreSQL Intro           | https://www.w3schools.com/django/django_db_postgresql_intro.php        |
+| Create AWS Account         | https://www.w3schools.com/django/django_db_create_aws_account.php      |
+| Create Database in RDS     | https://www.w3schools.com/django/django_db_create_rds.php              |
+| Connect to Database        | https://www.w3schools.com/django/django_db_connect.php                 |
+| Elastic Beanstalk (EB)     | https://www.w3schools.com/django/django_deploy_provider.php            |
+| Create requirements.txt    | https://www.w3schools.com/django/django_deploy_requirements.php        |
+| Create django.config       | https://www.w3schools.com/django/django_deploy_config.php              |
+| Create .zip File           | https://www.w3schools.com/django/django_deploy_zip.php                 |
+| Deploy with EB             | https://www.w3schools.com/django/django_deploy_eb.php                  |
+| Update Project             | https://www.w3schools.com/django/django_deploy_update.php              |
+| Add Slug Field             | https://www.w3schools.com/django/django_slug_field.php                 |
+| Add Bootstrap 5            | https://www.w3schools.com/django/django_add_bootstrap5.php             |
+| Template Tag Reference     | https://www.w3schools.com/django/django_ref_template_tags.php          |
+| Filter Reference           | https://www.w3schools.com/django/django_ref_filter.php                 |
+| Field lookups Reference    | https://www.w3schools.com/django/django_ref_field_lookups.php          |
+| Django Compiler            | https://www.w3schools.com/django/django_compiler.php                   |
+| Django Exercises           | https://www.w3schools.com/django/django_exercises.php                  |
+| Django Quiz                | https://www.w3schools.com/django/django_quiz.php                       |
+| Django Syllabus            | https://www.w3schools.com/django/django_syllabus.php                   |
+| Django Study Plan          | https://www.w3schools.com/django/django_study_plan.php                 |
+| Django Server              | https://www.w3schools.com/django/django_server.php                     |
+| Django Certificate         | https://www.w3schools.com/django/django_exam.php                       |

@@ -18,7 +18,7 @@ Provide curated reference links for Go documentation. Use these links to quickly
 
 ## Table of Contents
 
-- [w3school-go-references.json](./w3school-go-references.json)
+- [w3school-go-references.md](./w3school-go-references.md)
 
 ## Constraints
 

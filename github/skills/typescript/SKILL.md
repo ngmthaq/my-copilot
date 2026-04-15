@@ -18,7 +18,7 @@ Provide curated reference links for TypeScript documentation. Use these links to
 
 ## Table of Contents
 
-- [w3school-typescript-references.json](./w3school-typescript-references.json)
+- [w3school-typescript-references.md](./w3school-typescript-references.md)
 
 ## Constraints
 

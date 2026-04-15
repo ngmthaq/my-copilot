@@ -18,7 +18,7 @@ Provide curated reference links for Kotlin documentation. Use these links to qui
 
 ## Table of Contents
 
-- [w3school-kotlin-references.json](./w3school-kotlin-references.json)
+- [w3school-kotlin-references.md](./w3school-kotlin-references.md)
 
 ## Constraints
 

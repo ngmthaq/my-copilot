@@ -18,7 +18,7 @@ Provide curated reference links for Java documentation. Use these links to quick
 
 ## Table of Contents
 
-- [w3school-java-references.json](./w3school-java-references.json)
+- [w3school-java-references.md](./w3school-java-references.md)
 
 ## Constraints
 

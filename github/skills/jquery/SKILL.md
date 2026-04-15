@@ -18,7 +18,7 @@ Provide curated reference links for jQuery documentation. Use these links to qui
 
 ## Table of Contents
 
-- [w3school-jquery-references.json](./w3school-jquery-references.json)
+- [w3school-jquery-references.md](./w3school-jquery-references.md)
 
 ## Constraints
 

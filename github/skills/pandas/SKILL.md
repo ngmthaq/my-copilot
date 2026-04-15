@@ -18,7 +18,7 @@ Provide curated reference links for Pandas documentation. Use these links to qui
 
 ## Table of Contents
 
-- [w3school-python-pandas-references.json](./w3school-python-pandas-references.json)
+- [w3school-python-pandas-references.md](./w3school-python-pandas-references.md)
 
 ## Constraints
 

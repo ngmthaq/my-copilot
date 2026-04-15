@@ -18,7 +18,7 @@ Provide curated reference links for UI Creation Guide documentation. Use these l
 
 ## Table of Contents
 
-- [w3school-ui-creation-guide-references.json](./w3school-ui-creation-guide-references.json)
+- [w3school-ui-creation-guide-references.md](./w3school-ui-creation-guide-references.md)
 
 ## Constraints
 

@@ -1,0 +1,59 @@
+# w3school-ai-references
+
+| Topic                   | Link                                                          |
+| ----------------------- | ------------------------------------------------------------- |
+| ML Intro                | https://www.w3schools.com/ai/default.asp                      |
+| ML and AI               | https://www.w3schools.com/ai/ai_whatis.asp                    |
+| ML Languages            | https://www.w3schools.com/ai/ai_languages.asp                 |
+| ML JavaScript           | https://www.w3schools.com/ai/ai_javascript.asp                |
+| ML Examples             | https://www.w3schools.com/ai/ai_examples.asp                  |
+| ML Linear Graphs        | https://www.w3schools.com/ai/ai_linear_graphs.asp             |
+| ML Scatter Plots        | https://www.w3schools.com/ai/ai_scatter_plots.asp             |
+| ML Perceptrons          | https://www.w3schools.com/ai/ai_perceptrons.asp               |
+| ML Recognition          | https://www.w3schools.com/ai/ai_recognition.asp               |
+| ML Training             | https://www.w3schools.com/ai/ai_training.asp                  |
+| ML Testing              | https://www.w3schools.com/ai/ai_perceptron_testing.asp        |
+| ML Learning             | https://www.w3schools.com/ai/ai_learning.asp                  |
+| ML Terminology          | https://www.w3schools.com/ai/ai_ml_terminology.asp            |
+| ML Data                 | https://www.w3schools.com/ai/ai_data.asp                      |
+| ML Clustering           | https://www.w3schools.com/ai/ai_clustering.asp                |
+| ML Regressions          | https://www.w3schools.com/ai/ai_regressions.asp               |
+| ML Deep Learning        | https://www.w3schools.com/ai/ai_neural_networks.asp           |
+| ML Brain.js             | https://www.w3schools.com/ai/ai_brainjs.asp                   |
+| TFJS Tutorial           | https://www.w3schools.com/ai/ai_tensorflow_intro.asp          |
+| TFJS Operations         | https://www.w3schools.com/ai/ai_tensorflow_operations.asp     |
+| TFJS Models             | https://www.w3schools.com/ai/ai_tensorflow_model.asp          |
+| TFJS Visor              | https://www.w3schools.com/ai/ai_tensorflow_visor.asp          |
+| Ex1 Intro               | https://www.w3schools.com/ai/ai_tensorflow_example_2d.asp     |
+| Ex1 Data                | https://www.w3schools.com/ai/ai_tensorflow_data.asp           |
+| Ex1 Model               | https://www.w3schools.com/ai/ai_tensorflow_modelling.asp      |
+| Ex1 Training            | https://www.w3schools.com/ai/ai_tensorflow_training.asp       |
+| Ex2 Intro               | https://www.w3schools.com/ai/ai_tensorflow_example_houses.asp |
+| Ex2 Data                | https://www.w3schools.com/ai/ai_tensorflow_ex2_data.asp       |
+| Ex2 Model               | https://www.w3schools.com/ai/ai_tensorflow_ex2_model.asp      |
+| Ex2 Training            | https://www.w3schools.com/ai/ai_tensorflow_ex2_training.asp   |
+| Graph Intro             | https://www.w3schools.com/ai/ai_graphics.asp                  |
+| Graph Canvas            | https://www.w3schools.com/ai/ai_canvas.asp                    |
+| Graph Plotly.js         | https://www.w3schools.com/ai/ai_plotly.asp                    |
+| Graph Chart.js          | https://www.w3schools.com/ai/ai_chartjs.asp                   |
+| Graph Google            | https://www.w3schools.com/ai/ai_google_chart.asp              |
+| Graph D3.js             | https://www.w3schools.com/ai/ai_d3js.asp                      |
+| History of Intelligence | https://www.w3schools.com/ai/ai_history_brain.asp             |
+| History of Languages    | https://www.w3schools.com/ai/ai_history_languages.asp         |
+| History of Numbers      | https://www.w3schools.com/ai/ai_history_numbers.asp           |
+| History of Computing    | https://www.w3schools.com/ai/ai_history_computers.asp         |
+| History of Robots       | https://www.w3schools.com/ai/ai_robots.asp                    |
+| History of AI           | https://www.w3schools.com/ai/ai_history.asp                   |
+| Job Replacements        | https://www.w3schools.com/ai/ai_job_replacement.asp           |
+| Theory of Mind          | https://www.w3schools.com/ai/ai_mind.asp                      |
+| Mathematics             | https://www.w3schools.com/ai/ai_mathematics.asp               |
+| Linear Functions        | https://www.w3schools.com/ai/ai_linear.asp                    |
+| Linear Algebra          | https://www.w3schools.com/ai/ai_algebra.asp                   |
+| Vectors                 | https://www.w3schools.com/ai/ai_vectors.asp                   |
+| Matrices                | https://www.w3schools.com/ai/ai_matrices.asp                  |
+| Tensors                 | https://www.w3schools.com/ai/ai_tensors.asp                   |
+| Statistics              | https://www.w3schools.com/ai/ai_statistics.asp                |
+| Descriptive             | https://www.w3schools.com/ai/ai_statistics_descriptive.asp    |
+| Variability             | https://www.w3schools.com/ai/ai_variance.asp                  |
+| Distribution            | https://www.w3schools.com/ai/ai_distribution.asp              |
+| Probability             | https://www.w3schools.com/ai/ai_probability.asp               |

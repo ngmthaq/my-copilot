@@ -18,7 +18,7 @@ Provide curated reference links for Spring documentation. Use these links to qui
 
 ## Table of Contents
 
-- [spring-references.json](./spring-references.json)
+- [spring-references.md](./spring-references.md)
 
 ## Constraints
 

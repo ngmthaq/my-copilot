@@ -18,7 +18,7 @@ Provide curated reference links for SCSS documentation. Use these links to quick
 
 ## Table of Contents
 
-- [scss-references.json](./scss-references.json)
+- [scss-references.md](./scss-references.md)
 
 ## Constraints
 

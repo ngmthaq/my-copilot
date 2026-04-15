@@ -18,7 +18,7 @@ Provide curated reference links for Docker documentation. Use these links to qui
 
 ## Table of Contents
 
-- [docker-references.json](./docker-references.json)
+- [docker-references.md](./docker-references.md)
 
 ## Constraints
 

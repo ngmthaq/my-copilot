@@ -1,0 +1,295 @@
+# w3school-css-references
+
+| Topic                    | Link                                                               |
+| ------------------------ | ------------------------------------------------------------------ |
+| CSS HOME                 | https://www.w3schools.com/css/default.asp                          |
+| CSS Introduction         | https://www.w3schools.com/css/css_intro.asp                        |
+| CSS Syntax               | https://www.w3schools.com/css/css_syntax.asp                       |
+| CSS Selectors            | https://www.w3schools.com/css/cssref/css_selectors.php             |
+| Selectors                | https://www.w3schools.com/css/css_selectors.asp                    |
+| Grouping Selectors       | https://www.w3schools.com/css/css_selectors_grouping.asp           |
+| Code Challenge           | https://www.w3schools.com/css/css_challenges_rwd_videos.asp        |
+| CSS How To               | https://www.w3schools.com/css/css_howto.asp                        |
+| Add External CSS         | https://www.w3schools.com/css/css_howto.asp                        |
+| Add Internal CSS         | https://www.w3schools.com/css/css_howto_internal.asp               |
+| Add Inline Style         | https://www.w3schools.com/css/css_howto_inline.asp                 |
+| Multiple Style Sheets    | https://www.w3schools.com/css/css_howto_multiple_cascade.asp       |
+| CSS Comments             | https://www.w3schools.com/css/css_comments.asp                     |
+| CSS Errors               | https://www.w3schools.com/css/css_errors.asp                       |
+| CSS Colors               | https://www.w3schools.com/css/cssref/css_colors.php                |
+| Colors                   | https://www.w3schools.com/css/css3_colors.asp                      |
+| RGB                      | https://www.w3schools.com/css/css_colors_rgb.asp                   |
+| HEX                      | https://www.w3schools.com/css/css_colors_hex.asp                   |
+| HSL                      | https://www.w3schools.com/css/css_colors_hsl.asp                   |
+| CSS Backgrounds          | https://www.w3schools.com/css/css3_backgrounds.asp                 |
+| Background Color         | https://www.w3schools.com/css/css_background.asp                   |
+| Background Image         | https://www.w3schools.com/css/css_background_image.asp             |
+| Background Repeat        | https://www.w3schools.com/css/css_background_repeat.asp            |
+| Background Attachment    | https://www.w3schools.com/css/css_background_attachment.asp        |
+| Background Shorthand     | https://www.w3schools.com/css/css_background_shorthand.asp         |
+| CSS Borders              | https://www.w3schools.com/css/css_border.asp                       |
+| Border Style             | https://www.w3schools.com/css/css_border.asp                       |
+| Border Width             | https://www.w3schools.com/css/css_border_width.asp                 |
+| Border Color             | https://www.w3schools.com/css/css_border_color.asp                 |
+| Border Sides             | https://www.w3schools.com/css/css_border_sides.asp                 |
+| Border Shorthand         | https://www.w3schools.com/css/css_border_shorthand.asp             |
+| Rounded Borders          | https://www.w3schools.com/css/css_border_rounded.asp               |
+| CSS Margins              | https://www.w3schools.com/css/css_margin.asp                       |
+| Margins                  | https://www.w3schools.com/css/css_margin.asp                       |
+| Margin Collapse          | https://www.w3schools.com/css/css_margin_collapse.asp              |
+| CSS Padding              | https://www.w3schools.com/css/css_padding.asp                      |
+| Padding                  | https://www.w3schools.com/css/css_padding.asp                      |
+| Padding box-sizing       | https://www.w3schools.com/css/css_padding_box-sizing.asp           |
+| CSS Height / Width       | https://www.w3schools.com/css/css_height_width.asp                 |
+| Height / Width           | https://www.w3schools.com/css/css_height_width.asp                 |
+| Min / Max                | https://www.w3schools.com/css/css_height_width_min_max.asp         |
+| CSS Box Model            | https://www.w3schools.com/css/css_boxmodel.asp                     |
+| Box Model                | https://www.w3schools.com/css/css_boxmodel.asp                     |
+| CSS Outline              | https://www.w3schools.com/css/css_outline.asp                      |
+| Outline Style            | https://www.w3schools.com/css/css_outline.asp                      |
+| Outline Width            | https://www.w3schools.com/css/css_outline_width.asp                |
+| Outline Color            | https://www.w3schools.com/css/css_outline_color.asp                |
+| Outline Shorthand        | https://www.w3schools.com/css/css_outline_shorthand.asp            |
+| Outline Offset           | https://www.w3schools.com/css/css_outline_offset.asp               |
+| CSS Text                 | https://www.w3schools.com/css/css_text.asp                         |
+| Text Color               | https://www.w3schools.com/css/css_text.asp                         |
+| Text Alignment           | https://www.w3schools.com/css/css_text_align.asp                   |
+| Text Decoration          | https://www.w3schools.com/css/css_text_decoration.asp              |
+| Text Decoration Styles   | https://www.w3schools.com/css/css_text_decoration_styles.asp       |
+| Text Transformation      | https://www.w3schools.com/css/css_text_transformation.asp          |
+| Text Spacing             | https://www.w3schools.com/css/css_text_spacing.asp                 |
+| Text Shadow              | https://www.w3schools.com/css/css3_shadows.asp                     |
+| CSS Fonts                | https://www.w3schools.com/css/css_font.asp                         |
+| Font Family              | https://www.w3schools.com/css/css_font.asp                         |
+| Font Web Safe            | https://www.w3schools.com/css/css_font_websafe.asp                 |
+| Font Fallbacks           | https://www.w3schools.com/css/css_font_fallbacks.asp               |
+| Font Style               | https://www.w3schools.com/css/css_font_style.asp                   |
+| Font Size                | https://www.w3schools.com/css/css_font_size.asp                    |
+| Font Google              | https://www.w3schools.com/css/css_font_google.asp                  |
+| Font Pairings            | https://www.w3schools.com/css/css_font_pairings.asp                |
+| Font Shorthand           | https://www.w3schools.com/css/css_font_shorthand.asp               |
+| CSS Icons                | https://www.w3schools.com/css/css_icons.asp                        |
+| Icons: Font Awesome      | https://www.w3schools.com/css/css_icons.asp                        |
+| Icons: Bootstrap         | https://www.w3schools.com/css/css_icons_bootstrap.asp              |
+| Icons: Google            | https://www.w3schools.com/css/css_icons_google.asp                 |
+| CSS Links                | https://www.w3schools.com/css/css_link.asp                         |
+| Styling Links            | https://www.w3schools.com/css/css_link.asp                         |
+| Link Buttons             | https://www.w3schools.com/css/css_link_buttons.asp                 |
+| CSS Lists                | https://www.w3schools.com/css/css_list.asp                         |
+| Styling Lists            | https://www.w3schools.com/css/css_list.asp                         |
+| CSS Tables               | https://www.w3schools.com/css/css_table.asp                        |
+| Table Borders            | https://www.w3schools.com/css/css_table.asp                        |
+| Table Size               | https://www.w3schools.com/css/css_table_size.asp                   |
+| Table Alignment          | https://www.w3schools.com/css/css_table_align.asp                  |
+| Table Styling            | https://www.w3schools.com/css/css_table_style.asp                  |
+| Table Responsive         | https://www.w3schools.com/css/css_table_responsive.asp             |
+| CSS Display              | https://www.w3schools.com/css/css_display.asp                      |
+| Display                  | https://www.w3schools.com/css/css_display.asp                      |
+| Visibility / Hide        | https://www.w3schools.com/css/css_display_hide.asp                 |
+| CSS Max-width            | https://www.w3schools.com/css/css_max-width.asp                    |
+| Max-width                | https://www.w3schools.com/css/css_max-width.asp                    |
+| CSS Position             | https://www.w3schools.com/css/css_position.asp                     |
+| Static/Relative Position | https://www.w3schools.com/css/css_position.asp                     |
+| Fixed/Absolute Position  | https://www.w3schools.com/css/css_positioning_fixed_absolute.asp   |
+| Sticky Position          | https://www.w3schools.com/css/css_positioning_sticky.asp           |
+| CSS Position Offsets     | https://www.w3schools.com/css/css_position_offset.asp              |
+| Offsets                  | https://www.w3schools.com/css/css_position_offset.asp              |
+| CSS Z-index              | https://www.w3schools.com/css/css_z-index.asp                      |
+| Z-index                  | https://www.w3schools.com/css/css_z-index.asp                      |
+| CSS Overflow             | https://www.w3schools.com/css/css_overflow.asp                     |
+| Overflow                 | https://www.w3schools.com/css/css_overflow.asp                     |
+| Overflow X and Y         | https://www.w3schools.com/css/css_overflow_xy.asp                  |
+| CSS Float                | https://www.w3schools.com/css/css_float.asp                        |
+| Float                    | https://www.w3schools.com/css/css_float.asp                        |
+| Clear / Clearfix         | https://www.w3schools.com/css/css_float_clear.asp                  |
+| Float Examples           | https://www.w3schools.com/css/css_float_examples.asp               |
+| CSS Inline-block         | https://www.w3schools.com/css/css_inline-block.asp                 |
+| Inline-block             | https://www.w3schools.com/css/css_inline-block.asp                 |
+| CSS Align                | https://www.w3schools.com/css/css_align.asp                        |
+| Center Align             | https://www.w3schools.com/css/css_align.asp                        |
+| Horizontal Align         | https://www.w3schools.com/css/css_align_horizontal.asp             |
+| Vertical Align           | https://www.w3schools.com/css/css_align_vertical.asp               |
+| CSS Combinators          | https://www.w3schools.com/css/cssref/css_ref_combinators.php       |
+| Combinators              | https://www.w3schools.com/css/css_combinators.asp                  |
+| CSS Pseudo-classes       | https://www.w3schools.com/css/cssref/css_ref_pseudo_classes.php    |
+| Pseudo-classes           | https://www.w3schools.com/css/css_pseudo_classes.asp               |
+| Interactive              | https://www.w3schools.com/css/css_pseudo_classes_interactive.asp   |
+| Structural               | https://www.w3schools.com/css/css_pseudo_classes_structural.asp    |
+| CSS Pseudo-elements      | https://www.w3schools.com/css/cssref/css_ref_pseudo_elements.php   |
+| Pseudo-elements          | https://www.w3schools.com/css/css_pseudo_elements.asp              |
+| Text                     | https://www.w3schools.com/css/css_pseudo_elements_text.asp         |
+| Content                  | https://www.w3schools.com/css/css_pseudo_elements_content.asp      |
+| CSS Opacity              | https://www.w3schools.com/css/css_image_transparency.asp           |
+| Opacity                  | https://www.w3schools.com/css/css_image_transparency.asp           |
+| CSS Navigation Bars      | https://www.w3schools.com/css/css_navbar.asp                       |
+| Navbar Intro             | https://www.w3schools.com/css/css_navbar.asp                       |
+| Vertical Navbar          | https://www.w3schools.com/css/css_navbar_vertical.asp              |
+| Horizontal Navbar        | https://www.w3schools.com/css/css_navbar_horizontal.asp            |
+| CSS Dropdowns            | https://www.w3schools.com/css/css_dropdowns.asp                    |
+| Dropdowns                | https://www.w3schools.com/css/css_dropdowns.asp                    |
+| Advanced Dropdowns       | https://www.w3schools.com/css/css_dropdowns_advanced.asp           |
+| CSS Image Gallery        | https://www.w3schools.com/css/css_image_gallery.asp                |
+| Image Gallery            | https://www.w3schools.com/css/css_image_gallery.asp                |
+| CSS Image Sprites        | https://www.w3schools.com/css/css_image_sprites.asp                |
+| Image Sprites            | https://www.w3schools.com/css/css_image_sprites.asp                |
+| CSS Attribute Selectors  | https://www.w3schools.com/css/css_attribute_selectors.asp          |
+| Attribute Selectors      | https://www.w3schools.com/css/css_attribute_selectors.asp          |
+| Advanced Attr Selectors  | https://www.w3schools.com/css/css_attribute_selectors_advanced.asp |
+| CSS Forms                | https://www.w3schools.com/css/css_forms.asp                        |
+| Style Forms              | https://www.w3schools.com/css/css_forms.asp                        |
+| Style Inputs             | https://www.w3schools.com/css/css_form_inputs.asp                  |
+| Input Focus / Icons      | https://www.w3schools.com/css/css_form_focus.asp                   |
+| Other Form Elements      | https://www.w3schools.com/css/css_form_elements.asp                |
+| CSS Counters             | https://www.w3schools.com/css/css_counters.asp                     |
+| Counters                 | https://www.w3schools.com/css/css_counters.asp                     |
+| Nested Counters          | https://www.w3schools.com/css/css_counters_nested.asp              |
+| CSS Units                | https://www.w3schools.com/css/cssref/css_units.php                 |
+| Units                    | https://www.w3schools.com/css/css_units.asp                        |
+| Absolute Units           | https://www.w3schools.com/css/css_units_absolute.asp               |
+| Relative Units           | https://www.w3schools.com/css/css_units_relative.asp               |
+| CSS Inheritance          | https://www.w3schools.com/css/css_inheritance.asp                  |
+| Inheritance              | https://www.w3schools.com/css/css_inheritance.asp                  |
+| CSS Specificity          | https://www.w3schools.com/css/css_specificity.asp                  |
+| Specificity              | https://www.w3schools.com/css/css_specificity.asp                  |
+| Specificity Hierarchy    | https://www.w3schools.com/css/css_specificity_hierarchy.asp        |
+| CSS !important           | https://www.w3schools.com/css/css_important.asp                    |
+| !important               | https://www.w3schools.com/css/css_important.asp                    |
+| CSS Math Functions       | https://www.w3schools.com/css/css_math_functions.asp               |
+| Math Functions           | https://www.w3schools.com/css/css_math_functions.asp               |
+| CSS Optimization         | https://www.w3schools.com/css/css_performance.asp                  |
+| Optimization             | https://www.w3schools.com/css/css_performance.asp                  |
+| CSS Accessibility        | https://www.w3schools.com/css/css_accessibility.asp                |
+| Accessibility            | https://www.w3schools.com/css/css_accessibility.asp                |
+| CSS Website Layout       | https://www.w3schools.com/css/css_website_layout.asp               |
+| Website Layout           | https://www.w3schools.com/css/css_website_layout.asp               |
+| CSS Rounded Corners      | https://www.w3schools.com/css/css3_borders.asp                     |
+| Rounded Corners          | https://www.w3schools.com/css/css3_borders.asp                     |
+| CSS Border Images        | https://www.w3schools.com/css/css3_border_images.asp               |
+| Border Images            | https://www.w3schools.com/css/css3_border_images.asp               |
+| Multiple Backgrounds     | https://www.w3schools.com/css/css3_backgrounds.asp                 |
+| Background Size          | https://www.w3schools.com/css/css3_background_size.asp             |
+| Background Origin        | https://www.w3schools.com/css/css3_background_origin.asp           |
+| Background Clip          | https://www.w3schools.com/css/css3_background_clip.asp             |
+| Color Keywords           | https://www.w3schools.com/css/css_colors_keywords.asp              |
+| CSS Gradients            | https://www.w3schools.com/css/css3_gradients.asp                   |
+| Linear Gradients         | https://www.w3schools.com/css/css3_gradients.asp                   |
+| Radial Gradients         | https://www.w3schools.com/css/css3_gradients_radial.asp            |
+| Conic Gradients          | https://www.w3schools.com/css/css3_gradients_conic.asp             |
+| CSS Shadows              | https://www.w3schools.com/css/css3_shadows.asp                     |
+| Box Shadow               | https://www.w3schools.com/css/css3_shadows_box.asp                 |
+| CSS Text Effects         | https://www.w3schools.com/css/css3_text_effects.asp                |
+| Text Effects             | https://www.w3schools.com/css/css3_text_effects.asp                |
+| CSS Custom Fonts         | https://www.w3schools.com/css/css3_fonts.asp                       |
+| Custom Fonts             | https://www.w3schools.com/css/css3_fonts.asp                       |
+| CSS 2D Transforms        | https://www.w3schools.com/css/css3_2dtransforms.asp                |
+| Translate / Rotate       | https://www.w3schools.com/css/css3_2dtransforms.asp                |
+| Scale                    | https://www.w3schools.com/css/css3_2dtransforms_scale.asp          |
+| Skew / Matrix            | https://www.w3schools.com/css/css3_2dtransforms_skew.asp           |
+| CSS 3D Transforms        | https://www.w3schools.com/css/css3_3dtransforms.asp                |
+| 3D Transforms            | https://www.w3schools.com/css/css3_3dtransforms.asp                |
+| CSS Transitions          | https://www.w3schools.com/css/css3_transitions.asp                 |
+| Transitions              | https://www.w3schools.com/css/css3_transitions.asp                 |
+| Transition Timing        | https://www.w3schools.com/css/css3_transitions_timing.asp          |
+| CSS Animations           | https://www.w3schools.com/css/css3_animations.asp                  |
+| Animations               | https://www.w3schools.com/css/css3_animations.asp                  |
+| Animation Timing         | https://www.w3schools.com/css/css3_animations_timing.asp           |
+| Animation Properties     | https://www.w3schools.com/css/css3_animations_properties.asp       |
+| CSS Tooltips             | https://www.w3schools.com/css/css_tooltip.asp                      |
+| Tooltips                 | https://www.w3schools.com/css/css_tooltip.asp                      |
+| Tooltip Arrows           | https://www.w3schools.com/css/css_tooltip_arrows.asp               |
+| CSS Image Styling        | https://www.w3schools.com/css/css3_images.asp                      |
+| Image Styling            | https://www.w3schools.com/css/css3_images.asp                      |
+| Image Effects            | https://www.w3schools.com/css/css3_images_effects.asp              |
+| Hover Overlays           | https://www.w3schools.com/css/css3_images_hover.asp                |
+| CSS Image Modal          | https://www.w3schools.com/css/css3_images_modal.asp                |
+| Image Modal              | https://www.w3schools.com/css/css3_images_modal.asp                |
+| CSS Image Centering      | https://www.w3schools.com/css/css3_image_center.asp                |
+| Image Centering          | https://www.w3schools.com/css/css3_image_center.asp                |
+| CSS Image Filters        | https://www.w3schools.com/css/css3_image_filters.asp               |
+| Image Filters            | https://www.w3schools.com/css/css3_image_filters.asp               |
+| CSS Image Shapes         | https://www.w3schools.com/css/css3_image_shapes.asp                |
+| Image Shapes             | https://www.w3schools.com/css/css3_image_shapes.asp                |
+| CSS object-fit           | https://www.w3schools.com/css/css3_object-fit.asp                  |
+| object-fit               | https://www.w3schools.com/css/css3_object-fit.asp                  |
+| CSS object-position      | https://www.w3schools.com/css/css3_object-position.asp             |
+| object-position          | https://www.w3schools.com/css/css3_object-position.asp             |
+| CSS Masking              | https://www.w3schools.com/css/css3_masking.asp                     |
+| Masking - PNG            | https://www.w3schools.com/css/css3_masking.asp                     |
+| Masking - Gradients      | https://www.w3schools.com/css/css3_masking_gradients.asp           |
+| Masking - SVG            | https://www.w3schools.com/css/css3_masking_svg.asp                 |
+| CSS Buttons              | https://www.w3schools.com/css/css3_buttons.asp                     |
+| Styling Buttons          | https://www.w3schools.com/css/css3_buttons.asp                     |
+| Hover Effects            | https://www.w3schools.com/css/css3_buttons_hover.asp               |
+| Button Groups            | https://www.w3schools.com/css/css3_buttons_groups.asp              |
+| CSS Pagination           | https://www.w3schools.com/css/css3_pagination.asp                  |
+| Pagination               | https://www.w3schools.com/css/css3_pagination.asp                  |
+| Pagination Styles        | https://www.w3schools.com/css/css3_pagination_styles.asp           |
+| CSS Multiple Columns     | https://www.w3schools.com/css/css3_multiple_columns.asp            |
+| Multiple Columns         | https://www.w3schools.com/css/css3_multiple_columns.asp            |
+| Multiple Column Rules    | https://www.w3schools.com/css/css3_multiple_columns_rules.asp      |
+| CSS User Interface       | https://www.w3schools.com/css/css3_user_interface.asp              |
+| User Interface           | https://www.w3schools.com/css/css3_user_interface.asp              |
+| CSS Variables            | https://www.w3schools.com/css/css3_variables.asp                   |
+| The var() Function       | https://www.w3schools.com/css/css3_variables.asp                   |
+| Overriding Variables     | https://www.w3schools.com/css/css3_variables_overriding.asp        |
+| Variables and JavaScript | https://www.w3schools.com/css/css3_variables_javascript.asp        |
+| Variables in MQ          | https://www.w3schools.com/css/css3_variables_mediaqueries.asp      |
+| CSS @property            | https://www.w3schools.com/css/css3_property.asp                    |
+| @property                | https://www.w3schools.com/css/css3_property.asp                    |
+| CSS Box Sizing           | https://www.w3schools.com/css/css3_box-sizing.asp                  |
+| Box Sizing               | https://www.w3schools.com/css/css3_box-sizing.asp                  |
+| CSS Media Queries        | https://www.w3schools.com/css/css3_mediaqueries.asp                |
+| Media Queries            | https://www.w3schools.com/css/css3_mediaqueries.asp                |
+| MQ Examples              | https://www.w3schools.com/css/css3_mediaqueries_ex.asp             |
+| Flexbox Intro            | https://www.w3schools.com/css/css3_flexbox.asp                     |
+| Flex Container           | https://www.w3schools.com/css/css3_flexbox_container.asp           |
+| Flexbox Container        | https://www.w3schools.com/css/css3_flexbox_container.asp           |
+| Flexbox Justify Content  | https://www.w3schools.com/css/css3_flexbox_container_justify.asp   |
+| Flexbox Align Items      | https://www.w3schools.com/css/css3_flexbox_container_align.asp     |
+| Flex Items               | https://www.w3schools.com/css/css3_flexbox_items.asp               |
+| Flex Responsive          | https://www.w3schools.com/css/css3_flexbox_responsive.asp          |
+| Grid Intro               | https://www.w3schools.com/css/css_grid.asp                         |
+| Grid Container           | https://www.w3schools.com/css/css_grid_container.asp               |
+| Grid Tracks              | https://www.w3schools.com/css/css_grid_tracks.asp                  |
+| Grid Gaps                | https://www.w3schools.com/css/css_grid_gap.asp                     |
+| Grid Align               | https://www.w3schools.com/css/css_grid_align.asp                   |
+| Grid Items               | https://www.w3schools.com/css/css_grid_item.asp                    |
+| Grid Item Named          | https://www.w3schools.com/css/css_grid_item_name.asp               |
+| Grid Item Align          | https://www.w3schools.com/css/css_grid_item_align.asp              |
+| Grid Item Order          | https://www.w3schools.com/css/css_grid_item_order.asp              |
+| Grid 12-column Layout    | https://www.w3schools.com/css/css_grid_12column.asp                |
+| 12-column Layout         | https://www.w3schools.com/css/css_grid_12column.asp                |
+| CSS @supports            | https://www.w3schools.com/css/css_supports_rule.asp                |
+| @supports                | https://www.w3schools.com/css/css_supports_rule.asp                |
+| RWD Intro                | https://www.w3schools.com/css/css_rwd_intro.asp                    |
+| RWD Viewport             | https://www.w3schools.com/css/css_rwd_viewport.asp                 |
+| RWD Grid View            | https://www.w3schools.com/css/css_rwd_grid.asp                     |
+| RWD Media Queries        | https://www.w3schools.com/css/css_rwd_mediaqueries.asp             |
+| RWD Images               | https://www.w3schools.com/css/css_rwd_images.asp                   |
+| RWD Videos               | https://www.w3schools.com/css/css_rwd_videos.asp                   |
+| RWD Frameworks           | https://www.w3schools.com/css/css_rwd_frameworks.asp               |
+| RWD Templates            | https://www.w3schools.com/css/css_rwd_templates.asp                |
+| SASS Tutorial            | https://www.w3schools.com/css/sass/default.asp                     |
+| CSS Templates            | https://www.w3schools.com/css/css_templates.asp                    |
+| CSS Examples             | https://www.w3schools.com/css/css_examples.asp                     |
+| CSS Editor               | https://www.w3schools.com/css/css_editor.asp                       |
+| CSS Snippets             | https://www.w3schools.com/css/css_snippets.asp                     |
+| CSS Quiz                 | https://www.w3schools.com/css/css_quiz.asp                         |
+| CSS Exercises            | https://www.w3schools.com/css/css_exercises.asp                    |
+| CSS Code Challenges      | https://www.w3schools.com/css/css_challenges.asp                   |
+| CSS Website              | https://www.w3schools.com/css/css_website.asp                      |
+| CSS Syllabus             | https://www.w3schools.com/css/css_syllabus.asp                     |
+| CSS Study Plan           | https://www.w3schools.com/css/css_study_plan.asp                   |
+| CSS Interview Prep       | https://www.w3schools.com/css/css_interview_prep.asp               |
+| CSS Bootcamp             | https://www.w3schools.com/css/css_bootcamp.asp                     |
+| CSS Certificate          | https://www.w3schools.com/css/css_exam.asp                         |
+| CSS Reference            | https://www.w3schools.com/cssref/index.php                         |
+| CSS At-rules             | https://www.w3schools.com/cssref/css_ref_atrules.php               |
+| CSS Functions            | https://www.w3schools.com/cssref/css_functions.php                 |
+| CSS Reference Aural      | https://www.w3schools.com/cssref/css_ref_aural.php                 |
+| CSS Web Safe Fonts       | https://www.w3schools.com/cssref/css_websafe_fonts.php             |
+| CSS Animatable           | https://www.w3schools.com/cssref/css_animatable.php                |
+| CSS PX-EM Converter      | https://www.w3schools.com/cssref/css_pxtoemconversion.php          |
+| CSS Color Values         | https://www.w3schools.com/cssref/css_colors_legal.php              |
+| CSS Default Values       | https://www.w3schools.com/cssref/css_default_values.php            |
+| CSS Browser Support      | https://www.w3schools.com/cssref/css3_browsersupport.php           |

@@ -18,7 +18,7 @@ Provide curated reference links for Python documentation. Use these links to qui
 
 ## Table of Contents
 
-- [w3school-python-references.json](./w3school-python-references.json)
+- [w3school-python-references.md](./w3school-python-references.md)
 
 ## Constraints
 

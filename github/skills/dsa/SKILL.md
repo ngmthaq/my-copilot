@@ -18,7 +18,7 @@ Provide curated reference links for DSA documentation. Use these links to quickl
 
 ## Table of Contents
 
-- [w3school-dsa-references.json](./w3school-dsa-references.json)
+- [w3school-dsa-references.md](./w3school-dsa-references.md)
 
 ## Constraints
 

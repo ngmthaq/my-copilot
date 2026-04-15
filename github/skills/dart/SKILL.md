@@ -18,7 +18,7 @@ Provide curated reference links for Dart documentation. Use these links to quick
 
 ## Table of Contents
 
-- [dart-references.json](./dart-references.json)
+- [dart-references.md](./dart-references.md)
 
 ## Constraints
 

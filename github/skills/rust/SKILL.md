@@ -18,7 +18,7 @@ Provide curated reference links for Rust documentation. Use these links to quick
 
 ## Table of Contents
 
-- [w3school-rust-references.json](./w3school-rust-references.json)
+- [w3school-rust-references.md](./w3school-rust-references.md)
 
 ## Constraints
 

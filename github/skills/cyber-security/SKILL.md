@@ -18,7 +18,7 @@ Provide curated reference links for Cybersecurity documentation. Use these links
 
 ## Table of Contents
 
-- [w3school-cybersecurity-references.json](./w3school-cybersecurity-references.json)
+- [w3school-cybersecurity-references.md](./w3school-cybersecurity-references.md)
 
 ## Constraints
 

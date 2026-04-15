@@ -18,7 +18,7 @@ Provide curated reference links for MySQL documentation. Use these links to quic
 
 ## Table of Contents
 
-- [w3school-mysql-references.json](./w3school-mysql-references.json)
+- [w3school-mysql-references.md](./w3school-mysql-references.md)
 
 ## Constraints
 

@@ -18,7 +18,7 @@ Provide curated reference links for SQL documentation. Use these links to quickl
 
 ## Table of Contents
 
-- [w3school-sql-references.json](./w3school-sql-references.json)
+- [w3school-sql-references.md](./w3school-sql-references.md)
 
 ## Constraints
 

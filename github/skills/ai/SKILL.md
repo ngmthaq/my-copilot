@@ -18,7 +18,7 @@ Provide curated reference links for AI documentation. Use these links to quickly
 
 ## Table of Contents
 
-- [w3school-ai-references.json](./w3school-ai-references.json)
+- [w3school-ai-references.md](./w3school-ai-references.md)
 
 ## Constraints
 

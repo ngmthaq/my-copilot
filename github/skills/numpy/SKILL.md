@@ -18,7 +18,7 @@ Provide curated reference links for NumPy documentation. Use these links to quic
 
 ## Table of Contents
 
-- [w3school-python-numpy-references.json](./w3school-python-numpy-references.json)
+- [w3school-python-numpy-references.md](./w3school-python-numpy-references.md)
 
 ## Constraints
 

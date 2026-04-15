@@ -18,7 +18,7 @@ Provide curated reference links for Git documentation. Use these links to quickl
 
 ## Table of Contents
 
-- [w3school-git-references.json](./w3school-git-references.json)
+- [w3school-git-references.md](./w3school-git-references.md)
 
 ## Constraints
 

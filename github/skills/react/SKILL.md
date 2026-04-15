@@ -18,8 +18,8 @@ Provide curated reference links for React documentation. Use these links to quic
 
 ## Table of Contents
 
-- [react-19-references.json](./react-19-references.json)
-- [w3school-react-references.json](./w3school-react-references.json)
+- [react-19-references.md](./react-19-references.md)
+- [w3school-react-references.md](./w3school-react-references.md)
 
 ## Constraints
 

@@ -18,7 +18,7 @@ Provide curated reference links for SciPy documentation. Use these links to quic
 
 ## Table of Contents
 
-- [w3school-python-scipy-references.json](./w3school-python-scipy-references.json)
+- [w3school-python-scipy-references.md](./w3school-python-scipy-references.md)
 
 ## Constraints
 

@@ -18,7 +18,7 @@ Provide curated reference links for C documentation. Use these links to quickly 
 
 ## Table of Contents
 
-- [w3school-c-references.json](./w3school-c-references.json)
+- [w3school-c-references.md](./w3school-c-references.md)
 
 ## Constraints
 

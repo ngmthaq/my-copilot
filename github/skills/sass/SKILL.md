@@ -18,7 +18,7 @@ Provide curated reference links for Sass documentation. Use these links to quick
 
 ## Table of Contents
 
-- [w3school-sass-references.json](./w3school-sass-references.json)
+- [w3school-sass-references.md](./w3school-sass-references.md)
 
 ## Constraints
 

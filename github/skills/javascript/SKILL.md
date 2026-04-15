@@ -18,7 +18,7 @@ Provide curated reference links for JavaScript documentation. Use these links to
 
 ## Table of Contents
 
-- [w3school-js-references.json](./w3school-js-references.json)
+- [w3school-js-references.md](./w3school-js-references.md)
 
 ## Constraints
 

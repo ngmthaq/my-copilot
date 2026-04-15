@@ -18,8 +18,8 @@ Provide curated reference links for ASP.NET documentation. Use these links to qu
 
 ## Table of Contents
 
-- [asp-dotnet-references.json](./asp-dotnet-references.json)
-- [w3school-asp-references.json](./w3school-asp-references.json)
+- [asp-dotnet-references.md](./asp-dotnet-references.md)
+- [w3school-asp-references.md](./w3school-asp-references.md)
 
 ## Constraints
 

@@ -18,7 +18,7 @@ Provide curated reference links for NestJS documentation. Use these links to qui
 
 ## Table of Contents
 
-- [nestjs-references.json](./nestjs-references.json)
+- [nestjs-references.md](./nestjs-references.md)
 
 ## Constraints
 

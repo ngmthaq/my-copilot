@@ -18,7 +18,7 @@ Provide curated reference links for HTML documentation. Use these links to quick
 
 ## Table of Contents
 
-- [w3school-html-references.json](./w3school-html-references.json)
+- [w3school-html-references.md](./w3school-html-references.md)
 
 ## Constraints
 

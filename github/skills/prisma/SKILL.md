@@ -18,9 +18,9 @@ Provide curated reference links for Prisma documentation. Use these links to qui
 
 ## Table of Contents
 
-- [prisma-cli-references.json](./prisma-cli-references.json)
-- [prisma-orm-references.json](./prisma-orm-references.json)
-- [prisma-references.json](./prisma-references.json)
+- [prisma-cli-references.md](./prisma-cli-references.md)
+- [prisma-orm-references.md](./prisma-orm-references.md)
+- [prisma-references.md](./prisma-references.md)
 
 ## Constraints
 

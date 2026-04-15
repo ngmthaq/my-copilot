@@ -18,7 +18,7 @@ Provide curated reference links for Prettier documentation. Use these links to q
 
 ## Table of Contents
 
-- [prettier-references.json](./prettier-references.json)
+- [prettier-references.md](./prettier-references.md)
 
 ## Constraints
 

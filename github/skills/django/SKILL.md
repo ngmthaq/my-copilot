@@ -18,7 +18,7 @@ Provide curated reference links for Django documentation. Use these links to qui
 
 ## Table of Contents
 
-- [w3school-django-references.json](./w3school-django-references.json)
+- [w3school-django-references.md](./w3school-django-references.md)
 
 ## Constraints
 

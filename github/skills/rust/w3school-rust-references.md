@@ -1,0 +1,34 @@
+# w3school-rust-references
+
+| Topic                  | Link                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Rust HOME              | https://www.w3schools.com/rust/index.php                     |
+| Rust Intro             | https://www.w3schools.com/rust/rust_intro.php                |
+| Rust Get Started       | https://www.w3schools.com/rust/rust_getstarted.php           |
+| Rust Syntax            | https://www.w3schools.com/rust/rust_syntax.php               |
+| Rust Output            | https://www.w3schools.com/rust/rust_output.php               |
+| Rust Comments          | https://www.w3schools.com/rust/rust_comments.php             |
+| Rust Variables         | https://www.w3schools.com/rust/rust_variables.php            |
+| Rust Data Types        | https://www.w3schools.com/rust/rust_data_types.php           |
+| Rust Constants         | https://www.w3schools.com/rust/rust_constants.php            |
+| Rust Operators         | https://www.w3schools.com/rust/rust_operators.php            |
+| Rust Booleans          | https://www.w3schools.com/rust/rust_booleans.php             |
+| Rust If..Else          | https://www.w3schools.com/rust/rust_if_else.php              |
+| Rust Match             | https://www.w3schools.com/rust/rust_match.php                |
+| Rust Loops             | https://www.w3schools.com/rust/rust_loops.php                |
+| Rust While Loops       | https://www.w3schools.com/rust/rust_loops_while.php          |
+| Rust For Loops         | https://www.w3schools.com/rust/rust_loops_for.php            |
+| Rust Functions         | https://www.w3schools.com/rust/rust_functions.php            |
+| Rust Scope             | https://www.w3schools.com/rust/rust_scope.php                |
+| Rust Strings           | https://www.w3schools.com/rust/rust_strings.php              |
+| Rust Ownership         | https://www.w3schools.com/rust/rust_ownership.php            |
+| Rust Borrowing         | https://www.w3schools.com/rust/rust_borrowing_references.php |
+| Rust Data Structures   | https://www.w3schools.com/rust/rust_data_structures.php      |
+| Rust Arrays            | https://www.w3schools.com/rust/rust_arrays.php               |
+| Rust Vectors           | https://www.w3schools.com/rust/rust_vectors.php              |
+| Rust Tuples            | https://www.w3schools.com/rust/rust_tuples.php               |
+| Rust HashMap           | https://www.w3schools.com/rust/rust_hashmap.php              |
+| Rust Structs           | https://www.w3schools.com/rust/rust_structs.php              |
+| Rust Enums             | https://www.w3schools.com/rust/rust_enums.php                |
+| Rust Practice Problems | https://www.w3schools.com/rust/rust_practice.php             |
+| Rust Certificate       | https://www.w3schools.com/rust/rust_exam.php                 |

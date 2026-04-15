@@ -18,7 +18,7 @@ Provide curated reference links for Bash documentation. Use these links to quick
 
 ## Table of Contents
 
-- [w3school-bash-references.json](./w3school-bash-references.json)
+- [w3school-bash-references.md](./w3school-bash-references.md)
 
 ## Constraints
 

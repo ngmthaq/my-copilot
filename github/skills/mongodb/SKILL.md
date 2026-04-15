@@ -18,7 +18,7 @@ Provide curated reference links for MongoDB documentation. Use these links to qu
 
 ## Table of Contents
 
-- [w3school-mongodb-references.json](./w3school-mongodb-references.json)
+- [w3school-mongodb-references.md](./w3school-mongodb-references.md)
 
 ## Constraints
 

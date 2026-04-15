@@ -18,7 +18,7 @@ Provide curated reference links for PHP documentation. Use these links to quickl
 
 ## Table of Contents
 
-- [w3school-php-references.json](./w3school-php-references.json)
+- [w3school-php-references.md](./w3school-php-references.md)
 
 ## Constraints
 

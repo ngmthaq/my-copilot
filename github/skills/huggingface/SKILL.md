@@ -18,8 +18,8 @@ Provide curated reference links for Hugging Face documentation. Use these links 
 
 ## Table of Contents
 
-- [huggingface-computer-vision-references.json](./huggingface-computer-vision-references.json)
-- [huggingface-llm-references.json](./huggingface-llm-references.json)
+- [huggingface-computer-vision-references.md](./huggingface-computer-vision-references.md)
+- [huggingface-llm-references.md](./huggingface-llm-references.md)
 
 ## Constraints
 

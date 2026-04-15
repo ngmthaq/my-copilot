@@ -18,7 +18,7 @@ Provide curated reference links for CSS documentation. Use these links to quickl
 
 ## Table of Contents
 
-- [w3school-css-references.json](./w3school-css-references.json)
+- [w3school-css-references.md](./w3school-css-references.md)
 
 ## Constraints
 

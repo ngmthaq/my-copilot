@@ -18,7 +18,7 @@ Provide curated reference links for Node.js documentation. Use these links to qu
 
 ## Table of Contents
 
-- [w3school-nodejs-references.json](./w3school-nodejs-references.json)
+- [w3school-nodejs-references.md](./w3school-nodejs-references.md)
 
 ## Constraints
 
