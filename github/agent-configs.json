@@ -1,4 +1,5 @@
 {
   "features_directory": "<workspace>/.github/docs/features",
-  "plans_directory": "<workspace>/.github/docs/plans"
+  "plans_directory": "<workspace>/.github/docs/plans",
+  "crawled_contents_directory": "<workspace>/.github/docs/crawled-contents"
 }

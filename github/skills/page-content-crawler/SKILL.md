@@ -25,6 +25,12 @@ NEVER directly scrape web pages.
 
 ---
 
+## Content Logging
+
+See the [content-logging.instructions.md](../../instructions/content-logging.instructions.md) for the full content logging convention.
+
+---
+
 ## Execution Flow
 
 ### Step 1 — VSCode Built-in Page Context (Primary)
@@ -180,53 +186,6 @@ Then:
 - treat as non-authoritative
 - only use for semantic approximation if required
 - avoid factual extraction
-
----
-
-## Content Logging
-
-After extraction, ALWAYS save the JSON output to:
-
-```
-github/docs/crawled-contents/<skill-name>/<json-file-name>/<sanitized-url>/content.json
-```
-
-### Path Segments
-
-| Segment          | Description                                                                | Example                            |
-| ---------------- | -------------------------------------------------------------------------- | ---------------------------------- |
-| `skill-name`     | The skill that triggered the crawl                                         | `react`, `angular`, `nodejs`       |
-| `json-file-name` | The reference JSON file name (without extension) that contained the URL    | `w3school-react-references`        |
-| `sanitized-url`  | The URL with protocol stripped, `/` replaced by `_`, special chars removed | `reactjs_org_docs_getting-started` |
-| `content.json`   | Fixed filename                                                             | `content.json`                     |
-
-### URL Sanitization Rules
-
-1. Remove protocol (`https://`, `http://`)
-2. Remove trailing slashes
-3. Replace `/` with `_`
-4. Remove query strings and fragments
-5. Remove special characters except `-` and `_`
-6. Lowercase everything
-
-### Example
-
-URL: `https://www.w3schools.com/react/react_intro.asp`
-Skill: `react`
-Reference file: `w3school-react-references.json`
-
-Saved to:
-
-```
-github/docs/crawled-contents/react/w3school-react-references/www_w3schools_com_react_react_intro_asp/content.json
-```
-
-### Rules
-
-- ALWAYS create directories if they don't exist
-- ALWAYS overwrite existing content.json if re-crawled
-- NEVER skip logging even if content is from fallback mode
-- Content saved must match the exact JSON output schema defined in Output Format
 
 ---
 
