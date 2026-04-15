@@ -110,7 +110,7 @@ Role-based AI agents that follow a structured team workflow. Each agent has a de
 | `be-developer`          | Implements backend features, routes, services, DB integrations      |
 | `fe-developer`          | Implements frontend features, components, state management          |
 | `mobile-developer`      | Implements mobile features (Flutter, Kotlin, Swift)                 |
-| `desktop-app-developer` | Implements desktop app features (React, Vite, Node.js)             |
+| `desktop-app-developer` | Implements desktop app features (React, Vite, Node.js)              |
 | `ai-engineer`           | Implements AI/ML features (LangChain, HuggingFace, Ollama)          |
 | `qa-engineer`           | Writes and runs tests, verifies implementations                     |
 | `code-reviewer`         | Reviews code, tests, and DevOps configurations across stacks        |
