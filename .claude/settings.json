@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(bash scripts/crawl.sh \"https://www.w3schools.com/angular/angular_intro.asp\")",
-      "WebFetch(domain:www.w3schools.com)"
-    ]
-  }
-}
