@@ -11,6 +11,7 @@ Provide curated reference links for Cybersecurity documentation. Use these links
 
 ## When to Use
 
+- When you want to make sure current task is using the most relevant and accurate documentation available
 - When you need to find official documentation links for Cybersecurity
 - When answering questions about Cybersecurity and want to cite sources
 - When building learning paths or documentation indexes

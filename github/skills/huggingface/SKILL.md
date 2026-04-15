@@ -11,6 +11,7 @@ Provide curated reference links for Hugging Face documentation. Use these links 
 
 ## When to Use
 
+- When you want to make sure current task is using the most relevant and accurate documentation available
 - When you need to find official documentation links for Hugging Face
 - When answering questions about Hugging Face and want to cite sources
 - When building learning paths or documentation indexes

@@ -11,6 +11,7 @@ Provide curated reference links for CSS documentation. Use these links to quickl
 
 ## When to Use
 
+- When you want to make sure current task is using the most relevant and accurate documentation available
 - When you need to find official documentation links for CSS
 - When answering questions about CSS and want to cite sources
 - When building learning paths or documentation indexes

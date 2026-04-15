@@ -95,7 +95,8 @@ After running `init`, a `.github` folder is created in your project root. Open t
 ├── hooks/                         # Automated guardrails
 └── docs/
     ├── features/                  # Feature documentation
-    └── plans/                     # Implementation & bugfix plans
+    ├── plans/                     # Implementation & bugfix plans
+    └── crawled-contents/          # Cached web page content from crawler
 ```
 
 ---
@@ -161,11 +162,13 @@ Hooks are stored in `.github/hooks/<hook-name>/` with a `hooks.json` config and 
 
 Document templates that guide agents when creating feature docs, plans, and bugfix plans:
 
-| Instruction                            | `applyTo` Pattern        | Purpose                                              |
-| -------------------------------------- | ------------------------ | ---------------------------------------------------- |
-| `feature-doc-template.instructions.md` | `**/agent-feature-*.md`  | Template for feature documentation (source of truth) |
-| `plan-template.instructions.md`        | `**/agent-plan-*.md`     | Template for implementation plans                    |
-| `bugfix-plan-template.instructions.md` | `**/agent-plan-fix-*.md` | Template for bug-fix plans (no feature doc needed)   |
+| Instruction                             | `applyTo` Pattern        | Purpose                                                  |
+| --------------------------------------- | ------------------------ | -------------------------------------------------------- |
+| `feature-doc-template.instructions.md`  | `**/agent-feature-*.md`  | Template for feature documentation (source of truth)     |
+| `plan-template.instructions.md`         | `**/agent-plan-*.md`     | Template for implementation plans                        |
+| `bugfix-plan-template.instructions.md`  | `**/agent-plan-fix-*.md` | Template for bug-fix plans (no feature doc needed)       |
+| `atomic-design-pattern.instructions.md` | _(auto, by description)_ | Enforces Atomic Design methodology for UI components     |
+| `solid-principles.instructions.md`      | _(auto, by description)_ | Enforces SOLID principles when writing or reviewing code |
 
 Instructions are stored in `.github/instructions/`.
 
@@ -173,10 +176,11 @@ Instructions are stored in `.github/instructions/`.
 
 ### Docs
 
-The `docs/` directory holds two sub-folders used by agents to organize project documentation:
+The `docs/` directory holds three sub-folders used by agents to organize project documentation:
 
 - **`features/`** — Feature documents created by the technical leader. Organized by module (e.g., `features/auth/agent-feature-login-api.md`).
 - **`plans/`** — Implementation and bugfix plans (e.g., `plans/agent-plan-add-user-authentication-2026-04-05-1430.md`).
+- **`crawled-contents/`** — Cached web page content extracted by the page-content-crawler skill.
 
 ---
 
@@ -250,17 +254,22 @@ name: my-skill
 description: "Brief description — this text helps Copilot decide when to load the skill."
 ---
 
-# My Skill Index
+# My Skill
 
-## Sub-Skills Reference
+## Purpose
 
-| Domain  | File                     | When to use                 |
-| ------- | ------------------------ | --------------------------- |
-| Topic A | [topic-a.md](topic-a.md) | When the user needs Topic A |
-| Topic B | [topic-b.md](topic-b.md) | When the user needs Topic B |
+## When to Use
+
+## Table of Contents
+
+## Constraints
+
+## Accessing Reference Content
+
+## Best Practices
+
+## Anti-Patterns
 ```
-
-Then add sub-skill files (e.g., `topic-a.md`, `topic-b.md`) in the same folder. Agents will load `SKILL.md` first and then read only the sub-skill files they need.
 
 ---
 
@@ -268,7 +277,7 @@ Then add sub-skill files (e.g., `topic-a.md`, `topic-b.md`) in the same folder. 
 
 Create a new `.instructions.md` file inside `.github/instructions/`:
 
-````markdown
+```markdown
 ---
 applyTo: "**/pattern-to-match-*.md"
 ---
@@ -280,16 +289,7 @@ applyTo: "**/pattern-to-match-*.md"
 - Describe when this instruction should be applied.
 
 ## Template
-
-\```markdown
-
-# Title
-
-## Section 1
-
-...
-\```
-````
+```
 
 The `applyTo` glob pattern determines which files trigger this instruction. When an agent creates or edits a file matching the pattern, the instruction is automatically applied.
 

@@ -11,6 +11,7 @@ Provide curated reference links for Java documentation. Use these links to quick
 
 ## When to Use
 
+- When you want to make sure current task is using the most relevant and accurate documentation available
 - When you need to find official documentation links for Java
 - When answering questions about Java and want to cite sources
 - When building learning paths or documentation indexes

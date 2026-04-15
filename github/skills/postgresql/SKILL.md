@@ -11,6 +11,7 @@ Provide curated reference links for PostgreSQL documentation. Use these links to
 
 ## When to Use
 
+- When you want to make sure current task is using the most relevant and accurate documentation available
 - When you need to find official documentation links for PostgreSQL
 - When answering questions about PostgreSQL and want to cite sources
 - When building learning paths or documentation indexes

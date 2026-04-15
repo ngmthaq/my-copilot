@@ -11,6 +11,7 @@ Provide curated reference links for Go documentation. Use these links to quickly
 
 ## When to Use
 
+- When you want to make sure current task is using the most relevant and accurate documentation available
 - When you need to find official documentation links for Go
 - When answering questions about Go and want to cite sources
 - When building learning paths or documentation indexes

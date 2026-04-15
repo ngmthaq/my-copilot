@@ -11,6 +11,7 @@ Provide curated reference links for SQL documentation. Use these links to quickl
 
 ## When to Use
 
+- When you want to make sure current task is using the most relevant and accurate documentation available
 - When you need to find official documentation links for SQL
 - When answering questions about SQL and want to cite sources
 - When building learning paths or documentation indexes

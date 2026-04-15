@@ -11,6 +11,7 @@ Provide curated reference links for Vite documentation. Use these links to quick
 
 ## When to Use
 
+- When you want to make sure current task is using the most relevant and accurate documentation available
 - When you need to find official documentation links for Vite
 - When answering questions about Vite and want to cite sources
 - When building learning paths or documentation indexes
