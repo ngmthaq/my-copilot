@@ -1,27 +1,34 @@
 ---
 name: page-content-crawler
-description: Unified web page content extraction skill using VSCode built-in page context first, with fallback to external multi-tier crawler (Node, Python, Chrome, curl, LLM fallback).
+description: Web page content extraction skill using node-crawler.cjs (Node.js Playwright) as the sole crawler.
 ---
 
-# Page Content Crawler (Unified)
+# Page Content Crawler
 
 ## Purpose
 
-This skill extracts structured content from web pages using a progressive retrieval strategy:
-
-1. VSCode built-in page context tool (PRIMARY)
-2. External multi-tier crawler (FALLBACK)
-3. LLM-based approximation (LAST RESORT)
-
-It supports both static and SPA pages.
+This skill extracts structured content from web pages by always invoking `node-crawler.cjs` directly. It supports both static and SPA pages.
 
 ---
 
 ## Core Principle
 
-ALWAYS prefer VSCode built-in page content tool first.
-ONLY use external crawler if built-in context is incomplete or insufficient.
-NEVER directly scrape web pages.
+ALWAYS use `node-crawler.cjs` to crawl web pages.
+NEVER use VSCode built-in page context tool.
+NEVER use any other crawler (Python, Chrome, curl).
+NEVER use LLM approximation as a substitute for crawled content.
+
+---
+
+## Requirements
+
+The following must be set up on the system before using this skill:
+
+- **Node.js** installed and available in `PATH`
+- **Playwright** installed globally: `npm install -g playwright`
+- **Playwright browsers** installed: `npx playwright install`
+
+If any of these are missing, the crawler will fail. Do not attempt to fall back to another method — report the missing dependency to the user instead.
 
 ---
 
@@ -33,46 +40,36 @@ See the [content-logging.instructions.md](../../instructions/content-logging.ins
 
 ## Execution Flow
 
-### Step 1 — VSCode Built-in Page Context (Primary)
+### Step 1 — Run node-crawler.cjs
 
-Use VSCode’s built-in page content retrieval.
+Always call:
 
-Extract from provided context:
+```
+node <path-to-skills>/skills/page-content-crawler/node-crawler.cjs <url>
+```
 
-- title
-- headings
-- links
-- main content
+This uses Node.js with Playwright (Chromium, headless) to:
 
-If content is sufficient → return immediately.
-
----
-
-### Step 2 — Detect Incomplete or SPA Content
-
-Trigger fallback if ANY condition is true:
-
-- main content is empty or missing
-- page appears JS-rendered (SPA)
-- content is partial or truncated
-- only navigation or layout is present
-- article/main section is not available
+- navigate to the URL and wait for `networkidle`
+- extract `title` from `document.head`
+- extract `description` from meta tags (`name="description"`, `property="description"`, `name="og:description"`, `property="og:description"`, `name="twitter:description"`, `property="twitter:description"`)
+- extract `main` text content from `<main>` element, falling back to `document.body`
 
 ---
 
-### Step 3 — External Crawler Fallback
+### Step 2 — Parse Output
 
-If Step 1 fails, call:
+The crawler outputs JSON:
 
-./scripts/crawl.sh <url>
+```json
+{
+  "title": "<page title>",
+  "description": "<meta description or null>",
+  "main": "<main element or full body text, line-trimmed>"
+}
+```
 
-This script internally handles:
-
-- Node.js Playwright crawler
-- Python Playwright crawler
-- Chrome headless DOM dump
-- curl fallback
-- LLM fallback (last resort)
+Use this output to populate the response.
 
 ---
 
@@ -80,15 +77,13 @@ This script internally handles:
 
 Always return:
 
+```json
 {
-"title": "",
-"summary": "",
-"main_content": "",
-"headings": [],
-"key_points": [],
-"links": [],
-"source_mode": "vscode | node | python | chrome | curl | fallback"
+  "title": "",
+  "description": "",
+  "main_content": ""
 }
+```
 
 ---
 
@@ -96,16 +91,30 @@ Always return:
 
 ### Title
 
-- Prefer VSCode tool result
-- fallback to crawler result if needed
+- Use the `title` field from `node-crawler.cjs` output
+
+---
+
+### Description
+
+- Use the `description` field from `node-crawler.cjs` output
+- Sourced from the first available meta tag in this priority order:
+  1. `meta[name="description"]`
+  2. `meta[property="description"]`
+  3. `meta[name="og:description"]`
+  4. `meta[property="og:description"]`
+  5. `meta[name="twitter:description"]`
+  6. `meta[property="twitter:description"]`
+- May be `null` if no meta description is present
 
 ---
 
 ### Main Content
 
 - Extract the primary readable body of the page
+- The crawler already prefers `<main>` over `document.body`
 - Prefer in order:
-  - `<main>`
+  - `<main>` (selected by crawler)
   - `<article>`
   - largest text container in DOM
 - Must exclude:
@@ -118,82 +127,35 @@ Always return:
 
 ---
 
-### Summary
+## Source
 
-- 3–6 sentences
-- strictly derived from `main_content`
-- no external knowledge unless fallback mode is active
-
----
-
-### Headings
-
-- preserve order
-- extract h1, h2, h3 only
-- remove duplicates
-
----
-
-### Key Points
-
-- extract semantic facts from main content
-- remove UI/navigation noise
-- prioritize informational content
-
----
-
-### Links
-
-- include only meaningful links
-- exclude:
-  - "#"
-  - javascript:void
-  - navigation duplicates
-
----
-
-## Source Priority Order
-
-1. vscode (highest priority)
-2. node crawler (Playwright)
-3. python crawler (Playwright)
-4. chrome headless DOM
-5. curl raw HTML
-6. fallback (LLM approximation)
+- Always: `node-crawler.cjs` (Node.js + Playwright Chromium, headless)
 
 ---
 
 ## Constraints
 
-- NEVER bypass VSCode built-in tool if available
-- NEVER manually fetch web content
-- NEVER mix multiple sources without normalization
+- ALWAYS use `node-crawler.cjs` — no exceptions
+- NEVER use VSCode built-in page context tool
+- NEVER use Python, Chrome, curl, or any other crawler
 - NEVER hallucinate missing page content
-- ALWAYS preserve source_mode
 
 ---
 
-## Fallback Behavior
+## Error Handling
 
-If crawler returns:
+If `node-crawler.cjs` exits with a non-zero code or outputs an error:
 
-{
-"fallback": true
-}
-
-Then:
-
-- treat as non-authoritative
-- only use for semantic approximation if required
-- avoid factual extraction
+- report the error to the user
+- do not fabricate or approximate content
+- do not fall back to any other source
 
 ---
 
 ## Best Practices
 
-- Prefer VSCode tool for speed and reliability
-- Use crawler only for SPA or incomplete content
-- Normalize all outputs into consistent schema
+- Always invoke `node-crawler.cjs` directly for every crawl request
+- Normalize output into the consistent schema before returning
 - Keep extraction deterministic
 - Always log fetched content to `crawled_contents_directory` following the path convention
 
@@ -201,8 +163,7 @@ Then:
 
 ## Anti-Patterns
 
-- Ignoring VSCode tool when available
-- Direct HTTP scraping inside skill
+- Using VSCode built-in page context tool instead of `node-crawler.cjs`
+- Falling back to Python, Chrome, curl, or LLM approximation
 - Mixing raw HTML with structured output
-- Overusing fallback crawler unnecessarily
 - Fabricating missing content

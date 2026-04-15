@@ -56,12 +56,8 @@ After extraction, ALWAYS save the markdown output to:
 # Content extracted from https://www.w3schools.com/react/react_intro.asp
 
 Title: "",
-Summary: "",
-Main Content: "",
-Headings: [],
-Key Points: [],
-Links: [],
-Source Mode: "vscode | node | python | chrome | curl | fallback"
+Description: "",
+Main Content: ""
 ```
 
 ## Known Limitations
