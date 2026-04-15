@@ -1,6 +1,12 @@
 /node_modules
 /github/skills/private-*
-/github/docs
+/github/docs/*
+!/github/docs/features
+!/github/docs/plans
+!/github/docs/crawled-contents
+/github/docs/features/*
+/github/docs/plans/*
+/github/docs/crawled-contents/*
 !/github/docs/features/.gitkeep
 !/github/docs/plans/.gitkeep
 !/github/docs/crawled-contents/.gitkeep
