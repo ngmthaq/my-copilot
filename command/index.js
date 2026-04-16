@@ -4,19 +4,27 @@
 
 const fs = require("fs");
 const path = require("path");
-const { copyWithTemplate, selectAgents, selectSkills } = require("./helpers");
+const {
+  copyWithTemplate,
+  selectTarget,
+  selectAgents,
+  selectSkills,
+} = require("./helpers");
 const COMMAND = process.argv[2];
 
 // --- Commands ---
 
 async function init() {
-  const sourceDir = path.join(__dirname, "..", "github");
-  const targetDir = path.join(process.cwd(), ".github");
   const force = process.argv.includes("--force");
+  const target = await selectTarget();
+  const sourceDir = path.join(__dirname, "..", target);
+  const targetDir = path.join(process.cwd(), target);
+
   if (!fs.existsSync(sourceDir)) {
-    console.error("Error: github folder not found in the package.");
+    console.error(`Error: ${target} folder not found in the package.`);
     process.exit(1);
   }
+
   if (fs.existsSync(targetDir)) {
     if (force) {
       const now = new Date();
@@ -28,13 +36,16 @@ async function init() {
         String(now.getMinutes()).padStart(2, "0"),
         String(now.getSeconds()).padStart(2, "0"),
       ].join("");
-      const backupDir = path.join(process.cwd(), `.github-legacy-${timestamp}`);
+      const backupDir = path.join(
+        process.cwd(),
+        `${target}-legacy-${timestamp}`,
+      );
       fs.renameSync(targetDir, backupDir);
       console.log(
-        `  Backed up existing .github to ${path.basename(backupDir)}`,
+        `  Backed up existing ${target} to ${path.basename(backupDir)}`,
       );
     } else {
-      console.log(".github folder already exists in the current directory.");
+      console.log(`${target} folder already exists in the current directory.`);
       console.log("Use --force to overwrite.");
       process.exit(1);
     }
@@ -44,6 +55,7 @@ async function init() {
   const includeSkills = await selectSkills();
   const template = {
     label: "customize",
+    target,
     includeAgents,
     includeSkills,
   };
@@ -53,7 +65,7 @@ async function init() {
   );
   console.log(`  Skills: ${template.includeSkills.join(", ")}`);
   copyWithTemplate(sourceDir, targetDir, template);
-  console.log(`\n  ✔ Copied .github folder to ${process.cwd()}\n`);
+  console.log(`\n  ✔ Copied ${target} folder to ${process.cwd()}\n`);
 }
 
 function showHelp() {
@@ -64,11 +76,12 @@ function showHelp() {
     npx @ngmthaq20/my-copilot init [options]
 
   Commands:
-    init      Copy the .github folder to the current directory
-              (interactive: choose agents and skills)
+    init      Copy the configuration folder to the current directory
+              (interactive: choose target, agents, and skills)
+              Supported targets: .github (GitHub Copilot), .claude (Claude Code)
 
   Options:
-    --force             Rename existing .github to .github-legacy-<timestamp> and recreate
+    --force             Rename existing folder to <target>-legacy-<timestamp> and recreate
     --help              Show this help message
 `);
 }

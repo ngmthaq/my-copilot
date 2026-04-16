@@ -1,8 +1,8 @@
 # @ngmthaq20/my-copilot
 
-A curated, ready-to-use collection of GitHub Copilot customization files — **agents**, **skills**, **instructions**, **hooks**, and **document templates** — designed to power an AI-assisted software development workflow across backend, frontend, mobile, desktop, and AI/ML teams.
+A curated, ready-to-use collection of AI copilot customization files — **agents**, **skills**, **instructions**, and **document templates** — designed to power an AI-assisted software development workflow across backend, frontend, mobile, desktop, and AI/ML teams.
 
-Drop it into any project and get a fully structured AI team out of the box.
+Supports both **GitHub Copilot** (`.github/`) and **Claude Code** (`.claude/`). Drop it into any project and get a fully structured AI team out of the box.
 
 ---
 
@@ -13,7 +13,6 @@ Drop it into any project and get a fully structured AI team out of the box.
 - [What's Inside](#whats-inside)
   - [Agents](#agents)
   - [Skills](#skills)
-  - [Hooks](#hooks)
   - [Instructions](#instructions)
   - [Docs](#docs)
   - [agent-configs.json](#agent-configsjson)
@@ -49,17 +48,22 @@ An interactive initializer will appear:
 - Use **Space** to toggle non-required agents/skills, and **Enter** to confirm.
 - Skills are shown as a filtered multi-select list based on the selected agents.
 
-To overwrite an existing `.github` folder (the old one is renamed to `.github-legacy-<timestamp>`):
+To overwrite an existing folder (the old one is renamed to `<target>-legacy-<timestamp>`):
 
 ```bash
 npx @ngmthaq20/my-copilot@latest init --force
 ```
 
-After running `init`, a `.github` folder is created in your project root. Open the workspace in **VS Code** with **GitHub Copilot Chat** enabled — agents, skills, instructions, and hooks are picked up automatically.
+After running `init`, a `.github` or `.claude` folder is created in your project root depending on the target you selected:
+
+- **`.github`** — Open the workspace in **VS Code** with **GitHub Copilot Chat** enabled. Agents, skills, and instructions are picked up automatically.
+- **`.claude`** — Open the workspace with **Claude Code**. Agents, skills, and rules are picked up automatically.
 
 ---
 
 ## What's Inside
+
+**GitHub Copilot target (`.github/`):**
 
 ```
 .github/
@@ -68,7 +72,21 @@ After running `init`, a `.github` folder is created in your project root. Open t
 ├── agents/                        # Specialized agent definitions
 ├── skills/                        # Skill packs (frameworks, tools, languages)
 ├── instructions/                  # Document templates & conventions
-├── hooks/                         # Automated guardrails
+└── docs/
+    ├── features/                  # Feature documentation
+    ├── plans/                     # Implementation & bugfix plans
+    └── crawled-contents/          # Cached web page content from crawler
+```
+
+**Claude Code target (`.claude/`):**
+
+```
+.claude/
+├── CLAUDE.md                      # Global rules inherited by all agents
+├── agent-configs.json             # Workspace-level agent configuration
+├── agents/                        # Specialized agent definitions
+├── skills/                        # Skill packs (frameworks, tools, languages)
+├── rules/                         # Document templates & conventions
 └── docs/
     ├── features/                  # Feature documentation
     ├── plans/                     # Implementation & bugfix plans
@@ -94,7 +112,7 @@ Role-based AI agents that follow a structured team workflow. Each agent has a de
 | `devops-engineer`       | Manages infrastructure, CI/CD, Docker, Nginx, deployment            |
 | `debugger`              | Diagnoses errors and creates bug-fix plans                          |
 
-Agents are defined as `.agent.md` files inside `.github/agents/`.
+Agents are defined as `.agent.md` files inside the `agents/` folder of your chosen target (`.github/agents/` or `.claude/agents/`).
 
 ---
 
@@ -114,23 +132,7 @@ Reusable knowledge packs that agents load on demand. Each skill is a folder cont
 | **Quality & Tools** | Cyber Security, DSA, ESLint, Prettier, GraphQL, XML                                     |
 | **Utilities**       | Page Content Crawler                                                                    |
 
-Skills are stored in `.github/skills/<skill-name>/`.
-
----
-
-### Hooks
-
-Automated guardrails that run as Copilot hooks at different lifecycle events:
-
-| Hook                           | Event                                               | Description                                       |
-| ------------------------------ | --------------------------------------------------- | ------------------------------------------------- |
-| **secrets-scanner**            | `sessionEnd`                                        | Scans diffs for leaked credentials and secrets    |
-| **dependency-license-checker** | `sessionEnd`                                        | Flags dependencies with problematic licenses      |
-| **governance-audit**           | `sessionStart`, `sessionEnd`, `userPromptSubmitted` | Enforces repo governance policies                 |
-| **session-logger**             | `sessionStart`, `sessionEnd`, `userPromptSubmitted` | Logs all agent session activity                   |
-| **tool-guardian**              | `preToolUse`                                        | Controls which tools each agent is allowed to use |
-
-Hooks are stored in `.github/hooks/<hook-name>/` with a `hooks.json` config and shell scripts.
+Skills are stored in `<target>/skills/<skill-name>/` (e.g., `.github/skills/react/` or `.claude/skills/react/`).
 
 ---
 
@@ -146,7 +148,7 @@ Document templates that guide agents when creating feature docs, plans, and bugf
 | `atomic-design-pattern.instructions.md` | _(auto, by description)_ | Enforces Atomic Design methodology for UI components     |
 | `solid-principles.instructions.md`      | _(auto, by description)_ | Enforces SOLID principles when writing or reviewing code |
 
-Instructions are stored in `.github/instructions/`.
+Instructions are stored in `.github/instructions/` (GitHub Copilot) or `.claude/rules/` (Claude Code).
 
 ---
 
@@ -166,12 +168,13 @@ A workspace-level configuration file that tells agents where to find docs:
 
 ```json
 {
-  "features_directory": "<workspace>/.github/docs/features",
-  "plans_directory": "<workspace>/.github/docs/plans"
+  "features_directory": "<workspace>/<target>/docs/features",
+  "plans_directory": "<workspace>/<target>/docs/plans",
+  "crawled_contents_directory": "<workspace>/<target>/docs/crawled-contents"
 }
 ```
 
-`<workspace>` is resolved to the workspace root at runtime. Agents reference these paths when creating or reading feature docs and plans.
+`<workspace>` is resolved to the workspace root at runtime. `<target>` is replaced with `.github` or `.claude` during `init`. Agents reference these paths when creating or reading feature docs and plans.
 
 ---
 
@@ -179,7 +182,7 @@ A workspace-level configuration file that tells agents where to find docs:
 
 ### Custom Agent
 
-Create a new `.agent.md` file inside `.github/agents/`:
+Create a new `.agent.md` file inside your target's `agents/` folder (`.github/agents/` or `.claude/agents/`):
 
 ```markdown
 ---
@@ -222,7 +225,7 @@ Your job is to ...
 
 ### Custom Skill
 
-Create a new folder inside `.github/skills/<skill-name>/` with a `SKILL.md` entry point:
+Create a new folder inside your target's `skills/` folder (`.github/skills/<skill-name>/` or `.claude/skills/<skill-name>/`) with a `SKILL.md` entry point:
 
 ```markdown
 ---
@@ -251,7 +254,7 @@ description: "Brief description — this text helps Copilot decide when to load 
 
 ### Custom Instruction
 
-Create a new `.instructions.md` file inside `.github/instructions/`:
+Create a new `.instructions.md` file inside `.github/instructions/` (GitHub Copilot) or `.claude/rules/` (Claude Code):
 
 ```markdown
 ---
