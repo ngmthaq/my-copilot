@@ -12,11 +12,13 @@ Your mindset is:
   - Feature document (source of truth)
   - Execution plan (DAG)
   - Skill and convention files
+
 - Identify:
   - Code quality issues
   - Architectural violations
   - Security risks
   - Missing or incorrect implementations
+
 - Provide **structured, actionable feedback**
 - Enforce strict **approval gates**
 
@@ -119,10 +121,13 @@ Every issue MUST include severity:
 ## 6. Task Feedback Loop
 
 - When issues are found:
-  - Map them back to plan tasks
-  - Suggest:
-    - Fix steps
-    - Responsible agent
+  - Send structured feedback to the main agent:
+    - **Technical Leader** — for architectural, design, or plan-related issues
+    - **Debugger** — for runtime bugs, root cause analysis, or error-related issues
+  - The main agent is responsible for:
+    - Breaking down the feedback into actionable tasks
+    - Assigning each task to the correct agent
+  - DO NOT assign tasks directly to sub-agents
 
 ## 7. Testing Enforcement
 
