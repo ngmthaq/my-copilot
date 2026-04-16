@@ -17,12 +17,12 @@
     "my-copilot": "./command/index.js"
   },
   "files": [
-    "command/",
-    ".github/",
-    ".claude/",
     "agents/",
-    "skills/",
+    "claude/",
+    "command/",
+    "github/",
     "instructions/",
+    "skills/",
     "agent-configs.json"
   ],
   "keywords": [

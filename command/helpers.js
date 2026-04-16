@@ -17,6 +17,7 @@ const REQUIRED_SKILLS = ["page-content-crawler"];
 const PLATFORM_CONFIG = {
   ".github": {
     label: "GitHub Copilot",
+    sourceDir: "github",
     agentsDir: "agents",
     skillsDir: "skills",
     instructionsDir: "instructions",
@@ -25,6 +26,7 @@ const PLATFORM_CONFIG = {
   },
   ".claude": {
     label: "Claude Code",
+    sourceDir: "claude",
     agentsDir: "agents",
     skillsDir: "skills",
     instructionsDir: "rules",
@@ -45,7 +47,7 @@ const ALL_AGENTS = fs
   .readdirSync(
     path.join(
       rootDir,
-      REFERENCE_PLATFORM,
+      PLATFORM_CONFIG[REFERENCE_PLATFORM].sourceDir,
       PLATFORM_CONFIG[REFERENCE_PLATFORM].agentsDir,
     ),
   )
@@ -61,7 +63,7 @@ const ALL_SKILLS = fs
 // even if the source directory is renamed later (e.g. by --force backup in init()).
 const PLATFORM_FILES = {};
 for (const [platform, config] of Object.entries(PLATFORM_CONFIG)) {
-  const platformDir = path.join(rootDir, platform);
+  const platformDir = path.join(rootDir, config.sourceDir);
   PLATFORM_FILES[platform] = { agents: {}, rootFile: null };
 
   // Agent templates (frontmatter + placeholder)
@@ -138,7 +140,7 @@ function copyWithTemplate(targetDir, template) {
   }
 
   // 6. docs/ (features, plans, crawled-contents placeholders)
-  const docsSourcePath = path.join(rootDir, target, "docs");
+  const docsSourcePath = path.join(rootDir, config.sourceDir, "docs");
   if (fs.existsSync(docsSourcePath)) {
     copyDirSync(docsSourcePath, path.join(targetDir, "docs"));
   }
