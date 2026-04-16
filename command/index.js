@@ -17,13 +17,7 @@ const COMMAND = process.argv[2];
 async function init() {
   const force = process.argv.includes("--force");
   const target = await selectTarget();
-  const sourceDir = path.join(__dirname, "..", target);
   const targetDir = path.join(process.cwd(), target);
-
-  if (!fs.existsSync(sourceDir)) {
-    console.error(`Error: ${target} folder not found in the package.`);
-    process.exit(1);
-  }
 
   if (fs.existsSync(targetDir)) {
     if (force) {
@@ -54,7 +48,6 @@ async function init() {
   const includeAgents = await selectAgents();
   const includeSkills = await selectSkills();
   const template = {
-    label: "customize",
     target,
     includeAgents,
     includeSkills,
@@ -64,7 +57,7 @@ async function init() {
     `\n  Agents: ${template.includeAgents.map((a) => a.replace(".agent.md", "")).join(", ")}`,
   );
   console.log(`  Skills: ${template.includeSkills.join(", ")}`);
-  copyWithTemplate(sourceDir, targetDir, template);
+  copyWithTemplate(targetDir, template);
   console.log(`\n  ✔ Copied ${target} folder to ${process.cwd()}\n`);
 }
 

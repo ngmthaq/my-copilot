@@ -12,23 +12,39 @@ const REQUIRED_AGENTS = [
 
 const REQUIRED_SKILLS = ["page-content-crawler"];
 
-const CLAUDE_NAME_MAP = {
-  instructions: "rules",
-  "copilot-instructions.md": "CLAUDE.md",
+// Add a new entry here to support a new platform.
+// Each key is the folder name that will be created in the user's project.
+const PLATFORM_CONFIG = {
+  ".github": {
+    label: "GitHub Copilot",
+    agentsDir: "agents",
+    skillsDir: "skills",
+    instructionsDir: "instructions",
+    rootFile: "copilot-instructions.md",
+    askQuestionsMethod: "ask structured questions using `vscode_askQuestions`",
+  },
+  ".claude": {
+    label: "Claude Code",
+    agentsDir: "agents",
+    skillsDir: "skills",
+    instructionsDir: "rules",
+    rootFile: "CLAUDE.md",
+    askQuestionsMethod: "ask structured clarification questions",
+  },
 };
 
-const ASK_QUESTIONS_METHOD = {
-  ".github": "ask structured questions using `vscode_askQuestions`",
-  ".claude": "ask structured clarification questions",
-};
+// Reference platform used to enumerate available agents (must have agent templates)
+const REFERENCE_PLATFORM = ".github";
 
-const githubDir = path.join(__dirname, "..", ".github");
-const skillsDir = path.join(__dirname, "..", "skills");
-const instructionsDir = path.join(__dirname, "..", "instructions");
-const agentsDir = path.join(__dirname, "..", "agents");
-const agentConfigsPath = path.join(__dirname, "..", "agent-configs.json");
+const rootDir = path.join(__dirname, "..");
+const skillsDir = path.join(rootDir, "skills");
+const instructionsDir = path.join(rootDir, "instructions");
+const agentsDir = path.join(rootDir, "agents");
+const agentConfigsPath = path.join(rootDir, "agent-configs.json");
 const ALL_AGENTS = fs
-  .readdirSync(path.join(githubDir, "agents"))
+  .readdirSync(
+    path.join(rootDir, REFERENCE_PLATFORM, PLATFORM_CONFIG[REFERENCE_PLATFORM].agentsDir),
+  )
   .filter((f) => f.endsWith(".agent.md"))
   .sort();
 const ALL_SKILLS = fs
@@ -52,55 +68,57 @@ function copyDirSync(src, dest, includeSet) {
   }
 }
 
-function copyWithTemplate(sourceDir, targetDir, template) {
-  const nameMap = template.target === ".claude" ? CLAUDE_NAME_MAP : {};
+function copyWithTemplate(targetDir, template) {
+  const target = template.target;
+  const config = PLATFORM_CONFIG[target];
+  const targetSourceDir = path.join(rootDir, target);
+
   fs.mkdirSync(targetDir, { recursive: true });
-  const entries = fs.readdirSync(sourceDir, { withFileTypes: true });
-  for (const entry of entries) {
-    const destName = nameMap[entry.name] || entry.name;
-    const srcPath = path.join(sourceDir, entry.name);
-    const destPath = path.join(targetDir, destName);
-    if (entry.isDirectory() && entry.name === "agents") {
-      fs.mkdirSync(destPath, { recursive: true });
-      for (const agentFile of template.includeAgents) {
-        const agentName = agentFile.replace(".agent.md", "");
-        const templateContent = fs.readFileSync(
-          path.join(srcPath, agentFile),
-          "utf8",
-        );
-        const bodyContent = fs.readFileSync(
-          path.join(agentsDir, `${agentName}.md`),
-          "utf8",
-        );
-        const merged = templateContent
-          .replace("<agent_content>", bodyContent)
-          .replaceAll(
-            "<ask_questions_method>",
-            ASK_QUESTIONS_METHOD[template.target],
-          );
-        fs.writeFileSync(path.join(destPath, agentFile), merged);
-      }
-    } else if (entry.isDirectory()) {
-      copyDirSync(srcPath, destPath);
-    } else {
-      fs.copyFileSync(srcPath, destPath);
-    }
-  }
-  const skillsDestPath = path.join(targetDir, "skills");
+
+  // 1. Skills → platform-specific skills folder
   const includeSet = new Set(template.includeSkills);
-  copyDirSync(skillsDir, skillsDestPath, includeSet);
+  copyDirSync(skillsDir, path.join(targetDir, config.skillsDir), includeSet);
 
-  const instructionsDestName = nameMap["instructions"] || "instructions";
-  const instructionsDestPath = path.join(targetDir, instructionsDestName);
-  copyDirSync(instructionsDir, instructionsDestPath);
+  // 2. Instructions → platform-specific instructions folder
+  copyDirSync(instructionsDir, path.join(targetDir, config.instructionsDir));
 
+  // 3. Agents → platform-specific agents folder (keep template metadata, replace body placeholder)
+  const agentTemplatesDir = path.join(targetSourceDir, config.agentsDir);
+  const agentsDestPath = path.join(targetDir, config.agentsDir);
+  fs.mkdirSync(agentsDestPath, { recursive: true });
+  for (const agentFile of template.includeAgents) {
+    const agentName = agentFile.replace(".agent.md", "");
+    const templateContent = fs.readFileSync(
+      path.join(agentTemplatesDir, agentFile),
+      "utf8",
+    );
+    const bodyContent = fs.readFileSync(
+      path.join(agentsDir, `${agentName}.md`),
+      "utf8",
+    );
+    const merged = templateContent
+      .replace("<agent_content>", bodyContent)
+      .replaceAll("<ask_questions_method>", config.askQuestionsMethod);
+    fs.writeFileSync(path.join(agentsDestPath, agentFile), merged);
+  }
+
+  // 4. agent-configs.json
   const agentConfigsContent = fs
     .readFileSync(agentConfigsPath, "utf8")
-    .replaceAll("<target>", template.target);
-  fs.writeFileSync(
-    path.join(targetDir, "agent-configs.json"),
-    agentConfigsContent,
-  );
+    .replaceAll("<target>", target);
+  fs.writeFileSync(path.join(targetDir, "agent-configs.json"), agentConfigsContent);
+
+  // 5. Root instruction file (e.g. copilot-instructions.md or CLAUDE.md)
+  const rootFileSrc = path.join(targetSourceDir, config.rootFile);
+  if (fs.existsSync(rootFileSrc)) {
+    fs.copyFileSync(rootFileSrc, path.join(targetDir, config.rootFile));
+  }
+
+  // 6. docs/ (features, plans, crawled-contents placeholders)
+  const docsSourcePath = path.join(targetSourceDir, "docs");
+  if (fs.existsSync(docsSourcePath)) {
+    copyDirSync(docsSourcePath, path.join(targetDir, "docs"));
+  }
 }
 
 function unique(...arrays) {
@@ -303,15 +321,16 @@ function selectMany({ title, options, hint }) {
 }
 
 async function selectTarget() {
-  const target = await selectOne({
+  const options = Object.entries(PLATFORM_CONFIG).map(([folder, cfg]) => ({
+    label: folder,
+    value: folder,
+    description: cfg.label,
+  }));
+  return selectOne({
     title: "Select target folder:",
-    options: [
-      { label: ".github", value: ".github", description: "GitHub Copilot" },
-      { label: ".claude", value: ".claude", description: "Claude Code" },
-    ],
+    options,
     hint: "Use ↑↓ to navigate, Enter to confirm",
   });
-  return target;
 }
 
 async function selectAgents() {
