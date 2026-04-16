@@ -43,7 +43,11 @@ const agentsDir = path.join(rootDir, "agents");
 const agentConfigsPath = path.join(rootDir, "agent-configs.json");
 const ALL_AGENTS = fs
   .readdirSync(
-    path.join(rootDir, REFERENCE_PLATFORM, PLATFORM_CONFIG[REFERENCE_PLATFORM].agentsDir),
+    path.join(
+      rootDir,
+      REFERENCE_PLATFORM,
+      PLATFORM_CONFIG[REFERENCE_PLATFORM].agentsDir,
+    ),
   )
   .filter((f) => f.endsWith(".agent.md"))
   .sort();
@@ -52,6 +56,29 @@ const ALL_SKILLS = fs
   .filter((e) => e.isDirectory())
   .map((e) => e.name)
   .sort();
+
+// Pre-load all platform-specific files at module init time so they are available
+// even if the source directory is renamed later (e.g. by --force backup in init()).
+const PLATFORM_FILES = {};
+for (const [platform, config] of Object.entries(PLATFORM_CONFIG)) {
+  const platformDir = path.join(rootDir, platform);
+  PLATFORM_FILES[platform] = { agents: {}, rootFile: null };
+
+  // Agent templates (frontmatter + placeholder)
+  const templatesDir = path.join(platformDir, config.agentsDir);
+  for (const agentFile of ALL_AGENTS) {
+    const p = path.join(templatesDir, agentFile);
+    if (fs.existsSync(p)) {
+      PLATFORM_FILES[platform].agents[agentFile] = fs.readFileSync(p, "utf8");
+    }
+  }
+
+  // Root instruction file (copilot-instructions.md or CLAUDE.md)
+  const rootFilePath = path.join(platformDir, config.rootFile);
+  if (fs.existsSync(rootFilePath)) {
+    PLATFORM_FILES[platform].rootFile = fs.readFileSync(rootFilePath, "utf8");
+  }
+}
 
 function copyDirSync(src, dest, includeSet) {
   fs.mkdirSync(dest, { recursive: true });
@@ -71,7 +98,7 @@ function copyDirSync(src, dest, includeSet) {
 function copyWithTemplate(targetDir, template) {
   const target = template.target;
   const config = PLATFORM_CONFIG[target];
-  const targetSourceDir = path.join(rootDir, target);
+  const files = PLATFORM_FILES[target];
 
   fs.mkdirSync(targetDir, { recursive: true });
 
@@ -83,21 +110,15 @@ function copyWithTemplate(targetDir, template) {
   copyDirSync(instructionsDir, path.join(targetDir, config.instructionsDir));
 
   // 3. Agents → platform-specific agents folder (keep template metadata, replace body placeholder)
-  const agentTemplatesDir = path.join(targetSourceDir, config.agentsDir);
   const agentsDestPath = path.join(targetDir, config.agentsDir);
   fs.mkdirSync(agentsDestPath, { recursive: true });
   for (const agentFile of template.includeAgents) {
     const agentName = agentFile.replace(".agent.md", "");
-    const templateContent = fs.readFileSync(
-      path.join(agentTemplatesDir, agentFile),
-      "utf8",
-    );
-    const bodyContent = fs.readFileSync(
-      path.join(agentsDir, `${agentName}.md`),
-      "utf8",
-    );
-    const merged = templateContent
-      .replace("<agent_content>", bodyContent)
+    const merged = files.agents[agentFile]
+      .replace(
+        "<agent_content>",
+        fs.readFileSync(path.join(agentsDir, `${agentName}.md`), "utf8"),
+      )
       .replaceAll("<ask_questions_method>", config.askQuestionsMethod);
     fs.writeFileSync(path.join(agentsDestPath, agentFile), merged);
   }
@@ -106,16 +127,18 @@ function copyWithTemplate(targetDir, template) {
   const agentConfigsContent = fs
     .readFileSync(agentConfigsPath, "utf8")
     .replaceAll("<target>", target);
-  fs.writeFileSync(path.join(targetDir, "agent-configs.json"), agentConfigsContent);
+  fs.writeFileSync(
+    path.join(targetDir, "agent-configs.json"),
+    agentConfigsContent,
+  );
 
   // 5. Root instruction file (e.g. copilot-instructions.md or CLAUDE.md)
-  const rootFileSrc = path.join(targetSourceDir, config.rootFile);
-  if (fs.existsSync(rootFileSrc)) {
-    fs.copyFileSync(rootFileSrc, path.join(targetDir, config.rootFile));
+  if (files.rootFile !== null) {
+    fs.writeFileSync(path.join(targetDir, config.rootFile), files.rootFile);
   }
 
   // 6. docs/ (features, plans, crawled-contents placeholders)
-  const docsSourcePath = path.join(targetSourceDir, "docs");
+  const docsSourcePath = path.join(rootDir, target, "docs");
   if (fs.existsSync(docsSourcePath)) {
     copyDirSync(docsSourcePath, path.join(targetDir, "docs"));
   }
