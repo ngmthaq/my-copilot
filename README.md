@@ -138,8 +138,7 @@ A workspace-level configuration file that tells agents where to find docs:
 ```json
 {
   "features_directory": "<workspace>/<target>/docs/features",
-  "plans_directory": "<workspace>/<target>/docs/plans",
-  "crawled_contents_directory": "<workspace>/<target>/docs/crawled-contents"
+  "plans_directory": "<workspace>/<target>/docs/plans"
 }
 ```
 
