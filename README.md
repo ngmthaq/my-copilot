@@ -1,6 +1,6 @@
 # @ngmthaq20/my-copilot
 
-A curated, ready-to-use collection of AI copilot customization files — **agents**, **skills**, **instructions**, and **document templates** — designed to power an AI-assisted software development workflow across backend, frontend, mobile, desktop, and AI/ML teams.
+A curated, ready-to-use collection of AI copilot customization files — **agents**, **skills**, and **document templates** — designed to power an AI-assisted software development workflow across backend, frontend, mobile, desktop, and AI/ML teams.
 
 Supports both **GitHub Copilot** (`.github/`) and **Claude Code** (`.claude/`). Drop it into any project and get a fully structured AI team out of the box.
 
@@ -13,7 +13,6 @@ Supports both **GitHub Copilot** (`.github/`) and **Claude Code** (`.claude/`). 
 - [What's Inside](#whats-inside)
   - [Agents](#agents)
   - [Skills](#skills)
-  - [Instructions](#instructions)
   - [Docs](#docs)
   - [agent-configs.json](#agent-configsjson)
 - [Customization](#customization)
@@ -56,8 +55,8 @@ npx @ngmthaq20/my-copilot@latest init --force
 
 After running `init`, a `.github` or `.claude` folder is created in your project root depending on the target you selected:
 
-- **`.github`** — Open the workspace in **VS Code** with **GitHub Copilot Chat** enabled. Agents, skills, and instructions are picked up automatically.
-- **`.claude`** — Open the workspace with **Claude Code**. Agents, skills, and rules are picked up automatically.
+- **`.github`** — Open the workspace in **VS Code** with **GitHub Copilot Chat** enabled. Agents, skills are picked up automatically.
+- **`.claude`** — Open the workspace with **Claude Code**. Agents, skills, are picked up automatically.
 
 ---
 
@@ -71,7 +70,6 @@ After running `init`, a `.github` or `.claude` folder is created in your project
 ├── agent-configs.json             # Workspace-level agent configuration
 ├── agents/                        # Specialized agent definitions
 ├── skills/                        # Skill packs (frameworks, tools, languages)
-├── instructions/                  # Document templates & conventions
 └── docs/
     ├── features/                  # Feature documentation
     ├── plans/                     # Implementation & bugfix plans
@@ -86,7 +84,6 @@ After running `init`, a `.github` or `.claude` folder is created in your project
 ├── agent-configs.json             # Workspace-level agent configuration
 ├── agents/                        # Specialized agent definitions
 ├── skills/                        # Skill packs (frameworks, tools, languages)
-├── rules/                         # Document templates & conventions
 └── docs/
     ├── features/                  # Feature documentation
     ├── plans/                     # Implementation & bugfix plans
@@ -104,9 +101,9 @@ Role-based AI agents that follow a structured team workflow. Each agent has a de
 | `technical-leader`      | Analyzes requirements, creates feature docs & plans, delegates work |
 | `be-developer`          | Implements backend features, routes, services, DB integrations      |
 | `fe-developer`          | Implements frontend features, components, state management          |
-| `mobile-developer`      | Implements mobile features (Flutter, Kotlin, Swift)                 |
-| `desktop-app-developer` | Implements desktop app features (React, Vite, Node.js)              |
-| `ai-engineer`           | Implements AI/ML features (LangChain, HuggingFace, Ollama)          |
+| `mobile-developer`      | Implements mobile features                                          |
+| `desktop-app-developer` | Implements desktop app features                                     |
+| `ai-engineer`           | Implements AI/ML features                                           |
 | `qa-engineer`           | Writes and runs tests, verifies implementations                     |
 | `code-reviewer`         | Reviews code, tests, and DevOps configurations across stacks        |
 | `devops-engineer`       | Manages infrastructure, CI/CD, Docker, Nginx, deployment            |
@@ -120,35 +117,7 @@ Agents are defined as `.agent.md` files inside the `agents/` folder of your chos
 
 Reusable knowledge packs that agents load on demand. Each skill is a folder containing a `SKILL.md` index and focused sub-skill files.
 
-| Category            | Skills                                                                                  |
-| ------------------- | --------------------------------------------------------------------------------------- |
-| **Languages**       | C, C++, C#, Dart, Go, Java, JavaScript, Kotlin, PHP, Python, R, Rust, Swift, TypeScript |
-| **Backend**         | ASP.NET, Django, Express.js, NestJS, Node.js, Prisma, Spring                            |
-| **Frontend**        | Angular, Bootstrap, jQuery, React, Vue, Vite, HTML, CSS, Sass, SCSS, UI Creation Guide  |
-| **Mobile**          | Flutter, Dart, Kotlin, Swift, XML                                                       |
-| **AI / ML**         | AI, LangChain, HuggingFace, Ollama, NumPy, Pandas, SciPy                                |
-| **Infrastructure**  | AWS, Bash, Docker, Git, Nginx                                                           |
-| **Databases**       | MongoDB, MySQL, PostgreSQL, SQL                                                         |
-| **Quality & Tools** | Cyber Security, DSA, ESLint, Prettier, GraphQL, XML                                     |
-| **Utilities**       | Page Content Crawler                                                                    |
-
-Skills are stored in `<target>/skills/<skill-name>/` (e.g., `.github/skills/react/` or `.claude/skills/react/`).
-
----
-
-### Instructions
-
-Document templates that guide agents when creating feature docs, plans, and bugfix plans:
-
-| Instruction                             | `applyTo` Pattern        | Purpose                                                  |
-| --------------------------------------- | ------------------------ | -------------------------------------------------------- |
-| `feature-doc-template.instructions.md`  | `**/agent-feature-*.md`  | Template for feature documentation (source of truth)     |
-| `plan-template.instructions.md`         | `**/agent-plan-*.md`     | Template for implementation plans                        |
-| `bugfix-plan-template.instructions.md`  | `**/agent-plan-fix-*.md` | Template for bug-fix plans (no feature doc needed)       |
-| `atomic-design-pattern.instructions.md` | _(auto, by description)_ | Enforces Atomic Design methodology for UI components     |
-| `solid-principles.instructions.md`      | _(auto, by description)_ | Enforces SOLID principles when writing or reviewing code |
-
-Instructions are stored in `.github/instructions/` (GitHub Copilot) or `.claude/rules/` (Claude Code).
+Skills are stored in `<target>/skills/<skill-name>/`.
 
 ---
 
@@ -239,9 +208,9 @@ description: "Brief description — this text helps Copilot decide when to load 
 
 ## When to Use
 
-## Table of Contents
-
 ## Constraints
+
+## Table of Contents
 
 ## Accessing Reference Content
 
@@ -249,28 +218,6 @@ description: "Brief description — this text helps Copilot decide when to load 
 
 ## Anti-Patterns
 ```
-
----
-
-### Custom Instruction
-
-Create a new `.instructions.md` file inside `.github/instructions/` (GitHub Copilot) or `.claude/rules/` (Claude Code):
-
-```markdown
----
-applyTo: "**/pattern-to-match-*.md"
----
-
-# My Instruction Title
-
-## When to Use
-
-- Describe when this instruction should be applied.
-
-## Template
-```
-
-The `applyTo` glob pattern determines which files trigger this instruction. When an agent creates or edits a file matching the pattern, the instruction is automatically applied.
 
 ---
 

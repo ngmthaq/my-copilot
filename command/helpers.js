@@ -20,7 +20,6 @@ const PLATFORM_CONFIG = {
     sourceDir: "github",
     agentsDir: "agents",
     skillsDir: "skills",
-    instructionsDir: "instructions",
     rootFile: "copilot-instructions.md",
     askQuestionsMethod: "ask structured questions using `vscode_askQuestions`",
   },
@@ -29,7 +28,6 @@ const PLATFORM_CONFIG = {
     sourceDir: "claude",
     agentsDir: "agents",
     skillsDir: "skills",
-    instructionsDir: "rules",
     rootFile: "CLAUDE.md",
     askQuestionsMethod: "ask structured clarification questions",
   },
@@ -40,7 +38,6 @@ const REFERENCE_PLATFORM = ".github";
 
 const rootDir = path.join(__dirname, "..");
 const skillsDir = path.join(rootDir, "skills");
-const instructionsDir = path.join(rootDir, "instructions");
 const agentsDir = path.join(rootDir, "agents");
 const agentConfigsPath = path.join(rootDir, "agent-configs.json");
 const ALL_AGENTS = fs
@@ -108,10 +105,7 @@ function copyWithTemplate(targetDir, template) {
   const includeSet = new Set(template.includeSkills);
   copyDirSync(skillsDir, path.join(targetDir, config.skillsDir), includeSet);
 
-  // 2. Instructions → platform-specific instructions folder
-  copyDirSync(instructionsDir, path.join(targetDir, config.instructionsDir));
-
-  // 3. Agents → platform-specific agents folder (keep template metadata, replace body placeholder)
+  // 2. Agents → platform-specific agents folder (keep template metadata, replace body placeholder)
   const agentsDestPath = path.join(targetDir, config.agentsDir);
   fs.mkdirSync(agentsDestPath, { recursive: true });
   for (const agentFile of template.includeAgents) {
@@ -125,7 +119,7 @@ function copyWithTemplate(targetDir, template) {
     fs.writeFileSync(path.join(agentsDestPath, agentFile), merged);
   }
 
-  // 4. agent-configs.json
+  // 3. agent-configs.json
   const agentConfigsContent = fs
     .readFileSync(agentConfigsPath, "utf8")
     .replaceAll("<target>", target);
@@ -134,12 +128,12 @@ function copyWithTemplate(targetDir, template) {
     agentConfigsContent,
   );
 
-  // 5. Root instruction file (e.g. copilot-instructions.md or CLAUDE.md)
+  // 4. Root instruction file (e.g. copilot-instructions.md or CLAUDE.md)
   if (files.rootFile !== null) {
     fs.writeFileSync(path.join(targetDir, config.rootFile), files.rootFile);
   }
 
-  // 6. docs/ (features, plans, crawled-contents placeholders)
+  // 5. docs/ (features, plans, crawled-contents placeholders)
   const docsSourcePath = path.join(rootDir, config.sourceDir, "docs");
   if (fs.existsSync(docsSourcePath)) {
     copyDirSync(docsSourcePath, path.join(targetDir, "docs"));
