@@ -1,5 +1,7 @@
 ---
 applyTo: "**/agent-plan-fix-*.md"
+paths:
+  - "**/agent-plan-fix-*.md"
 ---
 
 # Bug-Fix Plan Template

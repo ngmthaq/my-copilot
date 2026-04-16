@@ -1,4 +1,7 @@
 ---
+applyTo: "**/*"
+paths:
+  - "**/*"
 description: "Use when creating, organizing, or refactoring UI components. Enforces Atomic Design methodology: Atoms, Molecules, Organisms, Templates, and Pages. Applies to React, Vue, Angular, Flutter, and any component-based UI framework."
 ---
 

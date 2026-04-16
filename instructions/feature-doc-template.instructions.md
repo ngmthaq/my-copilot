@@ -1,5 +1,7 @@
 ---
 applyTo: "**/agent-feature-*.md"
+paths:
+  - "**/agent-feature-*.md"
 ---
 
 # Feature Document Template

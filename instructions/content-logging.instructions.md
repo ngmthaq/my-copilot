@@ -1,4 +1,7 @@
 ---
+applyTo: "**/*"
+paths:
+  - "**/*"
 description: "Use when the page-content-crawler skill saves crawled content to disk. Defines the directory structure, file naming, URL sanitization rules, and logging requirements for crawled content."
 ---
 

@@ -1,5 +1,7 @@
 ---
 applyTo: "**/agent-plan-*.md"
+paths:
+  - "**/agent-plan-*.md"
 ---
 
 # Plan Document Template

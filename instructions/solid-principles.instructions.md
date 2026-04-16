@@ -1,4 +1,7 @@
 ---
+applyTo: "**/*"
+paths:
+  - "**/*"
 description: "Use when writing, reviewing, or refactoring code. Enforces SOLID principles: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion. Applies to classes, modules, functions, and architectural design in any language."
 ---
 
