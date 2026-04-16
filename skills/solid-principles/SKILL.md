@@ -21,15 +21,17 @@ Every class, module, or function should have **one and only one reason to change
 
 Bad:
 
-```
+```javascript
 class UserService {
-  createUser(data) { /* validates, saves to DB, sends email, logs audit */ }
+  createUser(data) {
+    /* validates, saves to DB, sends email, logs audit */
+  }
 }
 ```
 
 Good:
 
-```
+```javascript
 class UserValidator { validate(data) { ... } }
 class UserRepository { save(user) { ... } }
 class UserNotifier { sendWelcomeEmail(user) { ... } }
@@ -49,17 +51,17 @@ Software entities should be **open for extension but closed for modification**.
 
 Bad:
 
-```
+```javascript
 function calculateDiscount(type) {
-  if (type === 'student') return 0.2;
-  if (type === 'senior') return 0.3;
+  if (type === "student") return 0.2;
+  if (type === "senior") return 0.3;
   // Must edit this function for every new type
 }
 ```
 
 Good:
 
-```
+```javascript
 interface DiscountStrategy { calculate(): number }
 class StudentDiscount implements DiscountStrategy { calculate() { return 0.2; } }
 class SeniorDiscount implements DiscountStrategy { calculate() { return 0.3; } }
@@ -77,14 +79,14 @@ Subtypes **must be substitutable** for their base types without altering program
 
 Bad:
 
-```
+```javascript
 class Bird { fly() { ... } }
 class Penguin extends Bird { fly() { throw new Error('Cannot fly'); } }
 ```
 
 Good:
 
-```
+```javascript
 class Bird { move() { ... } }
 class FlyingBird extends Bird { fly() { ... } }
 class Penguin extends Bird { swim() { ... } }
@@ -100,7 +102,7 @@ Clients should **not be forced to depend** on interfaces they do not use.
 
 Bad:
 
-```
+```javascript
 interface Worker {
   work(): void;
   eat(): void;
@@ -112,7 +114,7 @@ interface Worker {
 
 Good:
 
-```
+```javascript
 interface Workable { work(): void; }
 interface Feedable { eat(): void; }
 interface Restable { sleep(): void; }
@@ -129,7 +131,7 @@ High-level modules should **not depend on low-level modules**. Both should depen
 
 Bad:
 
-```
+```javascript
 class OrderService {
   private db = new MySQLDatabase();  // Tightly coupled to MySQL
   private mailer = new SmtpMailer(); // Tightly coupled to SMTP
@@ -138,7 +140,7 @@ class OrderService {
 
 Good:
 
-```
+```javascript
 class OrderService {
   constructor(
     private db: Database,       // Depends on abstraction

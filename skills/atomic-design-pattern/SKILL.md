@@ -36,10 +36,10 @@ function Button({ label, variant, onClick, disabled }) {
 - May manage minimal internal state (e.g., input focus) but no business logic
 - Examples: `SearchField` (Input + Button), `FormField` (Label + Input + ErrorText), `NavItem` (Icon + Label)
 
-```
+```javascript
 // Molecule — composes atoms into a functional group
 function SearchField({ onSearch }) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   return (
     <div className="search-field">
       <Input value={query} onChange={setQuery} placeholder="Search..." />
@@ -58,7 +58,7 @@ function SearchField({ onSearch }) {
 - Should still be reusable across different templates when possible
 - Examples: `Header` (Logo + NavItems + SearchField + UserMenu), `ProductCard` (Image + Title + Price + AddToCartButton), `CommentSection`
 
-```
+```javascript
 // Organism — a complete UI section with structure and potential business logic
 function Header({ user, onSearch, onLogout }) {
   return (
@@ -82,7 +82,7 @@ function Header({ user, onSearch, onLogout }) {
 - One template can serve multiple pages with different data
 - Examples: `DashboardTemplate`, `AuthTemplate`, `ProductListTemplate`
 
-```
+```javascript
 // Template — layout structure, no real data
 function DashboardTemplate({ sidebar, header, mainContent, footer }) {
   return (
@@ -107,7 +107,7 @@ function DashboardTemplate({ sidebar, header, mainContent, footer }) {
 - Each page is a unique view that users interact with
 - Examples: `HomePage`, `UserProfilePage`, `ProductDetailPage`
 
-```
+```javascript
 // Page — real data + template
 function DashboardPage() {
   const user = useCurrentUser();
