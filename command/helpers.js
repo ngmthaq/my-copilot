@@ -8,6 +8,7 @@ const REQUIRED_AGENTS = [
   "code-reviewer.agent.md",
   "debugger.agent.md",
   "technical-leader.agent.md",
+  "onboarding.agent.md",
 ];
 
 const REQUIRED_SKILLS = ["page-content-crawler"];
