@@ -5,10 +5,11 @@ description: "Feature Document Template — Structured template for documenting 
 
 # Feature Document Template
 
+- The feature doc is the **source of truth** that defines requirements and design upfront. All agents — developer, QA, DevOps, and code reviewer — must reference it throughout implementation.
+
 ## When to Use
 
-- Before planning any non-trivial feature or change, AI **must** ask the user's permission to create a feature documentation file.
-- The feature doc is the **source of truth** that defines requirements and design upfront. All agents — developer, QA, DevOps, and code reviewer — must reference it throughout implementation.
+- Before implementing any feature or change
 
 ## Location & Naming Convention
 
@@ -25,10 +26,6 @@ Examples:
 - `{doc_directory}/20260602-1520-agent-feature-create-product-ui.md`
 - `{doc_directory}/20260602-1520-agent-feature-list-products-api.md`
 - `{doc_directory}/20260602-1520-agent-feature-docker-setup.md`
-
-## What to Ask the User
-
-> "Before I plan, would you like me to create a feature doc at `{doc_directory}/<date-time>-agent-feature-<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for all agents."
 
 ## Rules
 

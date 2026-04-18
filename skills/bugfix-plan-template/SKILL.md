@@ -7,8 +7,7 @@ description: "Bug-Fix Plan Template — Structured plan template for debugging a
 
 ## When to Use
 
-- When a debugger agent creates a plan for a bug fix (no feature doc needed).
-- No feature doc is required — the diagnosis serves as the source of truth.
+- Before implementing any bug fix, especially for classified bugs from agent
 
 ## Location & Naming Convention
 
@@ -22,6 +21,10 @@ Examples:
 
 - `{doc_directory}/20260405-1715-agent-plan-fix-cors-in-user-creation-form.md`
 - `{doc_directory}/20260406-0930-agent-plan-fix-null-pointer-in-auth-service.md`
+
+## Rules
+
+- Always create the plan file.
 
 ## Template
 
