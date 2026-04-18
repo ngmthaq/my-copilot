@@ -1,15 +1,15 @@
 ---
-name: solid-principles
-description: "SOLID Principles — Enforces the SOLID principles of object-oriented design (Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion) for maintainable and scalable code."
+name: solid-principle
+description: "SOLID — Enforces the SOLID principle of object-oriented design (Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion) for maintainable and scalable code."
 ---
 
-# SOLID Principles
+# SOLID Principle
 
 ## When to Use
 
-- Use when writing, reviewing, or refactoring code. Enforces SOLID principles: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion. Applies to classes, modules, functions, and architectural design in any language.
+- Use when writing, reviewing, or refactoring code. Enforces SOLID principle: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion. Applies to classes, modules, functions, and architectural design in any language.
 
-- All generated, modified, or reviewed code **must** follow the SOLID principles. Apply these at the class, module, and function level regardless of programming language.
+- All generated, modified, or reviewed code **must** follow the SOLID principle. Apply these at the class, module, and function level regardless of programming language.
 
 ## S — Single Responsibility Principle (SRP)
 

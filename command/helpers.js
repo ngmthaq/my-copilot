@@ -8,10 +8,22 @@ const REQUIRED_AGENTS = [
   "code-reviewer.agent.md",
   "debugger.agent.md",
   "technical-leader.agent.md",
-  "onboarding.agent.md",
+  "codebase-analyst.agent.md",
 ];
 
-const REQUIRED_SKILLS = ["page-content-crawler"];
+const REQUIRED_SKILLS = [
+  "aaa-testing",
+  "accessibility-standard",
+  "atomic-design-pattern",
+  "bugfix-plan-template",
+  "code-review-standard",
+  "dry-principle",
+  "feature-doc-template",
+  "kiss-principle",
+  "plan-template",
+  "secret-scanner",
+  "solid-principle",
+];
 
 // Add a new entry here to support a new platform.
 // Each key is the folder name that will be created in the user's project.
@@ -22,7 +34,6 @@ const PLATFORM_CONFIG = {
     agentsDir: "agents",
     skillsDir: "skills",
     rootFile: "copilot-instructions.md",
-    askQuestionsMethod: "ask structured questions using `vscode_askQuestions`",
   },
   ".claude": {
     label: "Claude Code",
@@ -30,7 +41,6 @@ const PLATFORM_CONFIG = {
     agentsDir: "agents",
     skillsDir: "skills",
     rootFile: "CLAUDE.md",
-    askQuestionsMethod: "ask structured clarification questions",
   },
 };
 
@@ -111,12 +121,10 @@ function copyWithTemplate(targetDir, template) {
   fs.mkdirSync(agentsDestPath, { recursive: true });
   for (const agentFile of template.includeAgents) {
     const agentName = agentFile.replace(".agent.md", "");
-    const merged = files.agents[agentFile]
-      .replace(
-        "<agent_content>",
-        fs.readFileSync(path.join(agentsDir, `${agentName}.md`), "utf8"),
-      )
-      .replaceAll("<ask_questions_method>", config.askQuestionsMethod);
+    const merged = files.agents[agentFile].replace(
+      "<agent_content>",
+      fs.readFileSync(path.join(agentsDir, `${agentName}.md`), "utf8"),
+    );
     fs.writeFileSync(path.join(agentsDestPath, agentFile), merged);
   }
 

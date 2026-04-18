@@ -1,426 +1,180 @@
 ---
 name: code-reviewer-standard
-description: "Generic code review instructions that can be customized for any project"
+description: "Code Reviewer — Performs thorough, structured code reviews covering security (secret scanning), code quality (SOLID, DRY, KISS), architecture (Separation of Concerns, Atomic Design), and testing (AAA pattern). Use when reviewing pull requests, merge requests, or any code changes across any language or framework. Automatically applies all referenced skill standards as review lenses."
 ---
 
-# Generic Code Review Instructions
+# Code Review Standard
 
-Comprehensive code review guidelines that can be adapted to any project. These instructions follow best practices from prompt engineering and provide a structured approach to code quality, security, testing, and architecture review.
+## Skill Dependencies
 
-## When to Use
+Read each referenced skill before reviewing code that touches its domain:
 
-- Use when performing code reviews for pull requests, merge requests, or any code changes. These guidelines apply to all programming languages and frameworks. Customize the review priorities and checklist based on your project's specific needs and standards.
+| Skill                    | Read when...                                           |
+| ------------------------ | ------------------------------------------------------ |
+| `solid-principle`        | Reviewing classes, modules, or inheritance hierarchies |
+| `dry-principle`          | Any repeated logic, constants, or type definitions     |
+| `kiss-principle`         | Nested logic, abstractions, or complex control flow    |
+| `separation-of-concerns` | Layers, controllers, services, repositories            |
+| `aaa-testing`            | Any test file                                          |
+| `secret-scanner`         | Every review — secrets appear anywhere                 |
+| `atomic-design-pattern`  | Any component-based UI (React, Vue, Angular, Flutter)  |
+
+---
 
 ## Review Priorities
 
-When performing a code review, prioritize issues in the following order:
-
 ### 🔴 CRITICAL (Block merge)
 
-- **Security**: Vulnerabilities, exposed secrets, authentication/authorization issues
-- **Correctness**: Logic errors, data corruption risks, race conditions
-- **Breaking Changes**: API contract changes without versioning
-- **Data Loss**: Risk of data loss or corruption
+- Hardcoded secrets, credentials, or connection strings → see Secret Scanner section
+- Security vulnerabilities: injection, broken auth/authz, unvalidated input, insecure crypto
+- Logic errors, data corruption risks, race conditions
+- API contract changes without versioning
+- Irreversible destructive operations without safeguards
 
 ### 🟡 IMPORTANT (Requires discussion)
 
-- **Code Quality**: Severe violations of SOLID principles, excessive duplication
-- **Test Coverage**: Missing tests for critical paths or new functionality
-- **Performance**: Obvious performance bottlenecks (N+1 queries, memory leaks)
-- **Architecture**: Significant deviations from established patterns
+- SOLID violations that create systemic design debt
+- Business logic in UI/controllers; data access mixed with domain logic
+- Atomic hierarchy inversions (template fetching data, page-level logic in molecules, etc.)
+- Missing tests for critical paths or new functionality
+- Tests with no assertions, multiple Acts, or Act buried in Arrange
+- N+1 queries, memory leaks, unindexed lookups on large datasets
 
-### 🟢 SUGGESTION (Non-blocking improvements)
+### 🟢 SUGGESTION (Non-blocking)
 
-- **Readability**: Poor naming, complex logic that could be simplified
-- **Optimization**: Performance improvements without functional impact
-- **Best Practices**: Minor deviations from conventions
-- **Documentation**: Missing or incomplete comments/documentation
+- Duplicated logic (flag on 3rd repetition — Rule of Three)
+- Unnecessary complexity, over-abstraction, deep nesting
+- Weak test names, over-asserting, AAA phase blurring
+- Names that require a comment to understand
+- Missing API docs or unexplained complex logic
 
-## General Review Principles
+---
 
-When performing a code review, follow these principles:
+## Secret Scanner
 
-1. **Be specific**: Reference exact lines, files, and provide concrete examples
-2. **Provide context**: Explain WHY something is an issue and the potential impact
-3. **Suggest solutions**: Show corrected code when applicable, not just what's wrong
-4. **Be constructive**: Focus on improving the code, not criticizing the author
-5. **Recognize good practices**: Acknowledge well-written code and smart solutions
-6. **Be pragmatic**: Not every suggestion needs immediate implementation
-7. **Group related comments**: Avoid multiple comments about the same topic
+**Run on every review.** Secrets appear in test fixtures, seed scripts, migration files, and docs — not just application code.
 
-## Code Quality Standards
+**🔴 CRITICAL:** AWS keys (`AKIA...`), private keys (`-----BEGIN ... PRIVATE KEY-----`), GCP service account JSON, Azure client secrets, Stripe live keys (`sk_live_`), GitHub tokens (`ghp_`, `gho_`, `ghs_`, `github_pat_`)
 
-When performing a code review, check for:
+**🟡 HIGH:** GCP API keys (`AIza...`), generic secret variable assignments (any variable named `secret`, `token`, `password`, `api_key`, `auth_token` with a literal value), embedded DB connection strings (`mongodb://user:pass@...`), Slack/Discord/Twilio/SendGrid tokens, npm tokens (`npm_...`)
 
-### Clean Code
+**🟡 MEDIUM:** Hardcoded bearer tokens, JWTs (`eyJ...`), internal IP:port combinations
 
-- Descriptive and meaningful names for variables, functions, and classes
-- Single Responsibility Principle: each function/class does one thing well
-- DRY (Don't Repeat Yourself): no code duplication
-- Functions should be small and focused (ideally < 20-30 lines)
-- Avoid deeply nested code (max 3-4 levels)
-- Avoid magic numbers and strings (use constants)
-- Code should be self-documenting; comments only when necessary
+Every finding must state: secret type, file path + line number, severity, and remediation step (env var, secrets manager, or `.env` excluded from VCS). **Do not approve** while any critical or high finding is open. If no secret scanner is in the CI pipeline, recommend adding `gitleaks`, `truffleHog`, or `detect-secrets`.
 
-### Examples
+---
 
-```javascript
-// ❌ BAD: Poor naming and magic numbers
-function calc(x, y) {
-  if (x > 100) return y * 0.15;
-  return y * 0.1;
-}
+## Code Quality
 
-// ✅ GOOD: Clear naming and constants
-const PREMIUM_THRESHOLD = 100;
-const PREMIUM_DISCOUNT_RATE = 0.15;
-const STANDARD_DISCOUNT_RATE = 0.1;
+**SOLID** — flag with the principle name and a split suggestion:
 
-function calculateDiscount(orderTotal, itemPrice) {
-  const isPremiumOrder = orderTotal > PREMIUM_THRESHOLD;
-  const discountRate = isPremiumOrder
-    ? PREMIUM_DISCOUNT_RATE
-    : STANDARD_DISCOUNT_RATE;
-  return itemPrice * discountRate;
-}
-```
+- SRP: _"SRP violation: this [class/function] handles both [X] and [Y] — split them."_
+- OCP: _"OCP violation: extend with a new strategy/subclass rather than editing this branch."_
+- LSP: _"LSP violation: [Subclass] cannot substitute [Base] — redesign the hierarchy."_
+- ISP: _"ISP violation: not all implementors use [method] — split the interface."_
+- DIP: _"DIP violation: depend on the abstraction, inject the concrete."_
 
-### Error Handling
+**DRY** — flag the duplication location(s) and suggest an extraction. Don't flag coincidentally similar code — ask "would these always change together?" Skip if it's only appeared twice (Rule of Three).
 
-- Proper error handling at appropriate levels
-- Meaningful error messages
-- No silent failures or ignored exceptions
-- Fail fast: validate inputs early
-- Use appropriate error types/exceptions
+**KISS** — flag nesting > 2–3 levels (suggest guard clauses), one-liners that take study to parse, and abstractions that serve only one current use case. Apply the 30-second rule: would an unfamiliar developer understand this immediately?
 
-### Examples
+---
 
-```python
-# ❌ BAD: Silent failure and generic error
-def process_user(user_id):
-    try:
-        user = db.get(user_id)
-        user.process()
-    except:
-        pass
+## Architecture
 
-# ✅ GOOD: Explicit error handling
-def process_user(user_id):
-    if not user_id or user_id <= 0:
-        raise ValueError(f"Invalid user_id: {user_id}")
+**Separation of Concerns** — flag when a function/class has more than one reason to change. Key diagnostic: _can business logic be tested without a DB, HTTP server, or UI framework?_ If not, it's entangled with infrastructure. Use this ownership table:
 
-    try:
-        user = db.get(user_id)
-    except UserNotFoundError:
-        raise UserNotFoundError(f"User {user_id} not found in database")
-    except DatabaseError as e:
-        raise ProcessingError(f"Failed to retrieve user {user_id}: {e}")
+| Layer                    | Owns                           | Must NOT contain                           |
+| ------------------------ | ------------------------------ | ------------------------------------------ |
+| Presentation / UI        | Rendering, display formatting  | Business rules, DB queries, auth           |
+| Business Logic / Domain  | Rules, workflows, calculations | HTML, SQL, HTTP                            |
+| Data Access / Repository | Querying, persistence          | Business rules, formatting                 |
+| Cross-cutting            | Auth, logging, validation      | Business logic — use middleware/decorators |
 
-    return user.process()
-```
+**Atomic Design** — apply to any component-based UI. Flag level violations:
 
-## Security Review
+| Level    | May do business logic? | May fetch data? |
+| -------- | ---------------------- | --------------- |
+| Atom     | ❌                     | ❌              |
+| Molecule | Internal state only    | ❌              |
+| Organism | ✅                     | ❌              |
+| Template | ❌                     | ❌              |
+| Page     | ✅                     | ✅              |
 
-When performing a code review, check for security issues:
+Common flags: atom importing a design system component; molecule reimplementing atom logic; template fetching data; routing/API calls inside a molecule or organism.
 
-- **Sensitive Data**: No passwords, API keys, tokens, or PII in code or logs
-- **Input Validation**: All user inputs are validated and sanitized
-- **SQL Injection**: Use parameterized queries, never string concatenation
-- **Authentication**: Proper authentication checks before accessing resources
-- **Authorization**: Verify user has permission to perform action
-- **Cryptography**: Use established libraries, never roll your own crypto
-- **Dependency Security**: Check for known vulnerabilities in dependencies
+---
 
-### Examples
+## Testing
 
-```java
-// ❌ BAD: SQL injection vulnerability
-String query = "SELECT * FROM users WHERE email = '" + email + "'";
+**AAA** — every test needs three separated phases: Arrange (setup) → Act (single call) → Assert (expectations). Flag:
 
-// ✅ GOOD: Parameterized query
-PreparedStatement stmt = conn.prepareStatement(
-    "SELECT * FROM users WHERE email = ?"
-);
-stmt.setString(1, email);
-```
+- Multiple Act→Assert cycles: _"AAA violation: multiple Acts — split into separate tests."_
+- Assertions in Arrange: _"AAA violation: Arrange contains assertions — move to a separate test."_
+- Act hidden in setup: _"AAA violation: Act is buried in Arrange — make it explicit."_
+- Over-asserting unrelated fields: _"AAA violation: Assert tests things unrelated to this behavior."_
+- No assertion: _"AAA violation: no Assert — this test can never fail."_
 
-```javascript
-// ❌ BAD: Exposed secret in code
-const API_KEY = "sk_live_abc123xyz789";
+Test names must describe behavior, not implementation: `returns auth token when credentials are valid`, not `test_login`.
 
-// ✅ GOOD: Use environment variables
-const API_KEY = process.env.API_KEY;
-```
+---
 
-## Testing Standards
-
-When performing a code review, verify test quality:
-
-- **Coverage**: Critical paths and new functionality must have tests
-- **Test Names**: Descriptive names that explain what is being tested
-- **Test Structure**: Clear Arrange-Act-Assert or Given-When-Then pattern
-- **Independence**: Tests should not depend on each other or external state
-- **Assertions**: Use specific assertions, avoid generic assertTrue/assertFalse
-- **Edge Cases**: Test boundary conditions, null values, empty collections
-- **Mock Appropriately**: Mock external dependencies, not domain logic
-
-### Examples
-
-```typescript
-// ❌ BAD: Vague name and assertion
-test("test1", () => {
-  const result = calc(5, 10);
-  expect(result).toBeTruthy();
-});
-
-// ✅ GOOD: Descriptive name and specific assertion
-test("should calculate 10% discount for orders under $100", () => {
-  const orderTotal = 50;
-  const itemPrice = 20;
-
-  const discount = calculateDiscount(orderTotal, itemPrice);
-
-  expect(discount).toBe(2.0);
-});
-```
-
-## Performance Considerations
-
-When performing a code review, check for performance issues:
-
-- **Database Queries**: Avoid N+1 queries, use proper indexing
-- **Algorithms**: Appropriate time/space complexity for the use case
-- **Caching**: Utilize caching for expensive or repeated operations
-- **Resource Management**: Proper cleanup of connections, files, streams
-- **Pagination**: Large result sets should be paginated
-- **Lazy Loading**: Load data only when needed
-
-### Examples
-
-```python
-# ❌ BAD: N+1 query problem
-users = User.query.all()
-for user in users:
-    orders = Order.query.filter_by(user_id=user.id).all()  # N+1!
-
-# ✅ GOOD: Use JOIN or eager loading
-users = User.query.options(joinedload(User.orders)).all()
-for user in users:
-    orders = user.orders
-```
-
-## Architecture and Design
-
-When performing a code review, verify architectural principles:
-
-- **Separation of Concerns**: Clear boundaries between layers/modules
-- **Dependency Direction**: High-level modules don't depend on low-level details
-- **Interface Segregation**: Prefer small, focused interfaces
-- **Loose Coupling**: Components should be independently testable
-- **High Cohesion**: Related functionality grouped together
-- **Consistent Patterns**: Follow established patterns in the codebase
-
-## Documentation Standards
-
-When performing a code review, check documentation:
-
-- **API Documentation**: Public APIs must be documented (purpose, parameters, returns)
-- **Complex Logic**: Non-obvious logic should have explanatory comments
-- **README Updates**: Update README when adding features or changing setup
-- **Breaking Changes**: Document any breaking changes clearly
-- **Examples**: Provide usage examples for complex features
-
-## Comment Format Template
-
-When performing a code review, use this format for comments:
+## Comment Format
 
 ```markdown
-**[PRIORITY] Category: Brief title**
+**[🔴/🟡/🟢] [Skill]: Brief title**
 
-Detailed description of the issue or suggestion.
+What the issue is and where it occurs (file + line).
 
-**Why this matters:**
-Explanation of the impact or reason for the suggestion.
+**Why this matters:** Impact on security, correctness, or maintainability.
 
-**Suggested fix:**
-[code example if applicable]
-
-**Reference:** [link to relevant documentation or standard]
+**Suggested fix:** [code example if applicable]
 ```
 
-### Example Comments
-
-#### Critical Issue
-
-````markdown
-**🔴 CRITICAL - Security: SQL Injection Vulnerability**
-
-The query on line 45 concatenates user input directly into the SQL string,
-creating a SQL injection vulnerability.
-
-**Why this matters:**
-An attacker could manipulate the email parameter to execute arbitrary SQL commands,
-potentially exposing or deleting all database data.
-
-**Suggested fix:**
-
-```sql
--- Instead of:
-query = "SELECT * FROM users WHERE email = '" + email + "'"
-
--- Use:
-PreparedStatement stmt = conn.prepareStatement(
-    "SELECT * FROM users WHERE email = ?"
-);
-stmt.setString(1, email);
-```
-
-**Reference:** OWASP SQL Injection Prevention Cheat Sheet
-````
-
-#### Important Issue
-
-````markdown
-**🟡 IMPORTANT - Testing: Missing test coverage for critical path**
-
-The `processPayment()` function handles financial transactions but has no tests
-for the refund scenario.
-
-**Why this matters:**
-Refunds involve money movement and should be thoroughly tested to prevent
-financial errors or data inconsistencies.
-
-**Suggested fix:**
-Add test case:
-
-```javascript
-test("should process full refund when order is cancelled", () => {
-  const order = createOrder({ total: 100, status: "cancelled" });
-
-  const result = processPayment(order, { type: "refund" });
-
-  expect(result.refundAmount).toBe(100);
-  expect(result.status).toBe("refunded");
-});
-```
-````
-
-#### Suggestion
-
-````markdown
-**🟢 SUGGESTION - Readability: Simplify nested conditionals**
-
-The nested if statements on lines 30-40 make the logic hard to follow.
-
-**Why this matters:**
-Simpler code is easier to maintain, debug, and test.
-
-**Suggested fix:**
-
-```javascript
-// Instead of nested ifs:
-if (user) {
-  if (user.isActive) {
-    if (user.hasPermission("write")) {
-      // do something
-    }
-  }
-}
-
-// Consider guard clauses:
-if (!user || !user.isActive || !user.hasPermission("write")) {
-  return;
-}
-// do something
-```
-````
+---
 
 ## Review Checklist
 
-When performing a code review, systematically verify:
+### 🔴 Security
 
-### Code Quality
+- [ ] No hardcoded secrets anywhere in the diff (code, tests, configs, docs)
+- [ ] All user inputs validated and sanitized
+- [ ] No injection via string concatenation (SQL, commands, etc.)
+- [ ] Auth and authz checks before accessing resources
+- [ ] No custom crypto; dependencies free of known CVEs
 
-- [ ] Code follows consistent style and conventions
-- [ ] Names are descriptive and follow naming conventions
-- [ ] Functions/methods are small and focused
-- [ ] No code duplication
-- [ ] Complex logic is broken into simpler parts
-- [ ] Error handling is appropriate
-- [ ] No commented-out code or TODO without tickets
+### 🟡 Architecture & Design
 
-### Security
+- [ ] No SOLID violations (SRP, OCP, LSP, ISP, DIP)
+- [ ] Layer boundaries respected — business logic not in UI or controllers
+- [ ] Cross-cutting concerns in middleware/decorators, not inline
+- [ ] UI components at the correct Atomic level; no hierarchy inversions
 
-- [ ] No sensitive data in code or logs
-- [ ] Input validation on all user inputs
-- [ ] No SQL injection vulnerabilities
-- [ ] Authentication and authorization properly implemented
-- [ ] Dependencies are up-to-date and secure
+### 🟡 Testing
 
-### Testing
+- [ ] Critical paths and new functionality have tests
+- [ ] All tests follow AAA (no mixed phases, no multiple Acts, no missing Assert)
+- [ ] Test names describe behavior; mocks used only for external dependencies
 
-- [ ] New code has appropriate test coverage
-- [ ] Tests are well-named and focused
-- [ ] Tests cover edge cases and error scenarios
-- [ ] Tests are independent and deterministic
-- [ ] No tests that always pass or are commented out
+### 🟢 Code Quality
 
-### Performance
+- [ ] No duplicated logic (Rule of Three); no magic numbers/strings
+- [ ] No unnecessary complexity; nesting ≤ 2–3 levels
+- [ ] Names are self-documenting; no commented-out code or unlinked TODOs
+- [ ] Public APIs documented; README updated if setup changed
 
-- [ ] No obvious performance issues (N+1, memory leaks)
-- [ ] Appropriate use of caching
-- [ ] Efficient algorithms and data structures
-- [ ] Proper resource cleanup
-
-### Architecture
-
-- [ ] Follows established patterns and conventions
-- [ ] Proper separation of concerns
-- [ ] No architectural violations
-- [ ] Dependencies flow in correct direction
-
-### Documentation
-
-- [ ] Public APIs are documented
-- [ ] Complex logic has explanatory comments
-- [ ] README is updated if needed
-- [ ] Breaking changes are documented
+---
 
 ## Project-Specific Customizations
 
-To customize this template for your project, add sections for:
+**Tech Stack:** [e.g., TypeScript, React 18, Node.js, PostgreSQL]
+**Architecture:** [e.g., Clean Architecture, Microservices]
+**Testing:** [e.g., Jest, React Testing Library, Cypress]
+**Code Style:** [e.g., Prettier + ESLint with Airbnb config]
 
-1. **Language/Framework specific checks**
-   - Example: "When performing a code review, verify React hooks follow rules of hooks"
-   - Example: "When performing a code review, check Spring Boot controllers use proper annotations"
+Add project-specific checks here:
 
-2. **Build and deployment**
-   - Example: "When performing a code review, verify CI/CD pipeline configuration is correct"
-   - Example: "When performing a code review, check database migrations are reversible"
-
-3. **Business logic rules**
-   - Example: "When performing a code review, verify pricing calculations include all applicable taxes"
-   - Example: "When performing a code review, check user consent is obtained before data processing"
-
-4. **Team conventions**
-   - Example: "When performing a code review, verify commit messages follow conventional commits format"
-   - Example: "When performing a code review, check branch names follow pattern: type/ticket-description"
-
-## Prompt Engineering Tips
-
-1. **Start General, Then Get Specific**: Begin with high-level architecture review, then drill into implementation details
-2. **Give Examples**: Reference similar patterns in the codebase when suggesting changes
-3. **Break Complex Tasks**: Review large PRs in logical chunks (security → tests → logic → style)
-4. **Avoid Ambiguity**: Be specific about which file, line, and issue you're addressing
-5. **Indicate Relevant Code**: Reference related code that might be affected by changes
-6. **Experiment and Iterate**: If initial review misses something, review again with focused questions
-
-## Project Context
-
-This is a generic template. Customize this section with your project-specific information:
-
-- **Tech Stack**: [e.g., Java 17, Spring Boot 3.x, PostgreSQL]
-- **Architecture**: [e.g., Hexagonal/Clean Architecture, Microservices]
-- **Build Tool**: [e.g., Gradle, Maven, npm, pip]
-- **Testing**: [e.g., JUnit 5, Jest, pytest]
-- **Code Style**: [e.g., follows Google Style Guide]
+- Language/framework rules (e.g., "React hooks must follow rules of hooks")
+- Deployment rules (e.g., "DB migrations must be reversible")
+- Business logic rules (e.g., "Pricing must include tax")
+- Team conventions (e.g., "Commits follow Conventional Commits format")
