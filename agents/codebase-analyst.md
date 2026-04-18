@@ -167,7 +167,7 @@ For each of the following folder types found in the codebase, produce one SKILL.
 
 Identify:
 
-- Folder types with fewer than 3 readable samples (marked tentative in their skills)
+- Folder types with fewer than 5 readable samples (marked tentative in their skills)
 - Patterns that were inconsistent across files within the same folder type
 - Folder types detected but skipped due to insufficient samples
 - Implicit conventions that could not be confirmed from code alone

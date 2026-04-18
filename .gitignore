@@ -1,23 +1,7 @@
 /node_modules
 
 /github/docs/*
-!/github/docs/features
-!/github/docs/plans
-!/github/docs/crawled-contents
-/github/docs/features/*
-/github/docs/plans/*
-/github/docs/crawled-contents/*
-!/github/docs/features/.gitkeep
-!/github/docs/plans/.gitkeep
-!/github/docs/crawled-contents/.gitkeep
+!/github/docs/.gitkeep
 
 /claude/docs/*
-!/claude/docs/features
-!/claude/docs/plans
-!/claude/docs/crawled-contents
-/claude/docs/features/*
-/claude/docs/plans/*
-/claude/docs/crawled-contents/*
-!/claude/docs/features/.gitkeep
-!/claude/docs/plans/.gitkeep
-!/claude/docs/crawled-contents/.gitkeep
+!/claude/docs/.gitkeep

@@ -86,9 +86,9 @@ Examples:
 
 ### 3.2 Components
 
-| Component | Responsibility |
-| --------- | -------------- |
-| ...       | ...            |
+| Component / File | Responsibility |
+| ---------------- | -------------- |
+| ...              | ...            |
 
 ### 3.3 Data Flow
 

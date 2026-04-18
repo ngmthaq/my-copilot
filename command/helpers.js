@@ -121,15 +121,11 @@ function copyWithTemplate(targetDir, template) {
     fs.writeFileSync(path.join(targetDir, config.rootFile), files.rootFile);
   }
 
-  // 5. docs/ (features, plans, crawled-contents placeholders)
+  // 5. docs/
   const docsSourcePath = path.join(rootDir, config.sourceDir, "docs");
   if (fs.existsSync(docsSourcePath)) {
     copyDirSync(docsSourcePath, path.join(targetDir, "docs"));
   }
-}
-
-function toAgentLabel(agentFile) {
-  return agentFile.replace(".agent.md", "");
 }
 
 function ensureInteractiveOrExit(message) {
@@ -204,119 +200,6 @@ function selectOne({ title, options, hint }) {
         process.stdin.setRawMode(false);
         console.log("\n  Aborted.");
         process.exit(0);
-      }
-    };
-    process.stdin.on("keypress", onKeypress);
-  });
-}
-
-function selectMany({ title, options, hint }) {
-  return new Promise((resolve) => {
-    ensureInteractiveOrExit("interactive terminal required for selection.");
-    let selected = 0;
-    const checks = options.map((option) => !!option.checked);
-    const allIndices = options.map((_, i) => i);
-
-    function render() {
-      const output = [];
-      const checked = checks.filter(Boolean).length;
-      const total = options.length;
-      output.push(
-        `\n  ${title}  \x1b[2m(${checked}/${total} selected)\x1b[0m\n`,
-      );
-
-      // Viewport: reserve lines for header (3) + hints (2) + padding
-      const termRows = process.stdout.rows || 24;
-      const reserved = 7;
-      const maxVisible = Math.max(5, termRows - reserved);
-      let startPos = 0;
-      if (allIndices.length > maxVisible) {
-        startPos = Math.max(
-          0,
-          Math.min(
-            selected - Math.floor(maxVisible / 2),
-            allIndices.length - maxVisible,
-          ),
-        );
-      }
-      const endPos = Math.min(startPos + maxVisible, allIndices.length);
-
-      if (startPos > 0) {
-        output.push(`  \x1b[2m  ↑ ${startPos} more above\x1b[0m`);
-      }
-      for (let i = startPos; i < endPos; i++) {
-        const isCurrent = i === selected;
-        const cursor = isCurrent ? "\x1b[36m❯\x1b[0m" : " ";
-        const mark = checks[i] ? "[x]" : "[ ]";
-        const lock = options[i].required ? " \x1b[2m(required)\x1b[0m" : "";
-        const label = isCurrent
-          ? `\x1b[36m${options[i].label}\x1b[0m`
-          : options[i].label;
-        output.push(`  ${cursor} ${mark} ${label}${lock}`);
-      }
-      if (endPos < allIndices.length) {
-        output.push(
-          `  \x1b[2m  ↓ ${allIndices.length - endPos} more below\x1b[0m`,
-        );
-      }
-      const hints = [
-        "↑↓ navigate",
-        "Space toggle",
-        "a select all",
-        "n deselect all",
-        "Enter confirm",
-      ];
-      output.push(`\n  \x1b[2m${hints.join("  |  ")}\x1b[0m\n`);
-      return output.join("\n");
-    }
-
-    redrawScreen(render);
-    initKeypress();
-    process.stdin.setRawMode(true);
-    process.stdin.resume();
-
-    const onKeypress = (ch, key) => {
-      if (!key) return;
-
-      if (key.name === "c" && key.ctrl) {
-        process.stdin.off("keypress", onKeypress);
-        process.stdin.setRawMode(false);
-        console.log("\n  Aborted.");
-        process.exit(0);
-      } else if (key.name === "escape") {
-        process.stdin.off("keypress", onKeypress);
-        process.stdin.setRawMode(false);
-        console.log("\n  Aborted.");
-        process.exit(0);
-      } else if (key.name === "up") {
-        selected = (selected - 1 + options.length) % options.length;
-        redrawScreen(render);
-      } else if (key.name === "down") {
-        selected = (selected + 1) % options.length;
-        redrawScreen(render);
-      } else if (key.name === "space") {
-        if (!options[selected].required) {
-          checks[selected] = !checks[selected];
-          redrawScreen(render);
-        }
-      } else if (key.name === "return") {
-        process.stdin.off("keypress", onKeypress);
-        process.stdin.setRawMode(false);
-        process.stdin.pause();
-        const values = options
-          .filter((_, index) => checks[index])
-          .map((option) => option.value);
-        resolve(values);
-      } else if (ch === "a" && !key.ctrl && !key.meta) {
-        for (let i = 0; i < options.length; i++) {
-          if (!options[i].required) checks[i] = true;
-        }
-        redrawScreen(render);
-      } else if (ch === "n" && !key.ctrl && !key.meta) {
-        for (let i = 0; i < options.length; i++) {
-          if (!options[i].required) checks[i] = false;
-        }
-        redrawScreen(render);
       }
     };
     process.stdin.on("keypress", onKeypress);

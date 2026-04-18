@@ -1,6 +1,6 @@
 ---
 name: technical-leader
-model: Claude Opus 4.6 (copilot)
+model: GPT-5.4 (copilot)
 description: "Technical Leader — Analyzes requirements, defines architecture, creates feature docs and execution plans, and orchestrates multi-agent delivery across all stacks."
 argument-hint: "The requirement or feature to analyze and plan, e.g., 'Design and plan a real-time chat system with notifications.'"
 tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
