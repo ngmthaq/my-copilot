@@ -13,26 +13,26 @@ description: "Feature Document Template — Structured template for documenting 
 ## Location & Naming Convention
 
 ```
-{features_directory}/<module>/agent-feature-<feature-name>.md
+{doc_directory}/<date-time>-agent-feature-<feature-name>.md
 ```
 
 Examples:
 
-- `{features_directory}/auth/agent-feature-login-api.md`
-- `{features_directory}/auth/agent-feature-login-ui.md`
-- `{features_directory}/auth/agent-feature-register-ui.md`
-- `{features_directory}/auth/agent-feature-refresh-token-api.md`
-- `{features_directory}/product/agent-feature-create-product-ui.md`
-- `{features_directory}/product/agent-feature-list-products-api.md`
-- `{features_directory}/infra/agent-feature-docker-setup.md`
+- `{doc_directory}/20260602-1520-agent-feature-login-api.md`
+- `{doc_directory}/20260602-1520-agent-feature-login-ui.md`
+- `{doc_directory}/20260602-1520-agent-feature-register-ui.md`
+- `{doc_directory}/20260602-1520-agent-feature-refresh-token-api.md`
+- `{doc_directory}/20260602-1520-agent-feature-create-product-ui.md`
+- `{doc_directory}/20260602-1520-agent-feature-list-products-api.md`
+- `{doc_directory}/20260602-1520-agent-feature-docker-setup.md`
 
 ## What to Ask the User
 
-> "Before I plan, would you like me to create a feature doc at `{features_directory}/<module>/agent-feature-<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for the developer, QA, and DevOps agents."
+> "Before I plan, would you like me to create a feature doc at `{doc_directory}/<date-time>-agent-feature-<feature-name>.md`? This captures the design and requirements upfront and becomes the source of truth for all agents."
 
 ## Rules
 
-- Only create the doc file after the user explicitly approves.
+- Always create the doc file.
 
 ## Template
 
@@ -201,7 +201,113 @@ Examples:
 
 ---
 
-## 15. Related Plans
+## 15. Task Graph (DAG)
 
-- `agent-plan-<name>-<datetime>`
+### Task List
+
+Each task MUST be atomic and independently executable.
+
+---
+
+### T1
+
+- **Name**:
+- **Assigned Agent**:
+- **Description**:
+- **Dependencies**: []
+- **Inputs**:
+- **Outputs**:
+- **Acceptance Criteria**:
+- **Parallelizable**: true
+
+---
+
+### T2
+
+- **Name**:
+- **Assigned Agent**:
+- **Description**:
+- **Dependencies**: [T1]
+- **Inputs**:
+- **Outputs**:
+- **Acceptance Criteria**:
+- **Parallelizable**: false
+
+---
+
+### T3
+
+- **Name**:
+- **Assigned Agent**:
+- **Description**:
+- **Dependencies**: [T1]
+- **Inputs**:
+- **Outputs**:
+- **Acceptance Criteria**:
+- **Parallelizable**: true
+
+---
+
+## 6. Parallel Execution Groups
+
+- Group A (run in parallel):
+  - T1
+
+- Group B (after T1):
+  - T2
+  - T3
+
+---
+
+## 7. Task Traceability
+
+| Task | Maps To           |
+| ---- | ----------------- |
+| T1   | FR-1, Component X |
+| T2   | API Y             |
+| T3   | UI Screen Z       |
+
+---
+
+## 8. Testing Plan
+
+| Task | Test Type | Description |
+| ---- | --------- | ----------- |
+| T2   | Unit      | ...         |
+| T3   | E2E       | ...         |
+
+---
+
+## 9. Execution Rules
+
+- Tasks with no dependencies → run in parallel
+- Tasks MUST wait for dependencies
+- Each task MUST meet acceptance criteria before next step
+
+---
+
+## 10. Failure Handling
+
+- Retry policy:
+- Blocking tasks:
+- Escalation:
+
+---
+
+## 11. Agent Assignments Summary
+
+| Task | Agent | Skills |
+| ---- | ----- | ------ |
+| T1   | ...   | ...    |
+| T2   | ...   | ...    |
+
+---
+
+## 12. Progress Tracking
+
+- [ ] T1
+- [ ] T2
+- [ ] T3
+
+> Update as tasks complete
 ```

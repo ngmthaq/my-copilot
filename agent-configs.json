@@ -1,4 +1,3 @@
 {
-  "features_directory": "<workspace>/<target>/docs/features",
-  "plans_directory": "<workspace>/<target>/docs/plans"
+  "doc_directory": "<workspace>/<target>/docs"
 }
