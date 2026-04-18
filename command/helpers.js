@@ -16,12 +16,13 @@ const REQUIRED_SKILLS = [
   "accessibility-standard",
   "atomic-design-pattern",
   "bugfix-plan-template",
-  "code-review-standard",
+  "code-reviewer-standard",
   "dry-principle",
   "feature-doc-template",
   "kiss-principle",
   "plan-template",
   "secret-scanner",
+  "separation-of-concerns",
   "solid-principle",
 ];
 
