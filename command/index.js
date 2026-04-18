@@ -7,8 +7,8 @@ const path = require("path");
 const {
   copyWithTemplate,
   selectTarget,
-  selectAgents,
-  selectSkills,
+  ALL_AGENTS,
+  ALL_SKILLS,
 } = require("./helpers");
 const COMMAND = process.argv[2];
 
@@ -45,8 +45,8 @@ async function init() {
     }
   }
 
-  const includeAgents = await selectAgents();
-  const includeSkills = await selectSkills();
+  const includeAgents = ALL_AGENTS;
+  const includeSkills = ALL_SKILLS;
   const template = {
     target,
     includeAgents,

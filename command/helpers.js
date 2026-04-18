@@ -4,28 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
 
-const REQUIRED_AGENTS = [
-  "code-reviewer.agent.md",
-  "debugger.agent.md",
-  "technical-leader.agent.md",
-  "codebase-analyst.agent.md",
-];
-
-const REQUIRED_SKILLS = [
-  "aaa-testing",
-  "accessibility-standard",
-  "atomic-design-pattern",
-  "bugfix-plan-template",
-  "code-reviewer-standard",
-  "dry-principle",
-  "feature-doc-template",
-  "kiss-principle",
-  "plan-template",
-  "secret-scanner",
-  "separation-of-concerns",
-  "solid-principle",
-];
-
 // Add a new entry here to support a new platform.
 // Each key is the folder name that will be created in the user's project.
 const PLATFORM_CONFIG = {
@@ -148,10 +126,6 @@ function copyWithTemplate(targetDir, template) {
   if (fs.existsSync(docsSourcePath)) {
     copyDirSync(docsSourcePath, path.join(targetDir, "docs"));
   }
-}
-
-function unique(...arrays) {
-  return [...new Set(arrays.flat())].sort();
 }
 
 function toAgentLabel(agentFile) {
@@ -362,41 +336,9 @@ async function selectTarget() {
   });
 }
 
-async function selectAgents() {
-  const requiredSet = new Set(REQUIRED_AGENTS);
-  const options = ALL_AGENTS.map((agentFile) => ({
-    label: toAgentLabel(agentFile),
-    value: agentFile,
-    checked: requiredSet.has(agentFile),
-    required: requiredSet.has(agentFile),
-  }));
-  const selectedAgents = await selectMany({
-    title: "Select agents:",
-    options,
-    hint: "Use ↑↓ to navigate, Space to toggle, Enter to confirm",
-  });
-  return unique(selectedAgents, REQUIRED_AGENTS);
-}
-
-async function selectSkills() {
-  const requiredSet = new Set(REQUIRED_SKILLS);
-  const options = ALL_SKILLS.map((skill) => ({
-    label: skill,
-    value: skill,
-    checked: requiredSet.has(skill),
-    required: requiredSet.has(skill),
-  }));
-  const selectedSkills = await selectMany({
-    title: "Select skills:",
-    options,
-    hint: "Use ↑↓ to navigate, Space to toggle, Enter to confirm",
-  });
-  return unique(selectedSkills, REQUIRED_SKILLS);
-}
-
 module.exports = {
   copyWithTemplate,
   selectTarget,
-  selectAgents,
-  selectSkills,
+  ALL_AGENTS,
+  ALL_SKILLS,
 };

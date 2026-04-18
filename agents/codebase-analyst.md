@@ -26,7 +26,7 @@ You are a **Senior Codebase Analyst Agent** responsible for deeply analyzing an 
 Before writing any skill:
 
 - Fully traverse the project tree
-- Read a minimum of **3 representative files** from each folder type
+- Read a minimum of **5 representative files** from each folder type
 - Identify recurring patterns before declaring a convention
 - Note exceptions and variations — do NOT force uniformity where it doesn't exist
 - If a pattern appears in fewer than 2 files, mark it **tentative** inside the skill
@@ -66,7 +66,7 @@ Every generated skill **must** follow this exact format:
 name: <project-name>-<folder-type>
 description: <When to use this skill. Be explicit about trigger phrases and contexts.
              Make the description slightly "pushy" — lean toward triggering it rather
-             than not. Include folder path, file naming pattern, and the top 2-3 tasks
+             than not. Include folder path, file naming pattern, and the top 4-5 tasks
              a developer would do here.>
 ---
 
@@ -153,30 +153,13 @@ For each of the following folder types found in the codebase, produce one SKILL.
 # Output Structure (MANDATORY)
 
 ```
-skills_folder/
-├── fe_pages/SKILL.md
-├── fe_components/SKILL.md
-├── fe_hooks/SKILL.md
-├── fe_queries/SKILL.md
-├── fe_mutations/SKILL.md
-├── fe_utils/SKILL.md
-├── be_controllers/SKILL.md
-├── be_services/SKILL.md
-├── be_modules/SKILL.md
-├── be_dtos/SKILL.md
-├── be_repositories/SKILL.md
-├── be_middlewares/SKILL.md
-├── be_guards/SKILL.md
-├── be_entities/SKILL.md
-├── be_migrations/SKILL.md
-├── be_jobs/SKILL.md
-├── be_config/SKILL.md
-├── be_utils/SKILL.md
-├── be_tests/SKILL.md
-└── <any_other_detected_type>/SKILL.md
+<skill_folder>/
+├── <project-name>-<folder-type>/SKILL.md
+└── <project-name>-<other-folder-type>/SKILL.md
 ```
 
-Only create files for folder types **actually present** in the codebase.
+- Resolve the <skill_folder> then create agent skills in there (example: .github/skills or .claude/skills)
+- Only create files for folder types **actually present** in the codebase.
 
 ---
 
