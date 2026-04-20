@@ -12,7 +12,6 @@ const PLATFORM_CONFIG = {
     sourceDir: "github",
     agentsDir: "agents",
     skillsDir: "skills",
-    toolsDir: "tools",
     rootFile: "copilot-instructions.md",
   },
   ".claude": {
@@ -20,7 +19,6 @@ const PLATFORM_CONFIG = {
     sourceDir: "claude",
     agentsDir: "agents",
     skillsDir: "skills",
-    toolsDir: "tools",
     rootFile: "CLAUDE.md",
   },
 };
@@ -30,7 +28,6 @@ const REFERENCE_PLATFORM = ".github";
 
 const rootDir = path.join(__dirname, "..");
 const skillsDir = path.join(rootDir, "skills");
-const toolsDir = path.join(rootDir, "tools");
 const agentsDir = path.join(rootDir, "agents");
 const agentConfigsPath = path.join(rootDir, "agent-configs.json");
 const ALL_AGENTS = fs
@@ -126,9 +123,6 @@ function copyWithTemplate(targetDir, template) {
   if (fs.existsSync(docsSourcePath)) {
     copyDirSync(docsSourcePath, path.join(targetDir, "docs"));
   }
-
-  // 6. tools/
-  copyDirSync(toolsDir, path.join(targetDir, config.toolsDir));
 }
 
 function ensureInteractiveOrExit(message) {

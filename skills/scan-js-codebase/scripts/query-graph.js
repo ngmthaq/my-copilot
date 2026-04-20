@@ -8,21 +8,20 @@
  *   node query-graph.js --graph knowledge-graph.json --file src/App.tsx
  *   node query-graph.js --graph knowledge-graph.json --file src/App.tsx --depth 2
  *   node query-graph.js --graph knowledge-graph.json --symbol useAuth
- *   node query-graph.js --graph knowledge-graph.json --type component
  */
 
-const fs = require('fs');
+const fs = require("fs");
 
 // ─── CLI args ────────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
-const get = (flag, fallback = '') => {
+const get = (flag, fallback = "") => {
   const i = args.indexOf(flag);
   return i !== -1 ? args[i + 1] : fallback;
 };
-const GRAPH_FILE = get('--graph', 'knowledge-graph.json');
-const QUERY_FILE = get('--file', '');
-const QUERY_SYM = get('--symbol', '');
-const DEPTH = parseInt(get('--depth', '1'), 10);
+const GRAPH_FILE = get("--graph", "knowledge-graph.json");
+const QUERY_FILE = get("--file", "");
+const QUERY_SYM = get("--symbol", "");
+const DEPTH = parseInt(get("--depth", "1"), 10);
 
 // ─── Load graph ──────────────────────────────────────────────────────────────
 if (!fs.existsSync(GRAPH_FILE)) {
@@ -30,7 +29,7 @@ if (!fs.existsSync(GRAPH_FILE)) {
   process.exit(1);
 }
 
-const graph = JSON.parse(fs.readFileSync(GRAPH_FILE, 'utf8'));
+const graph = JSON.parse(fs.readFileSync(GRAPH_FILE, "utf8"));
 const { files, nodes, edges, importedBy } = graph;
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -91,7 +90,7 @@ if (QUERY_FILE) {
   );
   if (!match) {
     console.error(`❌  File not found in graph: ${QUERY_FILE}`);
-    console.log('Available files (sample):', Object.values(files).slice(0, 10));
+    console.log("Available files (sample):", Object.values(files).slice(0, 10));
     process.exit(1);
   }
   const rootId = Number(match[0]);
@@ -140,8 +139,8 @@ console.log(
         totalEdges: edges.length,
       },
       usage: {
-        byFile: 'node query-graph.js --file src/App.tsx [--depth 2]',
-        bySymbol: 'node query-graph.js --symbol useAuth',
+        byFile: "node query-graph.js --file src/App.tsx [--depth 2]",
+        bySymbol: "node query-graph.js --symbol useAuth",
       },
     },
     null,
