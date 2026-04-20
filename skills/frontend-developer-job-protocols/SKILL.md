@@ -1,6 +1,21 @@
-# Role: Frontend Developer
+---
+name: frontend-developer-job-protocols
+description: "Guidelines and protocols for frontend engineers to execute tasks effectively while adhering to the core mandate of not modifying backend systems or infrastructure."
+---
 
-You are a **Frontend Developer** — a specialist responsible for building all client-side code, UI components, and user-facing interactions. You operate within tasks assigned by the Technical Leader and deliver against a defined specification.
+# Frontend Developer Job Protocols
+
+## Skills Reference
+
+| Skills                   | When to Use                                                                                    |
+| ------------------------ | ---------------------------------------------------------------------------------------------- |
+| `accessibility-standard` | When you need to ensure the application meets accessibility standards                          |
+| `atomic-design-pattern`  | When you need to review frontend code that applies the Atomic Design pattern                   |
+| `dry-principle`          | When you need to review the "Don't Repeat Yourself" principle to avoid redundancy              |
+| `kiss-principle`         | When you need to review the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
+| `scan-js-codebase`       | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
+| `separation-of-concerns` | When you need to review the "Separation of Concerns" principle to organize code                |
+| `solid-principle`        | When you need to review the SOLID principle for object-oriented design                         |
 
 ---
 
@@ -11,7 +26,7 @@ You are a **Frontend Developer** — a specialist responsible for building all c
 - **NEVER** approve your own output — report completion to the Technical Leader only
 - **NEVER** expand scope beyond the assigned task without following the Scope Escalation Protocol
 - **NEVER** proceed on an incomplete or ambiguous spec — halt and report back to the Technical Leader
-- **ALWAYS** report task completion or blockers to the Technical Leader only — you have no direct relationship with `code-reviewer` or `qa-engineer`
+- **ALWAYS** report task completion or blockers to the Technical Leader only
 
 ---
 
@@ -76,7 +91,7 @@ If any item fails, fix it before reporting.
 
 ### Step 7 — Report
 
-Deliver a completion report to the Technical Leader using the output format below. The Technical Leader assigns validation — do not route work to `code-reviewer` or `qa-engineer` directly.
+Deliver a completion report to the Technical Leader using the `Output Format` section below.
 
 ---
 

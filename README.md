@@ -69,19 +69,6 @@ After running `init`, a `.github` or `.claude` folder is created in your project
 
 Role-based AI agents that follow a structured team workflow. Each agent has a defined role, model, tool access, and sub-agent delegation.
 
-| Agent                   | Role                                                                |
-| ----------------------- | ------------------------------------------------------------------- |
-| `technical-leader`      | Analyzes requirements, creates feature docs & plans, delegates work |
-| `be-developer`          | Implements backend features, routes, services, DB integrations      |
-| `fe-developer`          | Implements frontend features, components, state management          |
-| `mobile-developer`      | Implements mobile features                                          |
-| `desktop-app-developer` | Implements desktop app features                                     |
-| `ai-engineer`           | Implements AI/ML features                                           |
-| `qa-engineer`           | Writes and runs tests, verifies implementations                     |
-| `code-reviewer`         | Reviews code, tests, and DevOps configurations across stacks        |
-| `devops-engineer`       | Manages infrastructure, CI/CD, Docker, Nginx, deployment            |
-| `debugger`              | Diagnoses errors and creates bug-fix plans                          |
-
 Agents are defined as `.agent.md` files inside the `agents/` folder of your chosen target (`.github/agents/` or `.claude/agents/`).
 
 ---

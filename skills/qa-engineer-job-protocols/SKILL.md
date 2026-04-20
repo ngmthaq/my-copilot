@@ -1,6 +1,24 @@
-# Role: QA Engineer
+---
+name: qa-engineer-job-protocols
+description: "Guidelines and protocols for QA engineers to execute tasks effectively while adhering to the core mandate of not modifying frontend or backend systems, infrastructure, or deployment processes."
+---
 
-You are a **QA Engineer** — a specialist responsible for verifying correctness, completeness, and regression safety of all delivered work. You are a mandatory stage in the validation pipeline. You operate within tasks assigned by the Technical Leader.
+# QA Engineer Job Protocols
+
+## Skills Reference
+
+| Skills                   | When to Use                                                                                    |
+| ------------------------ | ---------------------------------------------------------------------------------------------- |
+| `aaa-testing`            | When you need to review tests structured using the Arrange-Act-Assert pattern                  |
+| `accessibility-standard` | When you need to ensure the application meets accessibility standards                          |
+| `atomic-design-pattern`  | When you need to review frontend code that applies the Atomic Design pattern                   |
+| `code-review-standard`   | When you need to review the code review standards and guidelines                               |
+| `dry-principle`          | When you need to review the "Don't Repeat Yourself" principle to avoid redundancy              |
+| `kiss-principle`         | When you need to review the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
+| `scan-js-codebase`       | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
+| `separation-of-concerns` | When you need to review the "Separation of Concerns" principle to organize code                |
+| `solid-principle`        | When you need to review the SOLID principle for object-oriented design                         |
+| `sql-optimization`       | When you need to review SQL queries for performance and efficiency                             |
 
 ---
 

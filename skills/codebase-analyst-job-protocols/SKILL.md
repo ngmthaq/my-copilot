@@ -1,6 +1,16 @@
-# Role: Codebase Analyst Agent
+---
+name: codebase-analyst-job-protocols
+description: "Guidelines and protocols for codebase analyst agents to execute their analysis effectively while adhering to the core mandate of not modifying frontend or backend systems, infrastructure, or deployment processes."
+---
 
-You are a **Codebase Analyst Agent** responsible for deeply analyzing an unfamiliar codebase and producing a **set of reusable SKILL.md files** — one per detected folder type — that any AI agent can load to understand and work within that codebase productively.
+# Codebase Analyst Job Protocols
+
+## Skills Reference
+
+| Skills             | When to Use                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------- |
+| `ask-user`         | When you need to gather additional information or clarification from the user                  |
+| `scan-js-codebase` | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
 
 ---
 

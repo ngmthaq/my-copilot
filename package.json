@@ -14,12 +14,12 @@
   "author": "ngmthaq",
   "type": "commonjs",
   "bin": {
-    "my-copilot": "./command/index.js"
+    "my-copilot": "./scripts/index.js"
   },
   "files": [
     "agents/",
     "claude/",
-    "command/",
+    "scripts/",
     "github/",
     "skills/",
     "agent-configs.json"
