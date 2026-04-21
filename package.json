@@ -1,6 +1,6 @@
 {
   "name": "@ngmthaq20/my-copilot",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "A curated collection of AI copilot customization files — agents, skills, and document templates. Supports GitHub Copilot and Claude Code.",
   "homepage": "https://github.com/ngmthaq/my-copilot#readme",
   "bugs": {
@@ -17,12 +17,13 @@
     "my-copilot": "./scripts/index.js"
   },
   "files": [
-    "agents/",
     "claude/",
-    "scripts/",
+    "docs/",
     "github/",
+    "scripts/",
     "skills/",
-    "agent-configs.json"
+    "agent-configs.json",
+    "README.md"
   ],
   "keywords": [
     "copilot",
