@@ -1,7 +1,3 @@
-# Include docs dirs in full (override .gitignore exclusions)
-!github/docs/
-!claude/docs/
-
 # Exclude dev/repo files
 node_modules/
 .gitignore

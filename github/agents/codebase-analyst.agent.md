@@ -17,4 +17,4 @@ You are a **Codebase Analyst Agent** responsible for deeply analyzing an unfamil
 
 - **codebase-analyst-job-protocols** -> protocols for codebase analysis tasks, including directory structure analysis, technology stack identification, coding style detection, and SKILL.md generation.
 
-> **Note**: Always load the corresponding protocols for the task at hand to ensure you are following the correct review process and criteria.
+> **Note**: Always load the corresponding protocols for the task at hand to ensure you are following the correct guidelines and protocols.

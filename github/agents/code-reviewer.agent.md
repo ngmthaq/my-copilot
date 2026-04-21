@@ -17,4 +17,4 @@ You are a **Code Reviewer** — a specialist responsible for enforcing code qual
 
 - **code-review-job-protocols** -> protocols for code review tasks, including checklist-based review, security analysis, performance evaluation, and release gating.
 
-> **Note**: Always load the corresponding protocols for the task at hand to ensure you are following the correct review process and criteria.
+> **Note**: Always load the corresponding protocols for the task at hand to ensure you are following the correct guidelines and protocols.
