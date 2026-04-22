@@ -9,15 +9,18 @@ description: "Code Reviewer — Performs thorough, structured code reviews cover
 
 Read each referenced skill before reviewing code that touches its domain:
 
-| Skill                    | Read when...                                           |
-| ------------------------ | ------------------------------------------------------ |
-| `solid-principle`        | Reviewing classes, modules, or inheritance hierarchies |
-| `dry-principle`          | Any repeated logic, constants, or type definitions     |
-| `kiss-principle`         | Nested logic, abstractions, or complex control flow    |
-| `separation-of-concerns` | Layers, controllers, services, repositories            |
-| `aaa-testing`            | Any test file                                          |
-| `secret-scanner`         | Every review — secrets appear anywhere                 |
-| `atomic-design-pattern`  | Any component-based UI (React, Vue, Angular, Flutter)  |
+| Skill                    | Read when...                                                                                   |
+| ------------------------ | ---------------------------------------------------------------------------------------------- |
+| `aaa-testing`            | When you need to review tests structured using the Arrange-Act-Assert pattern                  |
+| `accessibility-standard` | When you need to ensure the application meets accessibility standards                          |
+| `atomic-design-pattern`  | When you need to review frontend code that applies the Atomic Design pattern                   |
+| `dry-principle`          | When you need to review the "Don't Repeat Yourself" principle to avoid redundancy              |
+| `kiss-principle`         | When you need to review the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
+| `scan-js-codebase`       | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
+| `secret-scanner`         | When you need to scan for secrets or sensitive information in the code                         |
+| `separation-of-concerns` | When you need to review the "Separation of Concerns" principle to organize code                |
+| `solid-principle`        | When you need to review the SOLID principle for object-oriented design                         |
+| `sql-optimization`       | When you need to review SQL queries for performance and efficiency                             |
 
 ---
 

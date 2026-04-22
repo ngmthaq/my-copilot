@@ -11,82 +11,111 @@ description: "Secret Scanner — Detects and prevents hardcoded secrets in code,
 - As part of CI/CD pipelines to prevent secret leaks
 - When auditing existing codebases for security risks
 
-## Detection Capabilities
+---
 
-Follow these patterns to identify hardcoded secrets:
+## Agent Execution Instructions
 
-### Cloud provider credentials
+When this skill is invoked, the agent **MUST** execute the following steps using its bash/shell tool — do not simulate or summarise, actually run the commands:
 
-```
-"AWS*ACCESS_KEY|critical|AKIA[0-9A-Z]{16}"
-"AWS_SECRET_KEY|critical|aws_secret_access_key[[:space:]]*[:=][:space:]]_['\"]?[A-Za-z0-9/+=]{40}"
-"GCP_SERVICE_ACCOUNT|critical|\"type\"[[:space:]]_:[[:space:]]_\"service_account\""
-"GCP_API_KEY|high|AIza[0-9A-Za-z_-]{35}"
-"AZURE*CLIENT_SECRET|critical|azure[*-]?client[_-]?secret[[:space:]]_[:=][:space:]]_['\"]?[A-Za-z0-9_~.-]{34,}"
-```
+1. **Make the script executable:**
 
-### GitHub tokens
+   ```bash
+   chmod +x path/to/skills/scripts/scan-secrets.sh
+   ```
 
-```
-"GITHUB*PAT|critical|ghp*[0-9A-Za-z]{36}"
-"GITHUB*OAUTH|critical|gho*[0-9A-Za-z]{36}"
-"GITHUB*APP_TOKEN|critical|ghs*[0-9A-Za-z]{36}"
-"GITHUB*REFRESH_TOKEN|critical|ghr*[0-9A-Za-z]{36}"
-"GITHUB*FINE_GRAINED_PAT|critical|github_pat*[0-9A-Za-z_]{82}"
-```
+2. **Run the scanner against the current code change:**
 
-### Private keys
+   ```bash
+   git diff --cached | path/to/skills/scripts/scan-secrets.sh --diff
+   ```
 
-```
-"PRIVATE_KEY|critical|-----BEGIN (RSA |EC |OPENSSH |DSA |PGP )?PRIVATE KEY-----"
-"PGP_PRIVATE_BLOCK|critical|-----BEGIN PGP PRIVATE KEY BLOCK-----"
-```
+   If no staged changes exist, fall back to unstaged:
 
-### Generic secrets and tokens
+   ```bash
+   git diff | path/to/skills/scripts/scan-secrets.sh --diff
+   ```
 
-```
-"GENERIC*SECRET|high|(secret|token|password|passwd|pwd|api[*-]?key|apikey|access[_-]?key|auth[_-]?token|client[_-]?secret)[[:space:]]_[:=][:space:]]_['\"]?[A-Za-z0-9_/+=~.-]{8,}"
-"CONNECTION*STRING|high|(mongodb(\\+srv)?|postgres(ql)?|mysql|redis|amqp|mssql)://[^[:space:]'\"]{10,}"
-"BEARER_TOKEN|medium|[Bb]earer[[:space:]]+[A-Za-z0-9*-]{20,}\.[A-Za-z0-9_-]{20,}"
-```
+3. **Report results** — present each finding with its type, location, severity, and fix. If exit code is `0`, confirm the change is clean.
 
-### Messaging and SaaS tokens
+4. **Block completion** — do not mark the task complete or approve the code change if exit code is `1`.
 
-```
-"SLACK*TOKEN|high|xox[baprs]-[0-9]{10,}-[0-9A-Za-z-]+"
-"SLACK_WEBHOOK|high|https://hooks\.slack\.com/services/T[0-9A-Z]{8,}/B[0-9A-Z]{8,}/[0-9A-Za-z]{24}"
-"DISCORD_TOKEN|high|[MN][A-Za-z0-9]{23,}\.[A-Za-z0-9*-]{6}\.[A-Za-z0-9_-]{27,}"
-"TWILIO*API_KEY|high|SK[0-9a-fA-F]{32}"
-"SENDGRID_API_KEY|high|SG\.[0-9A-Za-z*-]{22}\.[0-9A-Za-z_-]{43}"
-"STRIPE*SECRET_KEY|critical|sk_live*[0-9A-Za-z]{24,}"
-"STRIPE*RESTRICTED_KEY|high|rk_live*[0-9A-Za-z]{24,}"
+---
+
+## Scanning with `scan-secrets.sh`
+
+All detection patterns are encoded in **`path/to/skills/scripts/scan-secrets.sh`**. Always run the script against the code change (diff) — not the full codebase — to keep CI fast and output focused.
+
+### Scan a code change (recommended)
+
+```bash
+# Staged changes (pre-commit / pre-merge)
+git diff --cached | path/to/skills/scripts/scan-secrets.sh --diff
+
+# Unstaged changes
+git diff | path/to/skills/scripts/scan-secrets.sh --diff
+
+# Last commit (post-merge check)
+git show | path/to/skills/scripts/scan-secrets.sh --diff
 ```
 
-### npm tokens
+The `--diff` mode reads a unified diff from stdin and **only inspects added lines** (`+` prefix), ignoring removed lines and context. This targets exactly what is being introduced.
 
-```
-"NPM*TOKEN|high|npm*[0-9A-Za-z]{36}"
-```
+### Scan specific files (fallback)
 
-### JWT (long, structured tokens)
-
-```
-"JWT*TOKEN|medium|eyJ[A-Za-z0-9*-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}"
+```bash
+path/to/skills/scripts/scan-secrets.sh path/to/file.env path/to/config.py
 ```
 
-### IP addresses with ports (possible internal services)
+### Exit codes
 
-```
-"INTERNAL_IP_PORT|medium|(^|[^.0-9])(10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}|172\.(1[6-9]|2[0-9]|3[01])\.[0-9]{1,3}\.[0-9]{1,3}|192\.168\.[0-9]{1,3}\.[0-9]{1,3}):[0-9]{2,5}([^0-9]|$)"
-```
+| Code | Meaning                                 |
+| ---- | --------------------------------------- |
+| `0`  | No secrets detected                     |
+| `1`  | One or more secrets found — block merge |
+
+---
+
+## Detection Coverage
+
+| Category                            | Severity        | Examples                                                             |
+| ----------------------------------- | --------------- | -------------------------------------------------------------------- |
+| AWS credentials                     | critical        | `AKIA…` access keys, secret access keys                              |
+| GCP credentials                     | critical / high | Service account JSON, API keys (`AIza…`)                             |
+| Azure secrets                       | critical        | Client secrets                                                       |
+| GitHub tokens                       | critical        | `ghp_`, `gho_`, `ghs_`, `ghr_`, `github_pat_`                        |
+| Private keys                        | critical        | RSA, EC, OPENSSH, DSA, PGP private key blocks                        |
+| Stripe keys                         | critical / high | `sk_live_`, `rk_live_`                                               |
+| Generic secrets                     | high            | `password`, `api_key`, `auth_token`, etc. with quoted literal values |
+| Connection strings                  | high            | `postgres://`, `mongodb://`, `redis://`, etc. with credentials       |
+| Slack / Discord / Twilio / SendGrid | high            | Service-specific token formats                                       |
+| npm tokens                          | high            | `npm_…`                                                              |
+| Bearer / JWT tokens                 | medium          | `Bearer …`, `eyJ…` JWTs                                              |
+| Internal IPs with ports             | medium          | RFC-1918 addresses with port numbers                                 |
+
+---
 
 ## Enforcement Rules
 
-- Any detected secret MUST be treated as a critical security issue
-- The output MUST include:
-  - Type of secret (e.g., AWS Access Key, GitHub PAT)
-  - Location (file path and line number)
-  - Severity level (critical, high, medium)
-  - Recommended remediation steps (e.g., "Remove hardcoded secret and use environment variables or secret management service")
-- The agent MUST NOT mark the code as secure until all critical and high-severity secrets are removed and proper secret management practices are implemented
-- The agent MUST provide guidance on integrating secret scanning into CI/CD pipelines for ongoing security enforcement
+- Any detected secret **must** be treated as a critical security issue.
+- Output always includes: secret type, file path and line number, severity, and remediation guidance.
+- **Do not mark code as secure** until all critical and high-severity findings are resolved.
+- Remediation: remove the hardcoded value and replace with an environment variable or secrets manager reference (e.g. AWS Secrets Manager, HashiCorp Vault, GitHub Actions secrets).
+
+---
+
+## CI/CD Integration
+
+### GitHub Actions (pre-merge)
+
+```yaml
+- name: Scan secrets in PR diff
+  run: |
+    git diff origin/${{ github.base_ref }}...HEAD | path/to/skills/scripts/scan-secrets.sh --diff
+```
+
+### Pre-commit hook
+
+```bash
+# .git/hooks/pre-commit
+git diff --cached | path/to/skills/scripts/scan-secrets.sh --diff
+```

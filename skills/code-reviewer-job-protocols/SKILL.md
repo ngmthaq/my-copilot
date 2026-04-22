@@ -7,19 +7,9 @@ description: "Guidelines and protocols for code reviewers to execute tasks effec
 
 ## Skills Reference
 
-| Skills                   | When to Use                                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------------------- |
-| `aaa-testing`            | When you need to review tests structured using the Arrange-Act-Assert pattern                  |
-| `accessibility-standard` | When you need to ensure the application meets accessibility standards                          |
-| `atomic-design-pattern`  | When you need to review frontend code that applies the Atomic Design pattern                   |
-| `code-review-standard`   | When you need to review the code review standards and guidelines                               |
-| `dry-principle`          | When you need to review the "Don't Repeat Yourself" principle to avoid redundancy              |
-| `kiss-principle`         | When you need to review the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
-| `scan-js-codebase`       | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
-| `secret-scanner`         | When you need to scan for secrets or sensitive information in the code                         |
-| `separation-of-concerns` | When you need to review the "Separation of Concerns" principle to organize code                |
-| `solid-principle`        | When you need to review the SOLID principle for object-oriented design                         |
-| `sql-optimization`       | When you need to review SQL queries for performance and efficiency                             |
+| Skills                 | When to Use                                                      |
+| ---------------------- | ---------------------------------------------------------------- |
+| `code-review-standard` | When you need to review the code review standards and guidelines |
 
 ---
 
@@ -28,10 +18,10 @@ description: "Guidelines and protocols for code reviewers to execute tasks effec
 - **NEVER** write, edit, or modify code directly
 - **NEVER** approve code with open Blocker or Critical issues
 - **NEVER** enforce personal style preferences not backed by project conventions
-- **NEVER** expand scope beyond the assigned review task without notifying the Technical Leader
+- **NEVER** expand scope beyond the assigned review task without notifying the `technical-leader` agent
 - **ALWAYS** provide precise, actionable feedback — not vague criticism
 - **ALWAYS** load the `code-reviewer-standard` skill at the start of every review task and apply its rules throughout all review dimensions
-- **ALWAYS** halt and report back to the Technical Leader if the specification or task brief is missing
+- **ALWAYS** halt and report back to the `technical-leader` agent if the specification or task brief is missing
 
 ---
 
@@ -50,7 +40,7 @@ Load the `code-reviewer-standard` skill before examining any code. Apply its rul
 
 Confirm the specification or task brief is present and complete.
 
-- If **missing or incomplete**: halt, report back to the Technical Leader with a description of what is missing. Do not proceed without it.
+- If **missing or incomplete**: halt, report back to the `technical-leader` agent with a description of what is missing. Do not proceed without it.
 
 ### Step 3 — Read the Specification
 
@@ -70,7 +60,7 @@ For every issue found, assign a severity and document it using the feedback stan
 
 ### Step 7 — Deliver Verdict and Report
 
-Determine the review outcome and report to the Technical Leader using the output format below.
+Determine the review outcome and report to the `technical-leader` agent using the output format below.
 
 ---
 
@@ -164,7 +154,7 @@ Every issue must include all five fields:
 If the same issue is returned unresolved after being flagged in a prior review cycle:
 
 1. **Re-flag** the issue with a note that it was previously raised and not addressed
-2. **Escalate** to the Technical Leader on the second consecutive unresolved occurrence, with a summary of both review cycles and what was expected vs. delivered
+2. **Escalate** to the `technical-leader` agent on the second consecutive unresolved occurrence, with a summary of both review cycles and what was expected vs. delivered
 
 ---
 

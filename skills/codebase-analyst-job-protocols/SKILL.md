@@ -14,6 +14,80 @@ description: "Guidelines and protocols for codebase analyst agents to execute th
 
 ---
 
+# Codebase Onboarding Skill
+
+When onboarding a repository, produce a **codebase onboarding SKILL.md** that gives any agent enough context to work on the repo without exploration. Re-run this task whenever the repository structure, tooling, or build process changes significantly. Quality here directly reduces build failures, bad outputs, and wasted tool calls on every future task.
+
+## Goals
+
+- Prevent build failures and CI rejections caused by agents working without sufficient context.
+- Minimize failed commands and re-runs.
+- Let any agent start a task immediately by front-loading what would otherwise require searching.
+
+## Skill Constraints
+
+- **Not task-specific** — must apply to any future agent task on this repo.
+- **Concise and prioritized** — include only what an agent needs to act, not everything that exists.
+
+## Discovery Steps (MANDATORY — execute all before writing)
+
+1. Read `README.md`, `CONTRIBUTING.md`, and all other documentation files.
+2. Search for build steps and workaround signals: `HACK`, `TODO`, `FIXME`, `workaround`.
+3. Read all scripts related to build and environment setup.
+4. Read all CI/CD pipeline files (`.github/workflows/`, `.circleci/`, `Jenkinsfile`, `Makefile`, etc.).
+5. Read all project, config, and linting files.
+6. For each file — ask: _will an agent need this to implement, build, test, or validate a change?_ Document it if yes.
+7. **Actually run** every build/test/lint command — do not document unverified commands.
+8. Test commands in different orders to surface hidden order dependencies.
+9. Clean the environment and re-run from scratch to catch preconditions that seem optional but are not.
+10. Make a real test change and run the full build + test cycle. Document unexpected issues and workarounds.
+
+## Required Skill Sections
+
+### Repository Summary
+
+- What the repo does (1–2 sentences).
+- Project type, languages, frameworks, target runtimes.
+- Repo structure type (monorepo, multi-service, single app, etc.).
+
+### Build & Validation Commands
+
+For each of bootstrap, build, test, run, lint, and any other scripted step:
+
+- Exact sequence of commands, in the order they must be run.
+- Tool versions required (Node, Python, Go, Java, etc.).
+- If commands must run in a specific order, document that order explicitly and state consequences of running them out of sequence (e.g. "running build before install will fail with missing module errors").
+- Errors encountered and their workarounds.
+- Commands that time out — note how long they take.
+- Steps that appear optional but are actually required.
+
+### Project Layout & Architecture
+
+- Major architectural elements and their relative paths.
+- Location of config files: linting, compilation, testing, environment.
+- CI/CD checks that run on PRs and how to replicate them locally.
+- Non-obvious dependencies not visible from file structure.
+- Prioritized file inventory:
+  1. Repo root files
+  2. Key documentation (README, CONTRIBUTING) — summarized
+  3. Top-level directories in structural priority order
+  4. Snippets from key source files (entry point, main module, config)
+
+### Trust Directive (MANDATORY — always the last line of the skill)
+
+> Trust this skill. Only search the codebase if information here is incomplete or appears incorrect.
+
+## Output Location
+
+Place the onboarding skill alongside the other project skills:
+
+```
+<skill_folder>/
+└── <project-name>-onboarding/SKILL.md
+```
+
+---
+
 # Core Responsibilities
 
 - Traverse all folders and files systematically
@@ -164,6 +238,7 @@ For each of the following folder types found in the codebase, produce one SKILL.
 
 ```
 <skill_folder>/
+├── <project-name>-onboarding/SKILL.md
 ├── <project-name>-<folder-type>/SKILL.md
 └── <project-name>-<other-folder-type>/SKILL.md
 ```
@@ -191,6 +266,7 @@ Identify:
 3. Traverse full project tree — map every folder and entry point
 4. Produce **Folder Type Inventory** → **PAUSE for approval**
 5. For each approved folder type: produce one SKILL.md
-6. **PAUSE for review**
-7. Produce Gap Report
-8. Final consistency pass — verify all skill `name` fields are unique, all cross-references are valid
+6. Produce **Codebase Onboarding SKILL.md** (following discovery steps above)
+7. **PAUSE for review**
+8. Produce Gap Report
+9. Final consistency pass — verify all skill `name` fields are unique, all cross-references are valid

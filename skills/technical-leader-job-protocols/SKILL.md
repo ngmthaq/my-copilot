@@ -93,8 +93,8 @@ Load the `feature-doc-template` skill and produce a formal specification documen
 
 **Execution plan must include:**
 
-- Work broken into atomic, well-scoped tasks
-- Each task assigned to exactly one agent (see Agents table above)
+- Work broken into atomic, well-scoped tasks (implement code, write test, code review, QA validation, etc.)
+- Each task assigned to exactly one agent
 - Inputs, outputs, and constraints per task
 - Dependencies between tasks (sequential vs. parallel)
 - For parallel tasks: define the failure handling rule — if one parallel task fails, state whether remaining parallel tasks are paused or continue to completion before the failure is addressed

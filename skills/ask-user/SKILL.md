@@ -11,10 +11,10 @@ Provide a deterministic, tool-first mechanism to collect required user input.
 
 ---
 
-## Core Rule
+## Core Rules
 
 - **ALWAYS** use a built-in ask tool if available.
-- **ALWAYS** leave last answer for the user in a state where they can easily provide other input.
+- **ALWAYS** leave the last option open for freeform user input (never end with a closed list).
 - **Otherwise**, fallback to structured plain text.
 
 ---
@@ -53,7 +53,8 @@ Do NOT use when:
 ```ts
 vscode_askQuestion({
   question: "Select database",
-  options: ["PostgreSQL", "MySQL", "MongoDB"],
+  options: ["PostgreSQL", "MySQL", "MongoDB", "Other (describe yours)"],
+  //                                            ^ always include a freeform last option
 });
 ```
 
@@ -62,7 +63,7 @@ vscode_askQuestion({
 ```ts
 ask({
   prompt: "Enter API base URL",
-  type: "input",
+  type: "input", // freeform by nature — satisfies the open-last rule
 });
 ```
 
@@ -72,7 +73,8 @@ ask({
 {
   "tool": "ask_user",
   "question": "...",
-  "choices": ["A", "B"]
+  "choices": ["A", "B", "Something else (type your answer)"]
+  //                      ^ always include a freeform last choice
 }
 ```
 
@@ -90,15 +92,18 @@ Question:
 Options:
 A. ...
 B. ...
-C. User can also provide freeform input if none of the options fit.
+C. Other — describe your own answer below.
+  ^ always end with an open option
 
 Expected:
 <example>
 ```
 
+---
+
 ## Rules
 
 - One question at a time
-- Prefer multiple-choice
+- Prefer multiple-choice, but **always append a freeform last option**
 - Must block execution until answered
 - Do not assume missing data
