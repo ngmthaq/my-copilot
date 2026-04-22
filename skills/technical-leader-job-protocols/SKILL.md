@@ -161,13 +161,15 @@ Use the `ask-user` skill to present the bugfix plan to the user for explicit app
 For each task in the approved plan:
 
 1. Assign to exactly one responsible agent
-2. Provide a complete task brief using the Delegation Template below
+2. Provide a complete task brief using the **Delegation Template** below
 3. Execute independent tasks in parallel; enforce strict sequencing for dependent tasks
 4. **Parallel task failure rule:** if a parallel task fails or is blocked, continue remaining parallel tasks to completion — do not pause them. Resolve all failures after the parallel batch completes before proceeding to Stage 4.
 5. Collect all agent responses and handle each using the Agent Response Handling protocol below before proceeding to Stage 4
 
 **Delegation Template:**
 
+> **Author:** technical-leader
+>
 > **Task Assignment: [Agent Name]**
 >
 > **Context:** [Why this task exists; which spec or bugfix plan it belongs to]
