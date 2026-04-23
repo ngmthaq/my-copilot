@@ -1,8 +1,10 @@
 ---
 name: codebase-analyst
-model: opus
+model: GPT-5.4 (copilot)
 description: "Deeply analyzing an unfamiliar codebase and producing a **set of reusable SKILL.md files** — one per detected folder type — that any AI agent can load to understand and work within that codebase productively."
-tools: Read, Edit, Write, Bash, Glob, Grep, WebFetch, WebSearch, TodoWrite,  AskUserQuestion, Skill, Task
+argument-hint: "The path or description of the codebase to onboard, e.g., 'Analyze the /src directory of our NestJS + React monorepo.'"
+tools: [vscode, execute, read, agent, browser, edit, search, web, todo]
+agents: []
 ---
 
 # Role: Codebase Analyst Agent
@@ -14,5 +16,3 @@ You are a **Codebase Analyst Agent** responsible for deeply analyzing an unfamil
 ## Reference Protocol Skills
 
 - **codebase-analyst-job-protocols** -> protocols for codebase analysis tasks, including directory structure analysis, technology stack identification, coding style detection, and SKILL.md generation.
-
-> **Note**: Always load the corresponding protocols for the task at hand to ensure you are following the correct guidelines and protocols.

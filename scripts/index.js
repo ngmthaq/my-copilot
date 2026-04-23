@@ -19,7 +19,10 @@ function getCommand() {
 
 function getTemplate() {
   const args = process.argv.slice(2);
-  const template = AVAILABLE_TEMPLATES.includes(args[1]) ? args[1] : null;
+  const normalizedTemplate = args[1] ? args[1].trim() : "";
+  const template = AVAILABLE_TEMPLATES.includes(normalizedTemplate)
+    ? normalizedTemplate
+    : null;
   if (!template) {
     throw new Error(
       `Invalid template: ${args[1]}. Available templates: ${AVAILABLE_TEMPLATES.join(", ")}`,
@@ -49,7 +52,7 @@ async function backupExistingDirectory(template) {
 }
 
 function copyAgents(template) {
-  const agentPath = path.join(__dirname, "..", template, "agents");
+  const agentPath = path.join(__dirname, "..", "agents", template);
   const agentFiles = fs
     .readdirSync(agentPath, { withFileTypes: true })
     .filter((dir) => !dir.isDirectory())
@@ -80,38 +83,18 @@ function copySkills(template) {
 }
 
 function copyInstructions(template) {
-  const instructionFile = path.join(
-    __dirname,
-    "..",
-    template,
-    INSTRUCTION_FILES[template],
-  );
-  const targetDir = path.join(CWD, `.${template}`);
   fs.copyFileSync(
-    instructionFile,
-    path.join(targetDir, INSTRUCTION_FILES[template]),
+    path.join(__dirname, "..", "INSTRUCTIONS.md"),
+    path.join(CWD, `.${template}`, INSTRUCTION_FILES[template]),
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "..", "README.md"),
+    path.join(CWD, `.${template}`, "README.md"),
   );
 }
 
-function copyAgentConfigs(template) {
-  const agentConfigPath = path.join(__dirname, "..", "agent-configs.json");
-  const targetDir = path.join(CWD, `.${template}`);
-  fs.copyFileSync(agentConfigPath, path.join(targetDir, "agent-configs.json"));
-}
-
-function copyDocs(template) {
-  const docPath = path.join(__dirname, "..", "docs");
-  const docFiles = fs
-    .readdirSync(docPath, { withFileTypes: true })
-    .map((dir) => dir.name);
-  const targetDir = path.join(CWD, `.${template}`);
-  const docDir = path.join(targetDir, "docs");
-  fs.mkdirSync(docDir, { recursive: true });
-  docFiles.forEach((file) => {
-    const src = path.join(docPath, file);
-    const target = path.join(docDir, file);
-    fs.cpSync(src, target, { recursive: true });
-  });
+function createDocFolder(template) {
+  fs.mkdirSync(path.join(CWD, `.${template}`, "docs"));
 }
 
 async function init() {
@@ -120,8 +103,7 @@ async function init() {
   copyAgents(template);
   copySkills(template);
   copyInstructions(template);
-  copyAgentConfigs(template);
-  copyDocs(template);
+  createDocFolder(template);
   console.log(`Project initialized with ${template} template!`);
 }
 
