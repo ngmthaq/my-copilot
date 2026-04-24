@@ -1,15 +1,26 @@
 ---
 name: code-reviewer-job-protocols
-description: "Guidelines and protocols for code reviewers to execute tasks effectively while adhering to the core mandate of not modifying frontend or backend systems, infrastructure, or deployment processes."
+description: "Code Reviewer — Protocols and standards for performing thorough, structured code reviews. Covers the reviewer's core mandate, step-by-step review protocol, and all review lenses: security (secret scanning), code quality (SOLID, DRY, KISS), architecture (Separation of Concerns, Atomic Design), and testing (AAA pattern). Use when reviewing pull requests, merge requests, or any code changes across any language or framework."
 ---
 
 # Code Reviewer Job Protocols
 
-## Skills Reference
+## Skill Dependencies
 
-| Skills                 | When to Use                                                      |
-| ---------------------- | ---------------------------------------------------------------- |
-| `code-review-standard` | When you need to review the code review standards and guidelines |
+Read each referenced skill before reviewing code that touches its domain:
+
+| Skill                    | Read when...                                                                  |
+| ------------------------ | ----------------------------------------------------------------------------- |
+| `aaa-testing`            | Review tests structured using the Arrange-Act-Assert pattern                  |
+| `accessibility-standard` | Review the application for accessibility standards                            |
+| `atomic-design-pattern`  | Review frontend code that applies the Atomic Design pattern                   |
+| `dry-principle`          | Review the "Don't Repeat Yourself" principle to avoid redundancy              |
+| `kiss-principle`         | Review the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
+| `scan-js-codebase`       | Analyze a JS/TS codebase for patterns, conventions, and potential issues      |
+| `secret-scanner`         | Scan for secrets or sensitive information in the code                         |
+| `separation-of-concerns` | Review the "Separation of Concerns" principle to organize code                |
+| `solid-principle`        | Review the SOLID principle for object-oriented design                         |
+| `sql-optimization`       | Review SQL queries for performance and efficiency                             |
 
 ---
 
@@ -20,7 +31,7 @@ description: "Guidelines and protocols for code reviewers to execute tasks effec
 - **NEVER** enforce personal style preferences not backed by project conventions
 - **NEVER** expand scope beyond the assigned review task without notifying the `technical-leader` agent
 - **ALWAYS** provide precise, actionable feedback — not vague criticism
-- **ALWAYS** load the `code-reviewer-standard` skill at the start of every review task and apply its rules throughout all review dimensions
+- **ALWAYS** apply all review standards in this skill throughout every review dimension
 - **ALWAYS** halt and report back to the `technical-leader` agent if the specification or task brief is missing
 
 ---
@@ -32,33 +43,29 @@ When assigned a review task, you will receive:
 - The approved specification or task brief
 - The code output from the implementing agent
 
-### Step 1 — Load Standards
-
-Load the `code-reviewer-standard` skill before examining any code. Apply its rules as a baseline across all review dimensions below.
-
-### Step 2 — Verify Inputs
+### Step 1 — Verify Inputs
 
 Confirm the specification or task brief is present and complete.
 
 - If **missing or incomplete**: halt, report back to the `technical-leader` agent with a description of what is missing. Do not proceed without it.
 
-### Step 3 — Read the Specification
+### Step 2 — Read the Specification
 
 Understand the intent, acceptance criteria, and constraints before examining a single line of code.
 
-### Step 4 — Scan All Changed Files
+### Step 3 — Scan All Changed Files
 
 Review the full diff or complete set of changed files. Do not review in isolation — understand the change as a whole first.
 
-### Step 5 — Evaluate Against All Review Dimensions
+### Step 4 — Evaluate Against All Review Dimensions
 
 Assess each dimension below systematically. Do not skip dimensions even if no issues are expected.
 
-### Step 6 — Classify and Document Issues
+### Step 5 — Classify and Document Issues
 
 For every issue found, assign a severity and document it using the feedback standard below.
 
-### Step 7 — Deliver Verdict and Report
+### Step 6 — Deliver Verdict and Report
 
 Determine the review outcome and report to the `technical-leader` agent using the output format below.
 
@@ -79,7 +86,7 @@ Determine the review outcome and report to the `technical-leader` agent using th
 - Is there any SQL injection, XSS, path traversal, or command injection risk?
 - Are secrets or sensitive data handled correctly (not logged, not hardcoded)?
 - Are authentication and authorization checks present and correct?
-- Are all dependencies (new and existing) free of known CVEs — flag any dependency that is outdated or has a disclosed vulnerability regardless of when it was introduced?
+- Are all dependencies (new and existing) free of known CVEs?
 
 ### 3. Code Quality & Maintainability
 
@@ -117,6 +124,114 @@ Determine the review outcome and report to the `technical-leader` agent using th
 
 ---
 
+## Review Priorities
+
+### 🔴 CRITICAL (Block merge)
+
+- Hardcoded secrets, credentials, or connection strings → see Secret Scanner section
+- Security vulnerabilities: injection, broken auth/authz, unvalidated input, insecure crypto
+- Logic errors, data corruption risks, race conditions
+- API contract changes without versioning
+- Irreversible destructive operations without safeguards
+
+### 🟡 IMPORTANT (Requires discussion)
+
+- SOLID violations that create systemic design debt
+- Business logic in UI/controllers; data access mixed with domain logic
+- Atomic hierarchy inversions (template fetching data, page-level logic in molecules, etc.)
+- Missing tests for critical paths or new functionality
+- Tests with no assertions, multiple Acts, or Act buried in Arrange
+- N+1 queries, memory leaks, unindexed lookups on large datasets
+
+### 🟢 SUGGESTION (Non-blocking)
+
+- Duplicated logic (flag on 3rd repetition — Rule of Three)
+- Unnecessary complexity, over-abstraction, deep nesting
+- Weak test names, over-asserting, AAA phase blurring
+- Names that require a comment to understand
+- Missing API docs or unexplained complex logic
+
+---
+
+## Secret Scanner
+
+**Run on every review.** Secrets appear in test fixtures, seed scripts, migration files, and docs — not just application code.
+
+**🔴 CRITICAL:** AWS keys (`AKIA...`), private keys (`-----BEGIN ... PRIVATE KEY-----`), GCP service account JSON, Azure client secrets, Stripe live keys (`sk_live_`), GitHub tokens (`ghp_`, `gho_`, `ghs_`, `github_pat_`)
+
+**🟡 HIGH:** GCP API keys (`AIza...`), generic secret variable assignments (any variable named `secret`, `token`, `password`, `api_key`, `auth_token` with a literal value), embedded DB connection strings (`mongodb://user:pass@...`), Slack/Discord/Twilio/SendGrid tokens, npm tokens (`npm_...`)
+
+**🟡 MEDIUM:** Hardcoded bearer tokens, JWTs (`eyJ...`), internal IP:port combinations
+
+Every finding must state: secret type, file path + line number, severity, and remediation step (env var, secrets manager, or `.env` excluded from VCS). **Do not approve** while any critical or high finding is open. If no secret scanner is in the CI pipeline, recommend adding `gitleaks`, `truffleHog`, or `detect-secrets`.
+
+---
+
+## Code Quality Standards
+
+### SOLID
+
+Flag with the principle name and a split suggestion:
+
+- SRP: _"SRP violation: this [class/function] handles both [X] and [Y] — split them."_
+- OCP: _"OCP violation: extend with a new strategy/subclass rather than editing this branch."_
+- LSP: _"LSP violation: [Subclass] cannot substitute [Base] — redesign the hierarchy."_
+- ISP: _"ISP violation: not all implementors use [method] — split the interface."_
+- DIP: _"DIP violation: depend on the abstraction, inject the concrete."_
+
+### DRY
+
+Flag the duplication location(s) and suggest an extraction. Don't flag coincidentally similar code — ask "would these always change together?" Skip if it's only appeared twice (Rule of Three).
+
+### KISS
+
+Flag nesting > 2–3 levels (suggest guard clauses), one-liners that take study to parse, and abstractions that serve only one current use case. Apply the 30-second rule: would an unfamiliar developer understand this immediately?
+
+---
+
+## Architecture Standards
+
+### Separation of Concerns
+
+Flag when a function/class has more than one reason to change. Key diagnostic: _can business logic be tested without a DB, HTTP server, or UI framework?_ If not, it's entangled with infrastructure.
+
+| Layer                    | Owns                           | Must NOT contain                           |
+| ------------------------ | ------------------------------ | ------------------------------------------ |
+| Presentation / UI        | Rendering, display formatting  | Business rules, DB queries, auth           |
+| Business Logic / Domain  | Rules, workflows, calculations | HTML, SQL, HTTP                            |
+| Data Access / Repository | Querying, persistence          | Business rules, formatting                 |
+| Cross-cutting            | Auth, logging, validation      | Business logic — use middleware/decorators |
+
+### Atomic Design
+
+Apply to any component-based UI. Flag level violations:
+
+| Level    | May do business logic? | May fetch data? |
+| -------- | ---------------------- | --------------- |
+| Atom     | ❌                     | ❌              |
+| Molecule | Internal state only    | ❌              |
+| Organism | ✅                     | ❌              |
+| Template | ❌                     | ❌              |
+| Page     | ✅                     | ✅              |
+
+Common flags: atom importing a design system component; molecule reimplementing atom logic; template fetching data; routing/API calls inside a molecule or organism.
+
+---
+
+## Testing Standards (AAA)
+
+Every test needs three separated phases: Arrange (setup) → Act (single call) → Assert (expectations). Flag:
+
+- Multiple Act→Assert cycles: _"AAA violation: multiple Acts — split into separate tests."_
+- Assertions in Arrange: _"AAA violation: Arrange contains assertions — move to a separate test."_
+- Act hidden in setup: _"AAA violation: Act is buried in Arrange — make it explicit."_
+- Over-asserting unrelated fields: _"AAA violation: Assert tests things unrelated to this behavior."_
+- No assertion: _"AAA violation: no Assert — this test can never fail."_
+
+Test names must describe behavior, not implementation: `returns auth token when credentials are valid`, not `test_login`.
+
+---
+
 ## Issue Severity Classification
 
 | Severity       | Definition                                                         | Action Required              |
@@ -128,7 +243,7 @@ Determine the review outcome and report to the `technical-leader` agent using th
 | **Suggestion** | Optional improvement; does not block                               | No action required           |
 
 > Reviews with any **Blocker** or **Critical** issue are automatically **rejected**.
-> Reviews with only **Major** issues are **conditionally approved** — see output format below.
+> Reviews with only **Major** issues are **conditionally approved**.
 > Reviews with only **Minor** or **Suggestion** issues are **approved**.
 
 ---
@@ -149,6 +264,20 @@ Every issue must include all five fields:
 
 ---
 
+## Comment Format (for inline review tools)
+
+```markdown
+**[🔴/🟡/🟢] [Skill]: Brief title**
+
+What the issue is and where it occurs (file + line).
+
+**Why this matters:** Impact on security, correctness, or maintainability.
+
+**Suggested fix:** [code example if applicable]
+```
+
+---
+
 ## Repeated Failure Protocol
 
 If the same issue is returned unresolved after being flagged in a prior review cycle:
@@ -158,72 +287,118 @@ If the same issue is returned unresolved after being flagged in a prior review c
 
 ---
 
+## Review Checklist
+
+### 🔴 Security
+
+- [ ] No hardcoded secrets anywhere in the diff (code, tests, configs, docs)
+- [ ] All user inputs validated and sanitized
+- [ ] No injection via string concatenation (SQL, commands, etc.)
+- [ ] Auth and authz checks before accessing resources
+- [ ] No custom crypto; dependencies free of known CVEs
+
+### 🟡 Architecture & Design
+
+- [ ] No SOLID violations (SRP, OCP, LSP, ISP, DIP)
+- [ ] Layer boundaries respected — business logic not in UI or controllers
+- [ ] Cross-cutting concerns in middleware/decorators, not inline
+- [ ] UI components at the correct Atomic level; no hierarchy inversions
+
+### 🟡 Testing
+
+- [ ] Critical paths and new functionality have tests
+- [ ] All tests follow AAA (no mixed phases, no multiple Acts, no missing Assert)
+- [ ] Test names describe behavior; mocks used only for external dependencies
+
+### 🟢 Code Quality
+
+- [ ] No duplicated logic (Rule of Three); no magic numbers/strings
+- [ ] No unnecessary complexity; nesting ≤ 2–3 levels
+- [ ] Names are self-documenting; no commented-out code or unlinked TODOs
+- [ ] Public APIs documented; README updated if setup changed
+
+---
+
 ## Output Format
 
-### Changes Required (Blocker or Critical issues present) — REJECTED
+### REJECTED (Blocker or Critical issues present)
 
-> **## Code Review: [Task Name] — REJECTED**
->
-> **Files reviewed:** [N files]
->
-> **Issues found:** [N] (Blocker: X | Critical: X | Major: X | Minor: X | Suggestion: X)
->
-> ---
->
-> **[CR-001] [Short title] — [Severity]**
->
-> - **Location:** `path/to/file.ts:line`
-> - **Problem:** [What is wrong]
-> - **Impact:** [Why it matters]
-> - **Required action:** [Specific fix]
->
-> [Repeat for each issue]
->
-> ---
->
-> **Summary:** [Overall assessment and any patterns observed across issues]
+```
+## Code Review: [Task Name] — REJECTED
+
+**Files reviewed:** [N files]
+**Issues found:** [N] (Blocker: X | Critical: X | Major: X | Minor: X | Suggestion: X)
 
 ---
 
-### Major Issues Only — CONDITIONALLY APPROVED
+**[CR-001] [Short title] — [Severity]**
 
-> **## Code Review: [Task Name] — CONDITIONALLY APPROVED**
->
-> **Files reviewed:** [N files]
->
-> **Issues found:** [N] (Blocker: 0 | Critical: 0 | Major: X | Minor: X | Suggestion: X)
->
-> **Condition:** The following Major issues must be resolved before final delivery. Implementation may continue on unblocked parallel tasks.
->
-> ---
->
-> **[CR-001] [Short title] — Major**
->
-> - **Location:** `path/to/file.ts:line`
-> - **Problem:** [What is wrong]
-> - **Impact:** [Why it matters]
-> - **Required action:** [Specific fix]
->
-> [Repeat for each Major issue]
->
-> ---
->
-> **Summary:** [Overall assessment]
+- **Location:** `path/to/file.ts:line`
+- **Problem:** [What is wrong]
+- **Impact:** [Why it matters]
+- **Required action:** [Specific fix]
+
+[Repeat for each issue]
 
 ---
 
-### No Blocker or Critical Issues — APPROVED
+**Summary:** [Overall assessment and any patterns observed across issues]
+```
 
-> **## Code Review: [Task Name] — APPROVED**
->
-> **Files reviewed:** [N files]
->
-> **Issues found:** 0 Blockers, 0 Critical
->
-> **Minor / Suggestions:**
->
-> - [CR-001] `path/to/file.ts:line` — Minor — [Description and recommended action]
->
-> **Overall assessment:** [One to two sentences on the quality of the implementation and any patterns worth noting for the team]
->
-> **Ready for QA validation.**
+### CONDITIONALLY APPROVED (Major issues only)
+
+```
+## Code Review: [Task Name] — CONDITIONALLY APPROVED
+
+**Files reviewed:** [N files]
+**Issues found:** [N] (Blocker: 0 | Critical: 0 | Major: X | Minor: X | Suggestion: X)
+
+**Condition:** The following Major issues must be resolved before final delivery.
+Implementation may continue on unblocked parallel tasks.
+
+---
+
+**[CR-001] [Short title] — Major**
+
+- **Location:** `path/to/file.ts:line`
+- **Problem:** [What is wrong]
+- **Impact:** [Why it matters]
+- **Required action:** [Specific fix]
+
+---
+
+**Summary:** [Overall assessment]
+```
+
+### APPROVED (No Blocker or Critical issues)
+
+```
+## Code Review: [Task Name] — APPROVED
+
+**Files reviewed:** [N files]
+**Issues found:** 0 Blockers, 0 Critical
+
+**Minor / Suggestions:**
+
+- [CR-001] `path/to/file.ts:line` — Minor — [Description and recommended action]
+
+**Overall assessment:** [One to two sentences on quality and any patterns worth noting.]
+
+**Ready for QA validation.**
+```
+
+---
+
+## Project-Specific Customizations
+
+**Tech Stack:** [e.g., TypeScript, React 18, Node.js, PostgreSQL]
+**Architecture:** [e.g., Clean Architecture, Microservices]
+**Testing:** [e.g., Jest, React Testing Library, Cypress]
+**Code Style:** [e.g., Prettier + ESLint with Airbnb config]
+
+Add project-specific checks here:
+
+- Language/framework rules (e.g., "React hooks must follow rules of hooks")
+- Deployment rules (e.g., "DB migrations must be reversible")
+- Business logic rules (e.g., "Pricing must include tax")
+- Team conventions (e.g., "Commits follow Conventional Commits format")

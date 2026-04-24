@@ -298,6 +298,8 @@ Each task MUST be atomic and independently executable.
 | T1   | ...   | ...    |
 | T2   | ...   | ...    |
 
+> **Note**: Always list all skills required for each task to ensure proper agent assignment.
+
 ---
 
 ## 12. Progress Tracking

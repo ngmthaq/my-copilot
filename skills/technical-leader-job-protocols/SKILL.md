@@ -7,21 +7,12 @@ description: "Guidelines and protocols for Technical Leaders to manage and overs
 
 ## Skill Reference
 
-| Skills                   | When to Use                                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------------------- |
-| `aaa-testing`            | When you need to review tests structured using the Arrange-Act-Assert pattern                  |
-| `accessibility-standard` | When you need to ensure the application meets accessibility standards                          |
-| `ask-user`               | When you need to gather additional information or clarification from the user                  |
-| `atomic-design-pattern`  | When you need to review frontend code that applies the Atomic Design pattern                   |
-| `bugfix-plan-template`   | Bug Flow Step 3 — after a validated RCA is received                                            |
-| `dry-principle`          | When you need to review the "Don't Repeat Yourself" principle to avoid redundancy              |
-| `feature-doc-template`   | Stage 2 — before writing any specification                                                     |
-| `kiss-principle`         | When you need to review the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
-| `scan-js-codebase`       | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
-| `secret-scanner`         | When you need to scan for secrets or sensitive information in the code                         |
-| `separation-of-concerns` | When you need to review the "Separation of Concerns" principle to organize code                |
-| `solid-principle`        | When you need to review the SOLID principle for object-oriented design                         |
-| `sql-optimization`       | When you need to review SQL queries for performance and efficiency                             |
+| Skills                 | When to Use                                                              |
+| ---------------------- | ------------------------------------------------------------------------ |
+| `ask-user`             | Gather additional information or clarification from the user             |
+| `bugfix-plan-template` | Bug Flow Step 3 — after a validated RCA is received                      |
+| `feature-doc-template` | Stage 2 — before writing any specification                               |
+| `scan-js-codebase`     | Analyze a JS/TS codebase for patterns, conventions, and potential issues |
 
 ---
 
@@ -185,6 +176,8 @@ For each task in the approved plan:
 > **Acceptance Criteria:** [Exactly how success is measured]
 >
 > **Dependencies:** [Tasks that must complete before this one starts]
+>
+> **Skills:** [List of skills the assigned agent must load for this task]
 
 ---
 

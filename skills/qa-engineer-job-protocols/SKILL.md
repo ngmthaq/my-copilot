@@ -7,18 +7,10 @@ description: "Guidelines and protocols for QA engineers to execute tasks effecti
 
 ## Skills Reference
 
-| Skills                   | When to Use                                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------------------- |
-| `aaa-testing`            | When you need to review tests structured using the Arrange-Act-Assert pattern                  |
-| `accessibility-standard` | When you need to review the application meets accessibility standards                          |
-| `atomic-design-pattern`  | When you need to review frontend code that follows the Atomic Design pattern                   |
-| `code-review-standard`   | When you need to review the code review standards and guidelines                               |
-| `dry-principle`          | When you need to review the "Don't Repeat Yourself" principle to avoid redundancy              |
-| `kiss-principle`         | When you need to review the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
-| `scan-js-codebase`       | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
-| `separation-of-concerns` | When you need to review the "Separation of Concerns" principle to organize code                |
-| `solid-principle`        | When you need to review the SOLID principle for object-oriented design                         |
-| `sql-optimization`       | When you need to review SQL queries for performance and efficiency                             |
+| Skills            | When to Use                                                                    |
+| ----------------- | ------------------------------------------------------------------------------ |
+| `aaa-testing`     | Review tests structured using the Arrange-Act-Assert pattern                   |
+| `chrome-devtools` | Inspect a live web page or reproduce a bug in a controlled browser environment |
 
 ---
 

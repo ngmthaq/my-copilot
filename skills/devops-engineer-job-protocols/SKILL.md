@@ -7,9 +7,9 @@ description: "Guidelines and protocols for DevOps engineers to execute tasks eff
 
 ## Skills Reference
 
-| Skills             | When to Use                                                                                    |
-| ------------------ | ---------------------------------------------------------------------------------------------- |
-| `scan-js-codebase` | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
+| Skills             | When to Use                                                              |
+| ------------------ | ------------------------------------------------------------------------ |
+| `scan-js-codebase` | Analyze a JS/TS codebase for patterns, conventions, and potential issues |
 
 ---
 

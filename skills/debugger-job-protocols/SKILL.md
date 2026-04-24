@@ -7,19 +7,11 @@ description: "Guidelines and protocols for Debuggers to execute tasks effectivel
 
 ## Skills Reference
 
-| Skills                   | When to Use                                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------------------- |
-| `aaa-testing`            | When you need to review tests structured using the Arrange-Act-Assert pattern                  |
-| `accessibility-standard` | When you need to ensure the application meets accessibility standards                          |
-| `ask-user`               | When you need to gather additional information or clarification from the user                  |
-| `atomic-design-pattern`  | When you need to review frontend code that applies the Atomic Design pattern                   |
-| `dry-principle`          | When you need to review the "Don't Repeat Yourself" principle to avoid redundancy              |
-| `kiss-principle`         | When you need to review the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
-| `scan-js-codebase`       | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
-| `secret-scanner`         | When you need to scan for secrets or sensitive information in the code                         |
-| `separation-of-concerns` | When you need to review the "Separation of Concerns" principle to organize code                |
-| `solid-principle`        | When you need to review the SOLID principle for object-oriented design                         |
-| `sql-optimization`       | When you need to review SQL queries for performance and efficiency                             |
+| Skills             | When to Use                                                                    |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `ask-user`         | Gather additional information or clarification from the user                   |
+| `chrome-devtools`  | Inspect a live web page or reproduce a bug in a controlled browser environment |
+| `scan-js-codebase` | Analyze a JS/TS codebase for patterns, conventions, and potential issues       |
 
 ---
 

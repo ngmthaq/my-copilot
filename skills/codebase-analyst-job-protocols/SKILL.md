@@ -7,10 +7,10 @@ description: "Guidelines and protocols for codebase analyst agents to execute th
 
 ## Skills Reference
 
-| Skills             | When to Use                                                                                    |
-| ------------------ | ---------------------------------------------------------------------------------------------- |
-| `ask-user`         | When you need to gather additional information or clarification from the user                  |
-| `scan-js-codebase` | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
+| Skills             | When to Use                                                              |
+| ------------------ | ------------------------------------------------------------------------ |
+| `ask-user`         | Gather additional information or clarification from the user             |
+| `scan-js-codebase` | Analyze a JS/TS codebase for patterns, conventions, and potential issues |
 
 ---
 

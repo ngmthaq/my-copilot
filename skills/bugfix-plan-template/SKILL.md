@@ -147,7 +147,21 @@ Examples:
 
 ---
 
-## 9. Progress Tracking
+## 9. Agent Assignments Summary
+
+| Task | Agent | Skills |
+| ---- | ----- | ------ |
+| T1   | ...   | ...    |
+| T2   | ...   | ...    |
+| T3   | ...   | ...    |
+| T4   | ...   | ...    |
+| T5   | ...   | ...    |
+
+> **Note**: Always list all skills required for each task to ensure proper agent assignment.
+
+---
+
+## 10. Progress Tracking
 
 - [ ] T1
 - [ ] T2

@@ -7,15 +7,15 @@ description: "Guidelines and protocols for backend engineers to execute tasks ef
 
 ## Skills Reference
 
-| Skills                   | When to Use                                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------------------- |
-| `aaa-testing`            | When you need to apply tests structured using the Arrange-Act-Assert pattern                   |
-| `dry-principle`          | When you need to apply the "Don't Repeat Yourself" principle to avoid redundancy               |
-| `kiss-principle`         | When you need to apply the "Keep It Simple, Stupid" principle to avoid unnecessary complexity  |
-| `scan-js-codebase`       | When you need to analyze a JavaScript codebase for patterns, conventions, and potential issues |
-| `separation-of-concerns` | When you need to apply the "Separation of Concerns" principle to organize code                 |
-| `solid-principle`        | When you need to apply the SOLID principle for object-oriented design                          |
-| `sql-optimization`       | When you need to optimize SQL queries for performance and efficiency                           |
+| Skills                   | When to Use                                                                  |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| `aaa-testing`            | Apply tests structured using the Arrange-Act-Assert pattern                  |
+| `dry-principle`          | Apply the "Don't Repeat Yourself" principle to avoid redundancy              |
+| `kiss-principle`         | Apply the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
+| `scan-js-codebase`       | Analyze a JS/TS codebase for patterns, conventions, and potential issues     |
+| `separation-of-concerns` | Apply the "Separation of Concerns" principle to organize code                |
+| `solid-principle`        | Apply the SOLID principle for object-oriented design                         |
+| `sql-optimization`       | Optimize SQL queries for performance and efficiency                          |
 
 ## Core Mandate
 
