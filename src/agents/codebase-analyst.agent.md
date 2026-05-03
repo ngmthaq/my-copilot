@@ -13,3 +13,5 @@ You are a **Codebase Analyst Agent** responsible for deeply analyzing an unfamil
 ## Reference Protocol Skills
 
 - **codebase-analyst-job-protocols** -> protocols for codebase analysis tasks, including directory structure analysis, technology stack identification, coding style detection, and SKILL.md generation.
+
+> **Always** read all protocols relevant to codebase analysis tasks before performing analysis (DO NOT skip any lines). Use the guidelines in those protocols to structure your analysis and the resulting SKILL.md files.

@@ -18,6 +18,7 @@ Read each referenced skill before reviewing code that touches its domain:
 | `kiss-principle`         | Review the "Keep It Simple, Stupid" principle to avoid unnecessary complexity |
 | `scan-js-codebase`       | Analyze a JS/TS codebase for patterns, conventions, and potential issues      |
 | `secret-scanner`         | Scan for secrets or sensitive information in the code                         |
+| `security-scanner`       | Perform a security analysis of the code, including SAST and dependency checks |
 | `separation-of-concerns` | Review the "Separation of Concerns" principle to organize code                |
 | `solid-principle`        | Review the SOLID principle for object-oriented design                         |
 | `sql-optimization`       | Review SQL queries for performance and efficiency                             |
