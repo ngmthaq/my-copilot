@@ -5,124 +5,76 @@
 const fs = require("fs");
 const path = require("path");
 
-const AVAILABLE_TEMPLATES = ["github", "claude"];
-const INSTRUCTION_FILES = {
-  [AVAILABLE_TEMPLATES[0]]: "copilot-instructions.md",
-  [AVAILABLE_TEMPLATES[1]]: "CLAUDE.md",
+const AVAILABLE_INSTRUCTION_FILE = {
+  github: "copilot-instructions.md",
+  claude: "CLAUDE.md",
 };
-const CWD = process.cwd();
 
-function getCommand() {
-  const args = process.argv.slice(2);
-  return args[0];
+function errorLog(message) {
+  console.error("\x1b[31m%s\x1b[0m", message);
 }
 
-function getTemplate() {
-  const args = process.argv.slice(2);
-  const normalizedTemplate = args[1] ? args[1].trim() : "";
-  const template = AVAILABLE_TEMPLATES.includes(normalizedTemplate)
-    ? normalizedTemplate
-    : null;
-  if (!template) {
-    throw new Error(
-      `Invalid template: ${args[1]}. Available templates: ${AVAILABLE_TEMPLATES.join(", ")}`,
-    );
-  }
-  return template;
+function successLog(message) {
+  console.log("\x1b[32m%s\x1b[0m", message);
 }
 
-async function backupExistingDirectory(template) {
-  const targetDir = path.join(CWD, `.${template}`);
-  if (fs.existsSync(targetDir)) {
-    const now = new Date();
-    const timestamp = [
-      now.getFullYear(),
-      String(now.getMonth() + 1).padStart(2, "0"),
-      String(now.getDate()).padStart(2, "0"),
-      String(now.getHours()).padStart(2, "0"),
-      String(now.getMinutes()).padStart(2, "0"),
-      String(now.getSeconds()).padStart(2, "0"),
-    ].join("");
-    const backupDir = path.join(CWD, `.${template}-legacy-${timestamp}`);
-    fs.renameSync(targetDir, backupDir);
-    console.warn(
-      `Existing .${template} directory renamed to ${backupDir} to prevent data loss.`,
-    );
-  }
-}
-
-function copyAgents(template) {
-  const agentPath = path.join(__dirname, "..", "agents", template);
-  const agentFiles = fs
-    .readdirSync(agentPath, { withFileTypes: true })
-    .filter((dir) => !dir.isDirectory())
-    .map((dir) => dir.name);
-  const targetDir = path.join(CWD, `.${template}`);
-  const agentDir = path.join(targetDir, "agents");
-  fs.mkdirSync(agentDir, { recursive: true });
-  agentFiles.forEach((file) => {
-    const src = path.join(agentPath, file);
-    const target = path.join(agentDir, file);
-    fs.copyFileSync(src, target);
-  });
-}
-
-function copySkills(template) {
-  const skillPath = path.join(__dirname, "..", "skills");
-  const skillFiles = fs
-    .readdirSync(skillPath, { withFileTypes: true })
-    .map((dir) => dir.name);
-  const targetDir = path.join(CWD, `.${template}`);
-  const skillDir = path.join(targetDir, "skills");
-  fs.mkdirSync(skillDir, { recursive: true });
-  skillFiles.forEach((file) => {
-    const src = path.join(skillPath, file);
-    const target = path.join(skillDir, file);
-    fs.cpSync(src, target, { recursive: true });
-  });
-}
-
-function copyInstructions(template) {
-  fs.copyFileSync(
-    path.join(__dirname, "..", "INSTRUCTIONS.md"),
-    path.join(CWD, `.${template}`, INSTRUCTION_FILES[template]),
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "..", "README.md"),
-    path.join(CWD, `.${template}`, "README.md"),
-  );
-}
-
-function createDocFolder(template) {
-  fs.mkdirSync(path.join(CWD, `.${template}`, "docs"));
+function infoLog(message) {
+  console.log("\x1b[34m%s\x1b[0m", message);
 }
 
 async function init() {
-  const template = getTemplate();
-  backupExistingDirectory(template);
-  copyAgents(template);
-  copySkills(template);
-  copyInstructions(template);
-  createDocFolder(template);
-  console.log(`Project initialized with ${template} template!`);
+  const TEMPLATE = process.argv[3];
+  if (Object.keys(AVAILABLE_INSTRUCTION_FILE).indexOf(TEMPLATE) === -1) {
+    errorLog(`An error occurred, unknown template: ${TEMPLATE}`);
+    infoLog(
+      `Supported templates: ${Object.keys(AVAILABLE_INSTRUCTION_FILE).join(", ")}`,
+    );
+    process.exit(1);
+  }
+
+  // Backup agent folder if it exists
+  const agentDir = path.join(process.cwd(), `.${TEMPLATE}`);
+  if (fs.existsSync(agentDir)) {
+    const backupName = `.${TEMPLATE}_backup_${Date.now()}`;
+    const backupDir = path.join(process.cwd(), backupName);
+    fs.renameSync(agentDir, backupDir);
+    successLog(`Existing .${TEMPLATE} directory backed up to ${backupName}`);
+  }
+
+  // Copy src directory to working directory
+  const srcDir = path.join(__dirname, "..", "src");
+  const destDir = path.join(process.cwd(), `.${TEMPLATE}`);
+  fs.cpSync(srcDir, destDir, { recursive: true });
+
+  // Rename default instruction file to corresponding template instruction file
+  const instructionFile = AVAILABLE_INSTRUCTION_FILE[TEMPLATE];
+  const defaultInstructionPath = path.join(destDir, "copilot-instructions.md");
+  const destInstructionPath = path.join(
+    process.cwd(),
+    `.${TEMPLATE}`,
+    instructionFile,
+  );
+  fs.renameSync(defaultInstructionPath, destInstructionPath);
+
+  successLog(`Project initialized successfully with ${TEMPLATE} template!`);
 }
 
 function showHelp() {
   console.log(`
-    @ngmthaq20/my-copilot CLI
+    > @ngmthaq20/my-copilot CLI
 
     Usage:
-      npx @ngmthaq20/my-copilot@latest init [template]        Initialize a new project
-      npx @ngmthaq20/my-copilot@latest help                   Show help message
+      npx @ngmthaq20/my-copilot@latest init [template]      - Initialize a new project
+      npx @ngmthaq20/my-copilot@latest help                 - Show help message
 
     Templates:
-      github      Init .github directory with Github Copilot configuration
-      claude      Init .claude directory with Claude Code configuration
+      github    - Init .github directory with Github Copilot configuration
+      claude    - Init .claude directory with Claude Code configuration
     `);
 }
 
 try {
-  const COMMAND = getCommand();
+  const COMMAND = process.argv[2];
   switch (COMMAND) {
     case "init":
       init();
@@ -134,11 +86,13 @@ try {
       break;
 
     default:
-      console.error(`Unknown command: ${COMMAND}`);
-      showHelp();
+      errorLog(`An error occurred, unknown command: ${COMMAND}`);
+      infoLog(
+        "Use 'npx @ngmthaq20/my-copilot@latest help' for usage information",
+      );
       process.exit(1);
   }
 } catch (error) {
-  console.error("An error occurred:", error.message);
+  errorLog(`An error occurred: ${error.message}`);
   process.exit(1);
 }

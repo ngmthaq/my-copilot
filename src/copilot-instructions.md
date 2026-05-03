@@ -20,11 +20,11 @@
 - **key_libraries**: `N/A`
 - **database**: `N/A`
 - **doc_directory**: `<workspace>/<target>/docs`
+- **test_methodology**: `none`
 
-> **NOTE**:
->
-> - Resolve `<workspace>` is the current workspace
-> - Resolve `<target>` is the current AI platform, which could be a .github or .claude folder
+> Resolve `<workspace>` is the current workspace
+> Resolve `<target>` is the current AI platform, which could be a .github or .claude folder
+> **test_methodology** is either `code-first`, `test-first` or `none`. If `none`, do not generate tests.
 
 ---
 

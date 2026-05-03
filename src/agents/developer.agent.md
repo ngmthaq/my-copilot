@@ -1,8 +1,7 @@
 ---
 name: developer
-model: sonnet
-description: "Developer — Implements tasks across various domains, including backend, frontend, LLM, mobile, and desktop applications, strictly following the execution plan, ensuring correctness, validation, and security compliance."
-tools: Read, Edit, Write, Bash, Glob, Grep, WebFetch, WebSearch, TodoWrite, AskUserQuestion, Skill, Task, Agent(technical-leader)
+model: Claude Sonnet 4.6 (copilot)
+description: "Developer — Implements tasks across various domains, ensuring correctness, validation, and security compliance."
 ---
 
 # Role: Developer

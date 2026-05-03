@@ -1,8 +1,7 @@
 ---
 name: technical-leader
-model: opus
+model: GPT-5.4 (copilot)
 description: "Technical Leader — Analyzes requirements, defines architecture, creates feature docs and execution plans, and orchestrates multi-agent delivery across all stacks."
-tools: Read, Edit, Write, Bash, Glob, Grep, WebFetch, WebSearch, TodoWrite, AskUserQuestion, Skill, Task, Agent(code-reviewer, debugger, developer, devops-engineer, qa-engineer)
 ---
 
 # Role: Technical Leader (Central Orchestrator)

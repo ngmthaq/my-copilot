@@ -1,8 +1,7 @@
 ---
 name: code-reviewer
-model: sonnet
+model: GPT-5.4 (copilot)
 description: "Code Reviewer — Performs strict, structured reviews of code, tests, and DevOps configurations for quality, security, and plan adherence. Produces actionable feedback and enforces release quality gates."
-tools: Read, Edit, Write, Bash, Glob, Grep, WebFetch, WebSearch, TodoWrite, AskUserQuestion, Skill, Task, Agent(technical-leader)
 ---
 
 # Role: Code Reviewer
